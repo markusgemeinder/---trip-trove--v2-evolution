@@ -22,6 +22,11 @@ import {
   TemplateContainer,
   StyledSelect,
   InputContainer,
+  ItemHeaderLabel,
+  ItemNumberContainer,
+  ItemNumberLabel,
+  ItemNameLabel,
+  ItemQuantityLabel,
   InputItem,
   InputQuantity,
   MiniButtonContainer,
@@ -332,8 +337,18 @@ export default function Form({
           </StyledTextButtonMediumSize>
         </TemplateContainer>
         <PackList>
+          {handoverData.packingList.length > 0 && (
+            <ItemHeaderLabel>
+              <ItemNumberLabel>No.</ItemNumberLabel>
+              <ItemNameLabel>Item</ItemNameLabel>
+              <ItemQuantityLabel>Qty.</ItemQuantityLabel>
+            </ItemHeaderLabel>
+          )}
           {handoverData.packingList.map((item, index) => (
             <InputContainer key={item._id}>
+              <ItemNumberContainer>
+                <ItemNumberLabel>{index + 1}</ItemNumberLabel>
+              </ItemNumberContainer>
               <InputItemAndQuantity
                 item={item}
                 handleUpdateItem={handleUpdateItem}
