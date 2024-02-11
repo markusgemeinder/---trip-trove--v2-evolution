@@ -91,7 +91,7 @@ const StyledEndDate = styled(StyledDate)`
   grid-area: end;
 `;
 
-export default function DateBadge({ startDate, endDate }) {
+export default function TripDetailsBadge({ startDate, endDate }) {
   return (
     <BadgeContainer>
       <DaysContainer>

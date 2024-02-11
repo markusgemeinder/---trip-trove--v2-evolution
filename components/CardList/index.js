@@ -7,7 +7,7 @@ import useSWR from "swr";
 import SortSelect from "@/components/SortSelect";
 import { formatDate } from "@/lib/utils";
 
-import DateBadge from "@/components/DateBadge";
+import TripDetailsBadge from "@/components/Badge/TripDetailsBadge";
 
 const StyledCardList = styled.ul`
   margin: 1.8rem auto;
@@ -170,7 +170,7 @@ export default function CardList() {
           <StyledLink href={`trips/${trip._id}`} key={trip._id}>
             <StyledCard>
               <CardDestination>{trip.destination}</CardDestination>
-              <DateBadge startDate={trip.start} endDate={trip.end} />
+              <TripDetailsBadge startDate={trip.start} endDate={trip.end} />
               {/* <CardDateContainer>
                 <CardDateLabel>Scheduled from:</CardDateLabel>
                 <CardDate>{formatDate(trip.start)}</CardDate>
