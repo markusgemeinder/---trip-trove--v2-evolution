@@ -71,15 +71,78 @@ export const PackList = styled.ul`
   padding: 0;
 `;
 
+// export const InputContainer = styled.li`
+//   display: grid;
+//   grid-template-columns: 8fr 2fr 1fr;
+//   gap: 6px;
+//   align-items: center;
+//   margin: 0;
+//   padding: 0;
+//   margin-top: 6px;
+//   width: 100%;
+// `;
+
+// export const InputItem = styled(StyledInput)`
+//   width: 100%;
+//   margin: 0;
+// `;
 export const InputContainer = styled.li`
   display: grid;
-  grid-template-columns: 8fr 2fr 1fr;
-  gap: 6px;
+  grid-template-columns: 1fr 6.7fr 1.4fr 0.9fr;
+  justify-content: center;
   align-items: center;
+  gap: 4px;
   margin: 0;
   padding: 0;
   margin-top: 6px;
   width: 100%;
+
+  @media (min-width: 600px) {
+    grid-template-columns: 0.7fr 6.6fr 1.8fr 0.9fr;
+    gap: 6px;
+  }
+`;
+
+export const ItemHeaderLabel = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 6.7fr 1.4fr 0.9fr;
+  gap: 0.6rem;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.2rem;
+
+  @media (min-width: 600px) {
+    grid-template-columns: 0.7fr 6.6fr 1.8fr 0.9fr;
+    gap: 6px;
+  }
+`;
+
+export const ItemNumberContainer = styled.div`
+  background-color: var(--color-form-input);
+  border: 1px solid #ddd;
+  padding: 0.3rem;
+  border-radius: 8px;
+  margin-bottom: 0.1rem;
+  text-align: center;
+
+  @media (min-width: 600px) {
+    padding: 0.5rem;
+  }
+`;
+
+export const ItemNumberLabel = styled.p`
+  justify-self: center;
+  font-size: 0.8rem;
+  color: var(--color-form-item-label);
+  padding: 0;
+  margin: 0;
+`;
+
+export const ItemNameLabel = styled(ItemNumberLabel)`
+  justify-self: inherit;
+`;
+export const ItemQuantityLabel = styled(ItemNumberLabel)`
+  justify-self: center;
 `;
 
 export const InputItem = styled(StyledInput)`
@@ -197,14 +260,4 @@ export const StyledMiniButton = styled.div`
     cursor: pointer;
     transform: scale(1.03);
   }
-`;
-
-export const Select = styled.select`
-  padding: 0.5rem;
-  font-family: ${defaultFont.style.fontFamily};
-  font-size: inherit;
-  background-color: var(--color-form-input);
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 0.1rem;
 `;
