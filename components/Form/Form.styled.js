@@ -71,6 +71,27 @@ export const PackList = styled.ul`
   padding: 0;
 `;
 
+export const TemplateContainer = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+`;
+
+export const StyledSelect = styled.select`
+  font-family: ${defaultFont.style.fontFamily};
+  font-size: inherit;
+  background-color: var(--color-form-input);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding: 0.3rem;
+
+  @media (min-width: 600px) {
+    padding: 0.5rem;
+  }
+`;
+
 export const InputContainer = styled.li`
   display: grid;
   grid-template-columns: 1fr 6fr 2.1fr 0.9fr;
@@ -139,111 +160,4 @@ export const InputQuantity = styled(StyledInput)`
   text-align: right;
   width: 100%;
   margin: 0;
-`;
-
-export const TemplateContainer = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`;
-
-export const StyledSelect = styled.select`
-  font-family: ${defaultFont.style.fontFamily};
-  font-size: inherit;
-  background-color: var(--color-form-input);
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  padding: 0.3rem;
-
-  @media (min-width: 600px) {
-    padding: 0.5rem;
-  }
-`;
-
-export const MiniButtonContainer = styled.div`
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
-  margin-top: 0.4rem;
-  margin-bottom: 0.2rem;
-`;
-
-export const MiniButtonLabel = styled(StyledLabel)`
-  justify-self: center;
-  font-size: 0.7rem;
-  color: var(--color-form-item-label);
-  padding: 0;
-  margin: 0;
-
-  @media (min-width: 600px) {
-    font-size: 0.8rem;
-  }
-`;
-
-export const StyledMiniButton = styled.div`
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  justify-self: center;
-  width: 1.5rem;
-  height: 1.5rem;
-  padding: 0.2rem;
-  background-color: ${(props) => {
-    switch (props.action) {
-      case "add":
-        return "var(--color-mini-button-add)";
-      case "delete":
-        return "var(--color-mini-button-delete)";
-      default:
-        return "var(--color-mini-button)";
-    }
-  }};
-  color: ${(props) => {
-    switch (props.action) {
-      case "add":
-        return "var(--color-mini-button-add-text)";
-      case "delete":
-        return "var(--color-mini-button-delete-text)";
-      default:
-        return "var(--color-mini-button-text)";
-    }
-  }};
-  border: 0px;
-  border-radius: 8px;
-  font-family: ${defaultFont.style.fontFamily};
-  font-size: ${({ fontSize }) => fontSize || "1rem"};
-  font-weight: bold;
-  text-align: center;
-  text-decoration: none;
-  transition: color 0.3s ease, transform 0.3s ease;
-
-  @media (min-width: 600px) {
-    width: 1.8rem;
-    height: 1.8rem;
-    padding: 0.5rem;
-    border-radius: 10px;
-  }
-
-  &:active,
-  :visited {
-    color: inherit;
-  }
-
-  &:hover {
-    background-color: ${(props) => {
-      switch (props.action) {
-        case "add":
-          return "var(--color-mini-button-add-hover)";
-        case "delete":
-          return "var(--color-mini-button-delete-hover)";
-        default:
-          return "var(--color-mini-button-hover)";
-      }
-    }};
-    cursor: pointer;
-    transform: scale(1.03);
-  }
 `;

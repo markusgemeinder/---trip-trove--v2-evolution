@@ -13,6 +13,11 @@ import {
   StyledTextButtonMediumSize,
 } from "@/components/Button/TextButton";
 import {
+  MiniButtonContainer,
+  MiniButtonLabel,
+  StyledMiniButton,
+} from "@/components/Button/MiniButton";
+import {
   TripForm,
   StyledLabel,
   StyledInput,
@@ -29,9 +34,6 @@ import {
   ItemQuantityLabel,
   InputItem,
   InputQuantity,
-  MiniButtonContainer,
-  MiniButtonLabel,
-  StyledMiniButton,
 } from "@/components/Form/Form.styled";
 import { packingListTemplates } from "@/lib/packingListTemplates";
 
