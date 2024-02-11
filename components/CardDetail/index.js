@@ -11,6 +11,8 @@ import {
 } from "@/components/Button/TextButton";
 import toast, { Toaster } from "react-hot-toast";
 import { ToastMessage } from "@/components/ToastMessage";
+import TripDetailsBadge from "@/components/Badge/TripDetailsBadge";
+import CreateUpdateDateBadge from "@/components/Badge/CreateUpdateDateBadge";
 
 const StyledMessage = styled.h2`
   margin: 2rem auto;
@@ -20,7 +22,7 @@ const StyledCard = styled.div`
   margin-top: 0.8rem;
   display: flex;
   flex-flow: column wrap;
-  gap: 0.5rem;
+  gap: 0.2rem;
   background-color: var(--color-card);
   border: 1px solid var(--color-card-border);
   border-radius: 8px;
@@ -158,12 +160,7 @@ export default function CardDetail() {
       <Toaster />
       <StyledCard>
         <CardDestination>{trip.destination}</CardDestination>
-        <CardDateContainer>
-          <CardDateLabel>Start:</CardDateLabel>
-          <CardDate>{formatDate(trip.start)}</CardDate>
-          <CardDateLabel>End:</CardDateLabel>
-          <CardDate>{formatDate(trip.end)}</CardDate>
-        </CardDateContainer>
+        <TripDetailsBadge startDate={trip.start} endDate={trip.end} />
         <CardImage
           src={
             trip.imageURL !== ""
@@ -173,6 +170,10 @@ export default function CardDetail() {
           width={300}
           height={200}
           alt={trip.destination}
+        />
+        <CreateUpdateDateBadge
+          createdAt={trip.createdAt}
+          updatedAt={trip.updatedAt}
         />
         <ButtonContainer>
           <StyledTextButton onClick={handleDelete} disabled={buttonsDisabled}>
