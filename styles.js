@@ -140,6 +140,15 @@ export default createGlobalStyle`
   --color-badge-text: var(--color-grey-1000);
   --color-badge-highlight: var(--color-orange-500);
 
+  --color-image-upload: var(--color-orange-50);
+  --color-image-upload-border: var(--color-orange-300);
+  --color-image-upload-dash-line: var(--color-grey-200);
+  --color-image-upload-icon: var(--color-grey-200);
+  --color-image-upload-headline: var(--color-grey-1000);
+  --color-image-upload-text: var(--color-grey-300);
+  --color-image-upload-hover: var(--color-orange-100);
+
+
   --font-size: 14px;
   }
   

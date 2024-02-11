@@ -36,6 +36,7 @@ import {
   InputQuantity,
 } from "@/components/Form/Form.styled";
 import { packingListTemplates } from "@/lib/packingListTemplates";
+import ImageUpload from "@/components/ImageUpload";
 
 const INITIAL_DATA = {
   destination: "",
@@ -303,15 +304,16 @@ export default function Form({
           disabled={formDisabled}
         />
       </DateContainer>
-      <StyledLabel htmlFor="imageURL">Image URL</StyledLabel>
-      <StyledInput
+      <StyledLabel htmlFor="imageURL">Image</StyledLabel>
+      {/* <StyledInput
         id="imageURL"
         name="imageURL"
         type="text"
         value={handoverData?.imageURL || ""}
         onInput={handleInput}
         disabled={formDisabled}
-      />
+      /> */}
+      <ImageUpload />
       <PackListContainer>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
         <TemplateContainer>
