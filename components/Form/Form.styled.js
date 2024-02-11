@@ -71,24 +71,9 @@ export const PackList = styled.ul`
   padding: 0;
 `;
 
-// export const InputContainer = styled.li`
-//   display: grid;
-//   grid-template-columns: 8fr 2fr 1fr;
-//   gap: 6px;
-//   align-items: center;
-//   margin: 0;
-//   padding: 0;
-//   margin-top: 6px;
-//   width: 100%;
-// `;
-
-// export const InputItem = styled(StyledInput)`
-//   width: 100%;
-//   margin: 0;
-// `;
 export const InputContainer = styled.li`
   display: grid;
-  grid-template-columns: 1fr 6.7fr 1.4fr 0.9fr;
+  grid-template-columns: 1fr 6fr 2.1fr 0.9fr;
   justify-content: center;
   align-items: center;
   gap: 4px;
@@ -98,21 +83,21 @@ export const InputContainer = styled.li`
   width: 100%;
 
   @media (min-width: 600px) {
-    grid-template-columns: 0.7fr 6.6fr 1.8fr 0.9fr;
+    grid-template-columns: 0.7fr 6.8fr 1.6fr 0.9fr;
     gap: 6px;
   }
 `;
 
 export const ItemHeaderLabel = styled.div`
   display: grid;
-  grid-template-columns: 1fr 6.7fr 1.4fr 0.9fr;
+  grid-template-columns: 1fr 6fr 2.1fr 0.9fr;
   gap: 0.6rem;
   justify-content: space-between;
   align-items: center;
   margin-top: 0.2rem;
 
   @media (min-width: 600px) {
-    grid-template-columns: 0.7fr 6.6fr 1.8fr 0.9fr;
+    grid-template-columns: 0.8fr 6.7fr 1.6fr 0.9fr;
     gap: 6px;
   }
 `;
@@ -151,6 +136,7 @@ export const InputItem = styled(StyledInput)`
 `;
 
 export const InputQuantity = styled(StyledInput)`
+  text-align: right;
   width: 100%;
   margin: 0;
 `;
