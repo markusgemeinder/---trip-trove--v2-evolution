@@ -1,10 +1,13 @@
-import useSWR from "swr";
-import Image from "next/image";
 import styled from "styled-components";
-import { formatDate } from "@/lib/utils";
-import Link from "next/link";
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import useSWR from "swr";
+
 import SortSelect from "@/components/SortSelect";
+import { formatDate } from "@/lib/utils";
+
+import DateBadge from "@/components/DateBadge";
 
 const StyledCardList = styled.ul`
   margin: 1.8rem auto;
@@ -167,12 +170,13 @@ export default function CardList() {
           <StyledLink href={`trips/${trip._id}`} key={trip._id}>
             <StyledCard>
               <CardDestination>{trip.destination}</CardDestination>
-              <CardDateContainer>
-                <CardDateLabel>Start:</CardDateLabel>
+              <DateBadge startDate={trip.start} endDate={trip.end} />
+              {/* <CardDateContainer>
+                <CardDateLabel>Scheduled from:</CardDateLabel>
                 <CardDate>{formatDate(trip.start)}</CardDate>
-                <CardDateLabel>End:</CardDateLabel>
+                <CardDateLabel>until:</CardDateLabel>
                 <CardDate>{formatDate(trip.end)}</CardDate>
-              </CardDateContainer>
+              </CardDateContainer> */}
 
               <CardImage
                 src={
