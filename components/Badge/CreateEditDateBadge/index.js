@@ -10,14 +10,10 @@ const BadgeContainer = styled.div`
   padding: 0;
   display: grid;
   width: 100%;
-  grid-template-columns: 0.7fr 2.2fr 0.7fr;
+  grid-template-columns: 0.8fr 2.2fr 0.8fr;
   border-radius: 8px;
   gap: 8px;
   margin-bottom: 0.6rem;
-
-  @media (min-width: 600px) {
-    grid-template-columns: 0.8fr 2fr 0.8fr;
-  }
 `;
 
 const DaysContainer = styled.div`
@@ -34,24 +30,16 @@ const DaysContainer = styled.div`
 const StyledDays = styled.p`
   margin: 0;
   padding: 0;
+  font-size: 1.8rem;
   font-weight: bold;
   color: var(--color-badge-highlight);
-  font-size: 1.2rem;
-
-  @media (min-width: 600px) {
-    font-size: 1.6rem;
-  }
 `;
 
 const StyledDaysLabel = styled.p`
   margin: 0;
   padding: 0;
+  font-size: 0.8rem;
   color: var(--color-badge-label);
-  font-size: 0.6rem;
-
-  @media (min-width: 600px) {
-    font-size: 1rem;
-  }
 `;
 
 const DateContainer = styled.div`
@@ -86,7 +74,7 @@ const LabelEnd = styled(DateContainerLabel)`
 const StyledDate = styled.p`
   margin: 0;
   padding: 0;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   font-weight: bold;
   color: var(--color-badge-text);
 
@@ -103,26 +91,16 @@ const StyledEndDate = styled(StyledDate)`
   grid-area: end;
 `;
 
-export default function TripDetailsBadge({ startDate, endDate }) {
+export default function CreateEditDateBadge({ startDate, endDate }) {
   return (
     <BadgeContainer>
-      <DaysContainer>
-        <StyledDaysLabel>Start in</StyledDaysLabel>
-        <StyledDays>{calculateStartDays(startDate)}</StyledDays>
-        <StyledDaysLabel>days</StyledDaysLabel>
-      </DaysContainer>
       <DateContainer>
-        <LabelScheduled>Scheduled</LabelScheduled>
-        <LabelStart>from:</LabelStart>
+        <LabelScheduled>Edit</LabelScheduled>
+        <LabelStart>create:</LabelStart>
         <StyledStartDate>{formatDate(startDate)}</StyledStartDate>
-        <LabelEnd>until:</LabelEnd>
+        <LabelEnd>create:</LabelEnd>
         <StyledEndDate>{formatDate(endDate)}</StyledEndDate>
       </DateContainer>
-      <DaysContainer>
-        <StyledDaysLabel>Duration</StyledDaysLabel>
-        <StyledDays>{calculateDurationDays(startDate, endDate)}</StyledDays>
-        <StyledDaysLabel>days</StyledDaysLabel>
-      </DaysContainer>
     </BadgeContainer>
   );
 }
