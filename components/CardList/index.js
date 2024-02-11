@@ -8,6 +8,7 @@ import SortSelect from "@/components/SortSelect";
 import { formatDate } from "@/lib/utils";
 
 import TripDetailsBadge from "@/components/Badge/TripDetailsBadge";
+import CreateUpdateDateBadge from "../Badge/CreateUpdateDateBadge";
 
 const StyledCardList = styled.ul`
   margin: 1.8rem auto;
@@ -171,13 +172,6 @@ export default function CardList() {
             <StyledCard>
               <CardDestination>{trip.destination}</CardDestination>
               <TripDetailsBadge startDate={trip.start} endDate={trip.end} />
-              {/* <CardDateContainer>
-                <CardDateLabel>Scheduled from:</CardDateLabel>
-                <CardDate>{formatDate(trip.start)}</CardDate>
-                <CardDateLabel>until:</CardDateLabel>
-                <CardDate>{formatDate(trip.end)}</CardDate>
-              </CardDateContainer> */}
-
               <CardImage
                 src={
                   trip.imageURL !== ""
@@ -189,6 +183,10 @@ export default function CardList() {
                 alt={trip.destination}
               />
 
+              <CreateUpdateDateBadge
+                createdAt={trip.createdAt}
+                updatedAt={trip.updatedAt}
+              />
               <CardText>More Details</CardText>
             </StyledCard>
           </StyledLink>

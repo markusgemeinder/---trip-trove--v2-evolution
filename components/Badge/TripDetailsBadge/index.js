@@ -13,7 +13,7 @@ const BadgeContainer = styled.div`
   grid-template-columns: 0.7fr 2.2fr 0.7fr;
   border-radius: 8px;
   gap: 8px;
-  margin-bottom: 0.6rem;
+  margin-bottom: 0.3rem;
 
   @media (min-width: 600px) {
     grid-template-columns: 0.8fr 2fr 0.8fr;
