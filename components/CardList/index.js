@@ -5,10 +5,9 @@ import Image from "next/image";
 import useSWR from "swr";
 
 import SortSelect from "@/components/SortSelect";
-import { formatDate } from "@/lib/utils";
 
 import TripDetailsBadge from "@/components/Badge/TripDetailsBadge";
-import CreateUpdateDateBadge from "../Badge/CreateUpdateDateBadge";
+import CreateUpdateDateBadge from "@/components/Badge/CreateUpdateDateBadge";
 
 const StyledCardList = styled.ul`
   margin: 1.8rem auto;
