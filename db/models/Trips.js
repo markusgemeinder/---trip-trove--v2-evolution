@@ -16,10 +16,12 @@ const tripSchema = new Schema(
       // required: true,
     },
     imageURL: { type: String, default: "" },
-    packingList: {
-      type: [{ itemName: String }],
-      default: [],
-    },
+    packingList: [
+      {
+        itemName: { type: String },
+        itemQuantity: { type: Number },
+      },
+    ],
     notes: { type: String },
   },
   { timestamps: true }
