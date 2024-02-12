@@ -17,7 +17,6 @@ import {
   ImageContainer,
   PreviewArea,
   PreviewImage,
-  PreviewButton,
   PackListContainer,
   PackList,
   TemplateContainer,
@@ -120,17 +119,25 @@ export default function Form({
             alt="Preview"
             width={handoverData?.image?.width}
             height={handoverData?.image?.height}
-            style={{ maxWidth: "100%", maxHeight: "100%" }}
+            style={{
+              maxWidth:
+                handoverData?.image?.width > handoverData?.image?.height
+                  ? "240px"
+                  : "none",
+              maxHeight:
+                handoverData?.image?.height > handoverData?.image?.width
+                  ? "240px"
+                  : "none",
+            }}
           />
-          <PreviewButton>
-            <StyledTextButtonMediumSize
-              type="button"
-              onClick={() => {}}
-              disabled={formDisabled}
-            >
-              Delete Image
-            </StyledTextButtonMediumSize>
-          </PreviewButton>
+
+          <StyledTextButtonMediumSize
+            type="button"
+            onClick={() => {}}
+            disabled={formDisabled}
+          >
+            Delete
+          </StyledTextButtonMediumSize>
         </PreviewArea>
       </ImageContainer>
       {/* <ImageUpload /> */}

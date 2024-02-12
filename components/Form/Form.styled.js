@@ -91,20 +91,15 @@ export const PreviewArea = styled.div`
   flex-flow: column wrap;
   gap: 10px;
 
-  /* @media (min-width: 600px) {
+  @media (min-width: 600px) {
     flex-flow: row nowrap;
-  } */
+  }
 `;
 
 export const PreviewImage = styled(Image)`
   border-radius: 4px;
   width: 100%;
   height: 100%;
-`;
-
-export const PreviewButton = styled.div`
-  margin: 0;
-  padding: 0;
 `;
 
 export const PackListContainer = styled.fieldset`
