@@ -53,6 +53,8 @@ export default function Form({
     newPackingListItem,
     selectedTemplate,
     setSelectedTemplate,
+    handleDeleteImageLink,
+    generatePackingListFromTemplate,
     handleUpdateNewPackingListItemName,
     handleUpdateNewPackingListItemQuantity,
     handleAddPackingListItem,
@@ -61,7 +63,6 @@ export default function Form({
     handleRemoveItem,
     handleReset,
     handleSubmit,
-    generatePackingListFromTemplate,
   } = useFormData(defaultData, onSubmit);
 
   return (
@@ -133,7 +134,9 @@ export default function Form({
 
           <StyledTextButtonMediumSize
             type="button"
-            onClick={() => {}}
+            onClick={() => {
+              handleDeleteImageLink();
+            }}
             disabled={formDisabled}
           >
             Delete

@@ -23,6 +23,81 @@ export function useFormData(defaultData, onSubmit) {
   const [selectedTemplate, setSelectedTemplate] = useState("");
   const [lastAppliedTemplate, setLastAppliedTemplate] = useState(null);
 
+  function handleDeleteImageLink() {
+    toast.dismiss();
+    setFormDisabled(true);
+
+    toast(
+      <ToastMessage
+        message="Are you sure to delete image link?"
+        textConfirmButton="Yes, delete please."
+        messageAfterConfirm="Ok, image link deleted."
+        textCancelButton="No, don&rsquo;t delete!"
+        messageAfterCancel="Ok, image link not deleted."
+        onConfirm={() => {
+          console.log("Delete button CONFIRM clicked!");
+          setHandoverData((prevData) => ({
+            ...prevData,
+            image: {
+              width: null,
+              heigth: null,
+              url: "",
+            },
+          }));
+          setFormDisabled(false);
+          setHasChanges(true);
+        }}
+        onCancel={() => {
+          console.log("Delete button CANCEL clicked!");
+          setFormDisabled(false);
+          setHasChanges(false);
+        }}
+      />,
+      { duration: Infinity }
+    );
+  }
+
+  function generatePackingListFromTemplate() {
+    if (!selectedTemplate) {
+      toast.error("Please select a preset before applying.", {
+        duration: toastDuration,
+      });
+      return;
+    }
+    if (lastAppliedTemplate === selectedTemplate) {
+      return;
+    }
+
+    setLastAppliedTemplate(selectedTemplate);
+
+    const template = packingListTemplates[selectedTemplate];
+    const updatedPackingList = [...handoverData.packingList];
+
+    const lastItem = updatedPackingList[updatedPackingList.length - 1];
+    if (lastItem && lastItem.itemName === "") {
+      updatedPackingList.pop();
+      updatedPackingList.push(
+        ...template.map((item) => ({
+          ...item,
+          _id: generateObjectId(),
+        }))
+      );
+    } else {
+      updatedPackingList.push(
+        ...template.map((item) => ({
+          ...item,
+          _id: generateObjectId(),
+        }))
+      );
+    }
+
+    setHandoverData((prevData) => ({
+      ...prevData,
+      packingList: updatedPackingList,
+    }));
+    setHasChanges(true);
+  }
+
   function handleUpdateNewPackingListItemName(
     newName,
     newPackingListItem,
@@ -187,53 +262,14 @@ export function useFormData(defaultData, onSubmit) {
     );
   }
 
-  function generatePackingListFromTemplate() {
-    if (!selectedTemplate) {
-      toast.error("Please select a preset before applying.", {
-        duration: toastDuration,
-      });
-      return;
-    }
-    if (lastAppliedTemplate === selectedTemplate) {
-      return;
-    }
-
-    setLastAppliedTemplate(selectedTemplate);
-
-    const template = packingListTemplates[selectedTemplate];
-    const updatedPackingList = [...handoverData.packingList];
-
-    const lastItem = updatedPackingList[updatedPackingList.length - 1];
-    if (lastItem && lastItem.itemName === "") {
-      updatedPackingList.pop();
-      updatedPackingList.push(
-        ...template.map((item) => ({
-          ...item,
-          _id: generateObjectId(),
-        }))
-      );
-    } else {
-      updatedPackingList.push(
-        ...template.map((item) => ({
-          ...item,
-          _id: generateObjectId(),
-        }))
-      );
-    }
-
-    setHandoverData((prevData) => ({
-      ...prevData,
-      packingList: updatedPackingList,
-    }));
-    setHasChanges(true);
-  }
-
   return {
     formDisabled,
     handoverData,
     newPackingListItem,
     selectedTemplate,
     setSelectedTemplate,
+    handleDeleteImageLink,
+    generatePackingListFromTemplate,
     handleUpdateNewPackingListItemName,
     handleUpdateNewPackingListItemQuantity,
     handleAddPackingListItem,
@@ -242,6 +278,5 @@ export function useFormData(defaultData, onSubmit) {
     handleRemoveItem,
     handleReset,
     handleSubmit,
-    generatePackingListFromTemplate,
   };
 }
