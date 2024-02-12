@@ -14,7 +14,7 @@ import {
   StyledLabel,
   StyledInput,
   DateContainer,
-  PreviewContainer,
+  ImageContainer,
   PreviewArea,
   PreviewImage,
   PreviewButton,
@@ -113,12 +113,14 @@ export default function Form({
         onInput={handleInput}
         disabled={formDisabled}
       />
-      {/* <PreviewContainer>
+      <ImageContainer>
         <PreviewArea>
           <PreviewImage
-            src={handoverData?.image.url}
+            src={handoverData?.image?.url}
             alt="Preview"
-            style={{ maxWidth: "160px", maxHeight: "160px" }}
+            width={handoverData?.image?.width}
+            height={handoverData?.image?.height}
+            style={{ maxWidth: "100%", maxHeight: "100%" }}
           />
           <PreviewButton>
             <StyledTextButtonMediumSize
@@ -130,7 +132,7 @@ export default function Form({
             </StyledTextButtonMediumSize>
           </PreviewButton>
         </PreviewArea>
-      </PreviewContainer> */}
+      </ImageContainer>
       {/* <ImageUpload /> */}
       <PackListContainer>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>

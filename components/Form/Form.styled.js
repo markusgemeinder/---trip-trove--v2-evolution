@@ -60,10 +60,9 @@ export const DateContainer = styled.fieldset`
   justify-content: space-between;
 `;
 
-export const PreviewContainer = styled.div`
+export const ImageContainer = styled.div`
   width: 100%;
-  min-height: 120px;
-  max-height: 160px;
+  height: auto;
   margin: auto;
   margin-top: 0.3rem;
   margin-bottom: 0.4rem;
@@ -71,7 +70,10 @@ export const PreviewContainer = styled.div`
   background-color: var(--color-image-upload);
   border: 1px solid var(--color-image-upload-border);
   border-radius: 8px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* text-align: center; */
   transition: none;
   transform: none;
 
@@ -79,36 +81,30 @@ export const PreviewContainer = styled.div`
     padding: 0.8rem;
     margin-top: 0.1rem;
     margin-bottom: 0.4rem;
-    min-height: 160px;
-    max-height: 200px;
+    /* height: 200px; */
   }
 `;
 
 export const PreviewArea = styled.div`
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 5fr 2fr;
-  grid-template-areas: "image button";
-  /* justify-content: center; */
+  display: flex;
   align-items: center;
-  gap: 6px;
+  flex-flow: column wrap;
+  gap: 10px;
+
+  /* @media (min-width: 600px) {
+    flex-flow: row nowrap;
+  } */
 `;
 
 export const PreviewImage = styled(Image)`
-  margin: 0;
-  padding: 0;
-  grid-area: image;
   border-radius: 4px;
   width: 100%;
   height: 100%;
-  align-self: center;
 `;
 
 export const PreviewButton = styled.div`
   margin: 0;
   padding: 0;
-  grid-area: button;
 `;
 
 export const PackListContainer = styled.fieldset`
