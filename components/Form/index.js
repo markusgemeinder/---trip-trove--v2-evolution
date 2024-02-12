@@ -109,14 +109,14 @@ export default function Form({
         id="imageURL"
         name="imageURL"
         type="text"
-        value={handoverData?.imageURL || ""}
+        value={handoverData?.image?.url || ""}
         onInput={handleInput}
         disabled={formDisabled}
       />
-      <PreviewContainer>
+      {/* <PreviewContainer>
         <PreviewArea>
           <PreviewImage
-            src={handoverData?.imageURL}
+            src={handoverData?.image.url}
             alt="Preview"
             style={{ maxWidth: "160px", maxHeight: "160px" }}
           />
@@ -130,7 +130,7 @@ export default function Form({
             </StyledTextButtonMediumSize>
           </PreviewButton>
         </PreviewArea>
-      </PreviewContainer>
+      </PreviewContainer> */}
       {/* <ImageUpload /> */}
       <PackListContainer>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>

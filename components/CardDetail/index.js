@@ -129,8 +129,8 @@ export default function CardDetail() {
         <TripDetailsBadge startDate={trip.start} endDate={trip.end} />
         <CardImage
           src={
-            trip.imageURL !== ""
-              ? trip.imageURL
+            trip.image.url !== ""
+              ? trip.image.url
               : "/images/triptrove-default.png"
           }
           width={300}
