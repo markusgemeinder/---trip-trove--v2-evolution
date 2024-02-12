@@ -28,7 +28,7 @@ import {
   InputQuantity,
 } from "@/components/Form/Form.styled";
 import { useFormData } from "@/components/Form/Form.handlers";
-import ImageUpload from "@/components/ImageUpload";
+// import ImageUpload from "@/components/ImageUpload";
 
 const INITIAL_DATA = {
   destination: "",
@@ -101,15 +101,15 @@ export default function Form({
         />
       </DateContainer>
       <StyledLabel htmlFor="imageURL">Image</StyledLabel>
-      {/* <StyledInput
+      <StyledInput
         id="imageURL"
         name="imageURL"
         type="text"
         value={handoverData?.imageURL || ""}
         onInput={handleInput}
         disabled={formDisabled}
-      /> */}
-      <ImageUpload />
+      />
+      {/* <ImageUpload /> */}
       <PackListContainer>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
         <TemplateContainer>
