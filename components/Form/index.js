@@ -31,13 +31,18 @@ import {
   InputQuantity,
 } from "@/components/Form/Form.styled";
 import { useFormData } from "@/components/Form/Form.handlers";
-// import ImageUpload from "@/components/ImageUpload";
+import ImageUpload from "@/components/ImageUpload";
 
 const INITIAL_DATA = {
   destination: "",
   start: "",
   end: "",
   imageURL: "",
+  image: {
+    width: null,
+    heigth: null,
+    url: "",
+  },
   notes: "",
   packingList: [],
 };
@@ -113,37 +118,37 @@ export default function Form({
         onInput={handleInput}
         disabled={formDisabled}
       />
-      <ImageContainer>
-        <PreviewArea>
-          <PreviewImage
-            src={handoverData?.image?.url}
-            alt="Preview"
-            width={handoverData?.image?.width}
-            height={handoverData?.image?.height}
-            style={{
-              maxWidth:
-                handoverData?.image?.width > handoverData?.image?.height
-                  ? "240px"
-                  : "none",
-              maxHeight:
-                handoverData?.image?.height > handoverData?.image?.width
-                  ? "240px"
-                  : "none",
-            }}
-          />
-
-          <StyledTextButtonMediumSize
-            type="button"
-            onClick={() => {
-              handleDeleteImageLink();
-            }}
-            disabled={formDisabled}
-          >
-            Delete
-          </StyledTextButtonMediumSize>
-        </PreviewArea>
-      </ImageContainer>
-      {/* <ImageUpload /> */}
+      {handoverData?.image?.url ? (
+        <ImageContainer>
+          <PreviewArea>
+            <PreviewImage
+              src={handoverData?.image?.url}
+              alt="Preview"
+              width={handoverData?.image?.width}
+              height={handoverData?.image?.height}
+              style={{
+                maxWidth:
+                  handoverData?.image?.width > handoverData?.image?.height
+                    ? "200px"
+                    : "none",
+                maxHeight:
+                  handoverData?.image?.height > handoverData?.image?.width
+                    ? "200px"
+                    : "none",
+              }}
+            />
+            <StyledTextButtonMediumSize
+              type="button"
+              onClick={handleDeleteImageLink}
+              disabled={formDisabled}
+            >
+              Delete
+            </StyledTextButtonMediumSize>
+          </PreviewArea>
+        </ImageContainer>
+      ) : (
+        <ImageUpload />
+      )}
       <PackListContainer>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
         <TemplateContainer>
