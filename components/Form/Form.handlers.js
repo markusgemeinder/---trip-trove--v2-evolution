@@ -1,11 +1,7 @@
 import mongoose from "mongoose";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import {
-  toastDuration,
-  validateTripDates,
-  formatDateForInput,
-} from "@/lib/utils";
+import { toastDuration, validateTripDates } from "@/lib/utils";
 import { ToastMessage } from "@/components/ToastMessage";
 import { packingListTemplates } from "@/lib/packingListTemplates";
 
@@ -15,7 +11,7 @@ export function generateObjectId() {
   return newObjectId;
 }
 
-export function useFormData(defaultData) {
+export function useFormData(defaultData, onSubmit) {
   const [formDisabled, setFormDisabled] = useState(false);
   const [handoverData, setHandoverData] = useState(defaultData);
   const [hasChanges, setHasChanges] = useState(false);
@@ -234,18 +230,10 @@ export function useFormData(defaultData) {
 
   return {
     formDisabled,
-    // setFormDisabled,
     handoverData,
-    // setHandoverData,
-    // hasChanges,
-    // setHasChanges,
     newPackingListItem,
-    // setNewPackingListItem,
     selectedTemplate,
     setSelectedTemplate,
-    // lastAppliedTemplate,
-    // setLastAppliedTemplate,
-    // generateObjectId,
     handleUpdateNewPackingListItemName,
     handleUpdateNewPackingListItemQuantity,
     handleAddPackingListItem,

@@ -1,12 +1,4 @@
-import { useState } from "react";
-import mongoose from "mongoose";
-import toast from "react-hot-toast";
-import {
-  toastDuration,
-  validateTripDates,
-  formatDateForInput,
-} from "@/lib/utils";
-import { ToastMessage } from "@/components/ToastMessage";
+import { formatDateForInput } from "@/lib/utils";
 import {
   ButtonContainer,
   StyledTextButton,
@@ -35,8 +27,7 @@ import {
   InputItem,
   InputQuantity,
 } from "@/components/Form/Form.styled";
-// import { packingListTemplates } from "@/lib/packingListTemplates";
-import { useFormData, generateObjectId } from "@/components/Form/Form.handlers";
+import { useFormData } from "@/components/Form/Form.handlers";
 
 const INITIAL_DATA = {
   destination: "",
@@ -54,18 +45,10 @@ export default function Form({
 }) {
   const {
     formDisabled,
-    // setFormDisabled,
     handoverData,
-    // setHandoverData,
-    // hasChanges,
-    // setHasChanges,
     newPackingListItem,
-    // setNewPackingListItem,
     selectedTemplate,
     setSelectedTemplate,
-    // lastAppliedTemplate,
-    // setLastAppliedTemplate,
-    // generateObjectId,
     handleUpdateNewPackingListItemName,
     handleUpdateNewPackingListItemQuantity,
     handleAddPackingListItem,
@@ -75,11 +58,7 @@ export default function Form({
     handleReset,
     handleSubmit,
     generatePackingListFromTemplate,
-  } = useFormData(defaultData);
-
-  // function generateObjectId() {
-  //   return generateObjectId();
-  // }
+  } = useFormData(defaultData, onSubmit);
 
   return (
     <TripForm
