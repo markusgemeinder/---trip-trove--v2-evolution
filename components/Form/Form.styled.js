@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from "next/image";
 import { defaultFont } from "@/styles.js";
 
 export const TripForm = styled.form`
@@ -57,6 +58,57 @@ export const DateContainer = styled.fieldset`
   gap: inherit;
   grid-auto-flow: column;
   justify-content: space-between;
+`;
+
+export const PreviewContainer = styled.div`
+  width: 100%;
+  min-height: 120px;
+  max-height: 160px;
+  margin: auto;
+  margin-top: 0.3rem;
+  margin-bottom: 0.4rem;
+  padding: 0.6rem;
+  background-color: var(--color-image-upload);
+  border: 1px solid var(--color-image-upload-border);
+  border-radius: 8px;
+  text-align: center;
+  transition: none;
+  transform: none;
+
+  @media (min-width: 600px) {
+    padding: 0.8rem;
+    margin-top: 0.1rem;
+    margin-bottom: 0.4rem;
+    min-height: 160px;
+    max-height: 200px;
+  }
+`;
+
+export const PreviewArea = styled.div`
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 5fr 2fr;
+  grid-template-areas: "image button";
+  /* justify-content: center; */
+  align-items: center;
+  gap: 6px;
+`;
+
+export const PreviewImage = styled(Image)`
+  margin: 0;
+  padding: 0;
+  grid-area: image;
+  border-radius: 4px;
+  width: 100%;
+  height: 100%;
+  align-self: center;
+`;
+
+export const PreviewButton = styled.div`
+  margin: 0;
+  padding: 0;
+  grid-area: button;
 `;
 
 export const PackListContainer = styled.fieldset`

@@ -14,6 +14,10 @@ import {
   StyledLabel,
   StyledInput,
   DateContainer,
+  PreviewContainer,
+  PreviewArea,
+  PreviewImage,
+  PreviewButton,
   PackListContainer,
   PackList,
   TemplateContainer,
@@ -109,6 +113,24 @@ export default function Form({
         onInput={handleInput}
         disabled={formDisabled}
       />
+      <PreviewContainer>
+        <PreviewArea>
+          <PreviewImage
+            src={handoverData?.imageURL}
+            alt="Preview"
+            style={{ maxWidth: "160px", maxHeight: "160px" }}
+          />
+          <PreviewButton>
+            <StyledTextButtonMediumSize
+              type="button"
+              onClick={() => {}}
+              disabled={formDisabled}
+            >
+              Delete Image
+            </StyledTextButtonMediumSize>
+          </PreviewButton>
+        </PreviewArea>
+      </PreviewContainer>
       {/* <ImageUpload /> */}
       <PackListContainer>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
