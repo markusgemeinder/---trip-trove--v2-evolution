@@ -147,6 +147,8 @@ export default createGlobalStyle`
   --color-image-upload-headline: var(--color-grey-1000);
   --color-image-upload-text: var(--color-grey-300);
   --color-image-upload-hover: var(--color-orange-100);
+  --color-image-upload-in-progress: var(--color-orange-0);
+
 
 
   --font-size: 14px;

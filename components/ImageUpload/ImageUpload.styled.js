@@ -81,9 +81,11 @@ export const UploadInput = styled.input`
 `;
 
 export const PreviewBox = styled(UploadBox)`
-  max-height: 100%;
+  height: auto;
   text-align: center;
   transition: none;
+  padding: 0.6rem;
+
   &:hover {
     cursor: default;
     transform: none;
@@ -100,12 +102,19 @@ export const PreviewArea = styled(UploadArea)`
 
 export const PreviewImage = styled.img`
   border-radius: 4px;
+  opacity: 0.6;
 `;
 
-export const StyledDeleteButton = styled(StyledTextButtonMediumSize)`
+export const PreviewLoadingText = styled.p`
+  margin: 0;
+  padding: 0;
   position: absolute;
-  bottom: 0;
+  top: 50%;
   left: 50%;
-  transform: translateX(-50%);
-  margin-top: 1rem;
+  transform: translate(-50%, -50%); /* Apply both translateX and translateY */
+  z-index: 1;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1rem;
+  color: var(--color-image-upload-in-progress);
 `;

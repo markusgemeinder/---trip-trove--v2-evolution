@@ -10,7 +10,7 @@ import {
   PreviewBox,
   PreviewArea,
   PreviewImage,
-  StyledDeleteButton,
+  PreviewLoadingText,
 } from "@/components/ImageUpload/ImageUpload.styled";
 
 const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
@@ -56,20 +56,9 @@ const PreviewComponent = ({ visible, previewImageUrl, image }) => (
         <PreviewImage
           src={previewImageUrl}
           alt="Preview"
-          style={{ maxWidth: "160px", maxHeight: "160px" }}
+          style={{ maxWidth: "200px", maxHeight: "200px" }}
         />
-        <StyledDeleteButton
-          type="button"
-          onClick={() => {
-            // console.log("Delete Button clicked");
-            console.log("image.width:", image.width);
-            console.log("image.height:", image.height);
-            console.log("image.url", image.url);
-          }}
-          // disabled={formDisabled}
-        >
-          Delete Image
-        </StyledDeleteButton>
+        <PreviewLoadingText>Upload in Progress...</PreviewLoadingText>
       </PreviewArea>
     )}
   </PreviewBox>
