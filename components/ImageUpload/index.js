@@ -10,7 +10,6 @@ import {
   PreviewBox,
   PreviewArea,
   PreviewImage,
-  PreviewLoadingText,
 } from "@/components/ImageUpload/ImageUpload.styled";
 import { StyledTextButtonMediumSize } from "@/components/Button/TextButton";
 
@@ -33,7 +32,7 @@ async function uploadImage(file) {
   return { url, width, height };
 }
 
-export default function ImageUpload({ imageLinkExists }) {
+export default function ImageUpload({ imageLinkExists, onDeleteImageLink }) {
   const [previewImageUrl, setPreviewImageUrl] = useState(null);
   const [uploadInProgress, setUploadInProgress] = useState(false);
 
@@ -61,34 +60,45 @@ export default function ImageUpload({ imageLinkExists }) {
   }
 
   function handleDeleteImage() {
+    onDeleteImageLink();
     setPreviewImageUrl(null);
   }
 
   return (
     <>
-      {!previewImageUrl && !uploadInProgress && (
-        <UploadBox visible={!previewImageUrl}>
-          <UploadArea>
-            <UploadIcon />
-            <UploadHeadline>{"Click or drag & drop to upload"}</UploadHeadline>
-            <UploadText>Maximum file size 10MB</UploadText>
-            <UploadInput
-              id="image"
-              name="image"
-              type="file"
-              accept=".jpg, .jpeg, .png, .gif"
-              onChange={handleImageSelection}
-            />
-          </UploadArea>
-        </UploadBox>
-      )}
-      {(previewImageUrl || uploadInProgress) && (
+      <UploadBox visible={!previewImageUrl}>
+        <UploadArea>
+          <UploadIcon />
+          {!previewImageUrl && !uploadInProgress && (
+            <>
+              <UploadHeadline>Click or drag & drop to upload</UploadHeadline>
+              <UploadText>Maximum file size 10MB</UploadText>
+              <UploadInput
+                id="image"
+                name="image"
+                type="file"
+                accept=".jpg, .jpeg, .png, .gif"
+                onChange={handleImageSelection}
+              />
+            </>
+          )}
+          {!previewImageUrl && uploadInProgress && (
+            <>
+              <UploadHeadline>Upload in progress...</UploadHeadline>
+            </>
+          )}
+        </UploadArea>
+      </UploadBox>
+      {previewImageUrl && (
         <PreviewBox visible={previewImageUrl || uploadInProgress}>
           <PreviewArea>
             <PreviewImage
               src={previewImageUrl}
               alt="Preview"
-              style={{ maxWidth: "200px", maxHeight: "200px" }}
+              width={160}
+              height={160}
+              layout="responsive"
+              objectFit="contain"
             />
             {!uploadInProgress && (
               <StyledTextButtonMediumSize
@@ -97,9 +107,6 @@ export default function ImageUpload({ imageLinkExists }) {
               >
                 Delete
               </StyledTextButtonMediumSize>
-            )}
-            {uploadInProgress && (
-              <PreviewLoadingText>Upload in Progress...</PreviewLoadingText>
             )}
           </PreviewArea>
         </PreviewBox>

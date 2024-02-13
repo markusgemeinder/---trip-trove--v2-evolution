@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { StyledTextButtonMediumSize } from "@/components/Button/TextButton";
+import Image from "next/image";
 
 export const UploadBox = styled.div`
   display: ${(props) => (props.visible ? "block" : "none")};
@@ -94,27 +94,17 @@ export const PreviewBox = styled(UploadBox)`
 `;
 
 export const PreviewArea = styled(UploadArea)`
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
   border: none;
   border-radius: none;
   padding: 0;
   position: relative;
+  gap: 0.6rem;
 `;
 
-export const PreviewImage = styled.img`
+export const PreviewImage = styled(Image)`
   border-radius: 4px;
-  opacity: 0.6;
-`;
-
-export const PreviewLoadingText = styled.p`
-  margin: 0;
-  padding: 0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); /* Apply both translateX and translateY */
-  z-index: 1;
-  text-align: center;
-  font-weight: bold;
-  font-size: 1rem;
-  color: var(--color-image-upload-in-progress);
 `;
