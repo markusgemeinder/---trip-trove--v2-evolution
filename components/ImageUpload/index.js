@@ -30,14 +30,19 @@ async function uploadImage(file) {
   return { url, width, height };
 }
 
-export default function ImageUpload({ imageLinkExists, onDeleteImageLink }) {
+export default function ImageUpload({ image, onDeleteImageLink }) {
+  const [imageLinkExists, setImageLinkExists] = useState(image?.url);
   const [previewImageUrl, setPreviewImageUrl] = useState(null);
+  const [previewImageWidth, setPreviewImageWidth] = useState(null);
+  const [previewImageHeight, setPreviewImageHeight] = useState(null);
   const [uploadInProgress, setUploadInProgress] = useState(false);
 
   useEffect(() => {
     if (imageLinkExists && previewImageUrl === null) {
       // Set preview image URL only once when imageLinkExists changes to true
       setPreviewImageUrl(imageLinkExists);
+      setPreviewImageWidth(image?.width);
+      setPreviewImageHeight(image?.height);
     }
   }, [imageLinkExists, previewImageUrl]);
 
@@ -94,10 +99,16 @@ export default function ImageUpload({ imageLinkExists, onDeleteImageLink }) {
             <PreviewImage
               src={previewImageUrl}
               alt="Preview"
-              width={160}
-              height={160}
-              // layout="responsive"
-              // objectFit="contain"
+              width={previewImageWidth}
+              height={previewImageHeight}
+              style={{
+                width: previewImageWidth ? "auto" : "100%",
+                height: previewImageHeight ? "auto" : "100%",
+                maxWidth:
+                  previewImageWidth > previewImageHeight ? "240px" : "none",
+                maxHeight:
+                  previewImageHeight > previewImageWidth ? "240px" : "none",
+              }}
             />
             {!uploadInProgress && (
               <StyledTextButtonMediumSize

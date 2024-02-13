@@ -116,7 +116,7 @@ export default function Form({
         disabled={formDisabled}
       />
       <ImageUpload
-        imageLinkExists={handoverData?.image?.url}
+        image={handoverData?.image}
         onDeleteImageLink={handleDeleteImageLink}
       />
       <PackListContainer>
