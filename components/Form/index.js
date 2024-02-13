@@ -14,9 +14,9 @@ import {
   StyledLabel,
   StyledInput,
   DateContainer,
-  ImageContainer,
-  PreviewArea,
-  PreviewImage,
+  // ImageContainer,
+  // PreviewArea,
+  // PreviewImage,
   PackListContainer,
   PackList,
   TemplateContainer,
@@ -118,7 +118,7 @@ export default function Form({
         onInput={handleInput}
         disabled={formDisabled}
       />
-      {handoverData?.image?.url ? (
+      {/* {handoverData?.image?.url ? (
         <ImageContainer>
           <PreviewArea>
             <PreviewImage
@@ -148,7 +148,8 @@ export default function Form({
         </ImageContainer>
       ) : (
         <ImageUpload />
-      )}
+      )} */}
+      <ImageUpload imageLinkExists={handoverData?.image?.url} />
       <PackListContainer>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
         <TemplateContainer>
