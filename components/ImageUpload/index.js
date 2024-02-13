@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
 import UploadIcon from "@/components/ImageUpload/UploadIcon/";
 import {
   UploadBox,
@@ -18,8 +17,7 @@ const UPLOAD_PRESET = "trip-trove";
 
 async function uploadImage(file) {
   const formData = new FormData();
-  const fileName = `${uuidv4()}.${file.name.split(".").pop()}`;
-  formData.append("file", file, fileName);
+  formData.append("file", file);
   formData.append("upload_preset", UPLOAD_PRESET);
   const response = await fetch(
     `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`,
@@ -51,6 +49,7 @@ export default function ImageUpload({ imageLinkExists, onDeleteImageLink }) {
         const uploadedImage = await uploadImage(file);
         setPreviewImageUrl(uploadedImage.url);
         setUploadInProgress(false);
+        await console.log(previewImageUrl);
       } catch (error) {
         console.log(error);
         alert("Error uploading image");
@@ -97,8 +96,8 @@ export default function ImageUpload({ imageLinkExists, onDeleteImageLink }) {
               alt="Preview"
               width={160}
               height={160}
-              layout="responsive"
-              objectFit="contain"
+              // layout="responsive"
+              // objectFit="contain"
             />
             {!uploadInProgress && (
               <StyledTextButtonMediumSize
