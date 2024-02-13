@@ -53,6 +53,8 @@ export default function ImageUpload({ image, onDeleteImageLink }) {
       try {
         const uploadedImage = await uploadImage(file);
         setPreviewImageUrl(uploadedImage.url);
+        setPreviewImageWidth(uploadedImage.width);
+        setPreviewImageHeight(uploadedImage.height);
         setUploadInProgress(false);
         await console.log(previewImageUrl);
       } catch (error) {
