@@ -22,6 +22,11 @@ export function useFormData(defaultData, onSubmit) {
   });
   const [selectedTemplate, setSelectedTemplate] = useState("");
   const [lastAppliedTemplate, setLastAppliedTemplate] = useState(null);
+  const [imageData, setImageData] = useState(defaultData.image || {});
+
+  function handleImageUpdate(url, width, height) {
+    setImageData({ url, width, height });
+  }
 
   function generatePackingListFromTemplate() {
     if (!selectedTemplate) {
@@ -231,6 +236,7 @@ export function useFormData(defaultData, onSubmit) {
   return {
     formDisabled,
     handoverData,
+    handleImageUpdate,
     newPackingListItem,
     selectedTemplate,
     setSelectedTemplate,

@@ -35,21 +35,38 @@ async function uploadImage(file) {
   return { url, width, height };
 }
 
-export default function ImageUpload(image) {
-  const [imageLinkExists, setImageLinkExists] = useState(image?.url);
-  const [previewImageUrl, setPreviewImageUrl] = useState(null);
-  const [previewImageWidth, setPreviewImageWidth] = useState(null);
-  const [previewImageHeight, setPreviewImageHeight] = useState(null);
+// export default function ImageUpload(image) {
+// const [imageLinkExists, setImageLinkExists] = useState(image?.url);
+// const [previewImageUrl, setPreviewImageUrl] = useState(null);
+// const [previewImageWidth, setPreviewImageWidth] = useState(null);
+// const [previewImageHeight, setPreviewImageHeight] = useState(null);
+// const [uploadInProgress, setUploadInProgress] = useState(false);
+
+// useEffect(() => {
+//   if (imageLinkExists && previewImageUrl === null) {
+//     // Set preview image URL only once when imageLinkExists changes to true
+//     setPreviewImageUrl(imageLinkExists);
+//     setPreviewImageWidth(image?.width);
+//     setPreviewImageHeight(image?.height);
+//   }
+// }, [imageLinkExists, previewImageUrl]);
+
+export default function ImageUpload({ image, onImageUpdate, disabled }) {
+  const [previewImageUrl, setPreviewImageUrl] = useState(image.url || null);
+  const [previewImageWidth, setPreviewImageWidth] = useState(
+    image.width || null
+  );
+  const [previewImageHeight, setPreviewImageHeight] = useState(
+    image.height || null
+  );
   const [uploadInProgress, setUploadInProgress] = useState(false);
 
+  // Use effect to update preview when image data changes
   useEffect(() => {
-    if (imageLinkExists && previewImageUrl === null) {
-      // Set preview image URL only once when imageLinkExists changes to true
-      setPreviewImageUrl(imageLinkExists);
-      setPreviewImageWidth(image?.width);
-      setPreviewImageHeight(image?.height);
-    }
-  }, [imageLinkExists, previewImageUrl]);
+    setPreviewImageUrl(image.url || null);
+    setPreviewImageWidth(image.width || null);
+    setPreviewImageHeight(image.height || null);
+  }, [image]);
 
   async function handleImageSelection(event) {
     const file = event.target.files[0];
