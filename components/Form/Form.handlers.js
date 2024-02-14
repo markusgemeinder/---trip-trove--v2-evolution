@@ -41,7 +41,7 @@ export function useFormData(defaultData, onSubmit) {
         messageAfterCancel="Ok, image not deleted."
         onConfirm={() => {
           // console.log("Delete button CONFIRM clicked!");
-          // setPreviewImageUrl(null);
+          // setFetchedImageUrl(null);
           // onImageUpdate("", null, null);
           setHandoverData((prevData) => ({
             ...prevData,

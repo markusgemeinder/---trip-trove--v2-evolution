@@ -29,22 +29,18 @@ async function uploadImage(file) {
   return { url, width, height };
 }
 
-export default function ImageUpload({ image, onImageUpdate, disabled }) {
-  const [previewImageUrl, setPreviewImageUrl] = useState(image.url || null);
-  const [previewImageWidth, setPreviewImageWidth] = useState(
-    image.width || null
-  );
-  const [previewImageHeight, setPreviewImageHeight] = useState(
-    image.height || null
-  );
+export default function ImageUpload({ onImageUpdate }) {
+  const [fetchedImageUrl, setFetchedImageUrl] = useState("");
+  const [fetchedImageWidth, setFetchedImageWidth] = useState(null);
+  const [fetchedImageHeight, setFetchedImageHeight] = useState(null);
   const [uploadInProgress, setUploadInProgress] = useState(false);
 
   // Use effect to update preview when image data changes
-  useEffect(() => {
-    setPreviewImageUrl(image.url || null);
-    setPreviewImageWidth(image.width || null);
-    setPreviewImageHeight(image.height || null);
-  }, [image]);
+  // useEffect(() => {
+  //   setFetchedImageUrl(image.url || null);
+  //   setFetchedImageWidth(image.width || null);
+  //   setFetchedImageHeight(image.height || null);
+  // }, [image]);
 
   async function handleImageSelection(event) {
     const file = event.target.files[0];
@@ -52,15 +48,11 @@ export default function ImageUpload({ image, onImageUpdate, disabled }) {
       setUploadInProgress(true);
       try {
         const uploadedImage = await uploadImage(file);
-        setPreviewImageUrl(uploadedImage.url);
-        setPreviewImageWidth(uploadedImage.width);
-        setPreviewImageHeight(uploadedImage.height);
+        setFetchedImageUrl(uploadedImage.url);
+        setFetchedImageWidth(uploadedImage.width);
+        setFetchedImageHeight(uploadedImage.height);
+        onImageUpdate(fetchedImageUrl, fetchedImageWidth, fetchedImageHeight);
         setUploadInProgress(false);
-        onImageUpdate(
-          uploadedImage.url,
-          uploadedImage.width,
-          uploadedImage.height
-        );
       } catch (error) {
         console.log(error);
         alert("Error uploading image");
@@ -71,10 +63,10 @@ export default function ImageUpload({ image, onImageUpdate, disabled }) {
 
   return (
     <>
-      <UploadBox visible={!previewImageUrl}>
+      <UploadBox visible={!fetchedImageUrl}>
         <UploadArea>
           <UploadIcon />
-          {!previewImageUrl && !uploadInProgress && (
+          {!fetchedImageUrl && !uploadInProgress && (
             <>
               <UploadHeadline>Click or drag & drop to upload</UploadHeadline>
               <UploadText>Maximum file size 10MB</UploadText>
@@ -87,28 +79,28 @@ export default function ImageUpload({ image, onImageUpdate, disabled }) {
               />
             </>
           )}
-          {!previewImageUrl && uploadInProgress && (
+          {!fetchedImageUrl && uploadInProgress && (
             <>
               <UploadHeadline>Upload in progress...</UploadHeadline>
             </>
           )}
         </UploadArea>
       </UploadBox>
-      {/* {previewImageUrl && (
-        <PreviewBox visible={previewImageUrl && !uploadInProgress}>
+      {/* {fetchedImageUrl && (
+        <PreviewBox visible={fetchedImageUrl && !uploadInProgress}>
           <PreviewArea>
             <PreviewImage
-              src={previewImageUrl}
+              src={fetchedImageUrl}
               alt="Preview"
-              width={previewImageWidth}
-              height={previewImageHeight}
+              width={fetchedImageWidth}
+              height={fetchedImageHeight}
               style={{
-                width: previewImageWidth ? "auto" : "100%",
-                height: previewImageHeight ? "auto" : "100%",
+                width: fetchedImageWidth ? "auto" : "100%",
+                height: fetchedImageHeight ? "auto" : "100%",
                 maxWidth:
-                  previewImageWidth > previewImageHeight ? "240px" : "none",
+                  fetchedImageWidth > fetchedImageHeight ? "240px" : "none",
                 maxHeight:
-                  previewImageHeight > previewImageWidth ? "240px" : "none",
+                  fetchedImageHeight > fetchedImageWidth ? "240px" : "none",
               }}
               priority={false}
             />
