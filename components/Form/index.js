@@ -152,7 +152,7 @@ export default function Form({
         </PreviewContainer>
       )}
       <ImageUpload
-        image={handoverData?.image}
+        // image={handoverData?.image}
         onImageUpdate={handleImageUpdate}
         disabled={formDisabled}
       />

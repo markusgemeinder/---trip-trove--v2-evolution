@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const UploadBox = styled.div`
+export const UploadBox = styled.fieldset`
   display: ${(props) => (props.visible ? "block" : "none")};
   width: 100%;
   height: 120px;
