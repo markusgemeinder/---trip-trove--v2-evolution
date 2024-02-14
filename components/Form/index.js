@@ -151,11 +151,12 @@ export default function Form({
           </PreviewArea>
         </PreviewContainer>
       )}
-      <ImageUpload
-        // image={handoverData?.image}
-        onImageUpdate={handleImageUpdate}
-        disabled={formDisabled}
-      />
+      {!handoverData?.image?.url && (
+        <ImageUpload
+          onImageUpdate={handleImageUpdate}
+          disabled={formDisabled}
+        />
+      )}
       <PackListContainer disabled={formDisabled}>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
         <TemplateContainer>
