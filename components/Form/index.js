@@ -156,7 +156,7 @@ export default function Form({
         onImageUpdate={handleImageUpdate}
         disabled={formDisabled}
       /> */}
-      <PackListContainer>
+      <PackListContainer disabled={formDisabled}>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
         <TemplateContainer>
           <StyledSelect

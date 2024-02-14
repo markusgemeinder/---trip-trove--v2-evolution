@@ -130,6 +130,10 @@ export function useFormData(defaultData, onSubmit) {
   }
 
   function handleAddPackingListItem() {
+    if (formDisabled) {
+      return;
+    }
+
     const lastItem =
       handoverData.packingList[handoverData.packingList.length - 1];
 
@@ -180,6 +184,10 @@ export function useFormData(defaultData, onSubmit) {
   }
 
   function handleRemoveItem(itemIdToRemove) {
+    if (formDisabled) {
+      return;
+    }
+
     setHandoverData((prevData) => {
       const updatedPackingList = handoverData.packingList.filter((item) => {
         return item._id !== itemIdToRemove;
