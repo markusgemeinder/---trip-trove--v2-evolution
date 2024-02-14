@@ -56,7 +56,7 @@ export default function Form({
     formDisabled,
     handoverData,
     handleImageUpdate,
-    handleDeleteImageLink,
+    handleDeleteImage,
     newPackingListItem,
     selectedTemplate,
     setSelectedTemplate,
@@ -143,7 +143,7 @@ export default function Form({
             />
             <StyledTextButtonMediumSize
               type="button"
-              onClick={handleDeleteImageLink}
+              onClick={handleDeleteImage}
               disabled={formDisabled}
             >
               Delete

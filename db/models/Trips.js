@@ -12,6 +12,7 @@ const tripSchema = new Schema(
         width: Number,
         height: Number,
         url: String,
+        public_id: String,
       }),
       // required: true,
     },

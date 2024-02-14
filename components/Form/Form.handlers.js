@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { toastDuration, validateTripDates } from "@/lib/utils";
 import { ToastMessage } from "@/components/ToastMessage";
 import { packingListTemplates } from "@/lib/packingListTemplates";
+import { deleteImage } from "@/components/ImageUpload";
 
 export function generateObjectId() {
   const { ObjectId } = mongoose.Types;
@@ -22,20 +23,34 @@ export function useFormData(defaultData, onSubmit) {
   });
   const [selectedTemplate, setSelectedTemplate] = useState("");
   const [lastAppliedTemplate, setLastAppliedTemplate] = useState(null);
-  // const [imageData, setImageData] = useState(defaultData.image || {});
+  const [lastImageData, setLastImageData] = useState(defaultData?.image); // Initialize with defaultData?.image
 
-  function handleImageUpdate(url, width, height) {
+  useEffect(() => {
+    // Update lastImageData whenever url, width, or height changes
+    setLastImageData((prevImageData) => ({
+      image: {
+        url: handoverData?.image?.url || prevImageData?.image?.url,
+        width: handoverData?.image?.width || prevImageData?.image?.width,
+        height: handoverData?.image?.height || prevImageData?.image?.height,
+        public_id:
+          handoverData?.image?.public_id || prevImageData?.image?.public_id,
+      },
+    }));
+  }, [handoverData?.image?.url]);
+
+  function handleImageUpdate(url, width, height, public_id) {
     setHandoverData((prevData) => ({
       ...prevData,
       image: {
         url: url,
         width: width,
         height: height,
+        public_id: public_id,
       },
     }));
   }
 
-  function handleDeleteImageLink() {
+  function handleDeleteImage() {
     toast.dismiss();
     setFormDisabled(true);
 
@@ -46,7 +61,8 @@ export function useFormData(defaultData, onSubmit) {
         messageAfterConfirm="Ok, image deleted."
         textCancelButton="No, don&rsquo;t delete!"
         messageAfterCancel="Ok, image not deleted."
-        onConfirm={() => {
+        onConfirm={async () => {
+          await deleteImage(handoverData.image.public_id);
           setHandoverData((prevData) => ({
             ...prevData,
             imageURL: "",
@@ -54,6 +70,7 @@ export function useFormData(defaultData, onSubmit) {
               url: "",
               width: null,
               height: null,
+              public_id: null,
             },
           }));
           setFormDisabled(false);
@@ -285,7 +302,7 @@ export function useFormData(defaultData, onSubmit) {
     formDisabled,
     handoverData,
     handleImageUpdate,
-    handleDeleteImageLink,
+    handleDeleteImage,
     newPackingListItem,
     selectedTemplate,
     setSelectedTemplate,

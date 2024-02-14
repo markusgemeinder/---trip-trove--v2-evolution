@@ -22,8 +22,37 @@ async function uploadImage(file) {
       body: formData,
     }
   );
-  const { url, width, height } = await response.json();
-  return { url, width, height };
+
+  const { url, width, height, public_id } = await response.json();
+  return { url, width, height, public_id };
+}
+
+export async function deleteImage(publicId) {
+  const formData = new FormData();
+  formData.append("public_id", publicId);
+  formData.append("upload_preset", UPLOAD_PRESET);
+  try {
+    // Log request parameters
+    console.log("DELETE Request Parameters:", {
+      public_id: publicId,
+      upload_preset: UPLOAD_PRESET,
+    });
+    return;
+    const response = await fetch(
+      `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/destroy`,
+      {
+        method: "DELETE",
+        body: formData,
+      }
+    );
+    if (!response.ok) {
+      throw new Error("Failed to delete image from Cloudinary");
+    }
+  } catch (error) {
+    console.error(error);
+    // Handle the error as needed
+    throw error; // Re-throw the error to be handled in the calling component
+  }
 }
 
 export default function ImageUpload({ onImageUpdate }) {
