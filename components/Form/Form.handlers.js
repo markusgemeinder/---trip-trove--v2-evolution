@@ -22,11 +22,11 @@ export function useFormData(defaultData, onSubmit) {
   });
   const [selectedTemplate, setSelectedTemplate] = useState("");
   const [lastAppliedTemplate, setLastAppliedTemplate] = useState(null);
-  // const [imageData, setImageData] = useState(defaultData.image || {});
+  const [imageData, setImageData] = useState(defaultData.image || {});
 
-  // function handleImageUpdate(url, width, height) {
-  //   setImageData({ url, width, height });
-  // }
+  function handleImageUpdate(url, width, height) {
+    setImageData({ url, width, height });
+  }
 
   function handleDeleteImageLink() {
     toast.dismiss();
@@ -280,7 +280,7 @@ export function useFormData(defaultData, onSubmit) {
   return {
     formDisabled,
     handoverData,
-    // handleImageUpdate,
+    handleImageUpdate,
     handleDeleteImageLink,
     newPackingListItem,
     selectedTemplate,
