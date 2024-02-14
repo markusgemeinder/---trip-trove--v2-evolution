@@ -11,6 +11,8 @@ import {
   PreviewImage,
 } from "@/components/ImageUpload/ImageUpload.styled";
 import { StyledTextButtonMediumSize } from "@/components/Button/TextButton";
+import toast from "react-hot-toast";
+import { ToastMessage } from "@/components/ToastMessage";
 
 const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 const UPLOAD_PRESET = "trip-trove";
@@ -30,7 +32,7 @@ async function uploadImage(file) {
   return { url, width, height };
 }
 
-export default function ImageUpload({ image, onDeleteImageLink }) {
+export default function ImageUpload(image) {
   const [imageLinkExists, setImageLinkExists] = useState(image?.url);
   const [previewImageUrl, setPreviewImageUrl] = useState(null);
   const [previewImageWidth, setPreviewImageWidth] = useState(null);
@@ -66,8 +68,39 @@ export default function ImageUpload({ image, onDeleteImageLink }) {
   }
 
   function handleDeleteImage() {
-    onDeleteImageLink();
-    setPreviewImageUrl(null);
+    toast.dismiss();
+
+    toast(
+      <ToastMessage
+        message="Are you sure to delete image link?"
+        textConfirmButton="Yes, delete please."
+        messageAfterConfirm="Ok, image link deleted."
+        textCancelButton="No, don&rsquo;t delete!"
+        messageAfterCancel="Ok, image link not deleted."
+        onConfirm={() => {
+          console.log("Delete button CONFIRM clicked!");
+          setPreviewImageUrl(null);
+          // If you need to perform additional actions, uncomment and modify the following lines:
+          // setHandoverData((prevData) => ({
+          //   ...prevData,
+          //   image: {
+          //     width: null,
+          //     height: null,
+          //     url: "",
+          //   },
+          // }));
+          // setFormDisabled(false);
+          // setHasChanges(true);
+        }}
+        onCancel={() => {
+          console.log("Delete button CANCEL clicked!");
+          // If you need to perform additional actions, uncomment and modify the following lines:
+          // setFormDisabled(false);
+          // setHasChanges(false);
+        }}
+      />,
+      { duration: Infinity }
+    );
   }
 
   return (
@@ -96,7 +129,7 @@ export default function ImageUpload({ image, onDeleteImageLink }) {
         </UploadArea>
       </UploadBox>
       {previewImageUrl && (
-        <PreviewBox visible={previewImageUrl || uploadInProgress}>
+        <PreviewBox visible={previewImageUrl && !uploadInProgress}>
           <PreviewArea>
             <PreviewImage
               src={previewImageUrl}

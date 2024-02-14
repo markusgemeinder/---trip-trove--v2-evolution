@@ -55,7 +55,6 @@ export default function Form({
     newPackingListItem,
     selectedTemplate,
     setSelectedTemplate,
-    handleDeleteImageLink,
     generatePackingListFromTemplate,
     handleUpdateNewPackingListItemName,
     handleUpdateNewPackingListItemQuantity,
@@ -115,10 +114,7 @@ export default function Form({
         onInput={handleInput}
         disabled={formDisabled}
       />
-      <ImageUpload
-        image={handoverData?.image}
-        onDeleteImageLink={handleDeleteImageLink}
-      />
+      <ImageUpload image={handoverData?.image} />
       <PackListContainer>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
         <TemplateContainer>

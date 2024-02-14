@@ -23,40 +23,6 @@ export function useFormData(defaultData, onSubmit) {
   const [selectedTemplate, setSelectedTemplate] = useState("");
   const [lastAppliedTemplate, setLastAppliedTemplate] = useState(null);
 
-  function handleDeleteImageLink() {
-    toast.dismiss();
-    setFormDisabled(true);
-
-    toast(
-      <ToastMessage
-        message="Are you sure to delete image link?"
-        textConfirmButton="Yes, delete please."
-        messageAfterConfirm="Ok, image link deleted."
-        textCancelButton="No, don&rsquo;t delete!"
-        messageAfterCancel="Ok, image link not deleted."
-        onConfirm={() => {
-          console.log("Delete button CONFIRM clicked!");
-          setHandoverData((prevData) => ({
-            ...prevData,
-            image: {
-              width: null,
-              heigth: null,
-              url: "",
-            },
-          }));
-          setFormDisabled(false);
-          setHasChanges(true);
-        }}
-        onCancel={() => {
-          console.log("Delete button CANCEL clicked!");
-          setFormDisabled(false);
-          setHasChanges(false);
-        }}
-      />,
-      { duration: Infinity }
-    );
-  }
-
   function generatePackingListFromTemplate() {
     if (!selectedTemplate) {
       toast.error("Please select a preset before applying.", {
@@ -268,7 +234,6 @@ export function useFormData(defaultData, onSubmit) {
     newPackingListItem,
     selectedTemplate,
     setSelectedTemplate,
-    handleDeleteImageLink,
     generatePackingListFromTemplate,
     handleUpdateNewPackingListItemName,
     handleUpdateNewPackingListItemQuantity,
