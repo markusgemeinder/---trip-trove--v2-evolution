@@ -14,9 +14,6 @@ import {
   StyledLabel,
   StyledInput,
   DateContainer,
-  PreviewBox,
-  PreviewArea,
-  PreviewImage,
   PackListContainer,
   PackList,
   TemplateContainer,
@@ -55,8 +52,7 @@ export default function Form({
   const {
     formDisabled,
     handoverData,
-    // handleImageUpdate,
-    handleDeleteImageLink,
+    handleImageUpdate,
     newPackingListItem,
     selectedTemplate,
     setSelectedTemplate,
@@ -119,42 +115,11 @@ export default function Form({
         onInput={handleInput}
         disabled={formDisabled}
       />
-      {handoverData?.image?.url && (
-        <PreviewBox>
-          <PreviewArea>
-            <PreviewImage
-              src={handoverData?.image?.url}
-              alt="Preview"
-              width={handoverData?.image?.width}
-              height={handoverData?.image?.height}
-              style={{
-                width: handoverData?.image?.width ? "auto" : "100%",
-                height: handoverData?.image?.height ? "auto" : "100%",
-                maxWidth:
-                  handoverData?.image?.width > handoverData?.image?.height
-                    ? "240px"
-                    : "none",
-                maxHeight:
-                  handoverData?.image?.height > handoverData?.image?.width
-                    ? "240px"
-                    : "none",
-              }}
-              priority={false}
-            />
-            <StyledTextButtonMediumSize
-              type="button"
-              onClick={handleDeleteImageLink}
-            >
-              Delete
-            </StyledTextButtonMediumSize>
-          </PreviewArea>
-        </PreviewBox>
-      )}
-      {/* <ImageUpload
+      <ImageUpload
         image={handoverData?.image}
         onImageUpdate={handleImageUpdate}
         disabled={formDisabled}
-      /> */}
+      />
       <PackListContainer>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
         <TemplateContainer>

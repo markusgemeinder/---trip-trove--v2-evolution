@@ -6,7 +6,13 @@ import {
   UploadHeadline,
   UploadText,
   UploadInput,
+  PreviewBox,
+  PreviewArea,
+  PreviewImage,
 } from "@/components/ImageUpload/ImageUpload.styled";
+import { StyledTextButtonMediumSize } from "@/components/Button/TextButton";
+import toast from "react-hot-toast";
+import { ToastMessage } from "@/components/ToastMessage";
 
 const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 const UPLOAD_PRESET = "trip-trove";
@@ -69,6 +75,41 @@ export default function ImageUpload({ image, onImageUpdate, disabled }) {
     }
   }
 
+  function handleDeleteImage() {
+    toast.dismiss();
+
+    toast(
+      <ToastMessage
+        message="Are you sure to delete image?"
+        textConfirmButton="Yes, delete please."
+        messageAfterConfirm="Ok, image deleted."
+        textCancelButton="No, don&rsquo;t delete!"
+        messageAfterCancel="Ok, image not deleted."
+        onConfirm={() => {
+          console.log("Delete button CONFIRM clicked!");
+          setPreviewImageUrl(null);
+          onImageUpdate("", null, null);
+          // setHandoverData((prevData) => ({
+          //   ...prevData,
+          //   image: {
+          //     url: "",
+          //     width: null,
+          //     height: null,
+          //   },
+          // }));
+          // setFormDisabled(false);
+          // setHasChanges(true);
+        }}
+        onCancel={() => {
+          console.log("Delete button CANCEL clicked!");
+          // setFormDisabled(false);
+          // setHasChanges(false);
+        }}
+      />,
+      { duration: Infinity }
+    );
+  }
+
   return (
     <>
       <UploadBox visible={!previewImageUrl}>
@@ -94,7 +135,7 @@ export default function ImageUpload({ image, onImageUpdate, disabled }) {
           )}
         </UploadArea>
       </UploadBox>
-      {/* {previewImageUrl && (
+      {previewImageUrl && (
         <PreviewBox visible={previewImageUrl && !uploadInProgress}>
           <PreviewArea>
             <PreviewImage
@@ -122,7 +163,7 @@ export default function ImageUpload({ image, onImageUpdate, disabled }) {
             )}
           </PreviewArea>
         </PreviewBox>
-      )} */}
+      )}
     </>
   );
 }

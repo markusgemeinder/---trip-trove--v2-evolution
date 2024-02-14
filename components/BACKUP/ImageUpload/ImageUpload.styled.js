@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import Image from "next/image";
 
 export const UploadBox = styled.div`
   display: ${(props) => (props.visible ? "block" : "none")};
@@ -77,4 +78,33 @@ export const UploadInput = styled.input`
   right: 0;
   opacity: 0;
   cursor: pointer;
+`;
+
+export const PreviewBox = styled(UploadBox)`
+  height: auto;
+  text-align: center;
+  transition: none;
+  padding: 0.6rem;
+
+  &:hover {
+    cursor: default;
+    transform: none;
+    background-color: var(--color-image-upload);
+  }
+`;
+
+export const PreviewArea = styled(UploadArea)`
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: none;
+  padding: 0;
+  position: relative;
+  gap: 0.6rem;
+`;
+
+export const PreviewImage = styled(Image)`
+  border-radius: 4px;
 `;

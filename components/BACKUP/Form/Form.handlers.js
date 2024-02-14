@@ -22,46 +22,10 @@ export function useFormData(defaultData, onSubmit) {
   });
   const [selectedTemplate, setSelectedTemplate] = useState("");
   const [lastAppliedTemplate, setLastAppliedTemplate] = useState(null);
-  // const [imageData, setImageData] = useState(defaultData.image || {});
+  const [imageData, setImageData] = useState(defaultData.image || {});
 
-  // function handleImageUpdate(url, width, height) {
-  //   setImageData({ url, width, height });
-  // }
-
-  function handleDeleteImageLink() {
-    toast.dismiss();
-    setFormDisabled(true);
-
-    toast(
-      <ToastMessage
-        message="Are you sure to delete image?"
-        textConfirmButton="Yes, delete please."
-        messageAfterConfirm="Ok, image deleted."
-        textCancelButton="No, don&rsquo;t delete!"
-        messageAfterCancel="Ok, image not deleted."
-        onConfirm={() => {
-          // console.log("Delete button CONFIRM clicked!");
-          // setPreviewImageUrl(null);
-          // onImageUpdate("", null, null);
-          setHandoverData((prevData) => ({
-            ...prevData,
-            image: {
-              url: "",
-              width: null,
-              height: null,
-            },
-          }));
-          setFormDisabled(false);
-          setHasChanges(true);
-        }}
-        onCancel={() => {
-          // console.log("Delete button CANCEL clicked!");
-          setFormDisabled(false);
-          setHasChanges(false);
-        }}
-      />,
-      { duration: Infinity }
-    );
+  function handleImageUpdate(url, width, height) {
+    setImageData({ url, width, height });
   }
 
   function generatePackingListFromTemplate() {
@@ -272,8 +236,7 @@ export function useFormData(defaultData, onSubmit) {
   return {
     formDisabled,
     handoverData,
-    // handleImageUpdate,
-    handleDeleteImageLink,
+    handleImageUpdate,
     newPackingListItem,
     selectedTemplate,
     setSelectedTemplate,

@@ -60,45 +60,6 @@ export const DateContainer = styled.fieldset`
   justify-content: space-between;
 `;
 
-export const PreviewBox = styled.div`
-  margin: auto;
-  width: 100%;
-  height: auto;
-  text-align: center;
-  transition: none;
-  padding: 0.6rem;
-  margin-top: 0.3rem;
-  margin-bottom: 0.4rem;
-  padding: 0.6rem;
-  background-color: var(--color-image-upload);
-  border: 1px solid var(--color-image-upload-border);
-  border-radius: 8px;
-
-  @media (min-width: 600px) {
-    margin-top: 0.5rem;
-    margin-bottom: 0.6rem;
-    padding: 0.8rem;
-  }
-`;
-
-export const PreviewArea = styled.div`
-  display: flex;
-  height: 100%;
-  flex-flow: column wrap;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  border: none;
-  border-radius: none;
-  padding: 0;
-  position: relative;
-  gap: 0.6rem;
-`;
-
-export const PreviewImage = styled(Image)`
-  border-radius: 4px;
-`;
-
 export const PackListContainer = styled.fieldset`
   margin-top: 0.4rem;
   padding: 0;
