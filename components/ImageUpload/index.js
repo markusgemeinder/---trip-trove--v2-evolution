@@ -63,8 +63,8 @@ export default function ImageUpload({ onImageUpdate }) {
     if (file) {
       setUploadInProgress(true);
       try {
-        const { url, width, height } = await uploadImage(file);
-        onImageUpdate(url, width, height);
+        const { url, width, height, public_id } = await uploadImage(file);
+        onImageUpdate(url, width, height, public_id);
       } catch (error) {
         console.error(error);
         alert("Error uploading image");

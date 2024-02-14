@@ -32,8 +32,8 @@ export function useFormData(defaultData, onSubmit) {
         url: handoverData?.image?.url || prevImageData?.image?.url,
         width: handoverData?.image?.width || prevImageData?.image?.width,
         height: handoverData?.image?.height || prevImageData?.image?.height,
-        public_id:
-          handoverData?.image?.public_id || prevImageData?.image?.public_id,
+        publicId:
+          handoverData?.image?.publicId || prevImageData?.image?.publicId,
       },
     }));
   }, [handoverData?.image?.url]);
@@ -45,10 +45,22 @@ export function useFormData(defaultData, onSubmit) {
         url: url,
         width: width,
         height: height,
-        public_id: public_id,
+        publicId: public_id,
       },
     }));
+
+    // Move the console.log statement outside the setHandoverData function
+    console.log("handleImageUpdate Parameters:", {
+      url: url,
+      width: width,
+      height: height,
+      publicId: public_id,
+    });
   }
+
+  useEffect(() => {
+    console.log("handoverData:", handoverData);
+  }, [handoverData]);
 
   function handleDeleteImage() {
     toast.dismiss();
@@ -70,7 +82,7 @@ export function useFormData(defaultData, onSubmit) {
               url: "",
               width: null,
               height: null,
-              public_id: null,
+              publicId: null,
             },
           }));
           setFormDisabled(false);
