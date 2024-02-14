@@ -114,7 +114,7 @@ export default function Form({
         onInput={handleInput}
         disabled={formDisabled}
       />
-      <ImageUpload image={handoverData?.image} />
+      <ImageUpload image={handoverData?.image} disabled={formDisabled} />
       <PackListContainer>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
         <TemplateContainer>

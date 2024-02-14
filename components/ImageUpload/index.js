@@ -29,6 +29,9 @@ async function uploadImage(file) {
     }
   );
   const { url, width, height } = await response.json();
+  console.log("url:", url);
+  console.log("width:", width);
+  console.log("height:", height);
   return { url, width, height };
 }
 
@@ -144,6 +147,7 @@ export default function ImageUpload(image) {
                 maxHeight:
                   previewImageHeight > previewImageWidth ? "240px" : "none",
               }}
+              priority={false}
             />
             {!uploadInProgress && (
               <StyledTextButtonMediumSize
