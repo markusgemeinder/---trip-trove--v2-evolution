@@ -116,10 +116,10 @@ export default function Form({
         disabled={formDisabled}
       />
       <ImageUpload
-        image={handoverData?.image} // Pass image data to ImageUpload component
-        onImageUpdate={handleImageUpdate} // Pass function to update image data
+        image={handoverData?.image}
+        onImageUpdate={handleImageUpdate}
         disabled={formDisabled}
-      />{" "}
+      />
       <PackListContainer>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
         <TemplateContainer>

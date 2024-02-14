@@ -35,22 +35,6 @@ async function uploadImage(file) {
   return { url, width, height };
 }
 
-// export default function ImageUpload(image) {
-// const [imageLinkExists, setImageLinkExists] = useState(image?.url);
-// const [previewImageUrl, setPreviewImageUrl] = useState(null);
-// const [previewImageWidth, setPreviewImageWidth] = useState(null);
-// const [previewImageHeight, setPreviewImageHeight] = useState(null);
-// const [uploadInProgress, setUploadInProgress] = useState(false);
-
-// useEffect(() => {
-//   if (imageLinkExists && previewImageUrl === null) {
-//     // Set preview image URL only once when imageLinkExists changes to true
-//     setPreviewImageUrl(imageLinkExists);
-//     setPreviewImageWidth(image?.width);
-//     setPreviewImageHeight(image?.height);
-//   }
-// }, [imageLinkExists, previewImageUrl]);
-
 export default function ImageUpload({ image, onImageUpdate, disabled }) {
   const [previewImageUrl, setPreviewImageUrl] = useState(image.url || null);
   const [previewImageWidth, setPreviewImageWidth] = useState(
@@ -78,7 +62,11 @@ export default function ImageUpload({ image, onImageUpdate, disabled }) {
         setPreviewImageWidth(uploadedImage.width);
         setPreviewImageHeight(uploadedImage.height);
         setUploadInProgress(false);
-        await console.log(previewImageUrl);
+        onImageUpdate(
+          uploadedImage.url,
+          uploadedImage.width,
+          uploadedImage.height
+        );
       } catch (error) {
         console.log(error);
         alert("Error uploading image");
@@ -92,21 +80,21 @@ export default function ImageUpload({ image, onImageUpdate, disabled }) {
 
     toast(
       <ToastMessage
-        message="Are you sure to delete image link?"
+        message="Are you sure to delete image?"
         textConfirmButton="Yes, delete please."
-        messageAfterConfirm="Ok, image link deleted."
+        messageAfterConfirm="Ok, image deleted."
         textCancelButton="No, don&rsquo;t delete!"
-        messageAfterCancel="Ok, image link not deleted."
+        messageAfterCancel="Ok, image not deleted."
         onConfirm={() => {
           console.log("Delete button CONFIRM clicked!");
           setPreviewImageUrl(null);
-          // If you need to perform additional actions, uncomment and modify the following lines:
+          onImageUpdate("", null, null);
           // setHandoverData((prevData) => ({
           //   ...prevData,
           //   image: {
+          //     url: "",
           //     width: null,
           //     height: null,
-          //     url: "",
           //   },
           // }));
           // setFormDisabled(false);
@@ -114,7 +102,6 @@ export default function ImageUpload({ image, onImageUpdate, disabled }) {
         }}
         onCancel={() => {
           console.log("Delete button CANCEL clicked!");
-          // If you need to perform additional actions, uncomment and modify the following lines:
           // setFormDisabled(false);
           // setHasChanges(false);
         }}
