@@ -25,8 +25,14 @@ export function useFormData(defaultData, onSubmit) {
   // const [imageData, setImageData] = useState(defaultData.image || {});
 
   function handleImageUpdate(url, width, height) {
-    // setImageData({ url, width, height });
-    console.log("hallo");
+    setHandoverData((prevData) => ({
+      ...prevData,
+      image: {
+        url: url,
+        width: width,
+        height: height,
+      },
+    }));
   }
 
   function handleDeleteImageLink() {
@@ -41,11 +47,9 @@ export function useFormData(defaultData, onSubmit) {
         textCancelButton="No, don&rsquo;t delete!"
         messageAfterCancel="Ok, image not deleted."
         onConfirm={() => {
-          // console.log("Delete button CONFIRM clicked!");
-          // setFetchedImageUrl(null);
-          // onImageUpdate("", null, null);
           setHandoverData((prevData) => ({
             ...prevData,
+            imageURL: "",
             image: {
               url: "",
               width: null,
@@ -56,7 +60,6 @@ export function useFormData(defaultData, onSubmit) {
           setHasChanges(true);
         }}
         onCancel={() => {
-          // console.log("Delete button CANCEL clicked!");
           setFormDisabled(false);
           setHasChanges(false);
         }}
