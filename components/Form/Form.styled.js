@@ -60,7 +60,7 @@ export const DateContainer = styled.fieldset`
   justify-content: space-between;
 `;
 
-export const PreviewBox = styled.div`
+export const PreviewContainer = styled.fieldset`
   margin: auto;
   width: 100%;
   height: auto;

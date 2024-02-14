@@ -14,7 +14,7 @@ import {
   StyledLabel,
   StyledInput,
   DateContainer,
-  PreviewBox,
+  PreviewContainer,
   PreviewArea,
   PreviewImage,
   PackListContainer,
@@ -120,7 +120,7 @@ export default function Form({
         disabled={formDisabled}
       />
       {handoverData?.image?.url && (
-        <PreviewBox>
+        <PreviewContainer disabled={formDisabled}>
           <PreviewArea>
             <PreviewImage
               src={handoverData?.image?.url}
@@ -144,11 +144,12 @@ export default function Form({
             <StyledTextButtonMediumSize
               type="button"
               onClick={handleDeleteImageLink}
+              disabled={formDisabled}
             >
               Delete
             </StyledTextButtonMediumSize>
           </PreviewArea>
-        </PreviewBox>
+        </PreviewContainer>
       )}
       {/* <ImageUpload
         image={handoverData?.image}
