@@ -110,12 +110,39 @@ export default function Form({
           disabled={formDisabled}
         />
       </DateContainer>
-      <StyledLabel htmlFor="imageURL">Image</StyledLabel>
+      <StyledLabel htmlFor="imageURL">Image URL</StyledLabel>
       <StyledInput
         id="imageURL"
         name="imageURL"
         type="text"
         value={handoverData?.image?.url || ""}
+        onInput={handleInput}
+        disabled={formDisabled}
+      />
+      <StyledLabel htmlFor="imageWidth">Width</StyledLabel>
+      <StyledInput
+        id="imageWidth"
+        name="imageWidth"
+        type="number"
+        value={handoverData?.image?.width || ""}
+        onInput={handleInput}
+        disabled={formDisabled}
+      />
+      <StyledLabel htmlFor="imageHeight">Height</StyledLabel>
+      <StyledInput
+        id="imageHeight"
+        name="imageHeight"
+        type="number"
+        value={handoverData?.image?.height || ""}
+        onInput={handleInput}
+        disabled={formDisabled}
+      />
+      <StyledLabel htmlFor="imagePublicId">public_id</StyledLabel>
+      <StyledInput
+        id="imagePublicId"
+        name="imagePublicId"
+        type="text"
+        value={handoverData?.image?.publicId || ""}
         onInput={handleInput}
         disabled={formDisabled}
       />

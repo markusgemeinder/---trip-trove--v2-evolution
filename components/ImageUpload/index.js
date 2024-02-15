@@ -50,8 +50,7 @@ export async function deleteImage(publicId) {
     }
   } catch (error) {
     console.error(error);
-    // Handle the error as needed
-    throw error; // Re-throw the error to be handled in the calling component
+    throw error;
   }
 }
 

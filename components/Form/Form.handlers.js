@@ -25,20 +25,6 @@ export function useFormData(defaultData, onSubmit) {
   const [lastAppliedTemplate, setLastAppliedTemplate] = useState(null);
   const [lastImageData, setLastImageData] = useState(defaultData?.image); // Initialize with defaultData?.image
 
-  // useEffect(() => {
-  //   // Update lastImageData whenever url, width, or height changes
-  //   setLastImageData((prevImageData) => ({
-  //     image: {
-  //       url: handoverData?.image?.url || prevImageData?.image?.url,
-  //       width: handoverData?.image?.width || prevImageData?.image?.width,
-  //       height: handoverData?.image?.height || prevImageData?.image?.height,
-  //       publicId:
-  //         handoverData?.image?.publicId || prevImageData?.image?.publicId,
-  //     },
-  //   }));
-  //   console.log("hallo!");
-  // }, [handoverData?.image?.url]);
-
   async function handleImageUpdate(url, width, height, public_id) {
     setHandoverData((prevData) => ({
       ...prevData,
@@ -49,19 +35,7 @@ export function useFormData(defaultData, onSubmit) {
         publicId: public_id,
       },
     }));
-
-    // Move the console.log statement outside the setHandoverData function
-    // console.clear;
-    // console.log("image params after ImageUpdate:", {
-    //   url: url,
-    //   width: width,
-    //   height: height,
-    //   publicId: public_id,
-    // });
-    // console.log("handoverData after ImageUpdate:", handoverData);
   }
-
-  useEffect(() => {}, [handoverData]);
 
   async function handleDeleteImage() {
     toast.dismiss();
