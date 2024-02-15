@@ -25,20 +25,21 @@ export function useFormData(defaultData, onSubmit) {
   const [lastAppliedTemplate, setLastAppliedTemplate] = useState(null);
   const [lastImageData, setLastImageData] = useState(defaultData?.image); // Initialize with defaultData?.image
 
-  useEffect(() => {
-    // Update lastImageData whenever url, width, or height changes
-    setLastImageData((prevImageData) => ({
-      image: {
-        url: handoverData?.image?.url || prevImageData?.image?.url,
-        width: handoverData?.image?.width || prevImageData?.image?.width,
-        height: handoverData?.image?.height || prevImageData?.image?.height,
-        publicId:
-          handoverData?.image?.publicId || prevImageData?.image?.publicId,
-      },
-    }));
-  }, [handoverData?.image?.url]);
+  // useEffect(() => {
+  //   // Update lastImageData whenever url, width, or height changes
+  //   setLastImageData((prevImageData) => ({
+  //     image: {
+  //       url: handoverData?.image?.url || prevImageData?.image?.url,
+  //       width: handoverData?.image?.width || prevImageData?.image?.width,
+  //       height: handoverData?.image?.height || prevImageData?.image?.height,
+  //       publicId:
+  //         handoverData?.image?.publicId || prevImageData?.image?.publicId,
+  //     },
+  //   }));
+  //   console.log("hallo!");
+  // }, [handoverData?.image?.url]);
 
-  function handleImageUpdate(url, width, height, public_id) {
+  async function handleImageUpdate(url, width, height, public_id) {
     setHandoverData((prevData) => ({
       ...prevData,
       image: {
@@ -50,19 +51,19 @@ export function useFormData(defaultData, onSubmit) {
     }));
 
     // Move the console.log statement outside the setHandoverData function
-    console.log("handleImageUpdate Parameters:", {
-      url: url,
-      width: width,
-      height: height,
-      publicId: public_id,
-    });
+    // console.clear;
+    // console.log("image params after ImageUpdate:", {
+    //   url: url,
+    //   width: width,
+    //   height: height,
+    //   publicId: public_id,
+    // });
+    // console.log("handoverData after ImageUpdate:", handoverData);
   }
 
-  useEffect(() => {
-    console.log("handoverData:", handoverData);
-  }, [handoverData]);
+  useEffect(() => {}, [handoverData]);
 
-  function handleDeleteImage() {
+  async function handleDeleteImage() {
     toast.dismiss();
     setFormDisabled(true);
 
@@ -74,7 +75,7 @@ export function useFormData(defaultData, onSubmit) {
         textCancelButton="No, don&rsquo;t delete!"
         messageAfterCancel="Ok, image not deleted."
         onConfirm={async () => {
-          await deleteImage(handoverData.image.public_id);
+          await deleteImage(handoverData.image.publicId);
           setHandoverData((prevData) => ({
             ...prevData,
             imageURL: "",
@@ -299,6 +300,13 @@ export function useFormData(defaultData, onSubmit) {
         messageAfterCancel="Data not saved."
         onConfirm={() => {
           onSubmit(handoverData);
+          console.clear;
+          console.log("Submit handoverData:", handoverData);
+          console.log("Submit defaultData:", defaultData);
+          console.log(
+            "handoverData <> defaultData:",
+            handoverData !== defaultData
+          );
           setFormDisabled(false);
           setHasChanges(false);
         }}
