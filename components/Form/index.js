@@ -40,7 +40,7 @@ const INITIAL_DATA = {
   imageURL: "",
   image: {
     width: null,
-    heigth: null,
+    height: null,
     url: "",
   },
   notes: "",

@@ -23,7 +23,6 @@ export function useFormData(defaultData, onSubmit) {
   });
   const [selectedTemplate, setSelectedTemplate] = useState("");
   const [lastAppliedTemplate, setLastAppliedTemplate] = useState(null);
-  const [lastImageData, setLastImageData] = useState(defaultData?.image); // Initialize with defaultData?.image
 
   async function handleImageUpdate(url, width, height, public_id) {
     setHandoverData((prevData) => ({
@@ -275,13 +274,6 @@ export function useFormData(defaultData, onSubmit) {
         messageAfterCancel="Data not saved."
         onConfirm={() => {
           onSubmit(handoverData);
-          console.clear;
-          console.log("Submit handoverData:", handoverData);
-          console.log("Submit defaultData:", defaultData);
-          console.log(
-            "handoverData <> defaultData:",
-            handoverData !== defaultData
-          );
           setFormDisabled(false);
           setHasChanges(false);
         }}
