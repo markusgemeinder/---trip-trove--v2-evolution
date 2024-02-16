@@ -288,6 +288,7 @@ export function useFormData(defaultData, onSubmit) {
   return {
     formDisabled,
     handoverData,
+    hasChanges,
     handleImageUpdate,
     handleDeleteImage,
     newPackingListItem,

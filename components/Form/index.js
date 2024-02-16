@@ -55,6 +55,7 @@ export default function Form({
   const {
     formDisabled,
     handoverData,
+    hasChanges,
     handleImageUpdate,
     handleDeleteImage,
     newPackingListItem,
@@ -88,6 +89,7 @@ export default function Form({
         disabled={formDisabled}
         autoFocus
       />
+
       <DateContainer>
         <StyledLabel htmlFor="start">Start</StyledLabel>
         <StyledInput
@@ -110,42 +112,9 @@ export default function Form({
           disabled={formDisabled}
         />
       </DateContainer>
-      <StyledLabel htmlFor="imageURL">Image URL</StyledLabel>
-      <StyledInput
-        id="imageURL"
-        name="imageURL"
-        type="text"
-        value={handoverData?.image?.url || ""}
-        onInput={handleInput}
-        disabled={formDisabled}
-      />
-      <StyledLabel htmlFor="imageWidth">Width</StyledLabel>
-      <StyledInput
-        id="imageWidth"
-        name="imageWidth"
-        type="number"
-        value={handoverData?.image?.width || ""}
-        onInput={handleInput}
-        disabled={formDisabled}
-      />
-      <StyledLabel htmlFor="imageHeight">Height</StyledLabel>
-      <StyledInput
-        id="imageHeight"
-        name="imageHeight"
-        type="number"
-        value={handoverData?.image?.height || ""}
-        onInput={handleInput}
-        disabled={formDisabled}
-      />
-      <StyledLabel htmlFor="imagePublicId">public_id</StyledLabel>
-      <StyledInput
-        id="imagePublicId"
-        name="imagePublicId"
-        type="text"
-        value={handoverData?.image?.publicId || ""}
-        onInput={handleInput}
-        disabled={formDisabled}
-      />
+
+      <StyledLabel htmlFor="imageURL">Image</StyledLabel>
+
       {handoverData?.image?.url && (
         <PreviewContainer disabled={formDisabled}>
           <PreviewArea>
@@ -184,6 +153,48 @@ export default function Form({
           disabled={formDisabled}
         />
       )}
+
+      {hasChanges && handoverData?.image?.url && (
+        <>
+          <StyledLabel htmlFor="imageURL">Image URL</StyledLabel>
+          <StyledInput
+            id="imageURL"
+            name="imageURL"
+            type="text"
+            value={handoverData?.image?.url || ""}
+            onInput={handleInput}
+            disabled={formDisabled}
+          />
+          <StyledLabel htmlFor="imageWidth">Width</StyledLabel>
+          <StyledInput
+            id="imageWidth"
+            name="imageWidth"
+            type="number"
+            value={handoverData?.image?.width || ""}
+            onInput={handleInput}
+            disabled={formDisabled}
+          />
+          <StyledLabel htmlFor="imageHeight">Height</StyledLabel>
+          <StyledInput
+            id="imageHeight"
+            name="imageHeight"
+            type="number"
+            value={handoverData?.image?.height || ""}
+            onInput={handleInput}
+            disabled={formDisabled}
+          />
+          <StyledLabel htmlFor="imagePublicId">public_id</StyledLabel>
+          <StyledInput
+            id="imagePublicId"
+            name="imagePublicId"
+            type="text"
+            value={handoverData?.image?.publicId || ""}
+            onInput={handleInput}
+            disabled={formDisabled}
+          />
+        </>
+      )}
+
       <PackListContainer disabled={formDisabled}>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
         <TemplateContainer>
@@ -258,6 +269,7 @@ export default function Form({
           </MiniButtonContainer>{" "}
         </PackList>
       </PackListContainer>
+
       <StyledLabel htmlFor="notes">Notes</StyledLabel>
       <StyledInput
         id="notes"
