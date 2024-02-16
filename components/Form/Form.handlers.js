@@ -35,6 +35,7 @@ export function useFormData(defaultData, onSubmit) {
         publicId: public_id,
       },
     }));
+    setHasChanges(true);
   }
 
   async function handleDeleteImage() {
