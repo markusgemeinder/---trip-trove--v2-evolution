@@ -24,6 +24,37 @@ export function useFormData(defaultData, onSubmit) {
   const [selectedTemplate, setSelectedTemplate] = useState("");
   const [lastAppliedTemplate, setLastAppliedTemplate] = useState(null);
 
+  useEffect(() => {
+    const handleRouteChange = (url) => {
+      if (hasChanges) {
+        const confirmation = window.confirm(
+          "You have unsaved changes. Are you sure you want to leave this page?"
+        );
+        if (!confirmation) {
+          // Prevent route change
+          throw "routeChange aborted.";
+        }
+      }
+    };
+
+    // Check if window is defined before subscribing to route events
+    if (typeof window !== "undefined") {
+      window.addEventListener("beforeunload", () => {
+        if (hasChanges) {
+          // Display confirmation message for unsaved changes
+          return "You have unsaved changes. Are you sure you want to leave this page?";
+        }
+      });
+
+      const router = require("next/router").default;
+      router.events.on("routeChangeStart", handleRouteChange);
+
+      return () => {
+        router.events.off("routeChangeStart", handleRouteChange);
+      };
+    }
+  }, [hasChanges]);
+
   async function handleImageUpdate(url, width, height, public_id) {
     setHandoverData((prevData) => ({
       ...prevData,
