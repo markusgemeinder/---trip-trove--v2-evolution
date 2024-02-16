@@ -41,6 +41,8 @@ export function useFormData(defaultData, onSubmit) {
           setFormDisabled(false);
           setHasChanges(false);
           if (destinationUrl) {
+            setTimeout(toastDuration);
+            toast.dismiss;
             router.push(destinationUrl);
           }
         }}
