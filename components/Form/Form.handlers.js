@@ -24,8 +24,9 @@ export function useFormData(defaultData, onSubmit) {
   });
   const [selectedTemplate, setSelectedTemplate] = useState("");
   const [lastAppliedTemplate, setLastAppliedTemplate] = useState(null);
+  const router = useRouter();
 
-  function showCustomToastPageExit() {
+  function showCustomToastPageExit(destinationUrl) {
     toast.dismiss();
     setFormDisabled(true);
 
@@ -39,7 +40,9 @@ export function useFormData(defaultData, onSubmit) {
         onConfirm={() => {
           setFormDisabled(false);
           setHasChanges(false);
-          // No navigation, user stays on the same page
+          if (destinationUrl) {
+            router.push(destinationUrl);
+          }
         }}
         onCancel={() => {
           setFormDisabled(false);
@@ -49,25 +52,18 @@ export function useFormData(defaultData, onSubmit) {
     );
   }
 
-  const router = useRouter();
-
   useEffect(() => {
     function handleRouteChange(url) {
       if (hasChanges) {
-        // Show customized toast message
-        showCustomToastPageExit();
-        // Prevent route change
+        showCustomToastPageExit(determinePageExitDestinationUrl());
         throw "routeChange aborted.";
       }
     }
 
-    // Check if window is defined before subscribing to route events
     if (typeof window !== "undefined") {
       window.addEventListener("beforeunload", () => {
         if (hasChanges) {
-          // Show customized toast message
-          showCustomToastPageExit();
-          // Return a message to display in the browser's confirmation dialog
+          showCustomToastPageExit(determinePageExitDestinationUrl());
           return "You have unsaved changes. Are you sure you want to leave this page?";
         }
       });
@@ -80,6 +76,21 @@ export function useFormData(defaultData, onSubmit) {
       };
     }
   }, [hasChanges]);
+
+  function determinePageExitDestinationUrl() {
+    const { pathname } = router;
+
+    switch (pathname) {
+      case "/create":
+        return "/";
+      case "/":
+        return isEditMode ? `/trips/${id}` : "/";
+      case "/trips/[id]/edit":
+        return `/trips/${id}`;
+      default:
+        return "/";
+    }
+  }
 
   async function handleImageUpdate(url, width, height, public_id) {
     setHandoverData((prevData) => ({

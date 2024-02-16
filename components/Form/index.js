@@ -70,7 +70,7 @@ export default function Form({
     handleRemoveItem,
     handleReset,
     handleSubmit,
-  } = useFormData(defaultData, onSubmit);
+  } = useFormData(defaultData, onSubmit, isEditMode);
 
   return (
     <TripForm
