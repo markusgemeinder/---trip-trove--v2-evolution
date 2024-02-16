@@ -7,9 +7,50 @@ import {
   UploadText,
   UploadInput,
 } from "@/components/ImageUpload/ImageUpload.styled";
+// import crypto from "crypto";
+// import axios from "axios";
 
 const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 const UPLOAD_PRESET = "trip-trove";
+const API_KEY = process.env.CLOUDINARY_API_KEY;
+const API_SECRET = process.env.CLOUDINARY_API_SECRET;
+
+// ======================================
+
+// function generateSHA1(data) {
+//   const hash = crypto.createHash("sha1");
+//   hash.update(data);
+//   return hash.digest("hex");
+// }
+
+// function generateSignature(publicId, API_SECRET) {
+//   const timestamp = new Date().getTime();
+//   const signatureData = `public_id=${publicId}&timestamp=${timestamp}${API_SECRET}`;
+//   const signature = generateSHA1(signatureData);
+//   return signature;
+// }
+
+export async function deleteImage(CLOUD_NAME, API_KEY, API_SECRET, publicId) {
+  // const timestamp = new Date().getTime();
+  // const signature = generateSHA1(generateSignature(publicId, API_SECRET));
+
+  try {
+    const response = await axios.post(
+      `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/destroy`,
+      {
+        public_id: publicId,
+        // signature: signature,
+        api_key: API_KEY,
+        // timestamp: timestamp,
+      }
+    );
+    console.error(response);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+// ======================================
 
 async function uploadImage(file) {
   const formData = new FormData();
@@ -25,33 +66,6 @@ async function uploadImage(file) {
 
   const { url, width, height, public_id } = await response.json();
   return { url, width, height, public_id };
-}
-
-export async function deleteImage(publicId) {
-  const formData = new FormData();
-  formData.append("public_id", publicId);
-  formData.append("upload_preset", UPLOAD_PRESET);
-  try {
-    // Log request parameters
-    console.log("DELETE Request Parameters:", {
-      public_id: publicId,
-      upload_preset: UPLOAD_PRESET,
-    });
-    return;
-    const response = await fetch(
-      `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/destroy`,
-      {
-        method: "DELETE",
-        body: formData,
-      }
-    );
-    if (!response.ok) {
-      throw new Error("Failed to delete image from Cloudinary");
-    }
-  } catch (error) {
-    console.error(error);
-    throw error;
-  }
 }
 
 export default function ImageUpload({ onImageUpdate }) {
