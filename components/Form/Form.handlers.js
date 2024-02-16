@@ -86,9 +86,9 @@ export function useFormData(defaultData, onSubmit) {
       case "/create":
         return "/";
       case "/":
-        return isEditMode ? `/trips/${id}` : "/";
+        return isEditMode ? `/trips/${handoverData._id}` : "/";
       case "/trips/[id]/edit":
-        return `/trips/${id}`;
+        return `/trips/${handoverData._id}`;
       default:
         return "/";
     }
