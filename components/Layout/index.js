@@ -23,7 +23,7 @@ export default function Layout({ children }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 100;
+      const isScrolled = window.scrollY > 80;
       setShowPageUpButton(isScrolled);
     };
     window.addEventListener("scroll", handleScroll);
@@ -38,7 +38,6 @@ export default function Layout({ children }) {
         <Header />
         <Main>{children}</Main>
         <Navigation />
-        {/* Render PageUpButton only if showPageUpButton is true */}
         {showPageUpButton && <PageUpButton href="#top" />}
       </LayoutContainer>
     </>
