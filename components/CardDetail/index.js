@@ -51,40 +51,6 @@ const CardDestination = styled.h2`
 
 `;
 
-const CardDateContainer = styled.div`
-  margin: 0;
-  padding: 0;
-  margin-bottom: 0.2rem;
-  border-color: transparent;
-  display: grid;
-  align-self: center;
-  grid-template-columns: auto auto auto auto;
-  grid-template-rows: auto auto;
-  grid-auto-flow: row;
-  justify-content: center;
-  gap: 0.5rem;
-  align-items: center;
-`;
-
-const CardDateLabel = styled.p`
-  margin: 0;
-  padding: 0;
-  font-size: 0.8rem;
-  color: var(--color-card-date-label);
-`;
-
-const CardDate = styled.p`
-  margin: 0;
-  padding: 0.1rem;
-  font-size: 0.9rem;
-  font-weight: bold;
-  color: var(--color-card-date);
- 
-  @media (min-width: 600px) {
-    font-size: 1.1rem;
-
-`;
-
 const CardImage = styled(Image)`
   margin: 0;
   padding: 0;
@@ -163,12 +129,12 @@ export default function CardDetail() {
         <TripDetailsBadge startDate={trip.start} endDate={trip.end} />
         <CardImage
           src={
-            trip.imageURL !== ""
-              ? trip.imageURL
+            trip.image.url !== ""
+              ? trip.image.url
               : "/images/triptrove-default.png"
           }
           width={300}
-          height={200}
+          height={300}
           alt={trip.destination}
         />
         <CreateUpdateDateBadge

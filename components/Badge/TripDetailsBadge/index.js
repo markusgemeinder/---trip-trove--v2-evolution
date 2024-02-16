@@ -107,9 +107,15 @@ export default function TripDetailsBadge({ startDate, endDate }) {
   return (
     <BadgeContainer>
       <DaysContainer>
-        <StyledDaysLabel>Start in</StyledDaysLabel>
+        {calculateStartDays(startDate) <= 0 ? (
+          <StyledDaysLabel>Overdue</StyledDaysLabel>
+        ) : (
+          <StyledDaysLabel>Start in</StyledDaysLabel>
+        )}
         <StyledDays>{calculateStartDays(startDate)}</StyledDays>
-        <StyledDaysLabel>days</StyledDaysLabel>
+        <StyledDaysLabel>
+          {calculateStartDays(startDate) === 1 ? "day" : "days"}
+        </StyledDaysLabel>
       </DaysContainer>
       <DateContainer>
         <LabelScheduled>Scheduled</LabelScheduled>
@@ -121,7 +127,9 @@ export default function TripDetailsBadge({ startDate, endDate }) {
       <DaysContainer>
         <StyledDaysLabel>Duration</StyledDaysLabel>
         <StyledDays>{calculateDurationDays(startDate, endDate)}</StyledDays>
-        <StyledDaysLabel>days</StyledDaysLabel>
+        <StyledDaysLabel>
+          {calculateDurationDays(startDate, endDate) === 1 ? "day" : "days"}
+        </StyledDaysLabel>
       </DaysContainer>
     </BadgeContainer>
   );

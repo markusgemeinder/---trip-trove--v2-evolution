@@ -14,6 +14,9 @@ import {
   StyledLabel,
   StyledInput,
   DateContainer,
+  PreviewContainer,
+  PreviewArea,
+  PreviewImage,
   PackListContainer,
   PackList,
   TemplateContainer,
@@ -28,12 +31,18 @@ import {
   InputQuantity,
 } from "@/components/Form/Form.styled";
 import { useFormData } from "@/components/Form/Form.handlers";
+import ImageUpload from "@/components/ImageUpload";
 
 const INITIAL_DATA = {
   destination: "",
   start: "",
   end: "",
   imageURL: "",
+  image: {
+    width: null,
+    height: null,
+    url: "",
+  },
   notes: "",
   packingList: [],
 };
@@ -46,9 +55,13 @@ export default function Form({
   const {
     formDisabled,
     handoverData,
+    hasChanges,
+    handleImageUpdate,
+    handleDeleteImage,
     newPackingListItem,
     selectedTemplate,
     setSelectedTemplate,
+    generatePackingListFromTemplate,
     handleUpdateNewPackingListItemName,
     handleUpdateNewPackingListItemQuantity,
     handleAddPackingListItem,
@@ -57,7 +70,6 @@ export default function Form({
     handleRemoveItem,
     handleReset,
     handleSubmit,
-    generatePackingListFromTemplate,
   } = useFormData(defaultData, onSubmit);
 
   return (
@@ -77,6 +89,7 @@ export default function Form({
         disabled={formDisabled}
         autoFocus
       />
+
       <DateContainer>
         <StyledLabel htmlFor="start">Start</StyledLabel>
         <StyledInput
@@ -99,16 +112,90 @@ export default function Form({
           disabled={formDisabled}
         />
       </DateContainer>
-      <StyledLabel htmlFor="imageURL">Image URL</StyledLabel>
-      <StyledInput
-        id="imageURL"
-        name="imageURL"
-        type="text"
-        value={handoverData?.imageURL || ""}
-        onInput={handleInput}
-        disabled={formDisabled}
-      />
-      <PackListContainer>
+
+      <StyledLabel htmlFor="imageURL">Image</StyledLabel>
+
+      {handoverData?.image?.url && (
+        <PreviewContainer disabled={formDisabled}>
+          <PreviewArea>
+            <PreviewImage
+              src={handoverData?.image?.url}
+              alt="Preview"
+              width={handoverData?.image?.width}
+              height={handoverData?.image?.height}
+              style={{
+                width: handoverData?.image?.width ? "auto" : "100%",
+                height: handoverData?.image?.height ? "auto" : "100%",
+                maxWidth:
+                  handoverData?.image?.width > handoverData?.image?.height
+                    ? "240px"
+                    : "none",
+                maxHeight:
+                  handoverData?.image?.height > handoverData?.image?.width
+                    ? "240px"
+                    : "none",
+              }}
+              priority={false}
+            />
+            <StyledTextButtonMediumSize
+              type="button"
+              onClick={handleDeleteImage}
+              disabled={formDisabled}
+            >
+              Delete
+            </StyledTextButtonMediumSize>
+          </PreviewArea>
+        </PreviewContainer>
+      )}
+      {!handoverData?.image?.url && (
+        <ImageUpload
+          onImageUpdate={handleImageUpdate}
+          disabled={formDisabled}
+        />
+      )}
+
+      {hasChanges && handoverData?.image?.url && (
+        <>
+          <StyledLabel htmlFor="imageURL">Image URL</StyledLabel>
+          <StyledInput
+            id="imageURL"
+            name="imageURL"
+            type="text"
+            value={handoverData?.image?.url || ""}
+            onInput={handleInput}
+            disabled={formDisabled}
+          />
+          <StyledLabel htmlFor="imageWidth">Width</StyledLabel>
+          <StyledInput
+            id="imageWidth"
+            name="imageWidth"
+            type="number"
+            value={handoverData?.image?.width || ""}
+            onInput={handleInput}
+            disabled={formDisabled}
+          />
+          <StyledLabel htmlFor="imageHeight">Height</StyledLabel>
+          <StyledInput
+            id="imageHeight"
+            name="imageHeight"
+            type="number"
+            value={handoverData?.image?.height || ""}
+            onInput={handleInput}
+            disabled={formDisabled}
+          />
+          <StyledLabel htmlFor="imagePublicId">public_id</StyledLabel>
+          <StyledInput
+            id="imagePublicId"
+            name="imagePublicId"
+            type="text"
+            value={handoverData?.image?.publicId || ""}
+            onInput={handleInput}
+            disabled={formDisabled}
+          />
+        </>
+      )}
+
+      <PackListContainer disabled={formDisabled}>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
         <TemplateContainer>
           <StyledSelect
@@ -182,6 +269,7 @@ export default function Form({
           </MiniButtonContainer>{" "}
         </PackList>
       </PackListContainer>
+
       <StyledLabel htmlFor="notes">Notes</StyledLabel>
       <StyledInput
         id="notes"

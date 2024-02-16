@@ -1,9 +1,10 @@
 import mongoose from "mongoose";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { toastDuration, validateTripDates } from "@/lib/utils";
 import { ToastMessage } from "@/components/ToastMessage";
 import { packingListTemplates } from "@/lib/packingListTemplates";
+import { deleteImage } from "@/components/ImageUpload";
 
 export function generateObjectId() {
   const { ObjectId } = mongoose.Types;
@@ -22,6 +23,95 @@ export function useFormData(defaultData, onSubmit) {
   });
   const [selectedTemplate, setSelectedTemplate] = useState("");
   const [lastAppliedTemplate, setLastAppliedTemplate] = useState(null);
+
+  async function handleImageUpdate(url, width, height, public_id) {
+    setHandoverData((prevData) => ({
+      ...prevData,
+      image: {
+        url: url,
+        width: width,
+        height: height,
+        publicId: public_id,
+      },
+    }));
+    setHasChanges(true);
+  }
+
+  async function handleDeleteImage() {
+    toast.dismiss();
+    setFormDisabled(true);
+
+    toast(
+      <ToastMessage
+        message="Are you sure to delete image?"
+        textConfirmButton="Yes, delete please."
+        messageAfterConfirm="Ok, image deleted."
+        textCancelButton="No, don&rsquo;t delete!"
+        messageAfterCancel="Ok, image not deleted."
+        onConfirm={async () => {
+          await deleteImage(handoverData.image.publicId);
+          setHandoverData((prevData) => ({
+            ...prevData,
+            imageURL: "",
+            image: {
+              url: "",
+              width: null,
+              height: null,
+              publicId: null,
+            },
+          }));
+          setFormDisabled(false);
+          setHasChanges(true);
+        }}
+        onCancel={() => {
+          setFormDisabled(false);
+          setHasChanges(false);
+        }}
+      />,
+      { duration: Infinity }
+    );
+  }
+
+  function generatePackingListFromTemplate() {
+    if (!selectedTemplate) {
+      toast.error("Please select a preset before applying.", {
+        duration: toastDuration,
+      });
+      return;
+    }
+    if (lastAppliedTemplate === selectedTemplate) {
+      return;
+    }
+
+    setLastAppliedTemplate(selectedTemplate);
+
+    const template = packingListTemplates[selectedTemplate];
+    const updatedPackingList = [...handoverData.packingList];
+
+    const lastItem = updatedPackingList[updatedPackingList.length - 1];
+    if (lastItem && lastItem.itemName === "") {
+      updatedPackingList.pop();
+      updatedPackingList.push(
+        ...template.map((item) => ({
+          ...item,
+          _id: generateObjectId(),
+        }))
+      );
+    } else {
+      updatedPackingList.push(
+        ...template.map((item) => ({
+          ...item,
+          _id: generateObjectId(),
+        }))
+      );
+    }
+
+    setHandoverData((prevData) => ({
+      ...prevData,
+      packingList: updatedPackingList,
+    }));
+    setHasChanges(true);
+  }
 
   function handleUpdateNewPackingListItemName(
     newName,
@@ -48,6 +138,10 @@ export function useFormData(defaultData, onSubmit) {
   }
 
   function handleAddPackingListItem() {
+    if (formDisabled) {
+      return;
+    }
+
     const lastItem =
       handoverData.packingList[handoverData.packingList.length - 1];
 
@@ -98,6 +192,10 @@ export function useFormData(defaultData, onSubmit) {
   }
 
   function handleRemoveItem(itemIdToRemove) {
+    if (formDisabled) {
+      return;
+    }
+
     setHandoverData((prevData) => {
       const updatedPackingList = handoverData.packingList.filter((item) => {
         return item._id !== itemIdToRemove;
@@ -187,53 +285,16 @@ export function useFormData(defaultData, onSubmit) {
     );
   }
 
-  function generatePackingListFromTemplate() {
-    if (!selectedTemplate) {
-      toast.error("Please select a preset before applying.", {
-        duration: toastDuration,
-      });
-      return;
-    }
-    if (lastAppliedTemplate === selectedTemplate) {
-      return;
-    }
-
-    setLastAppliedTemplate(selectedTemplate);
-
-    const template = packingListTemplates[selectedTemplate];
-    const updatedPackingList = [...handoverData.packingList];
-
-    const lastItem = updatedPackingList[updatedPackingList.length - 1];
-    if (lastItem && lastItem.itemName === "") {
-      updatedPackingList.pop();
-      updatedPackingList.push(
-        ...template.map((item) => ({
-          ...item,
-          _id: generateObjectId(),
-        }))
-      );
-    } else {
-      updatedPackingList.push(
-        ...template.map((item) => ({
-          ...item,
-          _id: generateObjectId(),
-        }))
-      );
-    }
-
-    setHandoverData((prevData) => ({
-      ...prevData,
-      packingList: updatedPackingList,
-    }));
-    setHasChanges(true);
-  }
-
   return {
     formDisabled,
     handoverData,
+    hasChanges,
+    handleImageUpdate,
+    handleDeleteImage,
     newPackingListItem,
     selectedTemplate,
     setSelectedTemplate,
+    generatePackingListFromTemplate,
     handleUpdateNewPackingListItemName,
     handleUpdateNewPackingListItemQuantity,
     handleAddPackingListItem,
@@ -242,6 +303,5 @@ export function useFormData(defaultData, onSubmit) {
     handleRemoveItem,
     handleReset,
     handleSubmit,
-    generatePackingListFromTemplate,
   };
 }
