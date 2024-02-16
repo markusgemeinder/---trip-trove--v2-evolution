@@ -48,8 +48,9 @@ export function useFormData(defaultData, onSubmit) {
         messageAfterConfirm="Ok, image deleted."
         textCancelButton="No, don&rsquo;t delete!"
         messageAfterCancel="Ok, image not deleted."
-        onConfirm={async () => {
-          await deleteImage(handoverData.image.publicId);
+        onConfirm={() => {
+          // onConfirm={async () => {
+          // await deleteImage(handoverData.image.publicId);
           setHandoverData((prevData) => ({
             ...prevData,
             imageURL: "",
