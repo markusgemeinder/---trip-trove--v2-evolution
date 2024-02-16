@@ -13,7 +13,7 @@ export function generateObjectId() {
   return newObjectId;
 }
 
-export function useFormData(defaultData, onSubmit) {
+export function useFormData(defaultData, onSubmit, isBackButtonInEditMode) {
   const [formDisabled, setFormDisabled] = useState(false);
   const [handoverData, setHandoverData] = useState(defaultData);
   const [hasChanges, setHasChanges] = useState(false);
@@ -81,18 +81,43 @@ export function useFormData(defaultData, onSubmit) {
 
   function determinePageExitDestinationUrl() {
     const { pathname } = router;
+    const id = defaultData?._id;
+    console.log("Current pathname:", pathname);
 
-    switch (pathname) {
-      case "/create":
+    switch (true) {
+      case isBackButtonInEditMode && pathname === `/trips/[id]/edit`:
+        console.log("case 1");
+        return `/trips/${id}/`;
+      case pathname === `/trips/[id]/edit`:
+        console.log("case 2");
         return "/";
-      case "/":
-        return isEditMode ? `/trips/${handoverData._id}` : "/";
-      case "/trips/[id]/edit":
-        return `/trips/${handoverData._id}`;
+      case pathname === "/create":
+        console.log("case 3");
+        return "/";
       default:
+        console.log("case 4");
         return "/";
     }
   }
+  // function determinePageExitDestinationUrl() {
+  //   const { pathname } = router;
+  //   const id = defaultData?._id;
+  //   console.log("Current pathname:", pathname);
+  //   switch (pathname) {
+  //     case `/trips/[id]/edit`: // case 1 only valid on click back button
+  //       console.log("case 1");
+  //       return `/trips/${id}/`;
+  //     case `/trips/[id]/edit`: // case 2 only valid on click navigation home button
+  //       console.log("case 2");
+  //       return `/trips/${id}/`;
+  //     case "/create":
+  //       console.log("case 3"); // case 3 valid on click back button or navigation home button
+  //       return "/";
+  //     default:
+  //       console.log("case 4");
+  //       return "/";
+  //   }
+  // }
 
   async function handleImageUpdate(url, width, height, public_id) {
     setHandoverData((prevData) => ({
