@@ -13,7 +13,7 @@ export function generateObjectId() {
   return newObjectId;
 }
 
-export function useFormData(defaultData, onSubmit, isBackButtonInEditMode) {
+export function useFormData(defaultData, onSubmit) {
   const [formDisabled, setFormDisabled] = useState(false);
   const [handoverData, setHandoverData] = useState(defaultData);
   const [hasChanges, setHasChanges] = useState(false);
@@ -57,7 +57,8 @@ export function useFormData(defaultData, onSubmit, isBackButtonInEditMode) {
   useEffect(() => {
     function handleRouteChange(url) {
       if (hasChanges) {
-        showCustomToastPageExit(determinePageExitDestinationUrl());
+        const isBackButton = router.route === "/trips/[id]/edit"; // Check if the current route is the edit page
+        showCustomToastPageExit(determinePageExitDestinationUrl(isBackButton));
         throw "routeChange aborted.";
       }
     }
@@ -79,16 +80,16 @@ export function useFormData(defaultData, onSubmit, isBackButtonInEditMode) {
     }
   }, [hasChanges]);
 
-  function determinePageExitDestinationUrl() {
+  function determinePageExitDestinationUrl(isBackButton) {
     const { pathname } = router;
     const id = defaultData?._id;
     console.log("Current pathname:", pathname);
 
     switch (true) {
-      case isBackButtonInEditMode && pathname === `/trips/[id]/edit`:
+      case isBackButton && pathname === `/trips/[id]/edit`:
         console.log("case 1");
         return `/trips/${id}/`;
-      case pathname === `/trips/[id]/edit`:
+      case !isBackButton && pathname === `/trips/[id]/edit`:
         console.log("case 2");
         return "/";
       case pathname === "/create":
@@ -99,6 +100,7 @@ export function useFormData(defaultData, onSubmit, isBackButtonInEditMode) {
         return "/";
     }
   }
+
   // function determinePageExitDestinationUrl() {
   //   const { pathname } = router;
   //   const id = defaultData?._id;

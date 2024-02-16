@@ -51,7 +51,6 @@ export default function Form({
   defaultData = INITIAL_DATA,
   isEditMode,
   onSubmit,
-  isBackButtonInEditMode,
 }) {
   const {
     formDisabled,
@@ -71,7 +70,7 @@ export default function Form({
     handleRemoveItem,
     handleReset,
     handleSubmit,
-  } = useFormData(defaultData, onSubmit, isBackButtonInEditMode);
+  } = useFormData(defaultData, onSubmit);
 
   return (
     <TripForm
