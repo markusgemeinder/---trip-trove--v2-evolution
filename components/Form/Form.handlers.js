@@ -26,34 +26,6 @@ export function useFormData(defaultData, onSubmit) {
   const [lastAppliedTemplate, setLastAppliedTemplate] = useState(null);
   const router = useRouter();
 
-  function showCustomToastPageExit(destinationUrl) {
-    toast.dismiss();
-    setFormDisabled(true);
-
-    toast(
-      <ToastMessage
-        message="You have unsaved changes. Leave this page without saving?"
-        textConfirmButton="Yes, leave please."
-        messageAfterConfirm="Page left without saving data."
-        textCancelButton="No, stay!"
-        messageAfterCancel="Don&rsquo;t forget to save your data!"
-        onConfirm={() => {
-          setFormDisabled(false);
-          setHasChanges(false);
-          if (destinationUrl) {
-            setTimeout(toastDuration);
-            toast.dismiss;
-            router.push(destinationUrl);
-          }
-        }}
-        onCancel={() => {
-          setFormDisabled(false);
-        }}
-      />,
-      { duration: Infinity }
-    );
-  }
-
   useEffect(() => {
     function handleRouteChange(url) {
       if (hasChanges) {
@@ -80,6 +52,36 @@ export function useFormData(defaultData, onSubmit) {
     }
   }, [hasChanges]);
 
+  function showCustomToastPageExit(destinationUrl) {
+    toast.dismiss();
+    setFormDisabled(true);
+
+    toast(
+      <ToastMessage
+        message="You have unsaved changes. Leave this page without saving?"
+        textConfirmButton="Yes, leave please."
+        messageAfterConfirm="Page left without saving data."
+        textCancelButton="No, stay!"
+        messageAfterCancel="Don&rsquo;t forget to save your data!"
+        onConfirm={() => {
+          setFormDisabled(false);
+          setHasChanges(false);
+          if (destinationUrl) {
+            setTimeout(toastDuration);
+            toast.dismiss;
+            router.push(destinationUrl);
+          }
+        }}
+        onCancel={() => {
+          setFormDisabled(false);
+          setTimeout(toastDuration);
+          toast.dismiss;
+        }}
+      />,
+      { duration: Infinity }
+    );
+  }
+
   function determinePageExitDestinationUrl(isBackButton) {
     const { pathname } = router;
     const id = defaultData?._id;
@@ -100,26 +102,6 @@ export function useFormData(defaultData, onSubmit) {
         return "/";
     }
   }
-
-  // function determinePageExitDestinationUrl() {
-  //   const { pathname } = router;
-  //   const id = defaultData?._id;
-  //   console.log("Current pathname:", pathname);
-  //   switch (pathname) {
-  //     case `/trips/[id]/edit`: // case 1 only valid on click back button
-  //       console.log("case 1");
-  //       return `/trips/${id}/`;
-  //     case `/trips/[id]/edit`: // case 2 only valid on click navigation home button
-  //       console.log("case 2");
-  //       return `/trips/${id}/`;
-  //     case "/create":
-  //       console.log("case 3"); // case 3 valid on click back button or navigation home button
-  //       return "/";
-  //     default:
-  //       console.log("case 4");
-  //       return "/";
-  //   }
-  // }
 
   async function handleImageUpdate(url, width, height, public_id) {
     setHandoverData((prevData) => ({
