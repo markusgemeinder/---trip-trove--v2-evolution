@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { toastDuration, validateTripDates } from "@/lib/utils";
 import { ToastMessage } from "@/components/ToastMessage";
@@ -24,24 +25,49 @@ export function useFormData(defaultData, onSubmit) {
   const [selectedTemplate, setSelectedTemplate] = useState("");
   const [lastAppliedTemplate, setLastAppliedTemplate] = useState(null);
 
+  function showCustomToastPageExit() {
+    toast.dismiss();
+    setFormDisabled(true);
+
+    toast(
+      <ToastMessage
+        message="You have unsaved changes. Leave this page without saving?"
+        textConfirmButton="Yes, leave please."
+        messageAfterConfirm="Page left without saving data."
+        textCancelButton="No, stay!"
+        messageAfterCancel="Don&rsquo;t forget to save your data!"
+        onConfirm={() => {
+          setFormDisabled(false);
+          setHasChanges(false);
+          // No navigation, user stays on the same page
+        }}
+        onCancel={() => {
+          setFormDisabled(false);
+        }}
+      />,
+      { duration: Infinity }
+    );
+  }
+
+  const router = useRouter();
+
   useEffect(() => {
-    const handleRouteChange = (url) => {
+    function handleRouteChange(url) {
       if (hasChanges) {
-        const confirmation = window.confirm(
-          "You have unsaved changes. Are you sure you want to leave this page?"
-        );
-        if (!confirmation) {
-          // Prevent route change
-          throw "routeChange aborted.";
-        }
+        // Show customized toast message
+        showCustomToastPageExit();
+        // Prevent route change
+        throw "routeChange aborted.";
       }
-    };
+    }
 
     // Check if window is defined before subscribing to route events
     if (typeof window !== "undefined") {
       window.addEventListener("beforeunload", () => {
         if (hasChanges) {
-          // Display confirmation message for unsaved changes
+          // Show customized toast message
+          showCustomToastPageExit();
+          // Return a message to display in the browser's confirmation dialog
           return "You have unsaved changes. Are you sure you want to leave this page?";
         }
       });
