@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { toastDuration, validateTripDates } from "@/lib/utils";
 import { ToastMessage } from "@/components/ToastMessage";
@@ -12,7 +13,7 @@ export function generateObjectId() {
   return newObjectId;
 }
 
-export function useFormData(defaultData, onSubmit) {
+export function useFormData(defaultData, onSubmit, isEditMode) {
   const [formDisabled, setFormDisabled] = useState(false);
   const [handoverData, setHandoverData] = useState(defaultData);
   const [hasChanges, setHasChanges] = useState(false);
@@ -23,6 +24,70 @@ export function useFormData(defaultData, onSubmit) {
   });
   const [selectedTemplate, setSelectedTemplate] = useState("");
   const [lastAppliedTemplate, setLastAppliedTemplate] = useState(null);
+
+  const router = useRouter();
+  const id = defaultData?._id;
+
+  useEffect(() => {
+    function handleRouteChange(url) {
+      if (hasChanges) {
+        showCustomToastPageExit();
+        throw "routeChange aborted.";
+      }
+    }
+
+    if (typeof window !== "undefined") {
+      window.addEventListener("beforeunload", () => {
+        if (hasChanges) {
+          showCustomToastPageExit();
+        }
+      });
+
+      const router = require("next/router").default;
+      router.events.on("routeChangeStart", handleRouteChange);
+
+      return () => {
+        router.events.off("routeChangeStart", handleRouteChange);
+      };
+    }
+  }, [hasChanges]);
+
+  function determinePageExitDestinationUrl() {
+    if (isEditMode) {
+      return `/trips/${id}`;
+    } else {
+      return "/";
+    }
+  }
+
+  function showCustomToastPageExit() {
+    toast.dismiss();
+    setFormDisabled(true);
+
+    toast(
+      <ToastMessage
+        message="You have unsaved changes. Leave this page without saving?"
+        textConfirmButton="Yes, leave."
+        // messageAfterConfirm="Page left without saving data." // doesn't work properly with /pages/create/index.js
+        textCancelButton="No, stay!"
+        messageAfterCancel="Don&rsquo;t forget to save your data."
+        onConfirm={() => {
+          setFormDisabled(false);
+          setHasChanges(false);
+          const destinationUrl = determinePageExitDestinationUrl();
+          setTimeout(toastDuration);
+          toast.dismiss();
+          router.push(destinationUrl);
+        }}
+        onCancel={() => {
+          setFormDisabled(false);
+          setTimeout(toastDuration);
+          toast.dismiss;
+        }}
+      />,
+      { duration: Infinity }
+    );
+  }
 
   async function handleImageUpdate(url, width, height, public_id) {
     setHandoverData((prevData) => ({

@@ -11,7 +11,7 @@ const BadgeContainer = styled.div`
   margin-top: 0.3rem;
 `;
 
-const StyledCreateUpdateText = styled.p`
+const StyledCreateDateText = styled.p`
   margin: 0.2rem;
   padding: 0;
   color: var(--color-badge-label-light);
@@ -23,18 +23,18 @@ const StyledCreateUpdateText = styled.p`
   }
 `;
 
-export default function CreateUpdateDateBadge({ createdAt, updatedAt }) {
+export default function CreateDateBadge({ createdAt, updatedAt }) {
   const isUpdated = updatedAt && updatedAt !== createdAt;
 
   return (
     <BadgeContainer>
-      <StyledCreateUpdateText>
+      <StyledCreateDateText>
         Trip created: {formatTimestamp(createdAt)}
-      </StyledCreateUpdateText>
+      </StyledCreateDateText>
       {isUpdated && (
-        <StyledCreateUpdateText>
+        <StyledCreateDateText>
           Updated: {formatTimestamp(updatedAt)}
-        </StyledCreateUpdateText>
+        </StyledCreateDateText>
       )}
     </BadgeContainer>
   );

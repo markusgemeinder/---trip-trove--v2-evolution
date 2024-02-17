@@ -12,7 +12,7 @@ import {
 import toast, { Toaster } from "react-hot-toast";
 import { ToastMessage } from "@/components/ToastMessage";
 import TripDetailsBadge from "@/components/Badge/TripDetailsBadge";
-import CreateUpdateDateBadge from "@/components/Badge/CreateUpdateDateBadge";
+import CreateDateBadge from "@/components/Badge/CreateDateBadge";
 
 const StyledMessage = styled.h2`
   margin: 2rem auto;
@@ -137,7 +137,7 @@ export default function CardDetail() {
           height={300}
           alt={trip.destination}
         />
-        <CreateUpdateDateBadge
+        <CreateDateBadge
           createdAt={trip.createdAt}
           updatedAt={trip.updatedAt}
         />

@@ -7,7 +7,7 @@ import useSWR from "swr";
 import SortSelect from "@/components/SortSelect";
 
 import TripDetailsBadge from "@/components/Badge/TripDetailsBadge";
-import CreateUpdateDateBadge from "@/components/Badge/CreateUpdateDateBadge";
+import CreateDateBadge from "@/components/Badge/CreateDateBadge";
 
 const StyledCardList = styled.ul`
   margin: 1.8rem auto;
@@ -148,7 +148,7 @@ export default function CardList() {
                 alt={trip.destination}
               />
 
-              <CreateUpdateDateBadge
+              <CreateDateBadge
                 createdAt={trip.createdAt}
                 updatedAt={trip.updatedAt}
               />
