@@ -67,7 +67,7 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
     toast(
       <ToastMessage
         message="You have unsaved changes. Leave this page without saving?"
-        textConfirmButton="Yes, leave please."
+        textConfirmButton="Yes, leave."
         // messageAfterConfirm="Page left without saving data." // doesn't work properly with /pages/create/index.js
         textCancelButton="No, stay!"
         messageAfterCancel="Don&rsquo;t forget to save your data."
