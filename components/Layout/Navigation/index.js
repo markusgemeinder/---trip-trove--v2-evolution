@@ -15,16 +15,16 @@ const NaviList = styled.ul`
   display: flex;
   justify-content: center;
   list-style: none;
-  height: 60px;
+  height: 75px;
   padding: 0;
   margin: 0;
 
   @media (min-width: 600px) {
-    height: 75px;
+    height: 90px;
 `;
 
 const NaviItem = styled.li`
-  padding: 15px;
+  padding: 10px;
   width: 100%;
   align-items: center;
   text-align: center;
@@ -38,6 +38,25 @@ const NaviItem = styled.li`
 
   ${({ $active }) =>
     $active && "background-color: var(--color-navigation-active);"}
+`;
+
+const NaviItemText = styled.a`
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  font-size: 0.7rem;
+  color: var(--color-navigation-item-text);
+
+  &:hover,
+  &:active,
+  &:visited {
+    text-decoration: none;
+    color: var(--color-navigation-item-text);
+  }
+
+  @media (min-width: 600px) {
+    font-size: 0.9rem;
+  }
 `;
 
 const StyledSvg = styled.svg`
@@ -77,6 +96,7 @@ export default function Navigation() {
               />
             </StyledSvg>
           </Link>
+          <NaviItemText href="/">Trip Overview</NaviItemText>
         </NaviItem>
 
         <NaviItem $active={router.pathname === "/create"}>
@@ -94,6 +114,7 @@ export default function Navigation() {
               />
             </StyledSvg>
           </Link>
+          <NaviItemText href="/create">Create Trip</NaviItemText>
         </NaviItem>
       </NaviList>
     </NaviContainer>
