@@ -81,9 +81,9 @@ export function useFormData(defaultData, onSubmit) {
       <ToastMessage
         message="You have unsaved changes. Leave this page without saving?"
         textConfirmButton="Yes, leave please."
-        messageAfterConfirm="Page left without saving data."
+        // messageAfterConfirm="Page left without saving data."
         textCancelButton="No, stay!"
-        messageAfterCancel="Don&rsquo;t forget to save your data!"
+        messageAfterCancel="Don&rsquo;t forget to save your data."
         onConfirm={() => {
           setFormDisabled(false);
           setHasChanges(false);
