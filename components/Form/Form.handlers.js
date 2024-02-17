@@ -13,12 +13,7 @@ export function generateObjectId() {
   return newObjectId;
 }
 
-export function useFormData(
-  defaultData,
-  onSubmit,
-  isEditMode,
-  buttonBehaveOnPageExit
-) {
+export function useFormData(defaultData, onSubmit, isEditMode) {
   const [formDisabled, setFormDisabled] = useState(false);
   const [handoverData, setHandoverData] = useState(defaultData);
   const [hasChanges, setHasChanges] = useState(false);
@@ -45,7 +40,6 @@ export function useFormData(
       window.addEventListener("beforeunload", () => {
         if (hasChanges) {
           showCustomToastPageExit();
-          return "You have unsaved changes. Are you sure you want to leave this page?";
         }
       });
 
@@ -59,15 +53,13 @@ export function useFormData(
   }, [hasChanges]);
 
   function determinePageExitDestinationUrl() {
-    switch (buttonBehaveOnPageExit) {
-      case "backFromEdit":
-        return `/trips/${id}`;
-      case "backFromCreate":
-        return "/";
-      default:
-        return "/";
+    if (isEditMode) {
+      return `/trips/${id}`;
+    } else {
+      return "/";
     }
   }
+
   function showCustomToastPageExit() {
     toast.dismiss();
     setFormDisabled(true);
@@ -76,7 +68,7 @@ export function useFormData(
       <ToastMessage
         message="You have unsaved changes. Leave this page without saving?"
         textConfirmButton="Yes, leave please."
-        // messageAfterConfirm="Page left without saving data."
+        // messageAfterConfirm="Page left without saving data." // doesn't work properly with /pages/create/index.js
         textCancelButton="No, stay!"
         messageAfterCancel="Don&rsquo;t forget to save your data."
         onConfirm={() => {

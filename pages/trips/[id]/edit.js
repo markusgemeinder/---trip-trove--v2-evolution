@@ -34,12 +34,7 @@ export default function EditPage() {
   return (
     <>
       <Toaster />
-      <Form
-        onSubmit={handleSubmit}
-        defaultData={trip}
-        isEditMode={true}
-        buttonBehaveOnPageExit={"backFromEdit"}
-      />
+      <Form onSubmit={handleSubmit} defaultData={trip} isEditMode={true} />
       <BackButton href={`/trips/${id}`} />
     </>
   );

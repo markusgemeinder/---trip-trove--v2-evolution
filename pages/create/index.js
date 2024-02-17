@@ -29,11 +29,7 @@ export default function CreateTripPage() {
   return (
     <>
       <Toaster />
-      <Form
-        onSubmit={handleSubmit}
-        isEditMode={false}
-        buttonBehaveOnPageExit={"backFromCreate"}
-      />
+      <Form onSubmit={handleSubmit} isEditMode={false} />
       <BackButton href="/" />
     </>
   );
