@@ -52,6 +52,27 @@ export function useFormData(defaultData, onSubmit) {
     }
   }, [hasChanges]);
 
+  function determinePageExitDestinationUrl(isBackButton) {
+    const { pathname } = router;
+    const id = defaultData?._id;
+    console.log("Current pathname:", pathname);
+
+    switch (true) {
+      case isBackButton && pathname === `/trips/[id]/edit`:
+        console.log("case 1");
+        return `/trips/${id}/`;
+      case !isBackButton && pathname === `/trips/[id]/edit`:
+        console.log("case 2");
+        return "/";
+      case pathname === "/create":
+        console.log("case 3");
+        return "/";
+      default:
+        console.log("case 4");
+        return "/";
+    }
+  }
+
   function showCustomToastPageExit(destinationUrl) {
     toast.dismiss();
     setFormDisabled(true);
@@ -80,27 +101,6 @@ export function useFormData(defaultData, onSubmit) {
       />,
       { duration: Infinity }
     );
-  }
-
-  function determinePageExitDestinationUrl(isBackButton) {
-    const { pathname } = router;
-    const id = defaultData?._id;
-    console.log("Current pathname:", pathname);
-
-    switch (true) {
-      case isBackButton && pathname === `/trips/[id]/edit`:
-        console.log("case 1");
-        return `/trips/${id}/`;
-      case !isBackButton && pathname === `/trips/[id]/edit`:
-        console.log("case 2");
-        return "/";
-      case pathname === "/create":
-        console.log("case 3");
-        return "/";
-      default:
-        console.log("case 4");
-        return "/";
-    }
   }
 
   async function handleImageUpdate(url, width, height, public_id) {
