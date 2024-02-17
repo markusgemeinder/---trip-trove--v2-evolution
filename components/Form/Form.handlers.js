@@ -13,7 +13,12 @@ export function generateObjectId() {
   return newObjectId;
 }
 
-export function useFormData(defaultData, onSubmit) {
+export function useFormData(
+  defaultData,
+  onSubmit,
+  isEditMode,
+  buttonBehaveOnPageExit
+) {
   const [formDisabled, setFormDisabled] = useState(false);
   const [handoverData, setHandoverData] = useState(defaultData);
   const [hasChanges, setHasChanges] = useState(false);
@@ -24,13 +29,14 @@ export function useFormData(defaultData, onSubmit) {
   });
   const [selectedTemplate, setSelectedTemplate] = useState("");
   const [lastAppliedTemplate, setLastAppliedTemplate] = useState(null);
+
   const router = useRouter();
+  const id = defaultData?._id;
 
   useEffect(() => {
     function handleRouteChange(url) {
       if (hasChanges) {
-        const isBackButton = router.route === "/trips/[id]/edit"; // Check if the current route is the edit page
-        showCustomToastPageExit(determinePageExitDestinationUrl(isBackButton));
+        showCustomToastPageExit();
         throw "routeChange aborted.";
       }
     }
@@ -38,7 +44,7 @@ export function useFormData(defaultData, onSubmit) {
     if (typeof window !== "undefined") {
       window.addEventListener("beforeunload", () => {
         if (hasChanges) {
-          showCustomToastPageExit(determinePageExitDestinationUrl());
+          showCustomToastPageExit();
           return "You have unsaved changes. Are you sure you want to leave this page?";
         }
       });
@@ -52,28 +58,17 @@ export function useFormData(defaultData, onSubmit) {
     }
   }, [hasChanges]);
 
-  function determinePageExitDestinationUrl(isBackButton) {
-    const { pathname } = router;
-    const id = defaultData?._id;
-    console.log("Current pathname:", pathname);
-
-    switch (true) {
-      case isBackButton && pathname === `/trips/[id]/edit`:
-        console.log("case 1");
-        return `/trips/${id}/`;
-      case !isBackButton && pathname === `/trips/[id]/edit`:
-        console.log("case 2");
-        return "/";
-      case pathname === "/create":
-        console.log("case 3");
+  function determinePageExitDestinationUrl() {
+    switch (buttonBehaveOnPageExit) {
+      case "backFromEdit":
+        return `/trips/${id}`;
+      case "backFromCreate":
         return "/";
       default:
-        console.log("case 4");
         return "/";
     }
   }
-
-  function showCustomToastPageExit(destinationUrl) {
+  function showCustomToastPageExit() {
     toast.dismiss();
     setFormDisabled(true);
 
@@ -87,11 +82,10 @@ export function useFormData(defaultData, onSubmit) {
         onConfirm={() => {
           setFormDisabled(false);
           setHasChanges(false);
-          if (destinationUrl) {
-            setTimeout(toastDuration);
-            toast.dismiss;
-            router.push(destinationUrl);
-          }
+          const destinationUrl = determinePageExitDestinationUrl();
+          setTimeout(toastDuration);
+          toast.dismiss();
+          router.push(destinationUrl);
         }}
         onCancel={() => {
           setFormDisabled(false);
