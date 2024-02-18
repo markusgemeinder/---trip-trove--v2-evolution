@@ -32,6 +32,7 @@ import {
 } from "@/components/Form/Form.styled";
 import { useFormData } from "@/components/Form/Form.handlers";
 import ImageUpload from "@/components/ImageUpload";
+import PresetSelect from "@/components/PresetSelect";
 
 const INITIAL_DATA = {
   destination: "",
@@ -198,7 +199,14 @@ export default function Form({
       <PackListContainer disabled={formDisabled}>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
         <TemplateContainer>
-          <StyledSelect
+          <PresetSelect
+            setSelectedTemplate={setSelectedTemplate}
+            selectedTemplate={selectedTemplate}
+            formDisabled={formDisabled}
+            id="template"
+            name="template"
+          />
+          {/* <StyledSelect
             id="template"
             name="template"
             onChange={(event) => setSelectedTemplate(event.target.value)}
@@ -212,7 +220,7 @@ export default function Form({
             <option value="one week">One week</option>
             <option value="two weeks">Two weeks</option>
             <option value="three weeks">Three weeks</option>
-          </StyledSelect>
+          </StyledSelect> */}
           <StyledTextButtonMediumSize
             type="button"
             onClick={generatePackingListFromTemplate}
