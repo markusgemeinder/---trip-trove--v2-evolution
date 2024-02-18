@@ -22,8 +22,8 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
     itemName: "",
     itemQuantity: null,
   });
-  const [selectedPreset, setSelectedPreset] = useState([]);
-  const [lastAppliedTemplate, setLastAppliedTemplate] = useState(null);
+  const [selectedPresetData, setSelectedPresetData] = useState([]);
+  const [lastAppliedPreset, setLastAppliedPreset] = useState(null);
 
   const router = useRouter();
   const id = defaultData?._id;
@@ -138,22 +138,20 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
     );
   }
 
-  function generatePackingListFromTemplate(selectedPreset) {
-    console.log("Apply:", selectedPreset);
-    const isSelected = selectedPreset.preset ? true : false;
+  function generatePackingListFromTemplate(selectedPresetData) {
+    console.log("Apply:", selectedPresetData);
+    const selectedPreset = selectedPresetData.preset;
 
-    console.log("isSelected:", isSelected);
-
-    if (!isSelected) {
+    if (!selectedPreset) {
       toast.error("No preset selected yet.", {
         duration: toastDuration,
       });
       return;
     }
-    if (lastAppliedTemplate === selectedTemplate) {
+    if (lastAppliedPreset === selectedPreset) {
       return;
     }
-    setLastAppliedTemplate(selectedTemplate);
+    setLastAppliedPreset(selectedPreset);
 
     const updatedPackingList = [...handoverData.packingList];
 
@@ -161,14 +159,14 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
     if (lastItem && lastItem.itemName === "") {
       updatedPackingList.pop();
       updatedPackingList.push(
-        ...selectedPreset.items.map((item) => ({
+        ...selectedPresetData.items.map((item) => ({
           ...item,
           _id: generateObjectId(),
         }))
       );
     } else {
       updatedPackingList.push(
-        ...selectedPreset.items.map((item) => ({
+        ...selectedPresetData.items.map((item) => ({
           ...item,
           _id: generateObjectId(),
         }))
@@ -181,46 +179,6 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
     }));
     setHasChanges(true);
   }
-  // function generatePackingListFromTemplate() {
-  //   if (!selectedTemplate) {
-  //     toast.error("Please select a preset before applying.", {
-  //       duration: toastDuration,
-  //     });
-  //     return;
-  //   }
-  //   if (lastAppliedTemplate === selectedTemplate) {
-  //     return;
-  //   }
-
-  //   setLastAppliedTemplate(selectedTemplate);
-
-  //   const template = packingListTemplates[selectedTemplate];
-  //   const updatedPackingList = [...handoverData.packingList];
-
-  //   const lastItem = updatedPackingList[updatedPackingList.length - 1];
-  //   if (lastItem && lastItem.itemName === "") {
-  //     updatedPackingList.pop();
-  //     updatedPackingList.push(
-  //       ...template.map((item) => ({
-  //         ...item,
-  //         _id: generateObjectId(),
-  //       }))
-  //     );
-  //   } else {
-  //     updatedPackingList.push(
-  //       ...template.map((item) => ({
-  //         ...item,
-  //         _id: generateObjectId(),
-  //       }))
-  //     );
-  //   }
-
-  //   setHandoverData((prevData) => ({
-  //     ...prevData,
-  //     packingList: updatedPackingList,
-  //   }));
-  //   setHasChanges(true);
-  // }
 
   function handleUpdateNewPackingListItemName(
     newName,
@@ -401,8 +359,8 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
     handleImageUpdate,
     handleDeleteImage,
     newPackingListItem,
-    selectedPreset,
-    setSelectedPreset,
+    selectedPresetData,
+    setSelectedPresetData,
     generatePackingListFromTemplate,
     handleUpdateNewPackingListItemName,
     handleUpdateNewPackingListItemQuantity,

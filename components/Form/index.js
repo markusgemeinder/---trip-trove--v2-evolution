@@ -60,8 +60,8 @@ export default function Form({
     handleImageUpdate,
     handleDeleteImage,
     newPackingListItem,
-    selectedPreset,
-    setSelectedPreset,
+    selectedPresetData,
+    setSelectedPresetData,
     generatePackingListFromTemplate,
     handleUpdateNewPackingListItemName,
     handleUpdateNewPackingListItemQuantity,
@@ -202,12 +202,12 @@ export default function Form({
           <PresetSelect
             id="template"
             name="template"
-            onSelectPreset={setSelectedPreset} // Pass setSelectedTemplate to handle preset selection
+            onSelectPreset={setSelectedPresetData} // Pass setSelectedTemplate to handle preset selection
             formDisabled={formDisabled}
           />
           <StyledTextButtonMediumSize
             type="button"
-            onClick={() => generatePackingListFromTemplate(selectedPreset)}
+            onClick={() => generatePackingListFromTemplate(selectedPresetData)}
             disabled={formDisabled}
           >
             Apply

@@ -26,7 +26,7 @@ export default function PresetSelect({ onSelectPreset }) {
     fallbackData: [],
   });
 
-  const [selectedPreset, setSelectedPreset] = useState("");
+  const [selectedPresetData, setSelectedPresetData] = useState("");
 
   if (error) {
     return <div>Failed to load</div>;
@@ -38,17 +38,17 @@ export default function PresetSelect({ onSelectPreset }) {
 
   function handlePresetChange(event) {
     const selectedPresetName = event.target.value;
-    const selectedPreset = packingLists.find(
+    const selectedPresetData = packingLists.find(
       (preset) => preset.preset === selectedPresetName
     );
-    setSelectedPreset(selectedPreset);
-    onSelectPreset(selectedPreset); // Pass the selected preset object back to the parent component
-    console.log("selectedPreset:", selectedPreset);
+    setSelectedPresetData(selectedPresetData);
+    onSelectPreset(selectedPresetData); // Pass the selected preset object back to the parent component
+    console.log("selectedPresetData:", selectedPresetData);
   }
 
   return (
     <>
-      <StyledSelect value={selectedPreset} onChange={handlePresetChange}>
+      <StyledSelect value={selectedPresetData} onChange={handlePresetChange}>
         <option value="">Select a preset...</option>
         <hr />
         {packingLists.map((packingList) => (
