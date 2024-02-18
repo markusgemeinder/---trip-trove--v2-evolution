@@ -4,7 +4,7 @@ import Link from "next/link";
 const BackButtonContainer = styled.div`
   display: flex;
   position: fixed;
-  bottom: 54px;
+  bottom: 70px;
   left: 50%;
   transform: translateX(-50%);
   margin: 10px auto;
@@ -12,7 +12,7 @@ const BackButtonContainer = styled.div`
 
 
   @media (min-width: 600px) {
-    bottom: 72px;
+    bottom: 85px;
 `;
 
 const BackButtonLink = styled(Link)`
