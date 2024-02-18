@@ -145,7 +145,7 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
     console.log("isSelected:", isSelected);
 
     if (!isSelected) {
-      toast.error("Please select a preset before applying.", {
+      toast.error("No preset selected yet.", {
         duration: toastDuration,
       });
       return;
@@ -153,24 +153,22 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
     if (lastAppliedTemplate === selectedTemplate) {
       return;
     }
-
     setLastAppliedTemplate(selectedTemplate);
 
-    const template = packingListTemplates[selectedTemplate];
     const updatedPackingList = [...handoverData.packingList];
 
     const lastItem = updatedPackingList[updatedPackingList.length - 1];
     if (lastItem && lastItem.itemName === "") {
       updatedPackingList.pop();
       updatedPackingList.push(
-        ...template.map((item) => ({
+        ...selectedPreset.items.map((item) => ({
           ...item,
           _id: generateObjectId(),
         }))
       );
     } else {
       updatedPackingList.push(
-        ...template.map((item) => ({
+        ...selectedPreset.items.map((item) => ({
           ...item,
           _id: generateObjectId(),
         }))
