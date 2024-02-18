@@ -139,40 +139,43 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
   }
 
   function generatePackingListFromTemplate(selectedPreset) {
-    console.log("selectedPreset inside function:", selectedPreset);
+    console.log("Apply:", selectedPreset);
+    const isSelected = selectedPreset.preset ? true : false;
 
-    if (!selectedPreset) {
+    console.log("isSelected:", isSelected);
+
+    if (!isSelected) {
       toast.error("Please select a preset before applying.", {
         duration: toastDuration,
       });
       return;
     }
-
-    if (lastAppliedTemplate === selectedPreset.preset) {
+    if (lastAppliedTemplate === selectedTemplate) {
       return;
     }
 
-    setLastAppliedTemplate(selectedPreset.preset);
+    setLastAppliedTemplate(selectedTemplate);
 
-    const template = selectedPreset.items; // Access the items array of the selected preset
+    const template = packingListTemplates[selectedTemplate];
     const updatedPackingList = [...handoverData.packingList];
 
     const lastItem = updatedPackingList[updatedPackingList.length - 1];
     if (lastItem && lastItem.itemName === "") {
       updatedPackingList.pop();
-    updatedPackingList.push(
+      updatedPackingList.push(
         ...template.map((item) => ({
           ...item,
           _id: generateObjectId(),
         }))
       );
     } else {
-    updatedPackingList.push(
-      ...template.map((item) => ({
-        ...item,
-        _id: generateObjectId(),
-      }))
-    );
+      updatedPackingList.push(
+        ...template.map((item) => ({
+          ...item,
+          _id: generateObjectId(),
+        }))
+      );
+    }
 
     setHandoverData((prevData) => ({
       ...prevData,
@@ -180,6 +183,46 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
     }));
     setHasChanges(true);
   }
+  // function generatePackingListFromTemplate() {
+  //   if (!selectedTemplate) {
+  //     toast.error("Please select a preset before applying.", {
+  //       duration: toastDuration,
+  //     });
+  //     return;
+  //   }
+  //   if (lastAppliedTemplate === selectedTemplate) {
+  //     return;
+  //   }
+
+  //   setLastAppliedTemplate(selectedTemplate);
+
+  //   const template = packingListTemplates[selectedTemplate];
+  //   const updatedPackingList = [...handoverData.packingList];
+
+  //   const lastItem = updatedPackingList[updatedPackingList.length - 1];
+  //   if (lastItem && lastItem.itemName === "") {
+  //     updatedPackingList.pop();
+  //     updatedPackingList.push(
+  //       ...template.map((item) => ({
+  //         ...item,
+  //         _id: generateObjectId(),
+  //       }))
+  //     );
+  //   } else {
+  //     updatedPackingList.push(
+  //       ...template.map((item) => ({
+  //         ...item,
+  //         _id: generateObjectId(),
+  //       }))
+  //     );
+  //   }
+
+  //   setHandoverData((prevData) => ({
+  //     ...prevData,
+  //     packingList: updatedPackingList,
+  //   }));
+  //   setHasChanges(true);
+  // }
 
   function handleUpdateNewPackingListItemName(
     newName,
