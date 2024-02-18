@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { toastDuration, validateTripDates } from "@/lib/utils";
 import { ToastMessage } from "@/components/ToastMessage";
-import { packingListTemplates } from "@/lib/packingListTemplates";
+// import { packingListTemplates } from "@/lib/packingListTemplates";
 import { deleteImage } from "@/components/ImageUpload";
 
 export function generateObjectId() {
@@ -22,7 +22,7 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
     itemName: "",
     itemQuantity: null,
   });
-  const [selectedTemplate, setSelectedTemplate] = useState("");
+  const [selectedPreset, setSelectedPreset] = useState([]);
   const [lastAppliedTemplate, setLastAppliedTemplate] = useState(null);
 
   const router = useRouter();
@@ -138,39 +138,41 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
     );
   }
 
-  function generatePackingListFromTemplate() {
-    if (!selectedTemplate) {
+  function generatePackingListFromTemplate(selectedPreset) {
+    console.log("selectedPreset inside function:", selectedPreset);
+
+    if (!selectedPreset) {
       toast.error("Please select a preset before applying.", {
         duration: toastDuration,
       });
       return;
     }
-    if (lastAppliedTemplate === selectedTemplate) {
+
+    if (lastAppliedTemplate === selectedPreset.preset) {
       return;
     }
 
-    setLastAppliedTemplate(selectedTemplate);
+    setLastAppliedTemplate(selectedPreset.preset);
 
-    const template = packingListTemplates[selectedTemplate];
+    const template = selectedPreset.items; // Access the items array of the selected preset
     const updatedPackingList = [...handoverData.packingList];
 
     const lastItem = updatedPackingList[updatedPackingList.length - 1];
     if (lastItem && lastItem.itemName === "") {
       updatedPackingList.pop();
-      updatedPackingList.push(
+    updatedPackingList.push(
         ...template.map((item) => ({
           ...item,
           _id: generateObjectId(),
         }))
       );
     } else {
-      updatedPackingList.push(
-        ...template.map((item) => ({
-          ...item,
-          _id: generateObjectId(),
-        }))
-      );
-    }
+    updatedPackingList.push(
+      ...template.map((item) => ({
+        ...item,
+        _id: generateObjectId(),
+      }))
+    );
 
     setHandoverData((prevData) => ({
       ...prevData,
@@ -358,8 +360,8 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
     handleImageUpdate,
     handleDeleteImage,
     newPackingListItem,
-    selectedTemplate,
-    setSelectedTemplate,
+    selectedPreset,
+    setSelectedPreset,
     generatePackingListFromTemplate,
     handleUpdateNewPackingListItemName,
     handleUpdateNewPackingListItemQuantity,

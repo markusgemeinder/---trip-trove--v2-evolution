@@ -17,7 +17,7 @@ const StyledSelect = styled.select`
   }
 `;
 
-export default function PresetSelect() {
+export default function PresetSelect({ onSelectPreset }) {
   const {
     data: packingLists,
     error,
@@ -36,12 +36,18 @@ export default function PresetSelect() {
     return <div>Loading...</div>;
   }
 
-  const handlePresetChange = (event) => {
-    setSelectedPreset(event.target.value);
-  };
+  function handlePresetChange(event) {
+    const selectedPresetName = event.target.value;
+    const selectedPreset = packingLists.find(
+      (preset) => preset.preset === selectedPresetName
+    );
+    setSelectedPreset(selectedPreset);
+    onSelectPreset(selectedPreset); // Pass the selected preset object back to the parent component
+    console.log("selectedPreset:", selectedPreset);
+  }
 
   return (
-    <div>
+    <>
       <StyledSelect value={selectedPreset} onChange={handlePresetChange}>
         <option value="">Select a preset...</option>
         <hr />
@@ -58,6 +64,6 @@ export default function PresetSelect() {
           </React.Fragment>
         ))}
       </StyledSelect>
-    </div>
+    </>
   );
 }

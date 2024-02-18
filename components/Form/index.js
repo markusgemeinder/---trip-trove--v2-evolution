@@ -60,8 +60,8 @@ export default function Form({
     handleImageUpdate,
     handleDeleteImage,
     newPackingListItem,
-    selectedTemplate,
-    setSelectedTemplate,
+    selectedPreset,
+    setSelectedPreset,
     generatePackingListFromTemplate,
     handleUpdateNewPackingListItemName,
     handleUpdateNewPackingListItemQuantity,
@@ -155,7 +155,7 @@ export default function Form({
         />
       )}
 
-      {hasChanges && handoverData?.image?.url && (
+      {/* {hasChanges && handoverData?.image?.url && (
         <>
           <StyledLabel htmlFor="imageURL">Image URL</StyledLabel>
           <StyledInput
@@ -194,36 +194,20 @@ export default function Form({
             disabled={formDisabled}
           />
         </>
-      )}
+      )} */}
 
       <PackListContainer disabled={formDisabled}>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
         <TemplateContainer>
           <PresetSelect
-            setSelectedTemplate={setSelectedTemplate}
-            selectedTemplate={selectedTemplate}
+            id="template"
+            name="template"
+            onSelectPreset={setSelectedPreset} // Pass setSelectedTemplate to handle preset selection
             formDisabled={formDisabled}
-            id="template"
-            name="template"
           />
-          {/* <StyledSelect
-            id="template"
-            name="template"
-            onChange={(event) => setSelectedTemplate(event.target.value)}
-            value={selectedTemplate}
-            disabled={formDisabled}
-          >
-            <option value="" disabled>
-              Please select preset
-            </option>
-            <option value="weekend">Weekend</option>
-            <option value="one week">One week</option>
-            <option value="two weeks">Two weeks</option>
-            <option value="three weeks">Three weeks</option>
-          </StyledSelect> */}
           <StyledTextButtonMediumSize
             type="button"
-            onClick={generatePackingListFromTemplate}
+            onClick={() => generatePackingListFromTemplate(selectedPreset)}
             disabled={formDisabled}
           >
             Apply
