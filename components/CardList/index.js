@@ -141,7 +141,7 @@ export default function CardList() {
                 src={
                   trip.image.url !== ""
                     ? trip.image.url
-                    : "/images/triptrove-default.png"
+                    : "/images/default_image.png"
                 }
                 width={300}
                 height={300}
