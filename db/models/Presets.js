@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 const { Schema } = mongoose;
 
-const packingListPresetSchema = new Schema(
+const presetSchema = new Schema(
   {
-    packingListPreset: { type: String, required: true },
+    preset: { type: String, required: true },
     items: [
       {
         // _id: { type: Schema.Types.ObjectId, required: true },
@@ -16,8 +16,6 @@ const packingListPresetSchema = new Schema(
   { timestamps: true }
 );
 
-const PackingListPreset =
-  mongoose.models.PackingListPreset ||
-  mongoose.model("PackingListPreset", packingListPresetSchema);
+const Preset = mongoose.models.Preset || mongoose.model("Preset", presetSchema);
 
-export default PackingListPreset;
+export default Preset;

@@ -1,17 +1,17 @@
 import dbConnect from "@/db/connect";
-import PackingListPreset from "@/db/models/PackingListPresets";
+import Preset from "@/db/models/Presets";
 
 export default async function handler(request, response) {
   await dbConnect();
 
   try {
     if (request.method === "GET") {
-      const packingListPresets = await PackingListPreset.find();
-      response.status(200).json(packingListPresets);
+      const presets = await Preset.find();
+      response.status(200).json(presets);
     } else if (request.method === "POST") {
-      const packingListPresetData = request.body;
-      await PackingListPreset.create(packingListPresetData);
-      response.status(201).json({ status: "Packing List Preset added" });
+      const presetData = request.body;
+      await Preset.create(presetData);
+      response.status(201).json({ status: "Preset added" });
     } else {
       response.status(405).json({ message: "Method not allowed" });
     }
