@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { defaultFont } from "@/styles.js";
 import { useState } from "react";
 import useSWR from "swr";
-// import { packingListTemplates } from "@/lib/packingListTemplates";
 import { PackListContainer, PackList } from "@/components/Form/Form.styled.js";
 
 export const StyledSelect = styled.select`
@@ -29,6 +28,8 @@ export default function PresetSelect() {
     fallbackData: [],
   });
 
+  const [selectedPreset, setSelectedPreset] = useState("");
+
   if (error) {
     return <div>Failed to load</div>;
   }
@@ -37,39 +38,33 @@ export default function PresetSelect() {
     return <div>Loading...</div>;
   }
 
-  //   const [selectedPreset, setSelectedPreset] = useState(
-  //     Object.keys(packingListTemplates)[0]
-  //   );
-
-  //   const handlePresetChange = (event) => {
-  //     setSelectedPreset(event.target.value);
-  //   };
+  const handlePresetChange = (event) => {
+    setSelectedPreset(event.target.value);
+  };
 
   return (
     <div>
-      {packingLists.map((packingList) => (
-        <div key={packingList._id}>
-          <h2>{packingList.preset}</h2>
-          <ul>
-            {packingList.items.map((item) => (
-              <li key={item._id}>
-                {item.itemName}
-                {item.itemQuantity && <> ({item.itemQuantity})</>}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      <StyledSelect value={selectedPreset} onChange={handlePresetChange}>
+        <option value="">Select a preset...</option>
+        {packingLists.map((packingList) => (
+          <option key={packingList._id} value={packingList.preset}>
+            {packingList.preset}
+          </option>
+        ))}
+      </StyledSelect>
+      {selectedPreset && (
+        <PackListContainer>
+          <PackList>
+            {packingLists
+              .find((list) => list.preset === selectedPreset)
+              .items.map((item) => (
+                <li key={item._id}>
+                  {item.itemName}: {item.itemQuantity}
+                </li>
+              ))}
+          </PackList>
+        </PackListContainer>
+      )}
     </div>
   );
 }
-
-// <PackListContainer>
-//   <PackList>
-//     {packingListTemplates[selectedPreset].map((item, index) => (
-//       <li key={index}>
-//         {item.itemName}: {item.itemQuantity}
-//       </li>
-//     ))}
-//   </PackList>
-// </PackListContainer>
