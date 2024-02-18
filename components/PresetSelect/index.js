@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { defaultFont } from "@/styles.js";
-import { useState } from "react";
 import useSWR from "swr";
-import { PackListContainer, PackList } from "@/components/Form/Form.styled.js";
 
-export const StyledSelect = styled.select`
+const StyledSelect = styled.select`
   font-family: ${defaultFont.style.fontFamily};
   font-size: inherit;
   background-color: var(--color-form-input);
@@ -46,20 +44,17 @@ export default function PresetSelect() {
   return (
     <div>
       <StyledSelect value={selectedPreset} onChange={handlePresetChange}>
-        <option value="">Select a category...</option>
+        <option value="">Select a preset...</option>
         <hr />
         {packingLists.map((packingList) => (
           <React.Fragment key={packingList._id}>
-            <option value={packingList.preset} className="category">
-              {packingList.preset}
-            </option>
-            {/* <optgroup label={"-----"} className="hidden"> */}
+            <option value={packingList.preset}>{packingList.preset}</option>
             {packingList.items.map((item) => (
               <option key={item._id} value={item.itemName} disabled>
-                {item.itemName}: {item.itemQuantity}
+                {item.itemName}
+                {item.itemQuantity && ` (${item.itemQuantity}x)`}
               </option>
             ))}
-            {/* </optgroup> */}
             <hr />
           </React.Fragment>
         ))}
