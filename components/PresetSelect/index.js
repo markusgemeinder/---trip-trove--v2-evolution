@@ -1,3 +1,4 @@
+import React from "react";
 import styled from "styled-components";
 import { defaultFont } from "@/styles.js";
 import { useState } from "react";
@@ -45,26 +46,24 @@ export default function PresetSelect() {
   return (
     <div>
       <StyledSelect value={selectedPreset} onChange={handlePresetChange}>
-        <option value="">Select a preset...</option>
+        <option value="">Select a category...</option>
+        <hr />
         {packingLists.map((packingList) => (
-          <option key={packingList._id} value={packingList.preset}>
-            {packingList.preset}
-          </option>
+          <React.Fragment key={packingList._id}>
+            <option value={packingList.preset} className="category">
+              {packingList.preset}
+            </option>
+            {/* <optgroup label={"-----"} className="hidden"> */}
+            {packingList.items.map((item) => (
+              <option key={item._id} value={item.itemName} disabled>
+                {item.itemName}: {item.itemQuantity}
+              </option>
+            ))}
+            {/* </optgroup> */}
+            <hr />
+          </React.Fragment>
         ))}
       </StyledSelect>
-      {selectedPreset && (
-        <PackListContainer>
-          <PackList>
-            {packingLists
-              .find((list) => list.preset === selectedPreset)
-              .items.map((item) => (
-                <li key={item._id}>
-                  {item.itemName}: {item.itemQuantity}
-                </li>
-              ))}
-          </PackList>
-        </PackListContainer>
-      )}
     </div>
   );
 }
