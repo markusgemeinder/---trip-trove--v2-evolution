@@ -9,8 +9,7 @@ const StyledSelect = styled.select`
   background-color: var(--color-form-input);
   border: 1px solid #ddd;
   border-radius: 8px;
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin: 0;
   padding: 0.3rem;
 
   @media (min-width: 600px) {

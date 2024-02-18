@@ -113,7 +113,13 @@ export const PackList = styled.ul`
 
 export const TemplateContainer = styled.div`
   display: flex;
+  justify-content: flex-start;
   align-items: center;
+  flex-flow: row wrap;
+  margin: 0;
+  padding: 0;
+  margin-top: 0.5rem;
+  margin-bottom: 0.8rem;
   gap: 10px;
 `;
 
