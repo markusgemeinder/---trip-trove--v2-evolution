@@ -1,56 +1,75 @@
+import styled from "styled-components";
+import { defaultFont } from "@/styles.js";
 import { useState } from "react";
-import { packingListTemplates } from "@/lib/packingListTemplates";
-import {
-  StyledSelect,
-  PackListContainer,
-  PackList,
-} from "@/components/Form/Form.styled.js";
+import useSWR from "swr";
+// import { packingListTemplates } from "@/lib/packingListTemplates";
+import { PackListContainer, PackList } from "@/components/Form/Form.styled.js";
+
+export const StyledSelect = styled.select`
+  font-family: ${defaultFont.style.fontFamily};
+  font-size: inherit;
+  background-color: var(--color-form-input);
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding: 0.3rem;
+
+  @media (min-width: 600px) {
+    padding: 0.5rem;
+  }
+`;
 
 export default function PresetSelect() {
-  const [selectedPreset, setSelectedPreset] = useState(
-    Object.keys(packingListTemplates)[0]
-  );
+  const {
+    data: packingLists,
+    error,
+    isLoading,
+  } = useSWR("/api/presets", {
+    fallbackData: [],
+  });
 
-  const handlePresetChange = (event) => {
-    setSelectedPreset(event.target.value);
-  };
+  if (error) {
+    return <div>Failed to load</div>;
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  //   const [selectedPreset, setSelectedPreset] = useState(
+  //     Object.keys(packingListTemplates)[0]
+  //   );
+
+  //   const handlePresetChange = (event) => {
+  //     setSelectedPreset(event.target.value);
+  //   };
 
   return (
-    <>
-      <div>
-        <StyledSelect value={selectedPreset} onChange={handlePresetChange}>
-          {Object.keys(packingListTemplates).map((key) => (
-            <option key={key} value={key}>
-              {key}
-            </option>
-          ))}
-        </StyledSelect>
-        <PackListContainer>
-          <PackList>
-            {packingListTemplates[selectedPreset].map((item, index) => (
-              <li key={index}>
-                {item.itemName}: {item.itemQuantity}
+    <div>
+      {packingLists.map((packingList) => (
+        <div key={packingList._id}>
+          <h2>{packingList.preset}</h2>
+          <ul>
+            {packingList.items.map((item) => (
+              <li key={item._id}>
+                {item.itemName}
+                {item.itemQuantity && <> ({item.itemQuantity})</>}
               </li>
             ))}
-          </PackList>
-        </PackListContainer>
-      </div>
-    </>
+          </ul>
+        </div>
+      ))}
+    </div>
   );
 }
 
-// <StyledSelect
-// id="template"
-// name="template"
-// onChange={(event) => setSelectedTemplate(event.target.value)}
-// value={selectedTemplate}
-// disabled={formDisabled}
-// >
-// <option value="" disabled>
-//   Please select preset
-// </option>
-// <option value="weekend">Weekend</option>
-// <option value="one week">One week</option>
-// <option value="two weeks">Two weeks</option>
-// <option value="three weeks">Three weeks</option>
-// </StyledSelect>
+// <PackListContainer>
+//   <PackList>
+//     {packingListTemplates[selectedPreset].map((item, index) => (
+//       <li key={index}>
+//         {item.itemName}: {item.itemQuantity}
+//       </li>
+//     ))}
+//   </PackList>
+// </PackListContainer>
