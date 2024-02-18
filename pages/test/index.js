@@ -1,7 +1,9 @@
+// import Link from "next/link";
+
 export default function TestPage() {
   return (
     <>
-      <a href="/">Home</a>
+      {/* <Link href="/">Home</Link> */}
       <h2>Test Page</h2>
     </>
   );

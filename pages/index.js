@@ -1,9 +1,10 @@
 import CardList from "@/components/CardList";
+// import Link from "next/link";
 
 export default function HomePage() {
   return (
     <>
-      {/* <a href="/test">Test Page</a> */}
+      {/* <Link href="/test">Test Page</Link> */}
       <CardList />
     </>
   );
