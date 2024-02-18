@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import Image from "next/image";
-import { toastDuration, formatDate } from "@/lib/utils";
+import { toastDuration } from "@/lib/utils";
 import PackingList from "@/components/PackingList";
 import {
   ButtonContainer,

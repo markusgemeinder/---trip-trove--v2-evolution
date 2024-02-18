@@ -4,8 +4,6 @@ import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { toastDuration, validateTripDates } from "@/lib/utils";
 import { ToastMessage } from "@/components/ToastMessage";
-// import { packingListTemplates } from "@/lib/packingListTemplates";
-import { deleteImage } from "@/components/ImageUpload";
 
 export function generateObjectId() {
   const { ObjectId } = mongoose.Types;
@@ -68,7 +66,6 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
       <ToastMessage
         message="You have unsaved changes. Leave this page without saving?"
         textConfirmButton="Yes, leave."
-        // messageAfterConfirm="Page left without saving data." // doesn't work properly with /pages/create/index.js
         textCancelButton="No, stay!"
         messageAfterCancel="Don&rsquo;t forget to save your data."
         onConfirm={() => {
@@ -114,8 +111,6 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
         textCancelButton="No, don&rsquo;t delete!"
         messageAfterCancel="Ok, image not deleted."
         onConfirm={() => {
-          // onConfirm={async () => {
-          // await deleteImage(handoverData.image.publicId);
           setHandoverData((prevData) => ({
             ...prevData,
             imageURL: "",

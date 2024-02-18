@@ -14,7 +14,6 @@ const tripSchema = new Schema(
         url: String,
         publicId: String,
       }),
-      // required: true,
     },
     imageURL: { type: String, default: "" },
     packingList: [

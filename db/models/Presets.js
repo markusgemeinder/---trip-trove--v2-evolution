@@ -7,7 +7,6 @@ const presetSchema = new Schema(
     preset: { type: String, required: true },
     items: [
       {
-        // _id: { type: Schema.Types.ObjectId, required: true },
         itemName: { type: String, required: true },
         itemQuantity: { type: Number },
       },
