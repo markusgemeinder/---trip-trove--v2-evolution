@@ -32,6 +32,7 @@ import {
 } from "@/components/Form/Form.styled";
 import { useFormData } from "@/components/Form/Form.handlers";
 import ImageUpload from "@/components/ImageUpload";
+import PresetSelect from "@/components/PresetSelect";
 
 const INITIAL_DATA = {
   destination: "",
@@ -59,8 +60,8 @@ export default function Form({
     handleImageUpdate,
     handleDeleteImage,
     newPackingListItem,
-    selectedTemplate,
-    setSelectedTemplate,
+    selectedPresetData,
+    setSelectedPresetData,
     generatePackingListFromTemplate,
     handleUpdateNewPackingListItemName,
     handleUpdateNewPackingListItemQuantity,
@@ -154,7 +155,7 @@ export default function Form({
         />
       )}
 
-      {hasChanges && handoverData?.image?.url && (
+      {/* {hasChanges && handoverData?.image?.url && (
         <>
           <StyledLabel htmlFor="imageURL">Image URL</StyledLabel>
           <StyledInput
@@ -193,29 +194,20 @@ export default function Form({
             disabled={formDisabled}
           />
         </>
-      )}
+      )} */}
 
       <PackListContainer disabled={formDisabled}>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
         <TemplateContainer>
-          <StyledSelect
+          <PresetSelect
             id="template"
             name="template"
-            onChange={(event) => setSelectedTemplate(event.target.value)}
-            value={selectedTemplate}
-            disabled={formDisabled}
-          >
-            <option value="" disabled>
-              Please select preset
-            </option>
-            <option value="weekend">Weekend</option>
-            <option value="one week">One week</option>
-            <option value="two weeks">Two weeks</option>
-            <option value="three weeks">Three weeks</option>
-          </StyledSelect>
+            onSelectPreset={setSelectedPresetData} // Pass setSelectedTemplate to handle preset selection
+            formDisabled={formDisabled}
+          />
           <StyledTextButtonMediumSize
             type="button"
-            onClick={generatePackingListFromTemplate}
+            onClick={() => generatePackingListFromTemplate(selectedPresetData)}
             disabled={formDisabled}
           >
             Apply
