@@ -115,7 +115,6 @@ export default function Form({
       );
     }
 
-    console.log("nPLI in gPLFT:", newPackingListItem);
     setHandoverData((prevData) => ({
       ...prevData,
       packingList: updatedPackingList,
@@ -133,7 +132,6 @@ export default function Form({
       itemQuantity: newPackingListItem.itemQuantity,
     };
     setNewPackingListItem(updatedNewPackingListItem);
-    console.log("nPLI in hUNPLIN:", newPackingListItem);
   }
 
   function handleUpdateNewPackingListItemQuantity(
@@ -146,7 +144,6 @@ export default function Form({
       itemName: newPackingListItem.itemName,
     };
     setNewPackingListItem(updatedNewPackingListItem);
-    console.log("nPLI in hUNPLIQ:", newPackingListItem);
   }
 
   function handleAddPackingListItem() {
@@ -176,9 +173,7 @@ export default function Form({
       packingList: updatedPackingList,
     }));
 
-    console.log("nPLI before in hAPLI:", newPackingListItem);
     setNewPackingListItem({ itemName: "", itemQuantity: null });
-    console.log("nPLI after in hAPLI:", newPackingListItem);
     setHasChanges(true);
   }
 
