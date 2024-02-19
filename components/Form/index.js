@@ -80,73 +80,25 @@ export default function Form({
     return newObjectId;
   }
 
-  function generateListFromPreset(selectedPresetData) {
-    console.log("Apply:", selectedPresetData);
-    const selectedPreset = selectedPresetData.preset;
+  function handleRemoveItem(itemIdToRemove) {
+    if (formDisabled) {
+      return;
+    }
 
-    if (!selectedPreset) {
-      toast.error("No preset selected yet.", {
-        duration: toastDuration,
+    setHandoverData((prevData) => {
+      const updatedPackingList = handoverData.packingList.filter((item) => {
+        return item._id !== itemIdToRemove;
       });
-      return;
-    }
-    if (lastAppliedPreset === selectedPreset) {
-      return;
-    }
-    setLastAppliedPreset(selectedPreset);
 
-    const updatedPackingList = [...handoverData.packingList];
-
-    const lastItem = updatedPackingList[updatedPackingList.length - 1];
-    if (lastItem && lastItem.itemName === "") {
-      updatedPackingList.pop();
-      updatedPackingList.push(
-        ...selectedPresetData.items.map((item) => ({
-          ...item,
-          _id: generateObjectId(),
-        }))
-      );
-    } else {
-      updatedPackingList.push(
-        ...selectedPresetData.items.map((item) => ({
-          ...item,
-          _id: generateObjectId(),
-        }))
-      );
-    }
-
-    setHandoverData((prevData) => ({
-      ...prevData,
-      packingList: updatedPackingList,
-    }));
+      return {
+        ...prevData,
+        packingList: updatedPackingList,
+      };
+    });
     setHasChanges(true);
   }
 
-  function handleUpdateNewItemName(
-    newName,
-    newPackingListItem,
-    setNewPackingListItem
-  ) {
-    const updatedNewPackingListItem = {
-      itemName: newName,
-      itemQuantity: newPackingListItem.itemQuantity,
-    };
-    setNewPackingListItem(updatedNewPackingListItem);
-  }
-
-  function handleUpdateNewItemQuantity(
-    newQuantity,
-    newPackingListItem,
-    setNewPackingListItem
-  ) {
-    const updatedNewPackingListItem = {
-      itemQuantity: newQuantity,
-      itemName: newPackingListItem.itemName,
-    };
-    setNewPackingListItem(updatedNewPackingListItem);
-  }
-
-  function handleAddPackingListItem() {
+  function handleAddItem() {
     if (formDisabled) {
       return;
     }
@@ -192,21 +144,69 @@ export default function Form({
     setHasChanges(true);
   }
 
-  function handleRemoveItem(itemIdToRemove) {
-    if (formDisabled) {
+  function handleUpdateNewItemName(
+    newName,
+    newPackingListItem,
+    setNewPackingListItem
+  ) {
+    const updatedNewPackingListItem = {
+      itemName: newName,
+      itemQuantity: newPackingListItem.itemQuantity,
+    };
+    setNewPackingListItem(updatedNewPackingListItem);
+  }
+
+  function handleUpdateNewItemQuantity(
+    newQuantity,
+    newPackingListItem,
+    setNewPackingListItem
+  ) {
+    const updatedNewPackingListItem = {
+      itemQuantity: newQuantity,
+      itemName: newPackingListItem.itemName,
+    };
+    setNewPackingListItem(updatedNewPackingListItem);
+  }
+
+  function generateListFromPreset(selectedPresetData) {
+    console.log("Apply:", selectedPresetData);
+    const selectedPreset = selectedPresetData.preset;
+
+    if (!selectedPreset) {
+      toast.error("No preset selected yet.", {
+        duration: toastDuration,
+      });
       return;
     }
+    if (lastAppliedPreset === selectedPreset) {
+      return;
+    }
+    setLastAppliedPreset(selectedPreset);
 
-    setHandoverData((prevData) => {
-      const updatedPackingList = handoverData.packingList.filter((item) => {
-        return item._id !== itemIdToRemove;
-      });
+    const updatedPackingList = [...handoverData.packingList];
 
-      return {
-        ...prevData,
-        packingList: updatedPackingList,
-      };
-    });
+    const lastItem = updatedPackingList[updatedPackingList.length - 1];
+    if (lastItem && lastItem.itemName === "") {
+      updatedPackingList.pop();
+      updatedPackingList.push(
+        ...selectedPresetData.items.map((item) => ({
+          ...item,
+          _id: generateObjectId(),
+        }))
+      );
+    } else {
+      updatedPackingList.push(
+        ...selectedPresetData.items.map((item) => ({
+          ...item,
+          _id: generateObjectId(),
+        }))
+      );
+    }
+
+    setHandoverData((prevData) => ({
+      ...prevData,
+      packingList: updatedPackingList,
+    }));
     setHasChanges(true);
   }
 
@@ -343,7 +343,7 @@ export default function Form({
               id="add"
               action="add"
               fontSize={"1.4rem"}
-              onClick={handleAddPackingListItem}
+              onClick={handleAddItem}
               disabled={formDisabled}
             >
               +
