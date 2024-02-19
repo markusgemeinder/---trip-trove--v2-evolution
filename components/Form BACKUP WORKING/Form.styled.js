@@ -99,7 +99,7 @@ export const PreviewImage = styled(Image)`
   border-radius: 4px;
 `;
 
-export const PackListContainer = styled.fieldset`
+export const PackingListContainer = styled.fieldset`
   margin-top: 0.4rem;
   padding: 0;
   border: none;
@@ -111,7 +111,7 @@ export const PackList = styled.ul`
   padding: 0;
 `;
 
-export const TemplateContainer = styled.div`
+export const PresetContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;

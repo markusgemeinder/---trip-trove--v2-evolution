@@ -17,8 +17,8 @@ import {
   PreviewContainer,
   PreviewArea,
   PreviewImage,
-  PackListContainer,
-  TemplateContainer,
+  PackingListContainer,
+  PresetContainer,
 } from "@/components/Form/Form.styled";
 import { useFormData } from "@/components/Form/Form.handlers";
 import ImageUpload from "@/components/ImageUpload";
@@ -139,9 +139,9 @@ export default function Form({
         />
       )}
 
-      <PackListContainer disabled={formDisabled}>
+      <PackingListContainer disabled={formDisabled}>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
-        <TemplateContainer>
+        <PresetContainer>
           <PresetSelect
             id="template"
             name="template"
@@ -155,7 +155,7 @@ export default function Form({
           >
             Apply
           </StyledTextButtonMediumSize>
-        </TemplateContainer>
+        </PresetContainer>
 
         <PackingList
           handoverData={handoverData}
@@ -164,7 +164,7 @@ export default function Form({
           formDisabled={formDisabled}
           setSelectedPresetData={setSelectedPresetData}
         />
-      </PackListContainer>
+      </PackingListContainer>
 
       <StyledLabel htmlFor="notes">Notes</StyledLabel>
       <StyledInput

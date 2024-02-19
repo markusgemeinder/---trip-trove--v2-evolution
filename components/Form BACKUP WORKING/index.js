@@ -19,9 +19,9 @@ import {
   PreviewContainer,
   PreviewArea,
   PreviewImage,
-  PackListContainer,
+  PackingListContainer,
   PackList,
-  TemplateContainer,
+  PresetContainer,
   InputContainer,
   ItemHeaderLabel,
   ItemNumberContainer,
@@ -291,9 +291,9 @@ export default function Form({
           disabled={formDisabled}
         />
       )}
-      <PackListContainer disabled={formDisabled}>
+      <PackingListContainer disabled={formDisabled}>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
-        <TemplateContainer>
+        <PresetContainer>
           <PresetSelect
             id="template"
             name="template"
@@ -307,7 +307,7 @@ export default function Form({
           >
             Apply
           </StyledTextButtonMediumSize>
-        </TemplateContainer>
+        </PresetContainer>
         <PackList>
           {handoverData.packingList.length > 0 && (
             <ItemHeaderLabel>
@@ -351,7 +351,7 @@ export default function Form({
             <MiniButtonLabel>Add Packing List Item</MiniButtonLabel>
           </MiniButtonContainer>{" "}
         </PackList>
-      </PackListContainer>
+      </PackingListContainer>
 
       <StyledLabel htmlFor="notes">Notes</StyledLabel>
       <StyledInput
