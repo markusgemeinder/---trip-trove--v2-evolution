@@ -17,6 +17,12 @@ import {
   InputItemQuantity,
 } from "@/components/Form/Form.styled";
 
+export function generateObjectId() {
+  const { ObjectId } = mongoose.Types;
+  const newObjectId = new ObjectId().toString();
+  return newObjectId;
+}
+
 export default function PackingList({
   handoverData,
   setHandoverData,
@@ -27,14 +33,6 @@ export default function PackingList({
     itemName: "",
     itemQuantity: null,
   });
-  const [selectedPresetData, setSelectedPresetData] = useState([]);
-  const [lastAppliedPreset, setLastAppliedPreset] = useState(null);
-
-  function generateObjectId() {
-    const { ObjectId } = mongoose.Types;
-    const newObjectId = new ObjectId().toString();
-    return newObjectId;
-  }
 
   function handleAddItem() {
     if (formDisabled) {
@@ -122,48 +120,6 @@ export default function PackingList({
       itemName: newPackingListItem.itemName,
     };
     setNewPackingListItem(updatedNewPackingListItem);
-  }
-
-  function generateListFromPreset(selectedPresetData) {
-    console.log("Apply:", selectedPresetData);
-    const selectedPreset = selectedPresetData.preset;
-
-    if (!selectedPreset) {
-      toast.error("No preset selected yet.", {
-        duration: toastDuration,
-      });
-      return;
-    }
-    if (lastAppliedPreset === selectedPreset) {
-      return;
-    }
-    setLastAppliedPreset(selectedPreset);
-
-    const updatedPackingList = [...handoverData.packingList];
-
-    const lastItem = updatedPackingList[updatedPackingList.length - 1];
-    if (lastItem && lastItem.itemName === "") {
-      updatedPackingList.pop();
-      updatedPackingList.push(
-        ...selectedPresetData.items.map((item) => ({
-          ...item,
-          _id: generateObjectId(),
-        }))
-      );
-    } else {
-      updatedPackingList.push(
-        ...selectedPresetData.items.map((item) => ({
-          ...item,
-          _id: generateObjectId(),
-        }))
-      );
-    }
-
-    setHandoverData((prevData) => ({
-      ...prevData,
-      packingList: updatedPackingList,
-    }));
-    setHasChanges(true);
   }
 
   function InputItemAndQuantity({

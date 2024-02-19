@@ -1,14 +1,11 @@
+import { useState } from "react";
 import { formatDateForInput } from "@/lib/utils";
+import toast from "react-hot-toast";
 import {
   ButtonContainer,
   StyledTextButton,
   StyledTextButtonMediumSize,
 } from "@/components/Button/TextButton";
-import {
-  MiniButtonContainer,
-  MiniButtonLabel,
-  StyledMiniButton,
-} from "@/components/Button/MiniButton";
 import {
   TripForm,
   StyledLabel,
@@ -23,7 +20,7 @@ import {
 import { useFormData } from "@/components/Form/Form.handlers";
 import ImageUpload from "@/components/ImageUpload";
 import PresetSelect from "@/components/PresetSelect";
-import PackingList from "@/components/PackingList";
+import PackingList, { generateObjectId } from "@/components/PackingList";
 
 const INITIAL_DATA = {
   destination: "",
@@ -56,6 +53,50 @@ export default function Form({
     handleReset,
     handleSubmit,
   } = useFormData(defaultData, onSubmit, isEditMode);
+
+  const [selectedPresetData, setSelectedPresetData] = useState([]);
+  const [lastAppliedPreset, setLastAppliedPreset] = useState(null);
+
+  function generateListFromPreset(selectedPresetData) {
+    const selectedPreset = selectedPresetData.preset;
+
+    if (!selectedPreset) {
+      toast.error("No preset selected yet.", {
+        duration: toastDuration,
+      });
+      return;
+    }
+    if (lastAppliedPreset === selectedPreset) {
+      return;
+    }
+    setLastAppliedPreset(selectedPreset);
+
+    const updatedPackingList = [...handoverData.packingList];
+
+    const lastItem = updatedPackingList[updatedPackingList.length - 1];
+    if (lastItem && lastItem.itemName === "") {
+      updatedPackingList.pop();
+      updatedPackingList.push(
+        ...selectedPresetData.items.map((item) => ({
+          ...item,
+          _id: generateObjectId(),
+        }))
+      );
+    } else {
+      updatedPackingList.push(
+        ...selectedPresetData.items.map((item) => ({
+          ...item,
+          _id: generateObjectId(),
+        }))
+      );
+    }
+
+    setHandoverData((prevData) => ({
+      ...prevData,
+      packingList: updatedPackingList,
+    }));
+    setHasChanges(true);
+  }
 
   return (
     <TripForm
@@ -162,6 +203,7 @@ export default function Form({
           setHandoverData={setHandoverData}
           setHasChanges={setHasChanges}
           formDisabled={formDisabled}
+          selectedPresetData={selectedPresetData}
           setSelectedPresetData={setSelectedPresetData}
         />
       </PackingListContainer>
