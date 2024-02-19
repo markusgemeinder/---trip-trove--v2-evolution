@@ -20,6 +20,7 @@ const tripSchema = new Schema(
       {
         itemName: { type: String },
         itemQuantity: { type: Number },
+        isPacked: { type: Boolean },
       },
     ],
     notes: { type: String },
