@@ -132,12 +132,14 @@ export default function CardDetail() {
         <TripDetailsBadge startDate={trip.start} endDate={trip.end} />
         <CardImage
           src={
-            trip.image.url !== "" ? trip.image.url : "/images/default_img.png"
+            trip.image.url !== ""
+              ? trip.image.url
+              : "/images/default_img.png?t=" + new Date().getTime()
           }
           width={300}
           height={300}
           alt={trip.destination}
-        />
+        />{" "}
         <CreateDateBadge
           createdAt={trip.createdAt}
           updatedAt={trip.updatedAt}
