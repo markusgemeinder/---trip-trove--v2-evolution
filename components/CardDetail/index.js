@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import Image from "next/image";
 import { toastDuration } from "@/lib/utils";
 import {
@@ -12,19 +12,6 @@ import toast, { Toaster } from "react-hot-toast";
 import { ToastMessage } from "@/components/ToastMessage";
 import TripDetailsBadge from "@/components/Badge/TripDetailsBadge";
 import CreateDateBadge from "@/components/Badge/CreateDateBadge";
-
-import {
-  PackList,
-  StyledLabel,
-  InputContainer,
-  ItemHeaderLabel,
-  ItemNumberContainer,
-  ItemNumberLabel,
-  ItemNameLabel,
-  ItemQuantityLabel,
-  InputItemName,
-  InputItemQuantity,
-} from "@/components/Form/Form.styled";
 
 const StyledMessage = styled.h2`
   margin: 2rem auto;
@@ -96,7 +83,7 @@ const DetailsLabel = styled.p`
   margin: 0;
   padding: 0;
   padding-bottom: 0.2rem;
-  color: var(--color-badge-label);
+  color: var(--color-badge-label-dark);
   font-size: 0.6rem;
 
   @media (min-width: 600px) {
@@ -115,7 +102,44 @@ const DetailsText = styled.p`
   }
 `;
 
-const CheckBoxContainer = styled.li`
+const PackList = styled.ul`
+  margin: auto;
+  padding: 0;
+`;
+
+const PackListHeader = styled.div`
+  display: grid;
+  grid-template-columns: 1.1fr 5.6fr 1.4fr;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.2rem;
+
+  @media (min-width: 600px) {
+    grid-template-columns: 0.8fr 6fr 1.2fr;
+  }
+`;
+
+const PackListHeaderText = styled.p`
+  justify-self: center;
+  font-size: 0.6rem;
+  color: var(--color-badge-label);
+  padding: 0;
+  margin: 0;
+
+  @media (min-width: 600px) {
+    font-size: 0.8rem;
+  }
+`;
+
+const PackListHeaderTextLeft = styled(PackListHeaderText)`
+  justify-self: flex-start;
+  padding-left: 14px;
+`;
+
+const PackListContainer = styled.li`
   display: grid;
   grid-template-columns: 1.1fr 5.6fr 1.4fr;
   justify-content: center;
@@ -131,8 +155,8 @@ const CheckBoxContainer = styled.li`
   }
 `;
 
-const DetailsTextInBox = styled(DetailsText)`
-  background-color: #ffffff;
+const PackListField = styled.div`
+  background-color: var(--color-badge-on-badge);
   border-radius: 5px;
   padding: 0.5rem;
   align-self: flex-start;
@@ -144,11 +168,18 @@ const DetailsTextInBox = styled(DetailsText)`
   }
 `;
 
-const StyledCheckBox = styled(DetailsTextInBox)``;
+const StyledCheckBox = styled.input`
+  width: 20px;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+`;
 
-const StyledItemName = styled(DetailsTextInBox)``;
+const StyledItemName = styled(DetailsText)`
+  word-break: break-all;
+`;
 
-const StyledItemQuantity = styled(DetailsTextInBox)`
+const StyledItemQuantity = styled(DetailsText)`
   text-align: center;
 `;
 
@@ -161,11 +192,11 @@ export default function CardDetail() {
 
   const [buttonsDisabled, setButtonsDisabled] = useState(false);
 
-  function handleEdit() {
+  async function handleEdit() {
     router.push(`${id}/edit`);
   }
 
-  function handleDelete() {
+  async function handleDelete() {
     setButtonsDisabled(true);
     toast(
       <ToastMessage
@@ -194,7 +225,36 @@ export default function CardDetail() {
       router.push("/");
     } catch (error) {
       setButtonsDisabled(false);
-      toast.error("Error deleting trip!");
+      toast.dismiss();
+      toast.error("Error deleting trip!"), { duration: toastDuration };
+    }
+  }
+
+  async function handleCheckIsPacked(itemId) {
+    const updatedPackingList = trip.packingList.map((item) => {
+      if (item._id === itemId) {
+        return { ...item, isPacked: !item.isPacked };
+      }
+      return item;
+    });
+
+    try {
+      await fetch(`/api/trips/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ packingList: updatedPackingList }),
+      });
+      // Manually mutate data
+      mutate(
+        `/api/trips/${id}`,
+        { ...trip, packingList: updatedPackingList },
+        false
+      );
+    } catch (error) {
+      toast.dismiss();
+      toast.error("Error updating packing list!"), { duration: toastDuration };
     }
   }
 
@@ -254,19 +314,34 @@ export default function CardDetail() {
           <>
             <DetailsContainer>
               <DetailsLabel>Packing List:</DetailsLabel>
+              <PackListHeader>
+                <PackListHeaderText>Done</PackListHeaderText>
+                <PackListHeaderTextLeft>Item</PackListHeaderTextLeft>
+                <PackListHeaderText>Qty</PackListHeaderText>
+              </PackListHeader>
               <PackList>
                 {filteredPackingList?.map((item) => (
-                  <CheckBoxContainer key={item._id}>
-                    <StyledCheckBox></StyledCheckBox>
-                    <StyledItemName>{item.itemName}</StyledItemName>
+                  <PackListContainer key={item._id}>
+                    <PackListField>
+                      <StyledCheckBox
+                        type="checkbox"
+                        checked={item.isPacked}
+                        onChange={() => handleCheckIsPacked(item._id)}
+                      />
+                    </PackListField>
+                    <PackListField>
+                      <StyledItemName>{item.itemName}</StyledItemName>
+                    </PackListField>
                     {item.itemQuantity && (
                       <>
-                        <StyledItemQuantity>
-                          {item.itemQuantity}
-                        </StyledItemQuantity>
+                        <PackListField>
+                          <StyledItemQuantity>
+                            {item.itemQuantity}
+                          </StyledItemQuantity>
+                        </PackListField>
                       </>
                     )}
-                  </CheckBoxContainer>
+                  </PackListContainer>
                 ))}
               </PackList>
             </DetailsContainer>
