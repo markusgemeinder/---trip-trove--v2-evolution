@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import Image from "next/image";
 import { toastDuration } from "@/lib/utils";
 import {
@@ -153,11 +153,11 @@ export default function CardDetail() {
 
   const [buttonsDisabled, setButtonsDisabled] = useState(false);
 
-  function handleEdit() {
+  async function handleEdit() {
     router.push(`${id}/edit`);
   }
 
-  function handleDelete() {
+  async function handleDelete() {
     setButtonsDisabled(true);
     toast(
       <ToastMessage
@@ -186,7 +186,36 @@ export default function CardDetail() {
       router.push("/");
     } catch (error) {
       setButtonsDisabled(false);
-      toast.error("Error deleting trip!");
+      toast.dismiss();
+      toast.error("Error deleting trip!"), { duration: toastDuration };
+    }
+  }
+
+  async function handleCheckIsPacked(itemId) {
+    const updatedPackingList = trip.packingList.map((item) => {
+      if (item._id === itemId) {
+        return { ...item, isPacked: !item.isPacked };
+      }
+      return item;
+    });
+
+    try {
+      await fetch(`/api/trips/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ packingList: updatedPackingList }),
+      });
+      // Manually mutate data
+      mutate(
+        `/api/trips/${id}`,
+        { ...trip, packingList: updatedPackingList },
+        false
+      );
+    } catch (error) {
+      toast.dismiss();
+      toast.error("Error updating packing list!"), { duration: toastDuration };
     }
   }
 
@@ -249,7 +278,13 @@ export default function CardDetail() {
               <PackList>
                 {filteredPackingList?.map((item) => (
                   <CheckBoxContainer key={item._id}>
-                    <StyledCheckBox></StyledCheckBox>
+                    <StyledCheckBox>
+                      <input
+                        type="checkbox"
+                        checked={item.isPacked}
+                        onChange={() => handleCheckIsPacked(item._id)}
+                      />
+                    </StyledCheckBox>
                     <StyledItemName>{item.itemName}</StyledItemName>
                     {item.itemQuantity && (
                       <>
