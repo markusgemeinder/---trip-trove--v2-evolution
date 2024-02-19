@@ -13,19 +13,6 @@ import { ToastMessage } from "@/components/ToastMessage";
 import TripDetailsBadge from "@/components/Badge/TripDetailsBadge";
 import CreateDateBadge from "@/components/Badge/CreateDateBadge";
 
-import {
-  PackList,
-  StyledLabel,
-  InputContainer,
-  ItemHeaderLabel,
-  ItemNumberContainer,
-  ItemNumberLabel,
-  ItemNameLabel,
-  ItemQuantityLabel,
-  InputItemName,
-  InputItemQuantity,
-} from "@/components/Form/Form.styled";
-
 const StyledMessage = styled.h2`
   margin: 2rem auto;
 `;
@@ -113,6 +100,11 @@ const DetailsText = styled.p`
   @media (min-width: 600px) {
     font-size: 1rem;
   }
+`;
+
+const PackList = styled.ul`
+  margin: auto;
+  padding: 0;
 `;
 
 const CheckBoxContainer = styled.li`
