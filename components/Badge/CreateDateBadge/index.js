@@ -14,7 +14,7 @@ const BadgeContainer = styled.div`
 const StyledCreateDateText = styled.p`
   margin: 0.2rem;
   padding: 0;
-  color: var(--color-badge-label-light);
+  color: var(--color-badge-label);
   text-align: center;
   font-weight: bold;
   font-size: 0.6rem;
