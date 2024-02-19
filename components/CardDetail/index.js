@@ -86,6 +86,10 @@ const DetailsContainer = styled.div`
   background-color: var(--color-badge);
   gap: 8px;
   margin-top: 0.3rem;
+
+  &:last-child {
+    margin-bottom: 0.8rem;
+  }
 `;
 
 const DetailsLabel = styled.p`
@@ -109,6 +113,43 @@ const DetailsText = styled.p`
   @media (min-width: 600px) {
     font-size: 1rem;
   }
+`;
+
+const CheckBoxContainer = styled.li`
+  display: grid;
+  grid-template-columns: 1.1fr 5.6fr 1.4fr;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  margin-top: 6px;
+  width: 100%;
+
+  @media (min-width: 600px) {
+    grid-template-columns: 0.8fr 6fr 1.2fr;
+  }
+`;
+
+const DetailsTextInBox = styled(DetailsText)`
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 0.5rem;
+  align-self: flex-start;
+  height: 100%;
+
+  @media (min-width: 600px) {
+    border-radius: 8px;
+    padding: 0.7rem;
+  }
+`;
+
+const StyledCheckBox = styled(DetailsTextInBox)``;
+
+const StyledItemName = styled(DetailsTextInBox)``;
+
+const StyledItemQuantity = styled(DetailsTextInBox)`
+  text-align: center;
 `;
 
 export default function CardDetail() {
@@ -215,13 +256,17 @@ export default function CardDetail() {
               <DetailsLabel>Packing List:</DetailsLabel>
               <PackList>
                 {filteredPackingList?.map((item) => (
-                  <InputContainer key={item._id}>
-                    <ItemNumberContainer>
-                      <ItemNumberLabel>1</ItemNumberLabel>
-                    </ItemNumberContainer>
-                    {item.itemQuantity ? `${item.itemQuantity}x ` : ""}
-                    {item.itemName}
-                  </InputContainer>
+                  <CheckBoxContainer key={item._id}>
+                    <StyledCheckBox></StyledCheckBox>
+                    <StyledItemName>{item.itemName}</StyledItemName>
+                    {item.itemQuantity && (
+                      <>
+                        <StyledItemQuantity>
+                          {item.itemQuantity}
+                        </StyledItemQuantity>
+                      </>
+                    )}
+                  </CheckBoxContainer>
                 ))}
               </PackList>
             </DetailsContainer>
