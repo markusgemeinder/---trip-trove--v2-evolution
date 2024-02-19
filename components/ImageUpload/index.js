@@ -7,15 +7,14 @@ import {
   UploadText,
   UploadInput,
 } from "@/components/ImageUpload/ImageUpload.styled";
-// import crypto from "crypto";
-// import axios from "axios";
 
 const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 const UPLOAD_PRESET = "trip-trove";
-const API_KEY = process.env.CLOUDINARY_API_KEY;
-const API_SECRET = process.env.CLOUDINARY_API_SECRET;
 
 // ======================================
+
+// const API_KEY = process.env.CLOUDINARY_API_KEY;
+// const API_SECRET = process.env.CLOUDINARY_API_SECRET;
 
 // function generateSHA1(data) {
 //   const hash = crypto.createHash("sha1");
@@ -30,25 +29,26 @@ const API_SECRET = process.env.CLOUDINARY_API_SECRET;
 //   return signature;
 // }
 
-export async function deleteImage(CLOUD_NAME, API_KEY, API_SECRET, publicId) {
-  // const timestamp = new Date().getTime();
-  // const signature = generateSHA1(generateSignature(publicId, API_SECRET));
+// export async function deleteImage(CLOUD_NAME, API_KEY, API_SECRET, publicId) {
+//   const timestamp = new Date().getTime();
+//   const signature = generateSHA1(generateSignature(publicId, API_SECRET));
 
-  try {
-    const response = await axios.post(
-      `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/destroy`,
-      {
-        public_id: publicId,
-        // signature: signature,
-        api_key: API_KEY,
-        // timestamp: timestamp,
-      }
-    );
-    console.error(response);
-  } catch (error) {
-    console.error(error);
-  }
-}
+//   try {
+//     const response = await axios.post(
+//       `https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/destroy`,
+//       {
+//         method: "DELETE",
+//         public_id: publicId,
+//         signature: signature,
+//         api_key: API_KEY,
+//         timestamp: timestamp,
+//       }
+//     );
+//     console.error(response);
+//   } catch (error) {
+//     console.error(error);
+//   }
+// }
 
 // ======================================
 
