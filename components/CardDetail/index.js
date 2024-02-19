@@ -134,7 +134,7 @@ export default function CardDetail() {
           src={
             trip.image.url !== ""
               ? trip.image.url
-              : "/images/default_img.png?t=" + new Date().getTime()
+              : "/images/default.png?t=" + new Date().getTime()
           }
           width={300}
           height={300}
