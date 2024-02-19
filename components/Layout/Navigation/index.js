@@ -116,8 +116,12 @@ export default function Navigation() {
           </Link>
           <NaviItemText href="/create">Create Trip</NaviItemText>
         </NaviItem>
+      </NaviList>
+    </NaviContainer>
+  );
+}
 
-        <NaviItem $active={router.pathname === "/presets"}>
+/* <NaviItem $active={router.pathname === "/presets"}>
           <Link href="/presets">
             <StyledSvg
               fillRule="evenodd"
@@ -133,8 +137,4 @@ export default function Navigation() {
             </StyledSvg>
           </Link>
           <NaviItemText href="/presets">Presets</NaviItemText>
-        </NaviItem>
-      </NaviList>
-    </NaviContainer>
-  );
-}
+        </NaviItem> */
