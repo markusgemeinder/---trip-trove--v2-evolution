@@ -74,7 +74,7 @@ export default function Form({
 
   return (
     <TripForm
-      aria-label="trip form"
+      aria-label={isEditMode ? "edit trip form" : "create trip form"}
       onSubmit={handleSubmit}
       formDisabled={formDisabled}
     >
@@ -215,7 +215,7 @@ export default function Form({
               +
             </StyledMiniButton>
             <MiniButtonLabel>Add Packing List Item</MiniButtonLabel>
-          </MiniButtonContainer>{" "}
+          </MiniButtonContainer>
         </PackList>
       </PackListContainer>
 
