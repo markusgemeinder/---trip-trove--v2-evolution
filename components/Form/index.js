@@ -165,6 +165,13 @@ export default function Form({
             Apply
           </StyledTextButtonMediumSize>
         </TemplateContainer>
+
+        <PackingList
+          handoverData={handoverData}
+          setHandoverData={setHandoverData}
+          setHasChanges={setHasChanges}
+          formDisabled={formDisabled}
+        />
         {/* <PackList>
           {handoverData.packingList.length > 0 && (
             <ItemHeaderLabel>
