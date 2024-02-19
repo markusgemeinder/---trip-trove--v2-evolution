@@ -18,18 +18,11 @@ import {
 } from "@/components/Form/Form.styled";
 
 export default function PackingList({
-  packingList,
-  handleAddItem,
-  handleRemoveItem,
-  handleUpdateItem,
-  handleUpdateNewItemName,
-  handleUpdateNewItemQuantity,
-  newPackingListItem,
   handoverData,
   setHandoverData,
   setHasChanges,
   formDisabled,
-})
+}) {
   const [newPackingListItem, setNewPackingListItem] = useState({
     itemName: "",
     itemQuantity: null,
@@ -290,4 +283,3 @@ export default function PackingList({
     </>
   );
 }
-

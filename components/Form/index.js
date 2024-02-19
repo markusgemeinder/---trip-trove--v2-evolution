@@ -18,16 +18,7 @@ import {
   PreviewArea,
   PreviewImage,
   PackListContainer,
-  PackList,
   TemplateContainer,
-  InputContainer,
-  ItemHeaderLabel,
-  ItemNumberContainer,
-  ItemNumberLabel,
-  ItemNameLabel,
-  ItemQuantityLabel,
-  InputItemName,
-  InputItemQuantity,
 } from "@/components/Form/Form.styled";
 import { useFormData } from "@/components/Form/Form.handlers";
 import ImageUpload from "@/components/ImageUpload";
@@ -171,50 +162,8 @@ export default function Form({
           setHandoverData={setHandoverData}
           setHasChanges={setHasChanges}
           formDisabled={formDisabled}
+          setSelectedPresetData={setSelectedPresetData}
         />
-        {/* <PackList>
-          {handoverData.packingList.length > 0 && (
-            <ItemHeaderLabel>
-              <ItemNumberLabel>No.</ItemNumberLabel>
-              <ItemNameLabel>Item</ItemNameLabel>
-              <ItemQuantityLabel>Qty.</ItemQuantityLabel>
-            </ItemHeaderLabel>
-          )}
-          {handoverData.packingList.map((item, index) => (
-            <InputContainer key={item._id}>
-              <ItemNumberContainer>
-                <ItemNumberLabel>{index + 1}</ItemNumberLabel>
-              </ItemNumberContainer>
-              <InputItemAndQuantity
-                item={item}
-                handleUpdateItem={handleUpdateItem}
-                handleRemoveItem={handleRemoveItem}
-                formDisabled={formDisabled}
-              />
-            </InputContainer>
-          ))}
-          {handoverData.showNewPackingListItem && (
-            <NewPackingListItem
-              newPackingListItem={newPackingListItem}
-              handleUpdateNewItemName={handleUpdateNewItemName}
-              handleUpdateNewItemQuantity={handleUpdateNewItemQuantity}
-              formDisabled={formDisabled}
-            />
-          )}
-          <MiniButtonContainer>
-            <StyledMiniButton
-              type="button"
-              id="add"
-              action="add"
-              fontSize={"1.4rem"}
-              onClick={handleAddItem}
-              disabled={formDisabled}
-            >
-              +
-            </StyledMiniButton>
-            <MiniButtonLabel>Add Packing List Item</MiniButtonLabel>
-          </MiniButtonContainer>
-        </PackList> */}
       </PackListContainer>
 
       <StyledLabel htmlFor="notes">Notes</StyledLabel>
