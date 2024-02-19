@@ -99,7 +99,7 @@ export const PreviewImage = styled(Image)`
   border-radius: 4px;
 `;
 
-export const PackListContainer = styled.fieldset`
+export const PackingListContainer = styled.fieldset`
   margin-top: 0.4rem;
   padding: 0;
   border: none;
@@ -111,7 +111,7 @@ export const PackList = styled.ul`
   padding: 0;
 `;
 
-export const TemplateContainer = styled.div`
+export const PresetContainer = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -197,12 +197,12 @@ export const ItemQuantityLabel = styled(ItemNumberLabel)`
   justify-self: center;
 `;
 
-export const InputItem = styled(StyledInput)`
+export const InputItemName = styled(StyledInput)`
   width: 100%;
   margin: 0;
 `;
 
-export const InputQuantity = styled(StyledInput)`
+export const InputItemQuantity = styled(StyledInput)`
   text-align: right;
   width: 100%;
   margin: 0;

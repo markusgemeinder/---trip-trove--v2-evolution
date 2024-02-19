@@ -1,27 +1,13 @@
-import mongoose from "mongoose";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
 import { toastDuration, validateTripDates } from "@/lib/utils";
 import { ToastMessage } from "@/components/ToastMessage";
 
-export function generateObjectId() {
-  const { ObjectId } = mongoose.Types;
-  const newObjectId = new ObjectId().toString();
-  return newObjectId;
-}
-
 export function useFormData(defaultData, onSubmit, isEditMode) {
   const [formDisabled, setFormDisabled] = useState(false);
   const [handoverData, setHandoverData] = useState(defaultData);
   const [hasChanges, setHasChanges] = useState(false);
-  const { ObjectId } = mongoose.Types;
-  const [newPackingListItem, setNewPackingListItem] = useState({
-    itemName: "",
-    itemQuantity: null,
-  });
-  const [selectedPresetData, setSelectedPresetData] = useState([]);
-  const [lastAppliedPreset, setLastAppliedPreset] = useState(null);
 
   const router = useRouter();
   const id = defaultData?._id;
@@ -133,141 +119,11 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
     );
   }
 
-  function generatePackingListFromTemplate(selectedPresetData) {
-    console.log("Apply:", selectedPresetData);
-    const selectedPreset = selectedPresetData.preset;
-
-    if (!selectedPreset) {
-      toast.error("No preset selected yet.", {
-        duration: toastDuration,
-      });
-      return;
-    }
-    if (lastAppliedPreset === selectedPreset) {
-      return;
-    }
-    setLastAppliedPreset(selectedPreset);
-
-    const updatedPackingList = [...handoverData.packingList];
-
-    const lastItem = updatedPackingList[updatedPackingList.length - 1];
-    if (lastItem && lastItem.itemName === "") {
-      updatedPackingList.pop();
-      updatedPackingList.push(
-        ...selectedPresetData.items.map((item) => ({
-          ...item,
-          _id: generateObjectId(),
-        }))
-      );
-    } else {
-      updatedPackingList.push(
-        ...selectedPresetData.items.map((item) => ({
-          ...item,
-          _id: generateObjectId(),
-        }))
-      );
-    }
-
-    setHandoverData((prevData) => ({
-      ...prevData,
-      packingList: updatedPackingList,
-    }));
-    setHasChanges(true);
-  }
-
-  function handleUpdateNewPackingListItemName(
-    newName,
-    newPackingListItem,
-    setNewPackingListItem
-  ) {
-    const updatedNewPackingListItem = {
-      itemName: newName,
-      itemQuantity: newPackingListItem.itemQuantity,
-    };
-    setNewPackingListItem(updatedNewPackingListItem);
-  }
-
-  function handleUpdateNewPackingListItemQuantity(
-    newQuantity,
-    newPackingListItem,
-    setNewPackingListItem
-  ) {
-    const updatedNewPackingListItem = {
-      itemQuantity: newQuantity,
-      itemName: newPackingListItem.itemName,
-    };
-    setNewPackingListItem(updatedNewPackingListItem);
-  }
-
-  function handleAddPackingListItem() {
-    if (formDisabled) {
-      return;
-    }
-
-    const lastItem =
-      handoverData.packingList[handoverData.packingList.length - 1];
-
-    if (lastItem && lastItem.itemName === "") {
-      return;
-    }
-
-    const nextPackingListItem = {
-      ...newPackingListItem,
-      _id: generateObjectId(),
-    };
-
-    const updatedPackingList = [
-      ...handoverData.packingList,
-      nextPackingListItem,
-    ];
-
-    setHandoverData((prevData) => ({
-      ...prevData,
-      packingList: updatedPackingList,
-    }));
-
-    setNewPackingListItem({ itemName: "", itemQuantity: null });
-    setHasChanges(true);
-  }
-
   function handleInput(event) {
     setHandoverData((prev) => ({
       ...prev,
       [event.target.name]: event.target.value,
     }));
-    setHasChanges(true);
-  }
-
-  function handleUpdateItem(itemId, itemName, itemQuantity) {
-    setHandoverData((prev) => {
-      const updatedPackingList = prev.packingList.map((item) =>
-        item._id === itemId ? { ...item, itemName, itemQuantity } : item
-      );
-
-      return {
-        ...prev,
-        packingList: updatedPackingList,
-      };
-    });
-
-    setHasChanges(true);
-  }
-
-  function handleRemoveItem(itemIdToRemove) {
-    if (formDisabled) {
-      return;
-    }
-
-    setHandoverData((prevData) => {
-      const updatedPackingList = handoverData.packingList.filter((item) => {
-        return item._id !== itemIdToRemove;
-      });
-
-      return {
-        ...prevData,
-        packingList: updatedPackingList,
-      };
-    });
     setHasChanges(true);
   }
 
@@ -291,10 +147,6 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
         messageAfterCancel="Ok, no reset."
         onConfirm={() => {
           setHandoverData(defaultData);
-          setNewPackingListItem({
-            itemName: "",
-            itemQuantity: null,
-          });
           setFormDisabled(false);
           setHasChanges(false);
         }}
@@ -350,19 +202,12 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
   return {
     formDisabled,
     handoverData,
+    setHandoverData,
     hasChanges,
+    setHasChanges,
     handleImageUpdate,
     handleDeleteImage,
-    newPackingListItem,
-    selectedPresetData,
-    setSelectedPresetData,
-    generatePackingListFromTemplate,
-    handleUpdateNewPackingListItemName,
-    handleUpdateNewPackingListItemQuantity,
-    handleAddPackingListItem,
     handleInput,
-    handleUpdateItem,
-    handleRemoveItem,
     handleReset,
     handleSubmit,
   };
