@@ -107,7 +107,7 @@ const PackList = styled.ul`
   padding: 0;
 `;
 
-const CheckBoxContainer = styled.li`
+const PackListContainer = styled.li`
   display: grid;
   grid-template-columns: 1.1fr 5.6fr 1.4fr;
   justify-content: center;
@@ -123,8 +123,8 @@ const CheckBoxContainer = styled.li`
   }
 `;
 
-const DetailsTextInBox = styled(DetailsText)`
-  background-color: #ffffff;
+const PackListField = styled.div`
+  background-color: var(--color-badge-on-badge);
   border-radius: 5px;
   padding: 0.5rem;
   align-self: flex-start;
@@ -136,11 +136,16 @@ const DetailsTextInBox = styled(DetailsText)`
   }
 `;
 
-const StyledCheckBox = styled(DetailsTextInBox)``;
+const StyledCheckBox = styled.input`
+  width: 20px;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+`;
 
-const StyledItemName = styled(DetailsTextInBox)``;
+const StyledItemName = styled(DetailsText)``;
 
-const StyledItemQuantity = styled(DetailsTextInBox)`
+const StyledItemQuantity = styled(DetailsText)`
   text-align: center;
 `;
 
@@ -277,23 +282,27 @@ export default function CardDetail() {
               <DetailsLabel>Packing List:</DetailsLabel>
               <PackList>
                 {filteredPackingList?.map((item) => (
-                  <CheckBoxContainer key={item._id}>
-                    <StyledCheckBox>
-                      <input
+                  <PackListContainer key={item._id}>
+                    <PackListField>
+                      <StyledCheckBox
                         type="checkbox"
                         checked={item.isPacked}
                         onChange={() => handleCheckIsPacked(item._id)}
                       />
-                    </StyledCheckBox>
-                    <StyledItemName>{item.itemName}</StyledItemName>
+                    </PackListField>
+                    <PackListField>
+                      <StyledItemName>{item.itemName}</StyledItemName>
+                    </PackListField>
                     {item.itemQuantity && (
                       <>
-                        <StyledItemQuantity>
-                          {item.itemQuantity}
-                        </StyledItemQuantity>
+                        <PackListField>
+                          <StyledItemQuantity>
+                            {item.itemQuantity}
+                          </StyledItemQuantity>
+                        </PackListField>
                       </>
                     )}
-                  </CheckBoxContainer>
+                  </PackListContainer>
                 ))}
               </PackList>
             </DetailsContainer>

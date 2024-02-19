@@ -136,6 +136,7 @@ export default createGlobalStyle`
   --color-card-text: var(--color-orange-1000);
 
   --color-badge: var(--color-grey-50);
+  --color-badge-on-badge: var(--color-grey-0);
   --color-badge-label: var(--color-grey-400);
   --color-badge-label-light: var(--color-grey-400);
   --color-badge-text: var(--color-grey-1000);
