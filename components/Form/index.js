@@ -1,14 +1,11 @@
+import { useState } from "react";
 import { formatDateForInput } from "@/lib/utils";
+import toast from "react-hot-toast";
 import {
   ButtonContainer,
   StyledTextButton,
   StyledTextButtonMediumSize,
 } from "@/components/Button/TextButton";
-import {
-  MiniButtonContainer,
-  MiniButtonLabel,
-  StyledMiniButton,
-} from "@/components/Button/MiniButton";
 import {
   TripForm,
   StyledLabel,
@@ -17,21 +14,13 @@ import {
   PreviewContainer,
   PreviewArea,
   PreviewImage,
-  PackListContainer,
-  PackList,
-  TemplateContainer,
-  InputContainer,
-  ItemHeaderLabel,
-  ItemNumberContainer,
-  ItemNumberLabel,
-  ItemNameLabel,
-  ItemQuantityLabel,
-  InputItem,
-  InputQuantity,
+  PackingListContainer,
+  PresetContainer,
 } from "@/components/Form/Form.styled";
 import { useFormData } from "@/components/Form/Form.handlers";
 import ImageUpload from "@/components/ImageUpload";
 import PresetSelect from "@/components/PresetSelect";
+import PackingList, { generateObjectId } from "@/components/PackingList";
 
 const INITIAL_DATA = {
   destination: "",
@@ -55,22 +44,59 @@ export default function Form({
   const {
     formDisabled,
     handoverData,
+    setHandoverData,
     hasChanges,
+    setHasChanges,
     handleImageUpdate,
     handleDeleteImage,
-    newPackingListItem,
-    selectedPresetData,
-    setSelectedPresetData,
-    generatePackingListFromTemplate,
-    handleUpdateNewPackingListItemName,
-    handleUpdateNewPackingListItemQuantity,
-    handleAddPackingListItem,
     handleInput,
-    handleUpdateItem,
-    handleRemoveItem,
     handleReset,
     handleSubmit,
   } = useFormData(defaultData, onSubmit, isEditMode);
+
+  const [selectedPresetData, setSelectedPresetData] = useState([]);
+  const [lastAppliedPreset, setLastAppliedPreset] = useState(null);
+
+  function generateListFromPreset(selectedPresetData) {
+    const selectedPreset = selectedPresetData.preset;
+
+    if (!selectedPreset) {
+      toast.error("No preset selected yet.", {
+        duration: toastDuration,
+      });
+      return;
+    }
+    if (lastAppliedPreset === selectedPreset) {
+      return;
+    }
+    setLastAppliedPreset(selectedPreset);
+
+    const updatedPackingList = [...handoverData.packingList];
+
+    const lastItem = updatedPackingList[updatedPackingList.length - 1];
+    if (lastItem && lastItem.itemName === "") {
+      updatedPackingList.pop();
+      updatedPackingList.push(
+        ...selectedPresetData.items.map((item) => ({
+          ...item,
+          _id: generateObjectId(),
+        }))
+      );
+    } else {
+      updatedPackingList.push(
+        ...selectedPresetData.items.map((item) => ({
+          ...item,
+          _id: generateObjectId(),
+        }))
+      );
+    }
+
+    setHandoverData((prevData) => ({
+      ...prevData,
+      packingList: updatedPackingList,
+    }));
+    setHasChanges(true);
+  }
 
   return (
     <TripForm
@@ -153,9 +179,10 @@ export default function Form({
           disabled={formDisabled}
         />
       )}
-      <PackListContainer disabled={formDisabled}>
+
+      <PackingListContainer disabled={formDisabled}>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
-        <TemplateContainer>
+        <PresetContainer>
           <PresetSelect
             id="template"
             name="template"
@@ -164,60 +191,22 @@ export default function Form({
           />
           <StyledTextButtonMediumSize
             type="button"
-            onClick={() => generatePackingListFromTemplate(selectedPresetData)}
+            onClick={() => generateListFromPreset(selectedPresetData)}
             disabled={formDisabled}
           >
             Apply
           </StyledTextButtonMediumSize>
-        </TemplateContainer>
-        <PackList>
-          {handoverData.packingList.length > 0 && (
-            <ItemHeaderLabel>
-              <ItemNumberLabel>No.</ItemNumberLabel>
-              <ItemNameLabel>Item</ItemNameLabel>
-              <ItemQuantityLabel>Qty.</ItemQuantityLabel>
-            </ItemHeaderLabel>
-          )}
-          {handoverData.packingList.map((item, index) => (
-            <InputContainer key={item._id}>
-              <ItemNumberContainer>
-                <ItemNumberLabel>{index + 1}</ItemNumberLabel>
-              </ItemNumberContainer>
-              <InputItemAndQuantity
-                item={item}
-                handleUpdateItem={handleUpdateItem}
-                handleRemoveItem={handleRemoveItem}
-                formDisabled={formDisabled}
-              />
-            </InputContainer>
-          ))}
-          {handoverData.showNewPackingListItem && (
-            <NewPackingListItem
-              newPackingListItem={newPackingListItem}
-              handleUpdateNewPackingListItemName={
-                handleUpdateNewPackingListItemName
-              }
-              handleUpdateNewPackingListItemQuantity={
-                handleUpdateNewPackingListItemQuantity
-              }
-              formDisabled={formDisabled}
-            />
-          )}
-          <MiniButtonContainer>
-            <StyledMiniButton
-              type="button"
-              id="add"
-              action="add"
-              fontSize={"1.4rem"}
-              onClick={handleAddPackingListItem}
-              disabled={formDisabled}
-            >
-              +
-            </StyledMiniButton>
-            <MiniButtonLabel>Add Packing List Item</MiniButtonLabel>
-          </MiniButtonContainer>
-        </PackList>
-      </PackListContainer>
+        </PresetContainer>
+
+        <PackingList
+          handoverData={handoverData}
+          setHandoverData={setHandoverData}
+          setHasChanges={setHasChanges}
+          formDisabled={formDisabled}
+          selectedPresetData={selectedPresetData}
+          setSelectedPresetData={setSelectedPresetData}
+        />
+      </PackingListContainer>
 
       <StyledLabel htmlFor="notes">Notes</StyledLabel>
       <StyledInput
@@ -241,78 +230,5 @@ export default function Form({
         </StyledTextButton>
       </ButtonContainer>
     </TripForm>
-  );
-}
-
-function InputItemAndQuantity({
-  item,
-  handleUpdateItem,
-  handleRemoveItem,
-  formDisabled,
-}) {
-  return (
-    <>
-      <InputItem
-        id={`packingList_${item._id}`}
-        name={`packingList_${item._id}`}
-        type="text"
-        value={item.itemName}
-        onChange={(event) =>
-          handleUpdateItem(item._id, event.target.value, item.itemQuantity)
-        }
-        disabled={formDisabled}
-      />
-      <InputQuantity
-        id={`packingList_quantity_${item._id}`}
-        name={`packingList_quantity_${item._id}`}
-        type="number"
-        value={item.itemQuantity}
-        onChange={(event) =>
-          handleUpdateItem(item._id, item.itemName, event.target.value)
-        }
-        disabled={formDisabled}
-        min="0"
-        max="999"
-      />
-      <StyledMiniButton
-        type="button"
-        id="delete"
-        action="delete"
-        onClick={() => handleRemoveItem(item._id)}
-        disabled={formDisabled}
-      >
-        X
-      </StyledMiniButton>
-    </>
-  );
-}
-
-function NewPackingListItem({
-  newPackingListItem,
-  handleUpdateNewPackingListItemName,
-  handleUpdateNewPackingListItemQuantity,
-  formDisabled,
-}) {
-  return (
-    <InputContainer>
-      <InputItem
-        type="text"
-        disabled={formDisabled}
-        value={newPackingListItem.itemName}
-        onChange={(event) =>
-          handleUpdateNewPackingListItemName(event.target.value)
-        }
-      />
-      <InputQuantity
-        type="number"
-        disabled={formDisabled}
-        value={newPackingListItem.itemQuantity}
-        onChange={(event) =>
-          handleUpdateNewPackingListItemQuantity(event.target.value)
-        }
-        min="0"
-        max="999"
-      />
-    </InputContainer>
   );
 }

@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import Image from "next/image";
 import { toastDuration } from "@/lib/utils";
-import PackingList from "@/components/PackingList";
 import {
   ButtonContainer,
   StyledTextButton,
@@ -121,6 +120,10 @@ export default function CardDetail() {
     return <StyledMessage>Error, please try again later...</StyledMessage>;
   if (!isReady || isLoading) return <StyledMessage>Loading...</StyledMessage>;
 
+  const filteredPackingList = trip?.packingList?.filter(
+    (item) => item.itemName && item.itemName.trim() !== ""
+  );
+
   return (
     <>
       <Toaster />
@@ -129,12 +132,14 @@ export default function CardDetail() {
         <TripDetailsBadge startDate={trip.start} endDate={trip.end} />
         <CardImage
           src={
-            trip.image.url !== "" ? trip.image.url : "/images/default_img.png"
+            trip.image.url !== ""
+              ? trip.image.url
+              : "/images/default.png?t=" + new Date().getTime()
           }
           width={300}
           height={300}
           alt={trip.destination}
-        />
+        />{" "}
         <CreateDateBadge
           createdAt={trip.createdAt}
           updatedAt={trip.updatedAt}
@@ -153,7 +158,19 @@ export default function CardDetail() {
             <CardNotes>{trip.notes}</CardNotes>
           </>
         )}
-        {trip.packingList && trip.packingList.length !== 0 && <PackingList />}
+        {trip.packingList && trip.packingList.length !== 0 && (
+          <>
+            <strong>Packing list:</strong>
+            <ul>
+              {filteredPackingList?.map((item) => (
+                <li key={item._id}>
+                  {item.itemQuantity ? `${item.itemQuantity}x ` : ""}
+                  {item.itemName}
+                </li>
+              ))}
+            </ul>
+          </>
+        )}
       </StyledCard>
     </>
   );
