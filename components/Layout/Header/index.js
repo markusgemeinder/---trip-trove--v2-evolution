@@ -34,14 +34,27 @@ export default function Header() {
 
   let pageTitle = "TripTrove";
 
-  if (router.pathname === "/") {
-    pageTitle = "Trip Overview";
-  } else if (router.pathname === "/create") {
-    pageTitle = "Add Trip";
-  } else if (router.pathname.includes("/edit")) {
-    pageTitle = "Edit Trip";
-  } else if (router.pathname.includes("/trips/")) {
-    pageTitle = "Trip Details";
+  switch (true) {
+    case router.pathname === "/":
+      pageTitle = "Trip Overview";
+      break;
+    case router.pathname === "/create":
+      pageTitle = "Create Trip";
+      break;
+    case router.pathname === "/presets":
+      pageTitle = "Pack List Presets";
+      break;
+    case router.pathname.startsWith("/trips/") &&
+      !router.pathname.includes("/edit"):
+      pageTitle = "Trip Details";
+      break;
+    case router.pathname.startsWith("/trips/") &&
+      router.pathname.includes("/edit"):
+      pageTitle = "Edit Trip";
+      break;
+    default:
+      pageTitle = "Trip Trove";
+      break;
   }
 
   return (

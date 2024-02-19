@@ -100,7 +100,7 @@ export default function Form({
 
   return (
     <TripForm
-      aria-label="trip form"
+      aria-label={isEditMode ? "edit trip form" : "create trip form"}
       onSubmit={handleSubmit}
       formDisabled={formDisabled}
     >
@@ -180,6 +180,16 @@ export default function Form({
         />
       )}
 
+      <StyledLabel htmlFor="notes">Notes</StyledLabel>
+      <StyledInput
+        id="notes"
+        name="notes"
+        type="text"
+        value={handoverData?.notes || ""}
+        onInput={handleInput}
+        disabled={formDisabled}
+      />
+
       <PackingListContainer disabled={formDisabled}>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
         <PresetContainer>
@@ -208,15 +218,6 @@ export default function Form({
         />
       </PackingListContainer>
 
-      <StyledLabel htmlFor="notes">Notes</StyledLabel>
-      <StyledInput
-        id="notes"
-        name="notes"
-        type="text"
-        value={handoverData?.notes || ""}
-        onInput={handleInput}
-        disabled={formDisabled}
-      />
       <ButtonContainer>
         <StyledTextButton
           type="button"

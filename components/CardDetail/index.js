@@ -6,12 +6,25 @@ import Image from "next/image";
 import { toastDuration } from "@/lib/utils";
 import {
   ButtonContainer,
-  StyledTextButton,
+  StyledTextButtonMediumSize,
 } from "@/components/Button/TextButton";
 import toast, { Toaster } from "react-hot-toast";
 import { ToastMessage } from "@/components/ToastMessage";
 import TripDetailsBadge from "@/components/Badge/TripDetailsBadge";
 import CreateDateBadge from "@/components/Badge/CreateDateBadge";
+
+import {
+  PackList,
+  StyledLabel,
+  InputContainer,
+  ItemHeaderLabel,
+  ItemNumberContainer,
+  ItemNumberLabel,
+  ItemNameLabel,
+  ItemQuantityLabel,
+  InputItemName,
+  InputItemQuantity,
+} from "@/components/Form/Form.styled";
 
 const StyledMessage = styled.h2`
   margin: 2rem auto;
@@ -57,17 +70,86 @@ const CardImage = styled(Image)`
   width: 100%;
   height: 100%;
   align-self: center;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.01);
+  }
 `;
 
-const CardNotes = styled.p`
+const DetailsContainer = styled.div`
+  margin: 0;
+  padding: 0.8rem;
+  width: 100%;
+  border-radius: 8px;
+  background-color: var(--color-badge);
+  gap: 8px;
+  margin-top: 0.3rem;
+
+  &:last-child {
+    margin-bottom: 0.8rem;
+  }
+`;
+
+const DetailsLabel = styled.p`
   margin: 0;
   padding: 0;
-  color: var(--color-card-text);
-  margin-bottom: 0.8rem;
+  padding-bottom: 0.2rem;
+  color: var(--color-badge-label);
+  font-size: 0.6rem;
+
+  @media (min-width: 600px) {
+    font-size: 0.8rem;
+  }
 `;
-const CardNotesLabel = styled(CardNotes)`
-  font-weight: bold;
-  margin-bottom: 0;
+
+const DetailsText = styled.p`
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
+  color: var(--color-badge-text);
+
+  @media (min-width: 600px) {
+    font-size: 1rem;
+  }
+`;
+
+const CheckBoxContainer = styled.li`
+  display: grid;
+  grid-template-columns: 1.1fr 5.6fr 1.4fr;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  margin-top: 6px;
+  width: 100%;
+
+  @media (min-width: 600px) {
+    grid-template-columns: 0.8fr 6fr 1.2fr;
+  }
+`;
+
+const DetailsTextInBox = styled(DetailsText)`
+  background-color: #ffffff;
+  border-radius: 5px;
+  padding: 0.5rem;
+  align-self: flex-start;
+  height: 100%;
+
+  @media (min-width: 600px) {
+    border-radius: 8px;
+    padding: 0.7rem;
+  }
+`;
+
+const StyledCheckBox = styled(DetailsTextInBox)``;
+
+const StyledItemName = styled(DetailsTextInBox)``;
+
+const StyledItemQuantity = styled(DetailsTextInBox)`
+  text-align: center;
 `;
 
 export default function CardDetail() {
@@ -130,6 +212,7 @@ export default function CardDetail() {
       <StyledCard>
         <CardDestination>{trip.destination}</CardDestination>
         <TripDetailsBadge startDate={trip.start} endDate={trip.end} />
+
         <CardImage
           src={
             trip.image.url !== ""
@@ -139,36 +222,54 @@ export default function CardDetail() {
           width={300}
           height={300}
           alt={trip.destination}
-        />{" "}
+          onClick={handleEdit}
+        />
         <CreateDateBadge
           createdAt={trip.createdAt}
           updatedAt={trip.updatedAt}
         />
         <ButtonContainer>
-          <StyledTextButton onClick={handleDelete} disabled={buttonsDisabled}>
+          <StyledTextButtonMediumSize
+            onClick={handleDelete}
+            disabled={buttonsDisabled}
+          >
             Delete
-          </StyledTextButton>
-          <StyledTextButton onClick={handleEdit} disabled={buttonsDisabled}>
+          </StyledTextButtonMediumSize>
+          <StyledTextButtonMediumSize
+            onClick={handleEdit}
+            disabled={buttonsDisabled}
+          >
             Edit
-          </StyledTextButton>
+          </StyledTextButtonMediumSize>
         </ButtonContainer>
         {trip.notes !== "" && (
           <>
-            <CardNotesLabel>Notes:</CardNotesLabel>
-            <CardNotes>{trip.notes}</CardNotes>
+            <DetailsContainer>
+              <DetailsLabel>Notes:</DetailsLabel>
+              <DetailsText>{trip.notes}</DetailsText>
+            </DetailsContainer>
           </>
         )}
         {trip.packingList && trip.packingList.length !== 0 && (
           <>
-            <strong>Packing list:</strong>
-            <ul>
-              {filteredPackingList?.map((item) => (
-                <li key={item._id}>
-                  {item.itemQuantity ? `${item.itemQuantity}x ` : ""}
-                  {item.itemName}
-                </li>
-              ))}
-            </ul>
+            <DetailsContainer>
+              <DetailsLabel>Packing List:</DetailsLabel>
+              <PackList>
+                {filteredPackingList?.map((item) => (
+                  <CheckBoxContainer key={item._id}>
+                    <StyledCheckBox></StyledCheckBox>
+                    <StyledItemName>{item.itemName}</StyledItemName>
+                    {item.itemQuantity && (
+                      <>
+                        <StyledItemQuantity>
+                          {item.itemQuantity}
+                        </StyledItemQuantity>
+                      </>
+                    )}
+                  </CheckBoxContainer>
+                ))}
+              </PackList>
+            </DetailsContainer>
           </>
         )}
       </StyledCard>
