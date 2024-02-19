@@ -28,8 +28,8 @@ import {
   ItemNumberLabel,
   ItemNameLabel,
   ItemQuantityLabel,
-  InputItem,
-  InputQuantity,
+  InputItemName,
+  InputItemQuantity,
 } from "@/components/Form/Form.styled";
 import { useFormData } from "@/components/Form/Form.handlers";
 import ImageUpload from "@/components/ImageUpload";
@@ -80,7 +80,7 @@ export default function Form({
     return newObjectId;
   }
 
-  function generatePackingListFromTemplate(selectedPresetData) {
+  function generateListFromPreset(selectedPresetData) {
     console.log("Apply:", selectedPresetData);
     const selectedPreset = selectedPresetData.preset;
 
@@ -122,7 +122,7 @@ export default function Form({
     setHasChanges(true);
   }
 
-  function handleUpdateNewPackingListItemName(
+  function handleUpdateNewItemName(
     newName,
     newPackingListItem,
     setNewPackingListItem
@@ -134,7 +134,7 @@ export default function Form({
     setNewPackingListItem(updatedNewPackingListItem);
   }
 
-  function handleUpdateNewPackingListItemQuantity(
+  function handleUpdateNewItemQuantity(
     newQuantity,
     newPackingListItem,
     setNewPackingListItem
@@ -302,7 +302,7 @@ export default function Form({
           />
           <StyledTextButtonMediumSize
             type="button"
-            onClick={() => generatePackingListFromTemplate(selectedPresetData)}
+            onClick={() => generateListFromPreset(selectedPresetData)}
             disabled={formDisabled}
           >
             Apply
@@ -332,12 +332,8 @@ export default function Form({
           {handoverData.showNewPackingListItem && (
             <NewPackingListItem
               newPackingListItem={newPackingListItem}
-              handleUpdateNewPackingListItemName={
-                handleUpdateNewPackingListItemName
-              }
-              handleUpdateNewPackingListItemQuantity={
-                handleUpdateNewPackingListItemQuantity
-              }
+              handleUpdateNewItemName={handleUpdateNewItemName}
+              handleUpdateNewItemQuantity={handleUpdateNewItemQuantity}
               formDisabled={formDisabled}
             />
           )}
@@ -390,7 +386,7 @@ function InputItemAndQuantity({
 }) {
   return (
     <>
-      <InputItem
+      <InputItemName
         id={`packingList_${item._id}`}
         name={`packingList_${item._id}`}
         type="text"
@@ -400,7 +396,7 @@ function InputItemAndQuantity({
         }
         disabled={formDisabled}
       />
-      <InputQuantity
+      <InputItemQuantity
         id={`packingList_quantity_${item._id}`}
         name={`packingList_quantity_${item._id}`}
         type="number"
@@ -427,27 +423,23 @@ function InputItemAndQuantity({
 
 function NewPackingListItem({
   newPackingListItem,
-  handleUpdateNewPackingListItemName,
-  handleUpdateNewPackingListItemQuantity,
+  handleUpdateNewItemName,
+  handleUpdateNewItemQuantity,
   formDisabled,
 }) {
   return (
     <InputContainer>
-      <InputItem
+      <InputItemName
         type="text"
         disabled={formDisabled}
         value={newPackingListItem.itemName}
-        onChange={(event) =>
-          handleUpdateNewPackingListItemName(event.target.value)
-        }
+        onChange={(event) => handleUpdateNewItemName(event.target.value)}
       />
-      <InputQuantity
+      <InputItemQuantity
         type="number"
         disabled={formDisabled}
         value={newPackingListItem.itemQuantity}
-        onChange={(event) =>
-          handleUpdateNewPackingListItemQuantity(event.target.value)
-        }
+        onChange={(event) => handleUpdateNewItemQuantity(event.target.value)}
         min="0"
         max="999"
       />

@@ -197,12 +197,12 @@ export const ItemQuantityLabel = styled(ItemNumberLabel)`
   justify-self: center;
 `;
 
-export const InputItem = styled(StyledInput)`
+export const InputItemName = styled(StyledInput)`
   width: 100%;
   margin: 0;
 `;
 
-export const InputQuantity = styled(StyledInput)`
+export const InputItemQuantity = styled(StyledInput)`
   text-align: right;
   width: 100%;
   margin: 0;
