@@ -175,7 +175,9 @@ const StyledCheckBox = styled.input`
   margin: 0;
 `;
 
-const StyledItemName = styled(DetailsText)``;
+const StyledItemName = styled(DetailsText)`
+  word-break: break-all;
+`;
 
 const StyledItemQuantity = styled(DetailsText)`
   text-align: center;
