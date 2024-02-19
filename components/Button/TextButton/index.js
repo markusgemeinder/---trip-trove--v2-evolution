@@ -6,12 +6,12 @@ export const ButtonContainer = styled.div`
   flex-flow: row wrap;
   justify-content: ${({ $justifyContent }) => $justifyContent || "center"};
   gap: 1rem;
-  margin-top: 1rem;
-  margin-bottom: 0.6rem;
+  margin-top: 0.8rem;
+  margin-bottom: 0.4rem;
 
   @media (min-width: 600px) {
-    margin-top: 1.5rem;
-    margin-bottom: 1rem;
+    margin-top: 1.2rem;
+    margin-bottom: 0.8rem;
   }
 `;
 

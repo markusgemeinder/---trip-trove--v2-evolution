@@ -47,10 +47,11 @@ const StyledDaysLabel = styled.p`
   margin: 0;
   padding: 0;
   color: var(--color-badge-label);
+  font-weight: bold;
   font-size: 0.6rem;
 
   @media (min-width: 600px) {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 `;
 
