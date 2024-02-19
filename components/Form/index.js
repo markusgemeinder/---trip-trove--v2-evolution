@@ -1,4 +1,6 @@
+import mongoose from "mongoose";
 import { formatDateForInput } from "@/lib/utils";
+import { useState } from "react";
 import {
   ButtonContainer,
   StyledTextButton,
@@ -55,22 +57,163 @@ export default function Form({
   const {
     formDisabled,
     handoverData,
+    setHandoverData,
     hasChanges,
+    setHasChanges,
     handleImageUpdate,
     handleDeleteImage,
-    newPackingListItem,
-    selectedPresetData,
-    setSelectedPresetData,
-    generatePackingListFromTemplate,
-    handleUpdateNewPackingListItemName,
-    handleUpdateNewPackingListItemQuantity,
-    handleAddPackingListItem,
     handleInput,
-    handleUpdateItem,
-    handleRemoveItem,
     handleReset,
     handleSubmit,
   } = useFormData(defaultData, onSubmit, isEditMode);
+
+  const [newPackingListItem, setNewPackingListItem] = useState({
+    itemName: "",
+    itemQuantity: null,
+  });
+  const [selectedPresetData, setSelectedPresetData] = useState([]);
+  const [lastAppliedPreset, setLastAppliedPreset] = useState(null);
+
+  function generateObjectId() {
+    const { ObjectId } = mongoose.Types;
+    const newObjectId = new ObjectId().toString();
+    return newObjectId;
+  }
+
+  function generatePackingListFromTemplate(selectedPresetData) {
+    console.log("Apply:", selectedPresetData);
+    const selectedPreset = selectedPresetData.preset;
+
+    if (!selectedPreset) {
+      toast.error("No preset selected yet.", {
+        duration: toastDuration,
+      });
+      return;
+    }
+    if (lastAppliedPreset === selectedPreset) {
+      return;
+    }
+    setLastAppliedPreset(selectedPreset);
+
+    const updatedPackingList = [...handoverData.packingList];
+
+    const lastItem = updatedPackingList[updatedPackingList.length - 1];
+    if (lastItem && lastItem.itemName === "") {
+      updatedPackingList.pop();
+      updatedPackingList.push(
+        ...selectedPresetData.items.map((item) => ({
+          ...item,
+          _id: generateObjectId(),
+        }))
+      );
+    } else {
+      updatedPackingList.push(
+        ...selectedPresetData.items.map((item) => ({
+          ...item,
+          _id: generateObjectId(),
+        }))
+      );
+    }
+
+    console.log("nPLI in gPLFT:", newPackingListItem);
+    setHandoverData((prevData) => ({
+      ...prevData,
+      packingList: updatedPackingList,
+    }));
+    setHasChanges(true);
+  }
+
+  function handleUpdateNewPackingListItemName(
+    newName,
+    newPackingListItem,
+    setNewPackingListItem
+  ) {
+    const updatedNewPackingListItem = {
+      itemName: newName,
+      itemQuantity: newPackingListItem.itemQuantity,
+    };
+    setNewPackingListItem(updatedNewPackingListItem);
+    console.log("nPLI in hUNPLIN:", newPackingListItem);
+  }
+
+  function handleUpdateNewPackingListItemQuantity(
+    newQuantity,
+    newPackingListItem,
+    setNewPackingListItem
+  ) {
+    const updatedNewPackingListItem = {
+      itemQuantity: newQuantity,
+      itemName: newPackingListItem.itemName,
+    };
+    setNewPackingListItem(updatedNewPackingListItem);
+    console.log("nPLI in hUNPLIQ:", newPackingListItem);
+  }
+
+  function handleAddPackingListItem() {
+    if (formDisabled) {
+      return;
+    }
+
+    const lastItem =
+      handoverData.packingList[handoverData.packingList.length - 1];
+
+    if (lastItem && lastItem.itemName === "") {
+      return;
+    }
+
+    const nextPackingListItem = {
+      ...newPackingListItem,
+      _id: generateObjectId(),
+    };
+
+    const updatedPackingList = [
+      ...handoverData.packingList,
+      nextPackingListItem,
+    ];
+
+    setHandoverData((prevData) => ({
+      ...prevData,
+      packingList: updatedPackingList,
+    }));
+
+    console.log("nPLI before in hAPLI:", newPackingListItem);
+    setNewPackingListItem({ itemName: "", itemQuantity: null });
+    console.log("nPLI after in hAPLI:", newPackingListItem);
+    setHasChanges(true);
+  }
+
+  function handleUpdateItem(itemId, itemName, itemQuantity) {
+    setHandoverData((prev) => {
+      const updatedPackingList = prev.packingList.map((item) =>
+        item._id === itemId ? { ...item, itemName, itemQuantity } : item
+      );
+
+      return {
+        ...prev,
+        packingList: updatedPackingList,
+      };
+    });
+
+    setHasChanges(true);
+  }
+
+  function handleRemoveItem(itemIdToRemove) {
+    if (formDisabled) {
+      return;
+    }
+
+    setHandoverData((prevData) => {
+      const updatedPackingList = handoverData.packingList.filter((item) => {
+        return item._id !== itemIdToRemove;
+      });
+
+      return {
+        ...prevData,
+        packingList: updatedPackingList,
+      };
+    });
+    setHasChanges(true);
+  }
 
   return (
     <TripForm
