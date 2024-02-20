@@ -29,7 +29,7 @@ export default function PackingList({
   setHasChanges,
   formDisabled,
 }) {
-  const [newPackingListItem, setNewPackingListItem] = useState({
+  const [newItem, setNewItem] = useState({
     itemName: "",
     itemQuantity: null,
     isPacked: false,
@@ -42,21 +42,18 @@ export default function PackingList({
       handoverData.packingList[handoverData.packingList.length - 1];
     if (lastItem && lastItem.itemName === "") return;
 
-    const nextPackingListItem = {
-      ...newPackingListItem,
+    const nextItem = {
+      ...newItem,
       _id: generateObjectId(),
     };
-    const updatedPackingList = [
-      ...handoverData.packingList,
-      nextPackingListItem,
-    ];
+    const updatedPackingList = [...handoverData.packingList, nextItem];
 
     setHandoverData((prevData) => ({
       ...prevData,
       packingList: updatedPackingList,
     }));
 
-    setNewPackingListItem({
+    setNewItem({
       itemName: "",
       itemQuantity: null,
       isPacked: false,
@@ -86,8 +83,8 @@ export default function PackingList({
     setHasChanges(true);
   }
 
-  function handleUpdateNewPackingListItem(updates) {
-    setNewPackingListItem((prev) => ({ ...prev, ...updates }));
+  function handleUpdateNewItem(updates) {
+    setNewItem((prev) => ({ ...prev, ...updates }));
   }
 
   return (
@@ -113,10 +110,10 @@ export default function PackingList({
             />
           </InputContainer>
         ))}
-        {handoverData.showNewPackingListItem && (
-          <NewPackingListItem
-            newPackingListItem={newPackingListItem}
-            handleUpdateNewPackingListItem={handleUpdateNewPackingListItem}
+        {handoverData.showNewItem && (
+          <NewItem
+            newItem={newItem}
+            handleUpdateNewItem={handleUpdateNewItem}
             formDisabled={formDisabled}
           />
         )}
@@ -183,13 +180,9 @@ function InputItemAndQuantity({
   );
 }
 
-function NewPackingListItem({
-  newPackingListItem,
-  handleUpdateNewPackingListItem,
-  formDisabled,
-}) {
+function NewItem({ newItem, handleUpdateNewItem, formDisabled }) {
   const handleInputChange = (key, value) => {
-    handleUpdateNewPackingListItem({ [key]: value });
+    handleUpdateNewItem({ [key]: value });
   };
 
   return (
@@ -197,13 +190,13 @@ function NewPackingListItem({
       <InputItemName
         type="text"
         disabled={formDisabled}
-        value={newPackingListItem.itemName}
+        value={newItem.itemName}
         onChange={(event) => handleInputChange("itemName", event.target.value)}
       />
       <InputItemQuantity
         type="number"
         disabled={formDisabled}
-        value={newPackingListItem.itemQuantity}
+        value={newItem.itemQuantity}
         onChange={(event) =>
           handleInputChange("itemQuantity", event.target.value)
         }
