@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Image from "next/image";
 import { defaultFont } from "@/styles.js";
 
-export const TripForm = styled.form`
+export const StyledTripForm = styled.form`
   display: grid;
   width: 300px;
   margin: 0.6rem auto;

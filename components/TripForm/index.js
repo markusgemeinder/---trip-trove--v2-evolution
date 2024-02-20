@@ -7,7 +7,7 @@ import {
   StyledTextButtonMediumSize,
 } from "@/components/Button/TextButton";
 import {
-  TripForm,
+  StyledTripForm,
   StyledLabel,
   StyledInput,
   DateContainer,
@@ -16,11 +16,13 @@ import {
   PreviewImage,
   PackingListContainer,
   PresetContainer,
-} from "@/components/Form/Form.styled";
-import { useFormData } from "@/components/Form/Form.handlers";
-import ImageUpload from "@/components/ImageUpload";
-import PresetSelect from "@/components/PresetSelect";
-import PackingList, { generateObjectId } from "@/components/PackingList";
+} from "@/components/TripForm/TripForm.styled";
+import { useFormData } from "@/components/TripForm/TripForm.handlers";
+import ImageUpload from "@/components/TripForm/ImageUpload";
+import PresetSelect from "@/components/TripForm/PresetSelect";
+import PackingList, {
+  generateObjectId,
+} from "@/components/TripForm/PackingList";
 
 const INITIAL_DATA = {
   destination: "",
@@ -36,7 +38,7 @@ const INITIAL_DATA = {
   packingList: [],
 };
 
-export default function Form({
+export default function TripForm({
   defaultData = INITIAL_DATA,
   isEditMode,
   onSubmit,
@@ -99,7 +101,7 @@ export default function Form({
   }
 
   return (
-    <TripForm
+    <StyledTripForm
       aria-label={isEditMode ? "edit trip form" : "create trip form"}
       onSubmit={handleSubmit}
       formDisabled={formDisabled}
@@ -230,6 +232,6 @@ export default function Form({
           Save
         </StyledTextButton>
       </ButtonContainer>
-    </TripForm>
+    </StyledTripForm>
   );
 }

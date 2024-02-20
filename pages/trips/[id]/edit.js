@@ -1,6 +1,6 @@
 import useSWR from "swr";
 import { useRouter } from "next/router";
-import Form from "@/components/Form";
+import TripForm from "@/components/TripForm";
 import BackButton from "@/components/Button/BackButton";
 import { toast, Toaster } from "react-hot-toast";
 
@@ -34,7 +34,7 @@ export default function EditPage() {
   return (
     <>
       <Toaster />
-      <Form onSubmit={handleSubmit} defaultData={trip} isEditMode={true} />
+      <TripForm onSubmit={handleSubmit} defaultData={trip} isEditMode={true} />
       <BackButton href={`/trips/${id}`} />
     </>
   );

@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import Form from "@/components/Form";
+import TripForm from "@/components/TripForm";
 import BackButton from "@/components/Button/BackButton";
 import toast, { Toaster } from "react-hot-toast";
 
@@ -29,7 +29,7 @@ export default function CreateTripPage() {
   return (
     <>
       <Toaster />
-      <Form onSubmit={handleSubmit} isEditMode={false} />
+      <TripForm onSubmit={handleSubmit} isEditMode={false} />
       <BackButton href="/" />
     </>
   );
