@@ -32,6 +32,7 @@ export default function PackingList({
   const [newPackingListItem, setNewPackingListItem] = useState({
     itemName: "",
     itemQuantity: null,
+    isPacked: false,
   });
 
   function handleAddItem() {
@@ -55,7 +56,11 @@ export default function PackingList({
       packingList: updatedPackingList,
     }));
 
-    setNewPackingListItem({ itemName: "", itemQuantity: null });
+    setNewPackingListItem({
+      itemName: "",
+      itemQuantity: null,
+      isPacked: false,
+    });
     setHasChanges(true);
   }
 
