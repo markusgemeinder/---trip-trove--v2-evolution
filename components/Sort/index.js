@@ -51,9 +51,9 @@ export default function Sort({ data, onChange }) {
 
   const sortTrips = (method) => {
     switch (method) {
-      case "dateAsc":
+      case "startDateAsc":
         return [...data].sort((a, b) => new Date(a.start) - new Date(b.start));
-      case "dateDesc":
+      case "startDateDesc":
         return [...data].sort((a, b) => new Date(b.start) - new Date(a.start));
       case "durationAsc":
         return [...data].sort(
@@ -69,16 +69,35 @@ export default function Sort({ data, onChange }) {
             new Date(b.start) -
             (new Date(a.end) - new Date(a.start))
         );
-      case "alphaAsc":
+      case "destinationAsc":
         return [...data].sort((a, b) =>
           a.destination.localeCompare(b.destination)
         );
-      case "alphaDesc":
+      case "destinationDesc":
         return [...data].sort((a, b) =>
           b.destination.localeCompare(a.destination)
         );
+      case "createdAtAsc":
+        return [...data].sort(
+          (a, b) => new Date(a.createdAt) - new Date(b.createdAt)
+        );
+      case "createdAtDesc":
+        return [...data].sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
+      case "updatedAtAsc":
+        return [...data].sort(
+          (a, b) => new Date(a.updatedAt) - new Date(b.updatedAt)
+        );
+      case "updatedAtDesc":
+        return [...data].sort(
+          (a, b) => new Date(b.updatedAt) - new Date(a.updatedAt)
+        );
+
       default:
-        return [...data].reverse();
+        return [...data].sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
     }
   };
 
@@ -95,13 +114,40 @@ export default function Sort({ data, onChange }) {
         Sort Trips:
       </StyledSortSelectLabel>
       <StyledSortSelect onChange={handleSortChange}>
-        <option value="default">Create Date | Newest &#8593;</option>
-        <option value="dateAsc">Start Date | Earliest &#8593;</option>
-        <option value="dateDesc">Start Date | Latest &#8593;</option>
-        <option value="durationAsc">Duration | Shortest &#8593;</option>
-        <option value="durationDesc">Duration | Longest &#8593;</option>
-        <option value="alphaAsc">Destination (A-Z) &#8595;</option>
-        <option value="alphaDesc">Destination (Z-A) &#8593;</option>
+        <option value="">Select a Sort Method...</option>
+        <hr />
+        <option value="startDateAsc">
+          Start Date: Earliest &#8593; Latest &#8595;
+        </option>
+        <option value="startDateDesc">
+          Start Date: Latest &#8593; Earliest &#8595;
+        </option>
+        <hr />
+        <option value="destinationAsc">Destination: A &#8593; Z &#8595;</option>
+        <option value="destinationDesc">
+          Destination: Z &#8593; A &#8595;
+        </option>
+        <hr />
+        <option value="durationAsc">
+          Duration: Shortest &#8593; Longest &#8595;
+        </option>
+        <option value="durationDesc">
+          Duration: Longest &#8593; Shortest &#8595;
+        </option>
+        <hr />
+        <option value="createdAtDesc">
+          Create Date: Newest &#8593; Oldest &#8595;
+        </option>
+        <option value="createdAtAsc">
+          Create Date: Oldest &#8593; Newest &#8595;
+        </option>
+        <hr />
+        <option value="updatedAtDesc">
+          Last Updated: Newest &#8593; Oldest &#8595;
+        </option>
+        <option value="updatedAtAsc">
+          Last Updated: Oldest &#8593; Newest &#8595;
+        </option>
       </StyledSortSelect>
     </SortSelectContainer>
   );

@@ -12,7 +12,9 @@ const StyledCardList = styled.ul`
 `;
 
 export default function CardList({ data }) {
-  const [sortedData, setSortedData] = useState(data);
+  const [sortedData, setSortedData] = useState(
+    [...data].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+  );
 
   function handleSortChange(sortedData) {
     setSortedData(sortedData);
