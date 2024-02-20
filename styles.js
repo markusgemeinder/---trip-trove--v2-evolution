@@ -161,7 +161,7 @@ export default createGlobalStyle`
   --color-badge-on-badge: var(--color-grey-0);
   --color-badge-label: var(--color-grey-400);
   --color-badge-label-dark: var(--color-grey-600);
-  --color-badge-text: var(--color-grey-1000);
+  --color-badge-text: var(--color-grey-800);
   --color-badge-highlight: var(--color-orange-500);
 
   --color-image-upload: var(--color-orange-50);

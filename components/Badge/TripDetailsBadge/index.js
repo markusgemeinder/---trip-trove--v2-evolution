@@ -10,17 +10,17 @@ const BadgeContainer = styled.div`
   padding: 0;
   display: grid;
   width: 100%;
-  grid-template-columns: 0.9fr 1.8fr 0.9fr;
+  grid-template-columns: 1fr 2fr 1fr;
   border-radius: 8px;
   gap: 8px;
   margin-bottom: 0.3rem;
 
   @media (min-width: 600px) {
-    grid-template-columns: 1fr 1.6fr 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
   }
 `;
 
-const DaysContainer = styled.div`
+const StartDurationContainer = styled.div`
   margin: 0;
   padding: 0.3rem;
   display: flex;
@@ -31,19 +31,7 @@ const DaysContainer = styled.div`
   border-radius: inherit;
 `;
 
-const StyledDays = styled.p`
-  margin: 0;
-  padding: 0;
-  font-weight: bold;
-  color: var(--color-badge-highlight);
-  font-size: 1.2rem;
-
-  @media (min-width: 600px) {
-    font-size: 1.6rem;
-  }
-`;
-
-const StyledDaysLabel = styled.p`
+const StartDurationText = styled.p`
   margin: 0;
   padding: 0.1rem;
   color: var(--color-badge-label);
@@ -55,14 +43,25 @@ const StyledDaysLabel = styled.p`
   }
 `;
 
-const DateContainer = styled.div`
+const StartDurationDays = styled.p`
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+  color: var(--color-badge-highlight);
+  font-size: 1.2rem;
+
+  @media (min-width: 600px) {
+    font-size: 1.6rem;
+  }
+`;
+
+const ScheduledContainer = styled.div`
   margin: 0;
   padding: 0.3rem 0.8rem;
-  display: grid;
-  grid-template-columns: 1fr 2.4fr;
-  grid-template-areas: "scheduled scheduled" "from start" "until end";
+  display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  flex-flow: column wrap;
   background-color: var(--color-badge);
   border-radius: inherit;
   
@@ -70,71 +69,53 @@ const DateContainer = styled.div`
     grid-template-columns: 1fr 3fr;
 `;
 
-const DateContainerLabel = styled(StyledDaysLabel)`
+const ScheduledText = styled(StartDurationText)`
   margin: 0;
   padding: 0;
   text-align: left;
 `;
 
-const LabelScheduled = styled(DateContainerLabel)`
-  grid-area: scheduled;
-`;
-const LabelStart = styled(DateContainerLabel)`
-  grid-area: from;
-`;
-
-const LabelEnd = styled(DateContainerLabel)`
-  grid-area: until;
-`;
-
-const StyledDate = styled.p`
+const ScheduledDate = styled.p`
   margin: 0;
-  /* padding: 0; */
-  font-size: 0.7rem;
+  padding: 0.1rem;
+  font-size: 0.8rem;
   font-weight: bold;
   color: var(--color-badge-text);
 
   @media (min-width: 600px) {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
-`;
-
-const StyledStartDate = styled(StyledDate)`
-  grid-area: start;
-`;
-
-const StyledEndDate = styled(StyledDate)`
-  grid-area: end;
 `;
 
 export default function TripDetailsBadge({ startDate, endDate }) {
   return (
     <BadgeContainer>
-      <DaysContainer>
+      <StartDurationContainer>
         {calculateStartDays(startDate) <= 0 ? (
-          <StyledDaysLabel>Overdue</StyledDaysLabel>
+          <StartDurationText>Overdue</StartDurationText>
         ) : (
-          <StyledDaysLabel>Start in</StyledDaysLabel>
+          <StartDurationText>Start in</StartDurationText>
         )}
-        <StyledDays>{calculateStartDays(startDate)}</StyledDays>
-        <StyledDaysLabel>
+        <StartDurationDays>{calculateStartDays(startDate)}</StartDurationDays>
+        <StartDurationText>
           {calculateStartDays(startDate) === 1 ? "day" : "days"}
-        </StyledDaysLabel>
-      </DaysContainer>
-      <DateContainer>
-        <LabelScheduled>Scheduled</LabelScheduled>
-        <LabelStart>from:</LabelStart>
-        <StyledStartDate>{formatDate(startDate)}</StyledStartDate>
-        <LabelEnd>until:</LabelEnd>
-        <StyledEndDate>{formatDate(endDate)}</StyledEndDate>
-      </DateContainer>
-      <DaysContainer>
-        <StyledDaysLabel>Duration</StyledDaysLabel>
-        <StyledDays>{calculateDurationDays(startDate, endDate)}</StyledDays>
-        <StyledDaysLabel>
+        </StartDurationText>
+      </StartDurationContainer>
+      <ScheduledContainer>
+        <ScheduledText>Scheduled from</ScheduledText>
+        <ScheduledDate>{formatDate(startDate)}</ScheduledDate>
+        <ScheduledText>until</ScheduledText>
+        <ScheduledDate>{formatDate(endDate)}</ScheduledDate>
+      </ScheduledContainer>
+      <StartDurationContainer>
+        <StartDurationText>Duration</StartDurationText>
+        <StartDurationDays>
+          {calculateDurationDays(startDate, endDate)}
+        </StartDurationDays>
+        <StartDurationText>
           {calculateDurationDays(startDate, endDate) === 1 ? "day" : "days"}
-        </StyledDaysLabel>
-      </DaysContainer>
+        </StartDurationText>
+      </StartDurationContainer>
     </BadgeContainer>
   );
 }
