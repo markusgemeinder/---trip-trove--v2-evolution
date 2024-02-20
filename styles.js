@@ -1,7 +1,7 @@
 import { createGlobalStyle } from "styled-components";
-import { Outfit } from "next/font/google";
+import { Fredoka } from "next/font/google";
 
-export const defaultFont = Outfit({
+export const defaultFont = Fredoka({
   subsets: ["latin"],
   weight: ["400"],
   style: ["normal"],
