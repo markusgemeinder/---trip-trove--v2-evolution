@@ -179,6 +179,50 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
       return;
     }
 
+    const emptyItemIndex = handoverData.packingList.findIndex(
+      (item) => item.itemName.trim() === "" && item.itemQuantity !== null
+    );
+
+    if (emptyItemIndex !== -1) {
+      const itemNumber = emptyItemIndex + 1;
+      toast.error(`Please name item or delete No. ${itemNumber}!`, {
+        duration: toastDuration,
+      });
+      setFormDisabled(false);
+      return;
+    }
+
+    const hasEmptyItems = handoverData.packingList.some(
+      (item) => item.itemName.trim() === "" && item.itemQuantity === null
+    );
+
+    if (
+      handoverData.packingList.length === 0 ||
+      (handoverData.packingList.length === 1 && hasEmptyItems)
+    ) {
+      toast.error(
+        "Empty packing list! Don\u2019t forget to add items if required.",
+        {
+          duration: toastDuration,
+        }
+      );
+    }
+    const modifiedHandoverData =
+      handoverData?.packingList.length === 1 && hasEmptyItems
+        ? {
+            ...handoverData,
+            packingList: [],
+          }
+        : handoverData?.packingList.length > 1 && hasEmptyItems
+        ? {
+            ...handoverData,
+            packingList: handoverData.packingList.filter(
+              (item) =>
+                item.itemName.trim() !== "" || item.itemQuantity !== null
+            ),
+          }
+        : handoverData;
+
     toast(
       <ToastMessage
         message="Are you sure to save all changes?"
