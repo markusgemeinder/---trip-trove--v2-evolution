@@ -10,12 +10,12 @@ const StyledCard = styled.li`
   flex-flow: column wrap;
   gap: 0.1rem;
   background-color: var(--color-card);
-  border: 1px solid var(--color-card-border);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   width: 300px;
   padding: 0.2rem 1.2rem;
   margin-bottom: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px var(--color-box-shadow);
   list-style: none;
 
   @media (min-width: 600px) {

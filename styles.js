@@ -109,17 +109,17 @@ export default createGlobalStyle`
   
   --color-logo-main: var(--color-blue-700);
   --color-logo-jewel: var(--color-orange-350);
-
+  
   --color-navigation: var(--color-blue-400);
   --color-navigation-active: var(--color-blue-600);
   --color-navigation-hover: var(--color-blue-700);
   --color-navigation-item: var(--color-blue-0);
   --color-navigation-item-text: var(--color-blue-0);
   --color-navigation-border: var(--color-blue-0);
-
+  
   --color-back-button: var(--color-blue-300);
   --color-back-button-hover: var(--color-blue-50);
-
+  
   --color-page-up-button: var(--color-blue-300);
   --color-page-up-button-hover: var(--color-blue-50);
   
@@ -134,23 +134,25 @@ export default createGlobalStyle`
   --color-mini-button-add: var(--color-green-600);
   --color-mini-button-add-hover: var(--color-green-700);
   --color-mini-button-add-text: var(--color-green-0);
-
+  
   --color-button: var(--color-orange-100);
   --color-button-text: var(--color-grey-1000);
   --color-button-border: var(--color-orange-300);
   --color-button-hover: var(--color-orange-200);
+  
+  --color-border: var(--color-orange-300);
+  --color-box-shadow: var(--color-grey-200);
 
-  --color-form-label: var(--color-grey-800);
+  --color-form-label: var(--color-grey-500);
   --color-form-input: var(--color-grey-50);
   --color-form-item-label: var(--color-grey-200);
-
+  
   --color-sort-selector: var(--color-orange-100);
   --color-sort-selector-text: var(--color-grey-1000);
   --color-sort-selector-border: var(--color-orange-300);
   --color-sort-selector-focus: var(--color-orange-500);
 
   --color-card: var(--color-orange-0);
-  --color-card-border: var(--color-grey-200);
   --color-card-title: var(--color-grey-900);
   --color-card-date-label: var(--color-grey-300);
   --color-card-date: var(--color-orange-1000);
@@ -172,7 +174,6 @@ export default createGlobalStyle`
   --color-image-upload-text: var(--color-grey-300);
   --color-image-upload-hover: var(--color-orange-100);
   --color-image-upload-in-progress: var(--color-orange-0);
-
 
 
   --font-size: 14px;

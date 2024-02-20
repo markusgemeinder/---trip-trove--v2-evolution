@@ -7,7 +7,7 @@ const StyledSelect = styled.select`
   font-family: ${defaultFont.style.fontFamily};
   font-size: inherit;
   background-color: var(--color-form-input);
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   margin: 0;
   padding: 0.3rem;

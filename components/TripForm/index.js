@@ -7,7 +7,7 @@ import {
   StyledTextButtonMediumSize,
 } from "@/components/Button/TextButton";
 import {
-  StyledTripForm,
+  StyledForm,
   StyledLabel,
   StyledInput,
   DateContainer,
@@ -101,7 +101,7 @@ export default function TripForm({
   }
 
   return (
-    <StyledTripForm
+    <StyledForm
       aria-label={isEditMode ? "edit trip form" : "create trip form"}
       onSubmit={handleSubmit}
       formDisabled={formDisabled}
@@ -232,6 +232,6 @@ export default function TripForm({
           Save
         </StyledTextButton>
       </ButtonContainer>
-    </StyledTripForm>
+    </StyledForm>
   );
 }

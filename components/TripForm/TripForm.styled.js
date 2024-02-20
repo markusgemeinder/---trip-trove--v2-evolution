@@ -2,16 +2,16 @@ import styled from "styled-components";
 import Image from "next/image";
 import { defaultFont } from "@/styles.js";
 
-export const StyledTripForm = styled.form`
+export const StyledForm = styled.form`
   display: grid;
   width: 300px;
   margin: 0.6rem auto;
   gap: 0.1rem;
   padding: 0.8rem 1rem;
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   margin-bottom: 16px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px var(--color-box-shadow);
 
   @media (min-width: 600px) {
     margin: 2rem auto;
@@ -37,7 +37,7 @@ export const StyledInput = styled.input`
   font-family: ${defaultFont.style.fontFamily};
   font-size: inherit;
   background-color: var(--color-form-input);
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   padding: 0.3rem;
   border-radius: 8px;
   margin-bottom: 0.1rem;
@@ -127,7 +127,7 @@ export const StyledSelect = styled.select`
   font-family: ${defaultFont.style.fontFamily};
   font-size: inherit;
   background-color: var(--color-form-input);
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   margin-top: 8px;
   margin-bottom: 8px;
@@ -171,7 +171,7 @@ export const ItemHeaderLabel = styled.div`
 
 export const ItemNumberContainer = styled.div`
   background-color: var(--color-form-input);
-  border: 1px solid #ddd;
+  border: 1px solid var(--color-border);
   padding: 0.3rem;
   border-radius: 8px;
   margin-bottom: 0.1rem;
