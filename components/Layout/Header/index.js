@@ -27,6 +27,10 @@ const HeaderContainer = styled.header`
 
 const HeaderTitle = styled.h1`
   color: var(--color-header-title);
+  font-size: 1.4rem;
+
+  @media (min-width: 600px) {
+    font-size: 1.8rem;
 `;
 
 export default function Header() {
