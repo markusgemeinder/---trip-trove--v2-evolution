@@ -19,6 +19,7 @@ import {
   PresetContainer,
 } from "@/components/TripForm/TripForm.styled";
 import PresetSelect from "@/components/PresetSelect";
+import PackingList from "@/components/PackingList";
 
 const INITIAL_DATA = {
   preset: "",
@@ -39,7 +40,8 @@ export default function PresetForm(INITIAL_DATA) {
 
   function generateListFromPreset(selectedPresetData) {
     const selectedPreset = selectedPresetData.preset;
-
+    console.log("SelectedPresetData:", selectedPresetData);
+    return;
     if (!selectedPreset) {
       toast.error("No preset selected yet.", {
         duration: toastDuration,
@@ -90,13 +92,30 @@ export default function PresetForm(INITIAL_DATA) {
         onSubmit={handleSubmit}
         formDisabled={formDisabled}
       >
-        <StyledLabel htmlFor="preset">Existing Presets:</StyledLabel>
-        <PresetSelect
-          id="template"
-          name="template"
-          onSelectPreset={setSelectedPresetData}
-          formDisabled={formDisabled}
-        />
+        <PackingListContainer disabled={formDisabled}>
+          <StyledLabel htmlFor="preset">Existing Presets:</StyledLabel>
+          <PresetContainer>
+            <PresetSelect
+              id="selectPreset"
+              name="selectPreset"
+              onSelectPreset={setSelectedPresetData}
+              formDisabled={formDisabled}
+            />{" "}
+            <StyledTextButtonMediumSize
+              type="button"
+              onClick={() => generateListFromPreset(selectedPresetData)}
+              disabled={formDisabled}
+            >
+              Apply
+            </StyledTextButtonMediumSize>
+          </PresetContainer>
+          {/* <PackingList
+            handoverData={handoverData}
+            formDisabled={formDisabled}
+            selectedPresetData={selectedPresetData}
+            setSelectedPresetData={setSelectedPresetData}
+          /> */}
+        </PackingListContainer>
         <ButtonContainer>
           <StyledTextButton type="submit" disabled={formDisabled}>
             Submit

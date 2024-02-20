@@ -53,7 +53,6 @@ export const StyledSelect = styled.select`
   background-color: var(--color-form-input);
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  margin-top: 8px;
   margin-bottom: 8px;
   padding: 0.3rem;
 

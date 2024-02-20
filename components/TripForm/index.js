@@ -194,8 +194,8 @@ export default function TripForm({
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
         <PresetContainer>
           <PresetSelect
-            id="template"
-            name="template"
+            id="selectPresetTripForm"
+            name="selectPresetTripForm"
             onSelectPreset={setSelectedPresetData}
             formDisabled={formDisabled}
           />
