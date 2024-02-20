@@ -120,7 +120,7 @@ export default function PackingList({
             type="button"
             id="add"
             action="add"
-            fontSize={"1.4rem"}
+            fontSize={"1.2rem"}
             onClick={handleAddItem}
             disabled={formDisabled}
           >

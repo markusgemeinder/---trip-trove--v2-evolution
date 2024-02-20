@@ -29,13 +29,13 @@ const StyledSortSelect = styled.select`
   border: 2px solid var(--color-sort-selector-border);
   border-radius: 8px;
   font-family: var(--font-family);
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   font-weight: bold;
   cursor: pointer;
 
   @media (min-width: 600px) {
     padding: 0.5rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   &:focus {

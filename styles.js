@@ -164,13 +164,13 @@ export default createGlobalStyle`
   }
 
  
-@media only screen and (min-width: 600px) {
+@media (min-width: 600px) {
   :root {
     --font-size: 1rem;
   }
 }
 
-@media only screen and (min-width: 900px) {
+@media (min-width: 900px) {
   :root {
     --font-size: 1.1rem;
   }
@@ -183,16 +183,17 @@ body {
     min-height: 100vh;
     font-family: ${defaultFont.style.fontFamily};
     font-size: var(--font-size);
-
-}
-
-@media only screen and (max-width: 600px) {
-  body {
-    /* Adjust font properties for smaller screens */
-    font-weight: 300; /* or another suitable value */
-    letter-spacing: -10; /* or another suitable value */
+    font-weight: lighter; /* or another suitable value */
+    letter-spacing: -100; /* or another suitable value */
+    
+  }
+  
+  @media (min-width: 600px) {
+    body {
+      font-weight: normal; /* or another suitable value */
+      letter-spacing: normal; /* or another suitable value */
   }
 }
-}
+
 
 `;

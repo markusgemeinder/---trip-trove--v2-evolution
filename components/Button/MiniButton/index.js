@@ -29,7 +29,6 @@ export const StyledMiniButton = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  justify-self: center;
   width: 1.5rem;
   height: 1.5rem;
   padding: 0.2rem;
@@ -70,7 +69,7 @@ export const StyledMiniButton = styled.div`
   }
 
   &:active,
-  :visited {
+  &:visited {
     color: inherit;
   }
 
