@@ -21,6 +21,7 @@ const NaviList = styled.ul`
 
   @media (min-width: 600px) {
     height: 90px;
+  }
 `;
 
 const NaviItem = styled.li`
@@ -73,7 +74,6 @@ const StyledSvg = styled.svg`
 
 const StyledPath = styled.path`
   fill: var(--color-navigation-item);
-  }    
 `;
 
 export default function Navigation() {
