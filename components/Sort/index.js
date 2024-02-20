@@ -1,4 +1,6 @@
-import React from "react";
+// components/Sort/index.js
+
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const SortSelectContainer = styled.div`
@@ -44,13 +46,55 @@ const StyledSortSelect = styled.select`
   }
 `;
 
-export default function SortSelect({ onChange }) {
+export default function Sort({ data, onChange }) {
+  const [sortMethod, setSortMethod] = useState("default");
+
+  const sortTrips = (method) => {
+    switch (method) {
+      case "dateAsc":
+        return [...data].sort((a, b) => new Date(a.start) - new Date(b.start));
+      case "dateDesc":
+        return [...data].sort((a, b) => new Date(b.start) - new Date(a.start));
+      case "durationAsc":
+        return [...data].sort(
+          (a, b) =>
+            new Date(a.end) -
+            new Date(a.start) -
+            (new Date(b.end) - new Date(b.start))
+        );
+      case "durationDesc":
+        return [...data].sort(
+          (a, b) =>
+            new Date(b.end) -
+            new Date(b.start) -
+            (new Date(a.end) - new Date(a.start))
+        );
+      case "alphaAsc":
+        return [...data].sort((a, b) =>
+          a.destination.localeCompare(b.destination)
+        );
+      case "alphaDesc":
+        return [...data].sort((a, b) =>
+          b.destination.localeCompare(a.destination)
+        );
+      default:
+        return [...data].reverse();
+    }
+  };
+
+  const handleSortChange = (event) => {
+    const method = event.target.value;
+    setSortMethod(method);
+    const sortedData = sortTrips(method);
+    onChange(sortedData);
+  };
+
   return (
     <SortSelectContainer>
       <StyledSortSelectLabel htmlFor="sortSelect">
         Sort Trips:
       </StyledSortSelectLabel>
-      <StyledSortSelect onChange={onChange}>
+      <StyledSortSelect onChange={handleSortChange}>
         <option value="default">Create Date | Newest &#8593;</option>
         <option value="dateAsc">Start Date | Earliest &#8593;</option>
         <option value="dateDesc">Start Date | Latest &#8593;</option>
