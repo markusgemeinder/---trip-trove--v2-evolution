@@ -10,13 +10,13 @@ const BadgeContainer = styled.div`
   padding: 0;
   display: grid;
   width: 100%;
-  grid-template-columns: 0.7fr 2.2fr 0.7fr;
+  grid-template-columns: 0.9fr 1.8fr 0.9fr;
   border-radius: 8px;
   gap: 8px;
   margin-bottom: 0.3rem;
 
   @media (min-width: 600px) {
-    grid-template-columns: 0.8fr 2fr 0.8fr;
+    grid-template-columns: 1fr 1.6fr 1fr;
   }
 `;
 
@@ -45,7 +45,7 @@ const StyledDays = styled.p`
 
 const StyledDaysLabel = styled.p`
   margin: 0;
-  padding: 0;
+  padding: 0.1rem;
   color: var(--color-badge-label);
   font-weight: bold;
   font-size: 0.6rem;
@@ -57,14 +57,17 @@ const StyledDaysLabel = styled.p`
 
 const DateContainer = styled.div`
   margin: 0;
-  padding: 0.5rem 0.8rem;
+  padding: 0.3rem 0.8rem;
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 2.4fr;
   grid-template-areas: "scheduled scheduled" "from start" "until end";
   align-items: center;
   justify-content: space-between;
   background-color: var(--color-badge);
   border-radius: inherit;
+  
+  @media (min-width: 600px) {
+    grid-template-columns: 1fr 3fr;
 `;
 
 const DateContainerLabel = styled(StyledDaysLabel)`
@@ -86,7 +89,7 @@ const LabelEnd = styled(DateContainerLabel)`
 
 const StyledDate = styled.p`
   margin: 0;
-  padding: 0;
+  /* padding: 0; */
   font-size: 0.7rem;
   font-weight: bold;
   color: var(--color-badge-text);
