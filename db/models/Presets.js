@@ -9,6 +9,7 @@ const presetSchema = new Schema(
       {
         itemName: { type: String, required: true },
         itemQuantity: { type: Number },
+        isPacked: { type: Boolean },
       },
     ],
   },

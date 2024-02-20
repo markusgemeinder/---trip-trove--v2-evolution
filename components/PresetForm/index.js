@@ -1,6 +1,5 @@
 import { useState } from "react";
 import React from "react";
-import { formatDateForInput } from "@/lib/utils";
 import toast from "react-hot-toast";
 import {
   ButtonContainer,
@@ -19,18 +18,70 @@ import {
   PackingListContainer,
   PresetContainer,
 } from "@/components/TripForm/TripForm.styled";
+import PresetSelect from "@/components/PresetSelect";
 
-export default function PresetForm({ presets }) {
+const INITIAL_DATA = {
+  preset: "",
+  items: {
+    itemName: "",
+    itemQuantity: null,
+    isPacked: false,
+  },
+};
+
+export default function PresetForm(INITIAL_DATA) {
   const [formDisabled, setFormDisabled] = useState(false);
-  const [handoverData, setHandoverData] = useState(presets);
+  const [handoverData, setHandoverData] = useState(INITIAL_DATA);
   const [hasChanges, setHasChanges] = useState(false);
   const [selectedPreset, setSelectedPreset] = useState(null);
+  const [selectedPresetData, setSelectedPresetData] = useState([]);
+  const [lastAppliedPreset, setLastAppliedPreset] = useState(null);
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log("Form submitted with preset:", selectedPreset);
+  function generateListFromPreset(selectedPresetData) {
+    const selectedPreset = selectedPresetData.preset;
+
+    if (!selectedPreset) {
+      toast.error("No preset selected yet.", {
+        duration: toastDuration,
+      });
+      return;
+    }
+    if (lastAppliedPreset === selectedPreset) {
+      return;
+    }
+    setLastAppliedPreset(selectedPreset);
+
+    const updatedPackingList = [...handoverData.packingList];
+
+    const lastItem = updatedPackingList[updatedPackingList.length - 1];
+    if (lastItem && lastItem.itemName === "") {
+      updatedPackingList.pop();
+      updatedPackingList.push(
+        ...selectedPresetData.items.map((item) => ({
+          ...item,
+          _id: generateObjectId(),
+        }))
+      );
+    } else {
+      updatedPackingList.push(
+        ...selectedPresetData.items.map((item) => ({
+          ...item,
+          _id: generateObjectId(),
+        }))
+      );
+    }
+
+    setHandoverData((prevData) => ({
+      ...prevData,
+      packingList: updatedPackingList,
+    }));
+    setHasChanges(true);
   }
 
+  function handleSubmit() {
+    event.preventDefault();
+    console.log("Submitted!", INITIAL_DATA, handoverData);
+  }
   return (
     <>
       <h2>Alles okay</h2>
@@ -40,29 +91,12 @@ export default function PresetForm({ presets }) {
         formDisabled={formDisabled}
       >
         <StyledLabel htmlFor="preset">Existing Presets:</StyledLabel>
-        <StyledSelect
-          id="preset"
-          name="preset"
-          value={selectedPreset}
-          onChange={(event) => setSelectedPreset(event.target.value)}
-          disabled={formDisabled}
-        >
-          <option value="">Select a Preset...</option>
-          <hr />
-          {presets.map((preset) => (
-            <React.Fragment key={presets._id}>
-              <option value={preset.preset}>{preset.preset}</option>
-              {preset.items.map((item) => (
-                <option key={item._id} value={item.itemName} disabled>
-                  {item.itemName}
-                  {item.itemQuantity && ` (${item.itemQuantity}x)`}
-                </option>
-              ))}
-              <hr />
-            </React.Fragment>
-          ))}{" "}
-        </StyledSelect>
-
+        <PresetSelect
+          id="template"
+          name="template"
+          onSelectPreset={setSelectedPresetData}
+          formDisabled={formDisabled}
+        />
         <ButtonContainer>
           <StyledTextButton type="submit" disabled={formDisabled}>
             Submit
