@@ -24,7 +24,7 @@ export default createGlobalStyle`
   --color-blue-950: #082849;
   --color-blue-1000: #000;
   
-  --color-orange-0: #fff;
+  /* --color-orange-0: #fff;
   --color-orange-50: #fffbec;
   --color-orange-100: #fff6d3;
   --color-orange-200: #ffeaa5;
@@ -34,6 +34,28 @@ export default createGlobalStyle`
   --color-orange-600: #ff8e00;
   --color-orange-700: #cc6802;
   --color-orange-800: #a1500b;
+  --color-orange-900: #82430c;
+  --color-orange-950: #462004;
+  --color-orange-1000: #000; */
+
+  --color-orange-0: #fff;
+  --color-orange-50: #fffbec;
+  --color-orange-100: #fff6d3;
+  --color-orange-150: #ffefdb;
+  --color-orange-200: #ffeaa5;
+  --color-orange-250: #ffdeaa;
+  --color-orange-300: #ffd96d;
+  --color-orange-350: #ffcd7a;
+  --color-orange-400: #ffbd32;
+  --color-orange-450: #ffb64b;
+  --color-orange-500: #ffa60a;
+  --color-orange-550: #ff9c1d;
+  --color-orange-600: #ff8e00;
+  --color-orange-650: #e57c00;
+  --color-orange-700: #cc6802;
+  --color-orange-750: #c16200;
+  --color-orange-800: #a1500b;
+  --color-orange-850: #9d4e02;
   --color-orange-900: #82430c;
   --color-orange-950: #462004;
   --color-orange-1000: #000;
@@ -85,8 +107,8 @@ export default createGlobalStyle`
   --color-header-lightened: var(--color-blue-300);
   --color-header-title: var(--color-orange-0);
   
-  --color-logo-main: var(--color-blue-800);
-  --color-logo-jewel: var(--color-orange-400);
+  --color-logo-main: var(--color-blue-700);
+  --color-logo-jewel: var(--color-orange-350);
 
   --color-navigation: var(--color-blue-400);
   --color-navigation-active: var(--color-blue-600);
