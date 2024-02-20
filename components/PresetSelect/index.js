@@ -48,7 +48,7 @@ export default function PresetSelect({ onSelectPreset }) {
   return (
     <>
       <StyledSelect value={selectedPreset} onChange={handlePresetChange}>
-        <option value="">Select a preset...</option>
+        <option value="">Select a Preset...</option>
         <hr />
         {packingLists.map((packingList) => (
           <React.Fragment key={packingList._id}>
