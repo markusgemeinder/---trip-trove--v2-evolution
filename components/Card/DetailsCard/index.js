@@ -183,7 +183,7 @@ const StyledItemQuantity = styled(DetailsText)`
   text-align: center;
 `;
 
-export default function CardDetail() {
+export default function DetailsCard() {
   const router = useRouter();
   const { isReady } = router;
   const { id } = router.query;
