@@ -18,11 +18,9 @@ import {
   PresetContainer,
 } from "@/components/TripForm/TripForm.styled";
 import { useFormData } from "@/components/TripForm/TripForm.handlers";
-import ImageUpload from "@/components/TripForm/ImageUpload";
-import PresetSelect from "@/components/TripForm/PresetSelect";
-import PackingList, {
-  generateObjectId,
-} from "@/components/TripForm/PackingList";
+import ImageUpload from "@/components/ImageUpload";
+import PresetSelect from "@/components/PresetSelect";
+import PackingList, { generateObjectId } from "@/components/PackingList";
 
 const INITIAL_DATA = {
   destination: "",

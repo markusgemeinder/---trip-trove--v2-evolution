@@ -1,12 +1,12 @@
 import { useState } from "react";
-import UploadIcon from "@/components/TripForm/ImageUpload/UploadIcon/";
+import UploadIcon from "@/components/ImageUpload/UploadIcon/";
 import {
   UploadBox,
   UploadArea,
   UploadHeadline,
   UploadText,
   UploadInput,
-} from "@/components/TripForm/ImageUpload/ImageUpload.styled";
+} from "@/components/ImageUpload/ImageUpload.styled";
 
 const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 const UPLOAD_PRESET = "trip-trove";

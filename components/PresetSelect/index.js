@@ -1,21 +1,6 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import { defaultFont } from "@/styles.js";
 import useSWR from "swr";
-
-const StyledSelect = styled.select`
-  font-family: ${defaultFont.style.fontFamily};
-  font-size: inherit;
-  background-color: var(--color-form-input);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  margin: 0;
-  padding: 0.3rem;
-
-  @media (min-width: 600px) {
-    padding: 0.5rem;
-  }
-`;
+import { StyledSelect } from "@/components/TripForm/TripForm.styled";
 
 export default function PresetSelect({ onSelectPreset }) {
   const {

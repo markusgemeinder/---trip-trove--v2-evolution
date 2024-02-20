@@ -47,6 +47,21 @@ export const StyledInput = styled.input`
   }
 `;
 
+export const StyledSelect = styled.select`
+  font-family: ${defaultFont.style.fontFamily};
+  font-size: inherit;
+  background-color: var(--color-form-input);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  margin-top: 8px;
+  margin-bottom: 8px;
+  padding: 0.3rem;
+
+  @media (min-width: 600px) {
+    padding: 0.5rem;
+  }
+`;
+
 export const DateContainer = styled.fieldset`
   margin: 0;
   padding: 0;
@@ -121,21 +136,6 @@ export const PresetContainer = styled.div`
   margin-top: 0.5rem;
   margin-bottom: 0.8rem;
   gap: 10px;
-`;
-
-export const StyledSelect = styled.select`
-  font-family: ${defaultFont.style.fontFamily};
-  font-size: inherit;
-  background-color: var(--color-form-input);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  margin-top: 8px;
-  margin-bottom: 8px;
-  padding: 0.3rem;
-
-  @media (min-width: 600px) {
-    padding: 0.5rem;
-  }
 `;
 
 export const InputContainer = styled.li`
