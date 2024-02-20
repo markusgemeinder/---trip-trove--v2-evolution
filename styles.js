@@ -190,7 +190,7 @@ body {
   body {
     /* Adjust font properties for smaller screens */
     font-weight: 300; /* or another suitable value */
-    letter-spacing: -10; /* or another suitable value */
+    letter-spacing: -50; /* or another suitable value */
   }
 }
 }
