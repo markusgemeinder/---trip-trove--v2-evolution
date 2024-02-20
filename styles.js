@@ -183,7 +183,7 @@ body {
     min-height: 100vh;
     font-family: ${defaultFont.style.fontFamily};
     font-size: var(--font-size);
-    font-weight: 200; /* or another suitable value */
+    font-weight: 300; /* or another suitable value */
     letter-spacing: -100; /* or another suitable value */
     
   }
