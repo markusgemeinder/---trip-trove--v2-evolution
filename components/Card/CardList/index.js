@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import useSWR from "swr";
 import { useState, useEffect } from "react";
-import Card from "@/components/Card";
+import OverviewCard from "@/components/Card/OverviewCard";
 import SortSelect from "@/components/SortSelect";
 
 const StyledCardList = styled.ul`
@@ -68,7 +68,7 @@ export default function CardList() {
       <SortSelect onChange={(event) => setSortMethod(event.target.value)} />
       <StyledCardList>
         {sortedData.map((trip) => (
-          <Card trip={trip} key={trip._id} />
+          <OverviewCard trip={trip} key={trip._id} />
         ))}
       </StyledCardList>
     </>
