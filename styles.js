@@ -183,17 +183,17 @@ body {
     min-height: 100vh;
     font-family: ${defaultFont.style.fontFamily};
     font-size: var(--font-size);
-    font-weight: 300; /* or another suitable value */
+    font-weight: lighter; /* or another suitable value */
     letter-spacing: -100; /* or another suitable value */
     
   }
   
   @media (min-width: 600px) {
     body {
-      font-weight: 400; /* or another suitable value */
+      font-weight: normal; /* or another suitable value */
       letter-spacing: normal; /* or another suitable value */
   }
 }
-}
+
 
 `;
