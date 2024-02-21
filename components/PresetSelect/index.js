@@ -40,7 +40,10 @@ export default function PresetSelect({ onSelectPreset }) {
             <option value={packingList.preset}>{packingList.preset}</option>
             {packingList.items.map((item) => (
               <option key={item._id} value={item.itemName} disabled>
-                {item.itemName}
+                &#xA0;&#xA0;&#xA0;&#x25B6;&nbsp;
+                {item.itemName.length > 16
+                  ? `${item.itemName.slice(0, 16)}...`
+                  : item.itemName}
                 {item.itemQuantity && ` (${item.itemQuantity}x)`}
               </option>
             ))}
