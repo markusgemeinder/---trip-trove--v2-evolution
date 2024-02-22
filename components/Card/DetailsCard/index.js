@@ -239,19 +239,24 @@ export default function DetailsCard() {
     });
 
     try {
-      await fetch(`/api/trips/${id}`, {
+      const response = await fetch(`/api/trips/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ packingList: updatedPackingList }),
       });
-      // Manually mutate data
-      mutate(
-        `/api/trips/${id}`,
-        { ...trip, packingList: updatedPackingList },
-        false
-      );
+
+      if (response.ok) {
+        const updatedTrip = {
+          ...trip,
+          packingList: updatedPackingList,
+          updatedAt: new Date().toISOString(),
+        };
+        mutate(`/api/trips/${id}`, updatedTrip, false);
+      } else {
+        throw new Error("Failed to update packing list");
+      }
     } catch (error) {
       toast.dismiss();
       toast.error("Error updating packing list!"), { duration: toastDuration };
