@@ -69,9 +69,8 @@ export default function TripForm({
   }
 
   function generateListFromPreset(selectedPresetData) {
-    setLastAppliedPreset(selectedPresetData.preset);
-    const selectedPreset = selectedPresetData.preset;
-
+    setLastAppliedPreset(selectedPresetData);
+    const selectedPreset = selectedPresetData.presetName;
     if (!selectedPreset) {
       toast.error("No preset selected yet.", {
         duration: toastDuration,

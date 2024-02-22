@@ -47,44 +47,23 @@ const CardTitle = styled.h2`
   }
 `;
 
-const CardImage = styled(Image)`
-  margin: 0;
-  padding: 0;
-  border-radius: 8px;
-  width: 100%;
-  height: 100%;
-  align-self: center;
-`;
+const ItemContainer = styled.ul``;
 
-const CardText = styled.p`
-  margin: 0.6rem;
-  padding: 0;
-  align-self: center;
-  color: var(--color-card-call-to-action);
-`;
+const ItemList = styled.li``;
 
-export default function PresetCard({ trip }) {
+export default function PresetCard({ preset }) {
   return (
-    <StyledLink href={`trips/${trip._id}`}>
-      <StyledCard>
-        <CardTitle>{trip.destination}</CardTitle>
-        <TripDetailsBadge startDate={trip.start} endDate={trip.end} />
-        <CardImage
-          src={
-            trip.image.url !== ""
-              ? trip.image.url
-              : "/images/default.png?t=" + new Date().getTime()
-          }
-          width={300}
-          height={300}
-          alt={trip.destination}
-        />
-        <CreateDateBadge
-          createdAt={trip.createdAt}
-          updatedAt={trip.updatedAt}
-        />
-        <CardText>More Details</CardText>
-      </StyledCard>
-    </StyledLink>
+    // <StyledLink href={`presets/${preset._id}`}>
+    <StyledCard>
+      <CardTitle>{preset.presetName}</CardTitle>
+      <ItemContainer>
+        {preset.items.map((item) => (
+          <ItemList key={item._id}>
+            {item.itemName}: {item.itemQuantity}
+          </ItemList>
+        ))}
+      </ItemContainer>
+    </StyledCard>
+    // </StyledLink>
   );
 }

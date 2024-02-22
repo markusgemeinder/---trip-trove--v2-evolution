@@ -24,7 +24,7 @@ export default function SelectPreset({ onSelectPreset }) {
   function handlePresetChange(event) {
     const selectedPresetName = event.target.value;
     const selectedPresetData = packingLists.find(
-      (preset) => preset.preset === selectedPresetName
+      (preset) => preset.presetName === selectedPresetName
     );
     setSelectedPreset(selectedPresetName); // Update selected preset name
     onSelectPreset(selectedPresetData); // Pass the selected preset object back to the parent component
@@ -37,7 +37,9 @@ export default function SelectPreset({ onSelectPreset }) {
         <hr />
         {packingLists.map((packingList) => (
           <React.Fragment key={packingList._id}>
-            <option value={packingList.preset}>{packingList.preset}</option>
+            <option value={packingList.presetName}>
+              {packingList.presetName}
+            </option>
             {packingList.items.map((item) => (
               <option key={item._id} value={item.itemName} disabled>
                 &#xA0;&#xA0;&#xA0;&#x25B6;&nbsp;
