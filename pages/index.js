@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import CardList from "@/components/TripCard/CardList";
+import TripCardList from "@/components/TripCardList";
 // import Link from "next/link";
 
 export default function HomePage() {
@@ -14,7 +14,7 @@ export default function HomePage() {
   return (
     <>
       {/* <Link href="/test">Test Page</Link> */}
-      <CardList data={data} />
+      <TripCardList data={data} />
     </>
   );
 }

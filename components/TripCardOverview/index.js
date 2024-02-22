@@ -66,7 +66,7 @@ const CardText = styled.p`
   color: var(--color-card-call-to-action);
 `;
 
-export default function OverviewCard({ trip }) {
+export default function TripCardOverview({ trip }) {
   return (
     <StyledLink href={`trips/${trip._id}`}>
       <StyledCard>

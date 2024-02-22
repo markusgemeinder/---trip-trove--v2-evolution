@@ -183,7 +183,7 @@ const StyledItemQuantity = styled(DetailsText)`
   text-align: center;
 `;
 
-export default function DetailsCard() {
+export default function TripCardDetailed() {
   const router = useRouter();
   const { isReady } = router;
   const { id } = router.query;
