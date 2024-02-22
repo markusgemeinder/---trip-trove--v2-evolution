@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import OverviewCard from "@/components/Card/OverviewCard";
-import Sort from "@/components/Sort";
+import SortTrips from "@/components/SortTrips";
 
 const StyledCardList = styled.ul`
   margin: 1.8rem auto;

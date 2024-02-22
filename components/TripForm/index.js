@@ -19,7 +19,7 @@ import {
 } from "@/components/TripForm/TripForm.styled";
 import { useFormData } from "@/components/TripForm/TripForm.handlers";
 import ImageUpload from "@/components/ImageUpload";
-import PresetSelect from "@/components/PresetSelect";
+import SelectPreset from "@/components/SelectPreset";
 import PackingList, { generateObjectId } from "@/components/PackingList";
 
 const INITIAL_DATA = {
@@ -193,7 +193,7 @@ export default function TripForm({
       <PackingListContainer disabled={formDisabled}>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
         <PresetContainer>
-          <PresetSelect
+          <SelectPreset
             id="selectPresetTripForm"
             name="selectPresetTripForm"
             onSelectPreset={setSelectedPresetData}

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useSWR from "swr";
 import { StyledSelect } from "@/components/TripForm/TripForm.styled";
 
-export default function PresetSelect({ onSelectPreset }) {
+export default function SelectPreset({ onSelectPreset }) {
   const {
     data: packingLists,
     error,

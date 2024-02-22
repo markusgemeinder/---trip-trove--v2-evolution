@@ -48,7 +48,7 @@ const StyledSortSelect = styled.select`
   }
 `;
 
-export default function Sort({ data, onChange }) {
+export default function SortTrips({ data, onChange }) {
   const [sortMethod, setSortMethod] = useState("default");
 
   const sortTrips = (method) => {

@@ -18,7 +18,7 @@ import {
   PackingListContainer,
   PresetContainer,
 } from "@/components/TripForm/TripForm.styled";
-import PresetSelect from "@/components/PresetSelect";
+import SelectPreset from "@/components/SelectPreset";
 import PackingList from "@/components/PackingList";
 
 const INITIAL_DATA = {
@@ -95,7 +95,7 @@ export default function PresetForm(INITIAL_DATA) {
         <PackingListContainer disabled={formDisabled}>
           <StyledLabel htmlFor="preset">Existing Presets:</StyledLabel>
           <PresetContainer>
-            <PresetSelect
+            <SelectPreset
               id="selectPreset"
               name="selectPreset"
               onSelectPreset={setSelectedPresetData}
@@ -194,7 +194,7 @@ export default function PresetForm(INITIAL_DATA) {
 //   <PackingListContainer disabled={formDisabled}>
 //     <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
 //     <PresetContainer>
-//       <PresetSelect
+//       <SelectPreset
 //         id="template"
 //         name="template"
 //         onSelectPreset={setSelectedPresetData}
