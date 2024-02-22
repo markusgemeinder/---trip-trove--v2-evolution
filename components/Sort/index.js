@@ -5,6 +5,7 @@ import styled from "styled-components";
 
 const SortSelectContainer = styled.div`
   display: flex;
+  flex-flow: column wrap;
   justify-content: center;
   align-items: center;
   max-width: 100%;
@@ -12,6 +13,7 @@ const SortSelectContainer = styled.div`
   gap: 0.6rem;
 
   @media (min-width: 600px) {
+    flex-flow: row nowrap;
     margin-top: 2rem;
     gap: 0.8rem;
   }
@@ -114,40 +116,22 @@ export default function Sort({ data, onChange }) {
         Sort Trips:
       </StyledSortSelectLabel>
       <StyledSortSelect onChange={handleSortChange}>
-        <option value="">Select a Sort Method...</option>
+        <option value="">Please select...</option>
         <hr />
-        <option value="startDateAsc">
-          Start Date: Earliest &#8593; Latest &#8595;
-        </option>
-        <option value="startDateDesc">
-          Start Date: Latest &#8593; Earliest &#8595;
-        </option>
+        <option value="startDateAsc">Start | Earliest &#8593;</option>
+        <option value="startDateDesc">Start | Latest &#8593;</option>
         <hr />
-        <option value="destinationAsc">Destination: A &#8593; Z &#8595;</option>
-        <option value="destinationDesc">
-          Destination: Z &#8593; A &#8595;
-        </option>
+        <option value="destinationAsc">Destination | A-Z &#8593;</option>
+        <option value="destinationDesc">Destination | Z-A &#8593;</option>
         <hr />
-        <option value="durationAsc">
-          Duration: Shortest &#8593; Longest &#8595;
-        </option>
-        <option value="durationDesc">
-          Duration: Longest &#8593; Shortest &#8595;
-        </option>
+        <option value="durationAsc">Duration | Shortest &#8593;</option>
+        <option value="durationDesc">Duration | Longest &#8593;</option>
         <hr />
-        <option value="createdAtDesc">
-          Create Date: Newest &#8593; Oldest &#8595;
-        </option>
-        <option value="createdAtAsc">
-          Create Date: Oldest &#8593; Newest &#8595;
-        </option>
+        <option value="createdAtDesc">Created | Newest &#8593;</option>
+        <option value="createdAtAsc">Created | Oldest &#8593;</option>
         <hr />
-        <option value="updatedAtDesc">
-          Last Updated: Newest &#8593; Oldest &#8595;
-        </option>
-        <option value="updatedAtAsc">
-          Last Updated: Oldest &#8593; Newest &#8595;
-        </option>
+        <option value="updatedAtDesc">Updated | Newest &#8593;</option>
+        <option value="updatedAtAsc">Updated | Oldest &#8593;</option>
       </StyledSortSelect>
     </SortSelectContainer>
   );
