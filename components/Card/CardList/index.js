@@ -22,7 +22,7 @@ export default function CardList({ data }) {
 
   return (
     <>
-      <Sort data={data} onChange={handleSortChange} />
+      <SortTrips data={data} onChange={handleSortChange} />
       <StyledCardList>
         {sortedData.map((trip) => (
           <OverviewCard trip={trip} key={trip._id} />

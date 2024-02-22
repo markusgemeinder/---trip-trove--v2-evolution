@@ -24,9 +24,8 @@ export function generateObjectId() {
 }
 
 export default function PackingList({
-  handoverData,
-  setHandoverData,
-  setHasChanges,
+  packingList,
+  setPackingList,
   formDisabled,
 }) {
   const [newItem, setNewItem] = useState({
@@ -38,49 +37,38 @@ export default function PackingList({
   function handleAddItem() {
     if (formDisabled) return;
 
-    const lastItem =
-      handoverData.packingList[handoverData.packingList.length - 1];
+    const lastItem = packingList[packingList.length - 1];
     if (lastItem && lastItem.itemName === "") return;
 
     const nextItem = {
       ...newItem,
       _id: generateObjectId(),
     };
-    const updatedPackingList = [...handoverData.packingList, nextItem];
+    const updatedPackingList = [...packingList, nextItem];
 
-    setHandoverData((prevData) => ({
-      ...prevData,
-      packingList: updatedPackingList,
-    }));
+    setPackingList(updatedPackingList);
 
     setNewItem({
       itemName: "",
       itemQuantity: null,
       isPacked: false,
     });
-    setHasChanges(true);
   }
 
   function handleRemoveItem(itemIdToRemove) {
     if (formDisabled) return;
 
-    setHandoverData((prevData) => {
-      const updatedPackingList = handoverData.packingList.filter(
-        (item) => item._id !== itemIdToRemove
-      );
-      return { ...prevData, packingList: updatedPackingList };
-    });
-    setHasChanges(true);
+    const updatedPackingList = packingList.filter(
+      (item) => item._id !== itemIdToRemove
+    );
+    setPackingList(updatedPackingList);
   }
 
   function handleUpdateItem(itemId, updatedProperties) {
-    setHandoverData((prev) => {
-      const updatedPackingList = prev.packingList.map((item) =>
-        item._id === itemId ? { ...item, ...updatedProperties } : item
-      );
-      return { ...prev, packingList: updatedPackingList };
-    });
-    setHasChanges(true);
+    const updatedPackingList = packingList.map((item) =>
+      item._id === itemId ? { ...item, ...updatedProperties } : item
+    );
+    setPackingList(updatedPackingList);
   }
 
   function handleUpdateNewItem(updates) {
@@ -90,14 +78,14 @@ export default function PackingList({
   return (
     <>
       <PackList>
-        {handoverData.packingList.length > 0 && (
+        {packingList.length > 0 && (
           <ItemHeaderLabel>
             <ItemNumberLabel>No.</ItemNumberLabel>
             <ItemNameLabel>Item</ItemNameLabel>
             <ItemQuantityLabel>Qty.</ItemQuantityLabel>
           </ItemHeaderLabel>
         )}
-        {handoverData.packingList.map((item, index) => (
+        {packingList.map((item, index) => (
           <InputContainer key={item._id}>
             <ItemNumberContainer>
               <ItemNumberLabel>{index + 1}</ItemNumberLabel>
@@ -110,7 +98,7 @@ export default function PackingList({
             />
           </InputContainer>
         ))}
-        {handoverData.showNewItem && (
+        {packingList.showNewItem && (
           <NewItem
             newItem={newItem}
             handleUpdateNewItem={handleUpdateNewItem}

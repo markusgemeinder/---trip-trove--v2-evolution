@@ -57,6 +57,14 @@ export default function TripForm({
   const [selectedPresetData, setSelectedPresetData] = useState([]);
   const [lastAppliedPreset, setLastAppliedPreset] = useState(null);
 
+  function handlePackingListChange(newPackingList) {
+    setHandoverData((prevData) => ({
+      ...prevData,
+      packingList: newPackingList,
+    }));
+    setHasChanges(true);
+  }
+
   function generateListFromPreset(selectedPresetData) {
     const selectedPreset = selectedPresetData.preset;
 
@@ -209,12 +217,9 @@ export default function TripForm({
         </PresetContainer>
 
         <PackingList
-          handoverData={handoverData}
-          setHandoverData={setHandoverData}
-          setHasChanges={setHasChanges}
+          packingList={handoverData.packingList}
+          setPackingList={handlePackingListChange}
           formDisabled={formDisabled}
-          selectedPresetData={selectedPresetData}
-          setSelectedPresetData={setSelectedPresetData}
         />
       </PackingListContainer>
 
@@ -222,7 +227,7 @@ export default function TripForm({
         <StyledTextButton
           type="button"
           onClick={handleReset}
-          disabled={formDisabled}
+          disabled={formDisabled || !hasChanges}
         >
           {isEditMode ? "Discard" : "Reset"}
         </StyledTextButton>
