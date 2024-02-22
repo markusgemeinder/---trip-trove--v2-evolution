@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import TripCardOverview from "@/components/TripCardOverview";
+import TripCard from "@/components/TripCard";
 import SortTrips from "@/components/SortTrips";
 
 const StyledCardList = styled.ul`
@@ -25,7 +25,7 @@ export default function TripCardList({ data }) {
       <SortTrips data={data} onChange={handleSortChange} />
       <StyledCardList>
         {sortedData.map((trip) => (
-          <TripCardOverview trip={trip} key={trip._id} />
+          <TripCard trip={trip} key={trip._id} />
         ))}
       </StyledCardList>
     </>

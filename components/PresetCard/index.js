@@ -1,9 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import Link from "next/link";
-import Image from "next/image";
-import TripDetailsBadge from "@/components/Badge/TripDetailsBadge";
-import CreateDateBadge from "@/components/Badge/CreateDateBadge";
 
 const StyledCard = styled.li`
   display: flex;
@@ -37,7 +34,7 @@ const StyledLink = styled(Link)`
   }
 `;
 
-const CardDestination = styled.h2`
+const CardTitle = styled.h2`
   margin: 0.8rem;
   padding: 0;
   text-align: center;
@@ -66,11 +63,11 @@ const CardText = styled.p`
   color: var(--color-card-call-to-action);
 `;
 
-export default function TripCardOverview({ trip }) {
+export default function PresetCard({ trip }) {
   return (
     <StyledLink href={`trips/${trip._id}`}>
       <StyledCard>
-        <CardDestination>{trip.destination}</CardDestination>
+        <CardTitle>{trip.destination}</CardTitle>
         <TripDetailsBadge startDate={trip.start} endDate={trip.end} />
         <CardImage
           src={

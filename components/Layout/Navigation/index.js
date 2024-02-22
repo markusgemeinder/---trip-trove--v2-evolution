@@ -99,8 +99,8 @@ export default function Navigation() {
           <NaviItemText href="/">Trip Overview</NaviItemText>
         </NaviItem>
 
-        <NaviItem $active={router.pathname === "/create"}>
-          <Link href="/create">
+        <NaviItem $active={router.pathname === "/trips/create"}>
+          <Link href="/trips/create">
             <StyledSvg
               fillRule="evenodd"
               strokeLinejoin="round"
