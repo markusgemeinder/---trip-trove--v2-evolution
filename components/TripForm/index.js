@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { formatDateForInput } from "@/lib/utils";
 import toast from "react-hot-toast";
+import { ToastMessage } from "@/components/ToastMessage";
+import { toastDuration } from "@/lib/utils";
 import {
   ButtonContainer,
   StyledTextButton,
@@ -43,6 +45,7 @@ export default function TripForm({
 }) {
   const {
     formDisabled,
+    setFormDisabled,
     handoverData,
     setHandoverData,
     hasChanges,
@@ -66,6 +69,7 @@ export default function TripForm({
   }
 
   function generateListFromPreset(selectedPresetData) {
+    setLastAppliedPreset(selectedPresetData.preset);
     const selectedPreset = selectedPresetData.preset;
 
     if (!selectedPreset) {
@@ -75,35 +79,82 @@ export default function TripForm({
       return;
     }
     if (lastAppliedPreset === selectedPreset) {
-      return;
-    }
-    setLastAppliedPreset(selectedPreset);
+      toast.dismiss();
+      setFormDisabled(true);
 
-    const updatedPackingList = [...handoverData.packingList];
+      toast(
+        <ToastMessage
+          message="Are you sure to apply the same preset once again?"
+          textConfirmButton="Yes, apply."
+          textCancelButton="No, don&rsquo;t apply!"
+          onConfirm={() => {
+            setLastAppliedPreset(selectedPreset);
 
-    const lastItem = updatedPackingList[updatedPackingList.length - 1];
-    if (lastItem && lastItem.itemName === "") {
-      updatedPackingList.pop();
-      updatedPackingList.push(
-        ...selectedPresetData.items.map((item) => ({
-          ...item,
-          _id: generateObjectId(),
-        }))
+            const updatedPackingList = [...handoverData.packingList];
+
+            const lastItem = updatedPackingList[updatedPackingList.length - 1];
+            if (lastItem && lastItem.itemName === "") {
+              updatedPackingList.pop();
+              updatedPackingList.push(
+                ...selectedPresetData.items.map((item) => ({
+                  ...item,
+                  _id: generateObjectId(),
+                }))
+              );
+            } else {
+              updatedPackingList.push(
+                ...selectedPresetData.items.map((item) => ({
+                  ...item,
+                  _id: generateObjectId(),
+                }))
+              );
+            }
+
+            setHandoverData((prevData) => ({
+              ...prevData,
+              packingList: updatedPackingList,
+            }));
+            setHasChanges(true);
+            setFormDisabled(false);
+          }}
+          onCancel={() => {
+            setFormDisabled(false);
+            return;
+          }}
+        />,
+        { duration: Infinity }
       );
-    } else {
-      updatedPackingList.push(
-        ...selectedPresetData.items.map((item) => ({
-          ...item,
-          _id: generateObjectId(),
-        }))
-      );
     }
 
-    setHandoverData((prevData) => ({
-      ...prevData,
-      packingList: updatedPackingList,
-    }));
-    setHasChanges(true);
+    if (lastAppliedPreset !== selectedPreset) {
+      setLastAppliedPreset(selectedPreset);
+
+      const updatedPackingList = [...handoverData.packingList];
+
+      const lastItem = updatedPackingList[updatedPackingList.length - 1];
+      if (lastItem && lastItem.itemName === "") {
+        updatedPackingList.pop();
+        updatedPackingList.push(
+          ...selectedPresetData.items.map((item) => ({
+            ...item,
+            _id: generateObjectId(),
+          }))
+        );
+      } else {
+        updatedPackingList.push(
+          ...selectedPresetData.items.map((item) => ({
+            ...item,
+            _id: generateObjectId(),
+          }))
+        );
+      }
+
+      setHandoverData((prevData) => ({
+        ...prevData,
+        packingList: updatedPackingList,
+      }));
+      setHasChanges(true);
+    }
   }
 
   return (

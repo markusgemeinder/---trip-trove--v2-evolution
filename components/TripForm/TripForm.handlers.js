@@ -245,6 +245,7 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
 
   return {
     formDisabled,
+    setFormDisabled,
     handoverData,
     setHandoverData,
     hasChanges,

@@ -40,7 +40,6 @@ export default function PresetForm(INITIAL_DATA) {
 
   function generateListFromPreset(selectedPresetData) {
     const selectedPreset = selectedPresetData.preset;
-    console.log("SelectedPresetData:", selectedPresetData);
     return;
     if (!selectedPreset) {
       toast.error("No preset selected yet.", {
