@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import OverviewCard from "@/components/Card/OverviewCard";
+import OverviewCard from "@/components/TripCard/OverviewCard";
 import SortTrips from "@/components/SortTrips";
 
 const StyledCardList = styled.ul`

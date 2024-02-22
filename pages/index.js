@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import CardList from "@/components/Card/CardList";
+import CardList from "@/components/TripCard/CardList";
 // import Link from "next/link";
 
 export default function HomePage() {
