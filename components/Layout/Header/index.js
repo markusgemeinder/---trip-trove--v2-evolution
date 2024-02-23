@@ -48,6 +48,9 @@ export default function Header() {
     case router.pathname === "/presets":
       pageTitle = "Pack List Presets";
       break;
+    case router.pathname === "/presets/create":
+      pageTitle = "Create Preset";
+      break;
     case router.pathname.startsWith("/trips/") &&
       !router.pathname.includes("/edit"):
       pageTitle = "Trip Details";

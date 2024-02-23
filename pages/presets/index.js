@@ -1,8 +1,13 @@
 import useSWR from "swr";
+import Link from "next/link";
+import {
+  ButtonContainer,
+  StyledTextButton,
+} from "@/components/Button/TextButton";
+import BackButton from "@/components/Button/BackButton";
 import PresetList from "@/components/Card/PresetList";
-// import Link from "next/link";
 
-export default function HomePage() {
+export default function PresetsPage() {
   const {
     data: presets,
     error,
@@ -17,8 +22,14 @@ export default function HomePage() {
 
   return (
     <>
-      {/* <Link href="/test">Test Page</Link> */}
+      <ButtonContainer>
+        <Link href={"/presets/create"}>
+          <StyledTextButton>New Preset</StyledTextButton>
+        </Link>
+      </ButtonContainer>
+
       <PresetList presets={presets} />
+      <BackButton href="/" />
     </>
   );
 }
