@@ -58,13 +58,13 @@ export const StyledBadge = styled.div`
 export const StyledBadgeOnBadge = styled.div`
   background-color: var(--color-badge-on-badge);
   border-radius: 4px;
-  padding: 0.5rem;
+  padding: 0.4rem;
   align-self: flex-start;
   height: 100%;
 
   @media (min-width: 600px) {
-    border-radius: 8px;
-    padding: 0.7rem;
+    border-radius: 6px;
+    padding: 0.6rem;
   }
 `;
 
@@ -137,13 +137,14 @@ export const CardLabel = styled.p`
 `;
 
 export const CardLabelSub = styled.p`
-  margin: 0.3rem 0;
+  margin: 0;
   padding: 0;
   color: var(--color-card-label-sub);
   font-size: 0.6rem;
 
   @media (min-width: 600px) {
     font-size: 0.8rem;
+    margin: 0.3rem 0;
   }
 `;
 
@@ -191,8 +192,6 @@ export const PackListLabelContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 6px;
-  justify-content: space-between;
-  align-items: center;
   margin-top: 0.2rem;
 
   @media (min-width: 600px) {
@@ -209,11 +208,20 @@ export const PackListLabelLeft = styled(CardLabelSub)`
   padding-left: 14px;
 `;
 
+export const CheckboxContainer = styled.div`
+  text-align: center;
+`;
+
 export const StyledCheckBox = styled.input`
-  width: 20px;
-  height: 100%;
-  padding: 0;
   margin: 0;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+
+  @media (min-width: 600px) {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 export const PackListItemName = styled(CardText)`

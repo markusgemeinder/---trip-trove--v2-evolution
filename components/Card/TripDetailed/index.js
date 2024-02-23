@@ -23,6 +23,7 @@ import {
   PackListLabelContainer,
   PackListLabelCentered,
   PackListLabelLeft,
+  CheckboxContainer,
   StyledCheckBox,
   PackListItemName,
   PackListItemQuantity,
@@ -180,11 +181,13 @@ export default function TripDetailed() {
                 {filteredPackingList?.map((item) => (
                   <PackList key={item._id}>
                     <StyledBadgeOnBadge>
-                      <StyledCheckBox
-                        type="checkbox"
-                        checked={item.isPacked}
-                        onChange={() => handleCheckIsPacked(item._id)}
-                      />
+                      <CheckboxContainer>
+                        <StyledCheckBox
+                          type="checkbox"
+                          checked={item.isPacked}
+                          onChange={() => handleCheckIsPacked(item._id)}
+                        />
+                      </CheckboxContainer>
                     </StyledBadgeOnBadge>
                     <StyledBadgeOnBadge>
                       <PackListItemName>{item.itemName}</PackListItemName>
