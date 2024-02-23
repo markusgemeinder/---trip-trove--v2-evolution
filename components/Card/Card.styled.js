@@ -28,7 +28,7 @@ export const StyledCard = styled.div`
   border-radius: 8px;
   width: 360px;
   padding: 0.2rem 1rem;
-  margin-bottom: 16px;
+  margin-bottom: 0.1rem;
   box-shadow: 0 4px 8px var(--color-box-shadow);
   list-style: none;
 

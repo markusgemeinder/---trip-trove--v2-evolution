@@ -1,27 +1,24 @@
 import React, { useState } from "react";
 import styled from "styled-components";
+import { StyledLabel } from "@/components//Form/TripForm/TripForm.styled";
 
 const SortSelectContainer = styled.div`
   display: flex;
-  flex-flow: column wrap;
+  /* flex-flow: column wrap; */
   justify-content: center;
   align-items: center;
   max-width: 100%;
-  margin-top: 0.4rem;
-  gap: 0.6rem;
+  margin-top: 1rem;
+  gap: 0.8rem;
 
   @media (min-width: 600px) {
-    flex-flow: row nowrap;
+    /* flex-flow: row nowrap; */
     margin-top: 2rem;
-    gap: 0.8rem;
   }
 `;
 
-const StyledSortSelectLabel = styled.label`
+const StyledSortSelectLabel = styled(StyledLabel)`
   margin: 0;
-  font-weight: bold;
-  font-size: 0.9rem;
-  color: var(--color-form-label);
 `;
 
 const StyledSortSelect = styled.select`
