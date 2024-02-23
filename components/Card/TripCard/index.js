@@ -1,7 +1,7 @@
 import TripDetailsBadge from "@/components/Badge/TripDetailsBadge";
 import CreateDateBadge from "@/components/Badge/CreateDateBadge";
 import {
-  StyledCardList,
+  StyledCard,
   CardTitle,
   CardImage,
   CardLink,
@@ -11,7 +11,7 @@ import {
 export default function TripCard({ trip }) {
   return (
     <CardLink href={`trips/${trip._id}`}>
-      <StyledCardList>
+      <StyledCard>
         <CardTitle>{trip.destination}</CardTitle>
         <TripDetailsBadge startDate={trip.start} endDate={trip.end} />
         <CardImage
@@ -29,7 +29,7 @@ export default function TripCard({ trip }) {
           updatedAt={trip.updatedAt}
         />
         <CardText>More Details</CardText>
-      </StyledCardList>
+      </StyledCard>
     </CardLink>
   );
 }

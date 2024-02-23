@@ -2,6 +2,23 @@ import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
 
+export const CardListContainer = styled.ul`
+  margin: 1.8rem auto;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-flow: column wrap;
+`;
+
+export const CardList = styled.li`
+  margin: 0.6rem 0;
+  list-style: none;
+
+  @media (min-width: 600px) {
+    margin: 0.8rem 0;
+  }
+`;
+
 export const StyledCard = styled.div`
   margin-top: 0.8rem;
   display: flex;
@@ -10,34 +27,16 @@ export const StyledCard = styled.div`
   background-color: var(--color-card);
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  width: 300px;
+  width: 360px;
   padding: 0.2rem 1.2rem;
   margin-bottom: 16px;
   box-shadow: 0 4px 8px var(--color-box-shadow);
   list-style: none;
 
   @media (min-width: 600px) {
-    width: 500px;
+    width: 480px;
     margin-top: 2.6rem;
     padding: 1rem 2rem;
-  }
-`;
-
-export const StyledCardList = styled.li`
-  display: flex;
-  flex-flow: column wrap;
-  gap: 0.1rem;
-  background-color: var(--color-card);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-  width: 300px;
-  padding: 0.2rem 1.2rem;
-  margin-bottom: 16px;
-  box-shadow: 0 4px 8px var(--color-box-shadow);
-  list-style: none;
-
-  @media (min-width: 600px) {
-    width: 500px;
   }
 `;
 

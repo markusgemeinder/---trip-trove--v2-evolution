@@ -1,15 +1,7 @@
 import React, { useState } from "react";
-import styled from "styled-components";
 import TripCard from "@/components/Card/TripCard";
+import { CardListContainer, CardList } from "@/components/Card/Card.styled";
 import SortTrips from "@/components/SortTrips";
-
-const StyledCardList = styled.ul`
-  margin: 1.8rem auto;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  flex-flow: column wrap;
-`;
 
 export default function TripList({ data }) {
   const [sortedData, setSortedData] = useState(
@@ -23,11 +15,13 @@ export default function TripList({ data }) {
   return (
     <>
       <SortTrips data={data} onChange={handleSortChange} />
-      <StyledCardList>
+      <CardListContainer>
         {sortedData.map((trip) => (
-          <TripCard trip={trip} key={trip._id} />
+          <CardList trip={trip} key={trip._id}>
+            <TripCard trip={trip} />
+          </CardList>
         ))}
-      </StyledCardList>
+      </CardListContainer>
     </>
   );
 }
