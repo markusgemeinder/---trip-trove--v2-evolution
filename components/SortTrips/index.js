@@ -4,16 +4,14 @@ import { StyledLabel } from "@/components//Form/TripForm/TripForm.styled";
 
 const SortSelectContainer = styled.div`
   display: flex;
-  /* flex-flow: column wrap; */
   justify-content: center;
   align-items: center;
   max-width: 100%;
-  margin-top: 1rem;
+  margin: 0;
   gap: 0.8rem;
 
   @media (min-width: 600px) {
-    /* flex-flow: row nowrap; */
-    margin-top: 2rem;
+    margin: 0.2rem 0;
   }
 `;
 
