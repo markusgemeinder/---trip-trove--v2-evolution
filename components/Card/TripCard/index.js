@@ -4,8 +4,8 @@ import {
   StyledCard,
   CardTitle,
   CardImage,
-  CardLink,
   CardTextCallToAction,
+  CardLink,
 } from "@/components/Card/Card.styled";
 
 export default function TripCard({ trip }) {

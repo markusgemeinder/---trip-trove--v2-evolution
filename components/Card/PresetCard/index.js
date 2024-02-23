@@ -1,5 +1,4 @@
 import {
-  StyledLink,
   StyledCard,
   CardTitle,
   StyledBadge,
@@ -12,11 +11,12 @@ import {
   PackListItemName,
   PackListItemQuantity,
   CardTextCallToAction,
+  CardLink,
 } from "@/components/Card/Card.styled";
 
 export default function PresetCard({ preset }) {
   return (
-    <StyledLink href={`presets/${preset._id}`}>
+    <CardLink href={`presets/${preset._id}/edit`}>
       <StyledCard>
         <CardTitle>{preset.presetName}</CardTitle>
         <StyledBadge>
@@ -47,6 +47,6 @@ export default function PresetCard({ preset }) {
         </StyledBadge>
         <CardTextCallToAction>Edit Preset</CardTextCallToAction>
       </StyledCard>
-    </StyledLink>
+    </CardLink>
   );
 }

@@ -115,7 +115,7 @@ export default function Navigation() {
               />
             </StyledSvg>
           </Link>
-          <NaviItemText href="/create">Create Trip</NaviItemText>
+          <NaviItemText href="/create">New Trip</NaviItemText>
         </NaviItem>
         <NaviItem $active={router.pathname === "/presets"}>
           <Link href="/presets">
