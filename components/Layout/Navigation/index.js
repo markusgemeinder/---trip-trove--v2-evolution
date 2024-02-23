@@ -15,12 +15,12 @@ const NaviList = styled.ul`
   display: flex;
   justify-content: center;
   list-style: none;
-  height: 75px;
+  height: 60px;
   padding: 0;
   margin: 0;
 
   @media (min-width: 600px) {
-    height: 90px;
+    height: 80px;
   }
 `;
 
@@ -45,7 +45,7 @@ const NaviItemText = styled.a`
   padding: 0;
   margin: 0;
   text-decoration: none;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   color: var(--color-navigation-item-text);
 
   &:hover,
@@ -63,12 +63,13 @@ const NaviItemText = styled.a`
 const StyledSvg = styled.svg`
   display: block;
   margin: auto;
-  width: 36px;
-  height: 36px;
+  width: 24px;
+  height: 24px;
 
   @media (min-width: 600px) {
-    width: 48px;
-    height: 48px;
+    width: 36px;
+    height: 36px;
+    margin-bottom: 0.2rem;
   }
 `;
 
@@ -88,7 +89,7 @@ export default function Navigation() {
               strokeLinejoin="round"
               strokeMiterlimit="2"
               clipRule="evenodd"
-              viewBox="0 0 60 60"
+              viewBox="0 0 54 54"
             >
               <StyledPath
                 fillRule="nonzero"
@@ -106,7 +107,7 @@ export default function Navigation() {
               strokeLinejoin="round"
               strokeMiterlimit="2"
               clipRule="evenodd"
-              viewBox="0 0 60 60"
+              viewBox="0 0 54 54"
             >
               <StyledPath
                 fillRule="nonzero"
@@ -123,7 +124,7 @@ export default function Navigation() {
               strokeLinejoin="round"
               strokeMiterlimit="2"
               clipRule="evenodd"
-              viewBox="0 0 60 60"
+              viewBox="0 0 54 54"
             >
               <StyledPath
                 fillRule="nonzero"

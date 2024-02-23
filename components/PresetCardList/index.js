@@ -7,7 +7,7 @@ const StyledCardList = styled.ul`
   padding: 0;
   display: flex;
   justify-content: center;
-  flex-flow: column wrap;
+  flex-flow: row wrap;
 `;
 
 export default function PresetCardList({ presets }) {
