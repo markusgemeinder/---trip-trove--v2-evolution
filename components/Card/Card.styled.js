@@ -38,10 +38,37 @@ export const StyledCard = styled.div`
   }
 `;
 
+export const StyledBadge = styled.div`
+  margin: 0;
+  padding: 0.8rem;
+  width: 100%;
+  border-radius: 6px;
+  background-color: var(--color-badge);
+  gap: 8px;
+  margin-top: 0.3rem;
+
+  &:last-child {
+    margin-bottom: 0.8rem;
+  }
+`;
+
+export const StyledBadgeOnBadge = styled.div`
+  background-color: var(--color-badge-on-badge);
+  border-radius: 4px;
+  padding: 0.5rem;
+  align-self: flex-start;
+  height: 100%;
+
+  @media (min-width: 600px) {
+    border-radius: 8px;
+    padding: 0.7rem;
+  }
+`;
+
 export const CardImage = styled(Image)`
   margin: 0;
   padding: 0;
-  border-radius: 8px;
+  border-radius: 6px;
   width: 100%;
   height: 100%;
   align-self: center;
@@ -84,10 +111,14 @@ export const CardTitle = styled.h2`
 `;
 
 export const CardText = styled.p`
-  margin: 0.6rem;
+  margin: 0;
   padding: 0;
-  align-self: center;
-  color: var(--color-card-call-to-action);
+  font-size: 0.8rem;
+  color: var(--color-card-text);
+
+  @media (min-width: 600px) {
+    font-size: 1rem;
+  }
 `;
 
 export const CardTextHighlight = styled.p``;
@@ -96,37 +127,12 @@ export const CardTextCallToAction = styled(CardText)`
   margin: 0.6rem;
   padding: 0;
   align-self: center;
-  color: var(--color-card-call-to-action);
+  color: var(--color-card-text-call-to-action);
 `;
 
 export const CardLabel = styled.p``;
 
 export const CardLabelSub = styled.p``;
-
-export const StyledBadge = styled.div`
-  margin: 0;
-  padding: 0.8rem;
-  width: 100%;
-  border-radius: 8px;
-  background-color: var(--color-badge);
-  gap: 8px;
-  margin-top: 0.3rem;
-
-  &:last-child {
-    margin-bottom: 0.8rem;
-  }
-`;
-
-export const DetailsText = styled.p`
-  margin: 0;
-  padding: 0;
-  font-size: 0.8rem;
-  color: var(--color-badge-text);
-
-  @media (min-width: 600px) {
-    font-size: 1rem;
-  }
-`;
 
 export const DetailsLabel = styled.p`
   margin: 0;
@@ -193,19 +199,6 @@ export const PackListContainer = styled.li`
   }
 `;
 
-export const PackListField = styled.div`
-  background-color: var(--color-badge-on-badge);
-  border-radius: 5px;
-  padding: 0.5rem;
-  align-self: flex-start;
-  height: 100%;
-
-  @media (min-width: 600px) {
-    border-radius: 8px;
-    padding: 0.7rem;
-  }
-`;
-
 export const StyledCheckBox = styled.input`
   width: 20px;
   height: 100%;
@@ -213,10 +206,10 @@ export const StyledCheckBox = styled.input`
   margin: 0;
 `;
 
-export const StyledItemName = styled(DetailsText)`
+export const StyledItemName = styled(CardText)`
   word-break: break-all;
 `;
 
-export const StyledItemQuantity = styled(DetailsText)`
+export const StyledItemQuantity = styled(CardText)`
   text-align: center;
 `;

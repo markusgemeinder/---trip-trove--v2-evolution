@@ -13,16 +13,16 @@ import { ToastMessage } from "@/components/ToastMessage";
 import {
   StyledCard,
   CardTitle,
+  CardText,
   CardImageWithLink,
-  DetailsText,
   DetailsLabel,
   StyledBadge,
+  StyledBadgeOnBadge,
   PackList,
   PackListHeader,
   PackListHeaderText,
   PackListHeaderTextLeft,
   PackListContainer,
-  PackListField,
   StyledCheckBox,
   StyledItemName,
   StyledItemQuantity,
@@ -163,7 +163,7 @@ export default function TripDetailed() {
           <>
             <StyledBadge>
               <DetailsLabel>Notes:</DetailsLabel>
-              <DetailsText>{trip.notes}</DetailsText>
+              <CardText>{trip.notes}</CardText>
             </StyledBadge>
           </>
         )}
@@ -179,23 +179,23 @@ export default function TripDetailed() {
               <PackList>
                 {filteredPackingList?.map((item) => (
                   <PackListContainer key={item._id}>
-                    <PackListField>
+                    <StyledBadgeOnBadge>
                       <StyledCheckBox
                         type="checkbox"
                         checked={item.isPacked}
                         onChange={() => handleCheckIsPacked(item._id)}
                       />
-                    </PackListField>
-                    <PackListField>
+                    </StyledBadgeOnBadge>
+                    <StyledBadgeOnBadge>
                       <StyledItemName>{item.itemName}</StyledItemName>
-                    </PackListField>
+                    </StyledBadgeOnBadge>
                     {item.itemQuantity && (
                       <>
-                        <PackListField>
+                        <StyledBadgeOnBadge>
                           <StyledItemQuantity>
                             {item.itemQuantity}
                           </StyledItemQuantity>
-                        </PackListField>
+                        </StyledBadgeOnBadge>
                       </>
                     )}
                   </PackListContainer>
