@@ -1,5 +1,5 @@
 import {
-  StyledCard,
+  StyledCardWithTransition,
   CardTitle,
   StyledBadge,
   StyledBadgeOnBadge,
@@ -17,7 +17,7 @@ import {
 export default function PresetCard({ preset }) {
   return (
     <CardLink href={`presets/${preset._id}/edit`}>
-      <StyledCard>
+      <StyledCardWithTransition>
         <CardTitle>{preset.presetName}</CardTitle>
         <StyledBadge>
           <PackList2ColumnsLabelContainer>
@@ -46,7 +46,7 @@ export default function PresetCard({ preset }) {
           </PackListContainer>
         </StyledBadge>
         <CardTextCallToAction>Edit Preset</CardTextCallToAction>
-      </StyledCard>
+      </StyledCardWithTransition>
     </CardLink>
   );
 }

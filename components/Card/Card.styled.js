@@ -44,15 +44,18 @@ export const StyledCard = styled.div`
   margin-bottom: 0.1rem;
   box-shadow: 0 4px 8px var(--color-box-shadow);
   list-style: none;
-  transition: color 0.3s ease, transform 0.3s ease;
-
-  &:hover {
-    transform: scale(1.02);
-  }
 
   @media (min-width: 600px) {
     width: 480px;
     padding: 0.4rem 1.2rem;
+  }
+`;
+
+export const StyledCardWithTransition = styled(StyledCard)`
+  transition: color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.02);
   }
 `;
 
