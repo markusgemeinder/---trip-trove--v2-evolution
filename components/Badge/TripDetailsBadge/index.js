@@ -4,7 +4,11 @@ import {
   calculateDurationDays,
   formatDate,
 } from "@/lib/utils";
-import { CardText, CardTextHighlight } from "@/components/Card/Card.styled";
+import {
+  CardText,
+  CardTextHighlight,
+  CardLabel,
+} from "@/components/Card/Card.styled";
 
 const BadgeContainer = styled.div`
   margin: 0;
@@ -32,22 +36,8 @@ const StyledBadge = styled.div`
   border-radius: inherit;
 `;
 
-const StartDurationText = styled.p`
-  margin: 0;
-  padding: 0.1rem;
-  color: var(--color-badge-label);
-  font-weight: bold;
-  font-size: 0.6rem;
-
-  @media (min-width: 600px) {
-    font-size: 0.8rem;
-  }
-`;
-
-const ScheduledText = styled(StartDurationText)`
-  margin: 0;
-  padding: 0;
-  text-align: left;
+const StyledBadgeLabel = styled(CardLabel)`
+  margin: 0.1rem 0;
 `;
 
 export default function TripDetailsBadge({ startDate, endDate }) {
@@ -55,29 +45,29 @@ export default function TripDetailsBadge({ startDate, endDate }) {
     <BadgeContainer>
       <StyledBadge>
         {calculateStartDays(startDate) <= 0 ? (
-          <StartDurationText>Overdue</StartDurationText>
+          <StyledBadgeLabel>Overdue</StyledBadgeLabel>
         ) : (
-          <StartDurationText>Start in</StartDurationText>
+          <StyledBadgeLabel>Start in</StyledBadgeLabel>
         )}
         <CardTextHighlight>{calculateStartDays(startDate)}</CardTextHighlight>
-        <StartDurationText>
+        <StyledBadgeLabel>
           {calculateStartDays(startDate) === 1 ? "day" : "days"}
-        </StartDurationText>
+        </StyledBadgeLabel>
       </StyledBadge>
       <StyledBadge>
-        <ScheduledText>Scheduled from</ScheduledText>
+        <StyledBadgeLabel>Scheduled from</StyledBadgeLabel>
         <CardText>{formatDate(startDate)}</CardText>
-        <ScheduledText>until</ScheduledText>
+        <StyledBadgeLabel>until</StyledBadgeLabel>
         <CardText>{formatDate(endDate)}</CardText>
       </StyledBadge>
       <StyledBadge>
-        <StartDurationText>Duration</StartDurationText>
+        <StyledBadgeLabel>Duration</StyledBadgeLabel>
         <CardTextHighlight>
           {calculateDurationDays(startDate, endDate)}
         </CardTextHighlight>
-        <StartDurationText>
+        <StyledBadgeLabel>
           {calculateDurationDays(startDate, endDate) === 1 ? "day" : "days"}
-        </StartDurationText>
+        </StyledBadgeLabel>
       </StyledBadge>
     </BadgeContainer>
   );

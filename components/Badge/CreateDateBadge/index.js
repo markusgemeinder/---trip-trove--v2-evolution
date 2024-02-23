@@ -1,18 +1,11 @@
 import styled from "styled-components";
 import { formatTimestamp } from "@/lib/utils";
-import { StyledBadge } from "@/components/Card/Card.styled";
+import { CardLabel, StyledBadge } from "@/components/Card/Card.styled";
 
-const StyledCreateDateText = styled.p`
-  margin: 0.2rem;
+const StyledTimestamp = styled(CardLabel)`
   padding: 0;
-  color: var(--color-badge-label);
+  margin: 0.1rem;
   text-align: center;
-  font-weight: bold;
-  font-size: 0.6rem;
-
-  @media (min-width: 600px) {
-    font-size: 0.8rem;
-  }
 `;
 
 export default function CreateDateBadge({ createdAt, updatedAt }) {
@@ -20,13 +13,13 @@ export default function CreateDateBadge({ createdAt, updatedAt }) {
 
   return (
     <StyledBadge>
-      <StyledCreateDateText>
+      <StyledTimestamp>
         Trip created: {formatTimestamp(createdAt)}
-      </StyledCreateDateText>
+      </StyledTimestamp>
       {isUpdated && (
-        <StyledCreateDateText>
+        <StyledTimestamp>
           Last updated: {formatTimestamp(updatedAt)}
-        </StyledCreateDateText>
+        </StyledTimestamp>
       )}
     </StyledBadge>
   );

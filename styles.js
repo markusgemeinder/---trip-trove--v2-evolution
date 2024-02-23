@@ -158,8 +158,8 @@ export default createGlobalStyle`
   --color-card-text: var(--color-orange-1000);
   --color-card-text-highlight: var(--color-orange-600);
   --color-card-text-call-to-action: var(--color-orange-600);
-  --color-card-label: var(--color-grey-500);
-  --color-card-label-sub: var(--color-grey-400);
+  --color-card-label: var(--color-grey-400);
+  --color-card-label-sub: var(--color-grey-300);
 
   --color-badge: var(--color-grey-75);
   --color-badge-on-badge: var(--color-grey-0);

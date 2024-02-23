@@ -39,7 +39,7 @@ export const StyledCard = styled.div`
 
 export const StyledBadge = styled.div`
   margin: 0;
-  padding: 0.8rem;
+  padding: 0.6rem;
   width: 100%;
   border-radius: 6px;
   background-color: var(--color-badge);
@@ -48,6 +48,10 @@ export const StyledBadge = styled.div`
 
   &:last-child {
     margin-bottom: 0.8rem;
+  }
+
+  @media (min-width: 600px) {
+    padding: 0.8rem;
   }
 `;
 
@@ -123,6 +127,7 @@ export const CardText = styled.p`
 export const CardLabel = styled.p`
   margin: 0;
   padding: 0;
+  margin-bottom: 0.4rem;
   color: var(--color-card-label);
   font-size: 0.7rem;
 
@@ -132,7 +137,7 @@ export const CardLabel = styled.p`
 `;
 
 export const CardLabelSub = styled.p`
-  margin: 0;
+  margin: 0.3rem 0;
   padding: 0;
   color: var(--color-card-label-sub);
   font-size: 0.6rem;
