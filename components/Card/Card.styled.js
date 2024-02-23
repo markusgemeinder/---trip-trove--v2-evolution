@@ -21,7 +21,7 @@ export const CardList = styled.li`
 export const StyledCard = styled.div`
   display: flex;
   flex-flow: column wrap;
-  gap: 0.2rem;
+  gap: 0.1rem;
   background-color: var(--color-card);
   border: 1px solid var(--color-border);
   border-radius: 8px;
@@ -43,13 +43,23 @@ export const StyledBadge = styled.div`
   width: 100%;
   border-radius: 6px;
   background-color: var(--color-badge);
-  gap: 8px;
+  gap: 6px;
   margin-top: 0.3rem;
 
   &:last-child {
     margin-bottom: 0.8rem;
   }
 `;
+
+// const BadgeContainer = styled.div`
+//   margin: 0;
+//   padding: 0.2rem;
+//   width: 100%;
+//   border-radius: 8px;
+//   background-color: var(--color-badge);
+//   gap: 8px;
+//   margin-top: 0.3rem;
+// `;
 
 export const StyledBadgeOnBadge = styled.div`
   background-color: var(--color-badge-on-badge);

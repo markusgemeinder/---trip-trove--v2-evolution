@@ -4,6 +4,7 @@ import {
   calculateDurationDays,
   formatDate,
 } from "@/lib/utils";
+import { StyledBadge } from "@/components/Card/Card.styled";
 
 const BadgeContainer = styled.div`
   margin: 0;
@@ -11,8 +12,8 @@ const BadgeContainer = styled.div`
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 2fr 1fr;
-  border-radius: 8px;
-  gap: 8px;
+  border-radius: 6px;
+  gap: 6px;
   margin-bottom: 0.3rem;
 
   @media (min-width: 600px) {
