@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import useSWR, { mutate } from "swr";
-import Image from "next/image";
 import { toastDuration } from "@/lib/utils";
 import {
   ButtonContainer,

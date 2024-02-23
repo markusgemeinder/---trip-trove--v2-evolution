@@ -4,7 +4,7 @@ import { CardLabel, StyledBadge } from "@/components/Card/Card.styled";
 
 const StyledTimestamp = styled(CardLabel)`
   padding: 0;
-  margin: 0.1rem;
+  margin: 0.1rem 0;
   text-align: center;
 `;
 
