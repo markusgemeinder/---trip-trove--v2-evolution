@@ -18,14 +18,14 @@ import {
   DetailsLabel,
   StyledBadge,
   StyledBadgeOnBadge,
-  PackList,
-  PackListHeader,
-  PackListHeaderText,
-  PackListHeaderTextLeft,
   PackListContainer,
+  PackList,
+  PackListLabelContainer,
+  PackListLabelCentered,
+  PackListLabelLeft,
   StyledCheckBox,
-  StyledItemName,
-  StyledItemQuantity,
+  PackListItemName,
+  PackListItemQuantity,
 } from "@/components/Card/Card.styled";
 
 import TripDetailsBadge from "@/components/Badge/TripDetailsBadge";
@@ -171,14 +171,14 @@ export default function TripDetailed() {
           <>
             <StyledBadge>
               <DetailsLabel>Packing List:</DetailsLabel>
-              <PackListHeader>
-                <PackListHeaderText>Done</PackListHeaderText>
-                <PackListHeaderTextLeft>Item</PackListHeaderTextLeft>
-                <PackListHeaderText>Qty</PackListHeaderText>
-              </PackListHeader>
-              <PackList>
+              <PackListLabelContainer>
+                <PackListLabelCentered>Done</PackListLabelCentered>
+                <PackListLabelLeft>Item</PackListLabelLeft>
+                <PackListLabelCentered>Qty</PackListLabelCentered>
+              </PackListLabelContainer>
+              <PackListContainer>
                 {filteredPackingList?.map((item) => (
-                  <PackListContainer key={item._id}>
+                  <PackList key={item._id}>
                     <StyledBadgeOnBadge>
                       <StyledCheckBox
                         type="checkbox"
@@ -187,20 +187,20 @@ export default function TripDetailed() {
                       />
                     </StyledBadgeOnBadge>
                     <StyledBadgeOnBadge>
-                      <StyledItemName>{item.itemName}</StyledItemName>
+                      <PackListItemName>{item.itemName}</PackListItemName>
                     </StyledBadgeOnBadge>
                     {item.itemQuantity && (
                       <>
                         <StyledBadgeOnBadge>
-                          <StyledItemQuantity>
+                          <PackListItemQuantity>
                             {item.itemQuantity}
-                          </StyledItemQuantity>
+                          </PackListItemQuantity>
                         </StyledBadgeOnBadge>
                       </>
                     )}
-                  </PackListContainer>
+                  </PackList>
                 ))}
-              </PackList>
+              </PackListContainer>
             </StyledBadge>
           </>
         )}

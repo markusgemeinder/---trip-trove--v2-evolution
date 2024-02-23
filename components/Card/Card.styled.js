@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const CardListContainer = styled.ul`
-  /* margin: 1.8rem auto; */
   padding: 0;
   display: flex;
   justify-content: center;
@@ -146,44 +145,12 @@ export const DetailsLabel = styled.p`
   }
 `;
 
-export const PackList = styled.ul`
+export const PackListContainer = styled.ul`
   margin: auto;
   padding: 0;
 `;
 
-export const PackListHeader = styled.div`
-  display: grid;
-  grid-template-columns: 1.1fr 5.6fr 1.4fr;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 0.2rem;
-
-  @media (min-width: 600px) {
-    grid-template-columns: 0.8fr 6fr 1.2fr;
-  }
-`;
-
-export const PackListHeaderText = styled.p`
-  justify-self: center;
-  font-size: 0.6rem;
-  color: var(--color-badge-label);
-  padding: 0;
-  margin: 0;
-
-  @media (min-width: 600px) {
-    font-size: 0.8rem;
-  }
-`;
-
-export const PackListHeaderTextLeft = styled(PackListHeaderText)`
-  justify-self: flex-start;
-  padding-left: 14px;
-`;
-
-export const PackListContainer = styled.li`
+export const PackList = styled.li`
   display: grid;
   grid-template-columns: 1.1fr 5.6fr 1.4fr;
   justify-content: center;
@@ -199,6 +166,38 @@ export const PackListContainer = styled.li`
   }
 `;
 
+export const PackListLabelContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1.1fr 5.6fr 1.4fr;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.2rem;
+
+  @media (min-width: 600px) {
+    grid-template-columns: 0.8fr 6fr 1.2fr;
+  }
+`;
+
+export const PackListLabelCentered = styled.p`
+  justify-self: center;
+  font-size: 0.6rem;
+  color: var(--color-badge-label);
+  padding: 0;
+  margin: 0;
+
+  @media (min-width: 600px) {
+    font-size: 0.8rem;
+  }
+`;
+
+export const PackListLabelLeft = styled(PackListLabelCentered)`
+  justify-self: flex-start;
+  padding-left: 14px;
+`;
+
 export const StyledCheckBox = styled.input`
   width: 20px;
   height: 100%;
@@ -206,10 +205,10 @@ export const StyledCheckBox = styled.input`
   margin: 0;
 `;
 
-export const StyledItemName = styled(CardText)`
+export const PackListItemName = styled(CardText)`
   word-break: break-all;
 `;
 
-export const StyledItemQuantity = styled(CardText)`
+export const PackListItemQuantity = styled(CardText)`
   text-align: center;
 `;
