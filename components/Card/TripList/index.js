@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import TripCard from "@/components/TripCard";
+import TripCard from "@/components/Card/TripCard";
 import SortTrips from "@/components/SortTrips";
 
 const StyledCardList = styled.ul`
@@ -11,7 +11,7 @@ const StyledCardList = styled.ul`
   flex-flow: column wrap;
 `;
 
-export default function TripCardList({ data }) {
+export default function TripList({ data }) {
   const [sortedData, setSortedData] = useState(
     [...data].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
   );

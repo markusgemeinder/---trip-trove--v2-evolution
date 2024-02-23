@@ -1,6 +1,6 @@
 import useSWR from "swr";
 import { useRouter } from "next/router";
-import TripForm from "@/components/TripForm";
+import TripForm from "@/components/Form/TripForm";
 import BackButton from "@/components/Button/BackButton";
 import { toast, Toaster } from "react-hot-toast";
 

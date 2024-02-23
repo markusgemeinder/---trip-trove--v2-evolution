@@ -90,6 +90,7 @@ export default createGlobalStyle`
 
   --color-grey-0: #fff;
   --color-grey-50: #f4f6f7;
+  --color-grey-75: #eef1f1;
   --color-grey-100: #e4e8e9;
   --color-grey-200: #cbd3d6;
   --color-grey-300: #a7b3b9;
@@ -159,12 +160,12 @@ export default createGlobalStyle`
   --color-card-call-to-action: var(--color-orange-500);
   --color-card-text: var(--color-orange-1000);
 
-  --color-badge: var(--color-grey-50);
+  --color-badge: var(--color-grey-75);
   --color-badge-on-badge: var(--color-grey-0);
   --color-badge-label: var(--color-grey-400);
   --color-badge-label-dark: var(--color-grey-600);
   --color-badge-text: var(--color-grey-800);
-  --color-badge-highlight: var(--color-orange-500);
+  --color-badge-highlight: var(--color-orange-600);
 
   --color-image-upload: var(--color-orange-50);
   --color-image-upload-border: var(--color-orange-300);

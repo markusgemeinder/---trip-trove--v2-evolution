@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import PresetCard from "@/components/PresetCard";
+import PresetCard from "@/components/Card/PresetCard";
 
 const StyledCardList = styled.ul`
   margin: 1.8rem auto;
@@ -10,7 +10,7 @@ const StyledCardList = styled.ul`
   flex-flow: row wrap;
 `;
 
-export default function PresetCardList({ presets }) {
+export default function PresetList({ presets }) {
   return (
     <>
       <StyledCardList>

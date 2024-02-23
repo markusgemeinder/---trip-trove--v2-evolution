@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import PresetCardList from "@/components/PresetCardList";
+import PresetList from "@/components/Card/PresetList";
 // import Link from "next/link";
 
 export default function HomePage() {
@@ -18,7 +18,7 @@ export default function HomePage() {
   return (
     <>
       {/* <Link href="/test">Test Page</Link> */}
-      <PresetCardList presets={presets} />
+      <PresetList presets={presets} />
     </>
   );
 }

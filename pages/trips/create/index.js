@@ -1,5 +1,5 @@
 import useSWR from "swr";
-import TripForm from "@/components/TripForm";
+import TripForm from "@/components/Form/TripForm";
 import BackButton from "@/components/Button/BackButton";
 import toast, { Toaster } from "react-hot-toast";
 
