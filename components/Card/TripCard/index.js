@@ -5,7 +5,7 @@ import {
   CardTitle,
   CardImage,
   CardLink,
-  CardText,
+  CardTextCallToAction,
 } from "@/components/Card/Card.styled";
 
 export default function TripCard({ trip }) {
@@ -28,7 +28,7 @@ export default function TripCard({ trip }) {
           createdAt={trip.createdAt}
           updatedAt={trip.updatedAt}
         />
-        <CardText>More Details</CardText>
+        <CardTextCallToAction>More Details</CardTextCallToAction>
       </StyledCard>
     </CardLink>
   );

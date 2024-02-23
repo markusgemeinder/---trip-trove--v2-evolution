@@ -16,6 +16,16 @@ import {
   CardImageWithLink,
   DetailsText,
   DetailsLabel,
+  StyledBadge,
+  PackList,
+  PackListHeader,
+  PackListHeaderText,
+  PackListHeaderTextLeft,
+  PackListContainer,
+  PackListField,
+  StyledCheckBox,
+  StyledItemName,
+  StyledItemQuantity,
 } from "@/components/Card/Card.styled";
 
 import TripDetailsBadge from "@/components/Badge/TripDetailsBadge";
@@ -23,101 +33,6 @@ import CreateDateBadge from "@/components/Badge/CreateDateBadge";
 
 const StyledMessage = styled.h2`
   margin: 2rem auto;
-`;
-
-const DetailsContainer = styled.div`
-  margin: 0;
-  padding: 0.8rem;
-  width: 100%;
-  border-radius: 8px;
-  background-color: var(--color-badge);
-  gap: 8px;
-  margin-top: 0.3rem;
-
-  &:last-child {
-    margin-bottom: 0.8rem;
-  }
-`;
-
-const PackList = styled.ul`
-  margin: auto;
-  padding: 0;
-`;
-
-const PackListHeader = styled.div`
-  display: grid;
-  grid-template-columns: 1.1fr 5.6fr 1.4fr;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 0.2rem;
-
-  @media (min-width: 600px) {
-    grid-template-columns: 0.8fr 6fr 1.2fr;
-  }
-`;
-
-const PackListHeaderText = styled.p`
-  justify-self: center;
-  font-size: 0.6rem;
-  color: var(--color-badge-label);
-  padding: 0;
-  margin: 0;
-
-  @media (min-width: 600px) {
-    font-size: 0.8rem;
-  }
-`;
-
-const PackListHeaderTextLeft = styled(PackListHeaderText)`
-  justify-self: flex-start;
-  padding-left: 14px;
-`;
-
-const PackListContainer = styled.li`
-  display: grid;
-  grid-template-columns: 1.1fr 5.6fr 1.4fr;
-  justify-content: center;
-  align-items: center;
-  gap: 6px;
-  margin: 0;
-  padding: 0;
-  margin-top: 6px;
-  width: 100%;
-
-  @media (min-width: 600px) {
-    grid-template-columns: 0.8fr 6fr 1.2fr;
-  }
-`;
-
-const PackListField = styled.div`
-  background-color: var(--color-badge-on-badge);
-  border-radius: 5px;
-  padding: 0.5rem;
-  align-self: flex-start;
-  height: 100%;
-
-  @media (min-width: 600px) {
-    border-radius: 8px;
-    padding: 0.7rem;
-  }
-`;
-
-const StyledCheckBox = styled.input`
-  width: 20px;
-  height: 100%;
-  padding: 0;
-  margin: 0;
-`;
-
-const StyledItemName = styled(DetailsText)`
-  word-break: break-all;
-`;
-
-const StyledItemQuantity = styled(DetailsText)`
-  text-align: center;
 `;
 
 export default function TripDetailed() {
@@ -246,15 +161,15 @@ export default function TripDetailed() {
         </ButtonContainer>
         {trip.notes !== "" && (
           <>
-            <DetailsContainer>
+            <StyledBadge>
               <DetailsLabel>Notes:</DetailsLabel>
               <DetailsText>{trip.notes}</DetailsText>
-            </DetailsContainer>
+            </StyledBadge>
           </>
         )}
         {trip.packingList && trip.packingList.length !== 0 && (
           <>
-            <DetailsContainer>
+            <StyledBadge>
               <DetailsLabel>Packing List:</DetailsLabel>
               <PackListHeader>
                 <PackListHeaderText>Done</PackListHeaderText>
@@ -286,7 +201,7 @@ export default function TripDetailed() {
                   </PackListContainer>
                 ))}
               </PackList>
-            </DetailsContainer>
+            </StyledBadge>
           </>
         )}
       </StyledCard>
