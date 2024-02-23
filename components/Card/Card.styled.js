@@ -32,6 +32,16 @@ export const CardLink = styled(Link)`
   }
 `;
 
+export const StyledLink = styled(Link)`
+  text-decoration: none;
+
+  &:hover,
+  &:link,
+  &:visited {
+    color: inherit;
+  }
+`;
+
 export const StyledCard = styled.div`
   display: flex;
   flex-flow: column wrap;

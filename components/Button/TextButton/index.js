@@ -7,11 +7,11 @@ export const ButtonContainer = styled.div`
   justify-content: ${({ $justifyContent }) => $justifyContent || "center"};
   gap: 1rem;
   margin-top: 0.8rem;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.8rem;
 
   @media (min-width: 600px) {
-    margin-top: 1.2rem;
-    margin-bottom: 0.8rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 `;
 

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   StyledCard,
   CardTitle,
@@ -11,6 +10,7 @@ import {
   PackListLabelLeft,
   PackListItemName,
   PackListItemQuantity,
+  StyledLink,
 } from "@/components/Card/Card.styled";
 import {
   ButtonContainer,
@@ -48,9 +48,10 @@ export default function PresetCard({ preset }) {
         </PackListContainer>
       </StyledBadge>
       <ButtonContainer>
-        <Link href={`presets/${preset._id}/edit`}>
-          <StyledTextButton>Edit</StyledTextButton>
-        </Link>
+        <StyledTextButton type={"button"}>Delete</StyledTextButton>
+        <StyledLink href={`presets/${preset._id}/edit`}>
+          <StyledTextButton type={"button"}>Edit</StyledTextButton>
+        </StyledLink>
       </ButtonContainer>
     </StyledCard>
   );

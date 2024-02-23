@@ -1,9 +1,4 @@
 import useSWR from "swr";
-import Link from "next/link";
-import {
-  ButtonContainer,
-  StyledTextButton,
-} from "@/components/Button/TextButton";
 import BackButton from "@/components/Button/BackButton";
 import PresetList from "@/components/Card/PresetList";
 
@@ -22,12 +17,6 @@ export default function PresetsPage() {
 
   return (
     <>
-      <ButtonContainer>
-        <Link href={"/presets/create"}>
-          <StyledTextButton>New Preset</StyledTextButton>
-        </Link>
-      </ButtonContainer>
-
       <PresetList presets={presets} />
       <BackButton href="/" />
     </>

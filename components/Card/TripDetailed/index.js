@@ -5,7 +5,7 @@ import useSWR, { mutate } from "swr";
 import { toastDuration } from "@/lib/utils";
 import {
   ButtonContainer,
-  StyledTextButtonMediumSize,
+  StyledTextButton,
 } from "@/components/Button/TextButton";
 import toast, { Toaster } from "react-hot-toast";
 import { ToastMessage } from "@/components/ToastMessage";
@@ -146,18 +146,12 @@ export default function TripDetailed() {
           updatedAt={trip.updatedAt}
         />
         <ButtonContainer>
-          <StyledTextButtonMediumSize
-            onClick={handleDelete}
-            disabled={buttonsDisabled}
-          >
+          <StyledTextButton onClick={handleDelete} disabled={buttonsDisabled}>
             Delete
-          </StyledTextButtonMediumSize>
-          <StyledTextButtonMediumSize
-            onClick={handleEdit}
-            disabled={buttonsDisabled}
-          >
+          </StyledTextButton>
+          <StyledTextButton onClick={handleEdit} disabled={buttonsDisabled}>
             Edit
-          </StyledTextButtonMediumSize>
+          </StyledTextButton>
         </ButtonContainer>
         {trip.notes !== "" && (
           <>
