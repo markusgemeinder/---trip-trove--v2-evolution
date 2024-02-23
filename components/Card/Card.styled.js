@@ -18,6 +18,20 @@ export const CardList = styled.li`
   }
 `;
 
+export const CardLink = styled(Link)`
+  text-decoration: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.03);
+  }
+
+  &:link,
+  &:visited {
+    color: inherit;
+  }
+`;
+
 export const StyledCard = styled.div`
   display: flex;
   flex-flow: column wrap;
@@ -30,6 +44,11 @@ export const StyledCard = styled.div`
   margin-bottom: 0.1rem;
   box-shadow: 0 4px 8px var(--color-box-shadow);
   list-style: none;
+  transition: color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.02);
+  }
 
   @media (min-width: 600px) {
     width: 480px;
@@ -83,20 +102,6 @@ export const CardImageWithLink = styled(CardImage)`
   &:hover {
     cursor: pointer;
     transform: scale(1.02);
-  }
-`;
-
-export const CardLink = styled(Link)`
-  text-decoration: none;
-  transition: color 0.3s ease, transform 0.3s ease;
-
-  &:hover {
-    transform: scale(1.03);
-  }
-
-  &:link,
-  &:visited {
-    color: inherit;
   }
 `;
 
