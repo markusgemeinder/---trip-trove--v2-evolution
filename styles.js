@@ -156,7 +156,7 @@ export default createGlobalStyle`
   --color-card: var(--color-orange-0);
   --color-card-text: var(--color-orange-1000);
   --color-card-text-highlight: var(--color-orange-600);
-  --color-card-text-call-to-action: var(--color-orange-500);
+  --color-card-text-call-to-action: var(--color-orange-600);
   --color-card-title: var(--color-grey-900);
   --color-card-date-label: var(--color-grey-300);
   --color-card-date: var(--color-orange-1000);

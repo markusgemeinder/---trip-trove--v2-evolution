@@ -4,14 +4,14 @@ import {
   calculateDurationDays,
   formatDate,
 } from "@/lib/utils";
-import { StyledBadge } from "@/components/Card/Card.styled";
+import { CardTextHighlight } from "@/components/Card/Card.styled";
 
 const BadgeContainer = styled.div`
   margin: 0;
   padding: 0;
   display: grid;
   width: 100%;
-  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-columns: 1fr 1.8fr 1fr;
   border-radius: 6px;
   gap: 6px;
   margin-bottom: 0.3rem;
@@ -21,7 +21,7 @@ const BadgeContainer = styled.div`
   }
 `;
 
-const StartDurationContainer = styled.div`
+const StyledBadge = styled.div`
   margin: 0;
   padding: 0.3rem;
   display: flex;
@@ -42,32 +42,6 @@ const StartDurationText = styled.p`
   @media (min-width: 600px) {
     font-size: 0.8rem;
   }
-`;
-
-const StartDurationDays = styled.p`
-  margin: 0;
-  padding: 0;
-  font-weight: bold;
-  color: var(--color-badge-highlight);
-  font-size: 1.2rem;
-
-  @media (min-width: 600px) {
-    font-size: 1.6rem;
-  }
-`;
-
-const ScheduledContainer = styled.div`
-  margin: 0;
-  padding: 0.3rem 0.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-flow: column wrap;
-  background-color: var(--color-badge);
-  border-radius: inherit;
-  
-  @media (min-width: 600px) {
-    grid-template-columns: 1fr 3fr;
 `;
 
 const ScheduledText = styled(StartDurationText)`
@@ -91,32 +65,32 @@ const ScheduledDate = styled.p`
 export default function TripDetailsBadge({ startDate, endDate }) {
   return (
     <BadgeContainer>
-      <StartDurationContainer>
+      <StyledBadge>
         {calculateStartDays(startDate) <= 0 ? (
           <StartDurationText>Overdue</StartDurationText>
         ) : (
           <StartDurationText>Start in</StartDurationText>
         )}
-        <StartDurationDays>{calculateStartDays(startDate)}</StartDurationDays>
+        <CardTextHighlight>{calculateStartDays(startDate)}</CardTextHighlight>
         <StartDurationText>
           {calculateStartDays(startDate) === 1 ? "day" : "days"}
         </StartDurationText>
-      </StartDurationContainer>
-      <ScheduledContainer>
+      </StyledBadge>
+      <StyledBadge>
         <ScheduledText>Scheduled from</ScheduledText>
         <ScheduledDate>{formatDate(startDate)}</ScheduledDate>
         <ScheduledText>until</ScheduledText>
         <ScheduledDate>{formatDate(endDate)}</ScheduledDate>
-      </ScheduledContainer>
-      <StartDurationContainer>
+      </StyledBadge>
+      <StyledBadge>
         <StartDurationText>Duration</StartDurationText>
-        <StartDurationDays>
+        <CardTextHighlight>
           {calculateDurationDays(startDate, endDate)}
-        </StartDurationDays>
+        </CardTextHighlight>
         <StartDurationText>
           {calculateDurationDays(startDate, endDate) === 1 ? "day" : "days"}
         </StartDurationText>
-      </StartDurationContainer>
+      </StyledBadge>
     </BadgeContainer>
   );
 }

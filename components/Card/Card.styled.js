@@ -51,16 +51,6 @@ export const StyledBadge = styled.div`
   }
 `;
 
-// const BadgeContainer = styled.div`
-//   margin: 0;
-//   padding: 0.2rem;
-//   width: 100%;
-//   border-radius: 8px;
-//   background-color: var(--color-badge);
-//   gap: 8px;
-//   margin-top: 0.3rem;
-// `;
-
 export const StyledBadgeOnBadge = styled.div`
   background-color: var(--color-badge-on-badge);
   border-radius: 4px;
@@ -130,7 +120,15 @@ export const CardText = styled.p`
   }
 `;
 
-export const CardTextHighlight = styled.p``;
+export const CardTextHighlight = styled(CardText)`
+  color: var(--color-card-text-highlight);
+  font-weight: bold;
+  font-size: 1.2rem;
+
+  @media (min-width: 600px) {
+    font-size: 1.6rem;
+  }
+`;
 
 export const CardTextCallToAction = styled(CardText)`
   margin: 0.6rem;
