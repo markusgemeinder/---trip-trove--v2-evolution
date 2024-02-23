@@ -154,18 +154,15 @@ export default createGlobalStyle`
   --color-sort-selector-focus: var(--color-orange-500);
 
   --color-card: var(--color-orange-0);
+  --color-card-title: var(--color-grey-900);
   --color-card-text: var(--color-orange-1000);
   --color-card-text-highlight: var(--color-orange-600);
   --color-card-text-call-to-action: var(--color-orange-600);
-  --color-card-title: var(--color-grey-900);
-  --color-card-date-label: var(--color-grey-300);
-  --color-card-date: var(--color-orange-1000);
+  --color-card-label: var(--color-grey-500);
+  --color-card-label-sub: var(--color-grey-400);
 
   --color-badge: var(--color-grey-75);
   --color-badge-on-badge: var(--color-grey-0);
-  /* --color-badge-label: var(--color-grey-400);
-  --color-badge-label-dark: var(--color-grey-600);
-  --color-badge-text: var(--color-grey-800); */
 
   --color-image-upload: var(--color-orange-50);
   --color-image-upload-border: var(--color-orange-300);

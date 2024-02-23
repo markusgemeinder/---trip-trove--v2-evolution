@@ -112,11 +112,33 @@ export const CardTitle = styled.h2`
 export const CardText = styled.p`
   margin: 0;
   padding: 0;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: var(--color-card-text);
 
   @media (min-width: 600px) {
-    font-size: 1rem;
+    font-size: 1.1rem;
+  }
+`;
+
+export const CardLabel = styled.p`
+  margin: 0;
+  padding: 0;
+  color: var(--color-card-label);
+  font-size: 0.7rem;
+
+  @media (min-width: 600px) {
+    font-size: 0.9rem;
+  }
+`;
+
+export const CardLabelSub = styled.p`
+  margin: 0;
+  padding: 0;
+  color: var(--color-card-label-sub);
+  font-size: 0.6rem;
+
+  @media (min-width: 600px) {
+    font-size: 0.8rem;
   }
 `;
 
@@ -135,22 +157,6 @@ export const CardTextCallToAction = styled(CardText)`
   padding: 0;
   align-self: center;
   color: var(--color-card-text-call-to-action);
-`;
-
-export const CardLabel = styled.p``;
-
-export const CardLabelSub = styled.p``;
-
-export const DetailsLabel = styled.p`
-  margin: 0;
-  padding: 0;
-  padding-bottom: 0.2rem;
-  color: var(--color-badge-label-dark);
-  font-size: 0.6rem;
-
-  @media (min-width: 600px) {
-    font-size: 0.8rem;
-  }
 `;
 
 export const PackListContainer = styled.ul`
@@ -189,19 +195,11 @@ export const PackListLabelContainer = styled.div`
   }
 `;
 
-export const PackListLabelCentered = styled.p`
+export const PackListLabelCentered = styled(CardLabelSub)`
   justify-self: center;
-  font-size: 0.6rem;
-  color: var(--color-badge-label);
-  padding: 0;
-  margin: 0;
-
-  @media (min-width: 600px) {
-    font-size: 0.8rem;
-  }
 `;
 
-export const PackListLabelLeft = styled(PackListLabelCentered)`
+export const PackListLabelLeft = styled(CardLabelSub)`
   justify-self: flex-start;
   padding-left: 14px;
 `;

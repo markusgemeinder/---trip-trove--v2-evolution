@@ -15,7 +15,7 @@ import {
   CardTitle,
   CardText,
   CardImageWithLink,
-  DetailsLabel,
+  CardLabel,
   StyledBadge,
   StyledBadgeOnBadge,
   PackListContainer,
@@ -162,7 +162,7 @@ export default function TripDetailed() {
         {trip.notes !== "" && (
           <>
             <StyledBadge>
-              <DetailsLabel>Notes:</DetailsLabel>
+              <CardLabel>Notes:</CardLabel>
               <CardText>{trip.notes}</CardText>
             </StyledBadge>
           </>
@@ -170,7 +170,7 @@ export default function TripDetailed() {
         {trip.packingList && trip.packingList.length !== 0 && (
           <>
             <StyledBadge>
-              <DetailsLabel>Packing List:</DetailsLabel>
+              <CardLabel>Packing List:</CardLabel>
               <PackListLabelContainer>
                 <PackListLabelCentered>Done</PackListLabelCentered>
                 <PackListLabelLeft>Item</PackListLabelLeft>

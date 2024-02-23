@@ -4,7 +4,7 @@ import {
   calculateDurationDays,
   formatDate,
 } from "@/lib/utils";
-import { CardTextHighlight } from "@/components/Card/Card.styled";
+import { CardText, CardTextHighlight } from "@/components/Card/Card.styled";
 
 const BadgeContainer = styled.div`
   margin: 0;
@@ -50,18 +50,6 @@ const ScheduledText = styled(StartDurationText)`
   text-align: left;
 `;
 
-const ScheduledDate = styled.p`
-  margin: 0;
-  padding: 0.1rem;
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: var(--color-badge-text);
-
-  @media (min-width: 600px) {
-    font-size: 1.1rem;
-  }
-`;
-
 export default function TripDetailsBadge({ startDate, endDate }) {
   return (
     <BadgeContainer>
@@ -78,9 +66,9 @@ export default function TripDetailsBadge({ startDate, endDate }) {
       </StyledBadge>
       <StyledBadge>
         <ScheduledText>Scheduled from</ScheduledText>
-        <ScheduledDate>{formatDate(startDate)}</ScheduledDate>
+        <CardText>{formatDate(startDate)}</CardText>
         <ScheduledText>until</ScheduledText>
-        <ScheduledDate>{formatDate(endDate)}</ScheduledDate>
+        <CardText>{formatDate(endDate)}</CardText>
       </StyledBadge>
       <StyledBadge>
         <StartDurationText>Duration</StartDurationText>
