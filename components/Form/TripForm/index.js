@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { formatDateForInput } from "@/lib/utils";
+import { toastDuration, formatDateForInput } from "@/lib/utils";
 import toast from "react-hot-toast";
 import { ToastMessage } from "@/components/ToastMessage";
-import { toastDuration } from "@/lib/utils";
 import {
   ButtonContainer,
   StyledTextButton,
@@ -18,8 +17,8 @@ import {
   PreviewImage,
   PackingListContainer,
   PresetContainer,
-} from "@/components/TripForm/TripForm.styled";
-import { useFormData } from "@/components/TripForm/TripForm.handlers";
+} from "@/components/Form/TripForm/TripForm.styled";
+import { useFormData } from "@/components/Form/TripForm/TripForm.handlers";
 import ImageUpload from "@/components/ImageUpload";
 import SelectPreset from "@/components/SelectPreset";
 import PackingList, { generateObjectId } from "@/components/PackingList";

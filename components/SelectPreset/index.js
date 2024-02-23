@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import useSWR from "swr";
-import { StyledSelect } from "@/components/TripForm/TripForm.styled";
+import { StyledSelect } from "@/components/Form/TripForm/TripForm.styled";
 
 export default function SelectPreset({ onSelectPreset }) {
   const {
