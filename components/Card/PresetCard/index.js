@@ -10,9 +10,12 @@ import {
   PackListLabelLeft,
   PackListItemName,
   PackListItemQuantity,
-  CardTextCallToAction,
   CardLink,
 } from "@/components/Card/Card.styled";
+import {
+  ButtonContainer,
+  StyledTextButton,
+} from "@/components/Button/TextButton";
 
 export default function PresetCard({ preset }) {
   return (
@@ -45,7 +48,9 @@ export default function PresetCard({ preset }) {
             ))}
           </PackListContainer>
         </StyledBadge>
-        <CardTextCallToAction>Edit Preset</CardTextCallToAction>
+        <ButtonContainer>
+          <StyledTextButton>Edit</StyledTextButton>
+        </ButtonContainer>
       </StyledCardWithTransition>
     </CardLink>
   );
