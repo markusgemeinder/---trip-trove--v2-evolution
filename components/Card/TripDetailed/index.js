@@ -189,7 +189,9 @@ export default function TripDetailed() {
                       </CheckboxContainer>
                     </StyledBadgeOnBadge>
                     <StyledBadgeOnBadge>
-                      <PackListItemName>{item.itemName}</PackListItemName>
+                      <PackListItemName text={item.itemName}>
+                        {item.itemName}
+                      </PackListItemName>
                     </StyledBadgeOnBadge>
                     {item.itemQuantity && (
                       <>

@@ -225,7 +225,7 @@ export const StyledCheckBox = styled.input`
 `;
 
 export const PackListItemName = styled(CardText)`
-  word-break: break-all;
+  word-break: ${(props) => (props.text.includes(" ") ? "break-all" : "normal")};
 `;
 
 export const PackListItemQuantity = styled(CardText)`
