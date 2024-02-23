@@ -18,8 +18,8 @@ import {
   StyledBadge,
   StyledBadgeOnBadge,
   PackListContainer,
-  PackList,
-  PackListLabelContainer,
+  PackList3Columns,
+  PackList3ColumnsLabelContainer,
   PackListLabelCentered,
   PackListLabelLeft,
   CheckboxContainer,
@@ -171,14 +171,14 @@ export default function TripDetailed() {
           <>
             <StyledBadge>
               <CardLabel>Packing List:</CardLabel>
-              <PackListLabelContainer>
+              <PackList3ColumnsLabelContainer>
                 <PackListLabelCentered>Done</PackListLabelCentered>
                 <PackListLabelLeft>Item</PackListLabelLeft>
                 <PackListLabelCentered>Qty</PackListLabelCentered>
-              </PackListLabelContainer>
+              </PackList3ColumnsLabelContainer>
               <PackListContainer>
                 {filteredPackingList?.map((item) => (
-                  <PackList key={item._id}>
+                  <PackList3Columns key={item._id}>
                     <StyledBadgeOnBadge>
                       <CheckboxContainer>
                         <StyledCheckBox
@@ -202,7 +202,7 @@ export default function TripDetailed() {
                         </StyledBadgeOnBadge>
                       </>
                     )}
-                  </PackList>
+                  </PackList3Columns>
                 ))}
               </PackListContainer>
             </StyledBadge>

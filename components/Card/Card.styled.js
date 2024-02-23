@@ -170,7 +170,35 @@ export const PackListContainer = styled.ul`
   padding: 0;
 `;
 
-export const PackList = styled.li`
+export const PackList2Columns = styled.li`
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 0;
+  margin-top: 6px;
+  width: 100%;
+
+  @media (min-width: 600px) {
+    grid-template-columns: 6fr 1fr;
+  }
+`;
+
+export const PackList2ColumnsLabelContainer = styled.div`
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-top: 0.2rem;
+
+  @media (min-width: 600px) {
+    grid-template-columns: 6fr 1fr;
+  }
+`;
+export const PackList3Columns = styled.li`
   display: grid;
   grid-template-columns: 1.1fr 5.6fr 1.4fr;
   justify-content: center;
@@ -186,7 +214,7 @@ export const PackList = styled.li`
   }
 `;
 
-export const PackListLabelContainer = styled.div`
+export const PackList3ColumnsLabelContainer = styled.div`
   display: grid;
   grid-template-columns: 1.1fr 5.6fr 1.4fr;
   justify-content: center;
@@ -205,7 +233,7 @@ export const PackListLabelCentered = styled(CardLabelSub)`
 
 export const PackListLabelLeft = styled(CardLabelSub)`
   justify-self: flex-start;
-  padding-left: 14px;
+  padding-left: 10px;
 `;
 
 export const CheckboxContainer = styled.div`
@@ -222,6 +250,10 @@ export const StyledCheckBox = styled.input`
     width: 20px;
     height: 20px;
   }
+`;
+
+export const PackListItemNumber = styled(CardText)`
+  text-align: center;
 `;
 
 export const PackListItemName = styled(CardText)`

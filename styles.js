@@ -89,6 +89,7 @@ export default createGlobalStyle`
   --color-green-1000: #000;
 
   --color-grey-0: #fff;
+  --color-grey-25: #fafbfb;
   --color-grey-50: #f4f6f7;
   --color-grey-75: #eef1f1;
   --color-grey-100: #e4e8e9;
@@ -162,7 +163,7 @@ export default createGlobalStyle`
   --color-card-label-sub: var(--color-grey-400);
 
   --color-badge: var(--color-grey-75);
-  --color-badge-on-badge: var(--color-grey-0);
+  --color-badge-on-badge: var(--color-grey-25);
 
   --color-image-upload: var(--color-orange-50);
   --color-image-upload-border: var(--color-orange-300);
