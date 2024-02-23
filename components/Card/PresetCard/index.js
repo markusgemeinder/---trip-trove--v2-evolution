@@ -1,5 +1,6 @@
+import Link from "next/link";
 import {
-  StyledCardWithTransition,
+  StyledCard,
   CardTitle,
   StyledBadge,
   StyledBadgeOnBadge,
@@ -10,7 +11,6 @@ import {
   PackListLabelLeft,
   PackListItemName,
   PackListItemQuantity,
-  CardLink,
 } from "@/components/Card/Card.styled";
 import {
   ButtonContainer,
@@ -19,39 +19,39 @@ import {
 
 export default function PresetCard({ preset }) {
   return (
-    <CardLink href={`presets/${preset._id}/edit`}>
-      <StyledCardWithTransition>
-        <CardTitle>{preset.presetName}</CardTitle>
-        <StyledBadge>
-          <PackList2ColumnsLabelContainer>
-            <PackListLabelLeft>Item</PackListLabelLeft>
-            <PackListLabelCentered>Qty</PackListLabelCentered>
-          </PackList2ColumnsLabelContainer>
-          <PackListContainer>
-            {preset.items.map((item) => (
-              <PackList2Columns key={item._id}>
-                <StyledBadgeOnBadge>
-                  <PackListItemName text={item.itemName}>
-                    {item.itemName}
-                  </PackListItemName>
-                </StyledBadgeOnBadge>
-                {item.itemQuantity && (
-                  <>
-                    <StyledBadgeOnBadge>
-                      <PackListItemQuantity>
-                        {item.itemQuantity}
-                      </PackListItemQuantity>
-                    </StyledBadgeOnBadge>
-                  </>
-                )}
-              </PackList2Columns>
-            ))}
-          </PackListContainer>
-        </StyledBadge>
-        <ButtonContainer>
+    <StyledCard>
+      <CardTitle>{preset.presetName}</CardTitle>
+      <StyledBadge>
+        <PackList2ColumnsLabelContainer>
+          <PackListLabelLeft>Item</PackListLabelLeft>
+          <PackListLabelCentered>Qty</PackListLabelCentered>
+        </PackList2ColumnsLabelContainer>
+        <PackListContainer>
+          {preset.items.map((item) => (
+            <PackList2Columns key={item._id}>
+              <StyledBadgeOnBadge>
+                <PackListItemName text={item.itemName}>
+                  {item.itemName}
+                </PackListItemName>
+              </StyledBadgeOnBadge>
+              {item.itemQuantity && (
+                <>
+                  <StyledBadgeOnBadge>
+                    <PackListItemQuantity>
+                      {item.itemQuantity}
+                    </PackListItemQuantity>
+                  </StyledBadgeOnBadge>
+                </>
+              )}
+            </PackList2Columns>
+          ))}
+        </PackListContainer>
+      </StyledBadge>
+      <ButtonContainer>
+        <Link href={`presets/${preset._id}/edit`}>
           <StyledTextButton>Edit</StyledTextButton>
-        </ButtonContainer>
-      </StyledCardWithTransition>
-    </CardLink>
+        </Link>
+      </ButtonContainer>
+    </StyledCard>
   );
 }
