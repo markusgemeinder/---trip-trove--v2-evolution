@@ -6,13 +6,13 @@ import toast, { Toaster } from "react-hot-toast";
 export default function CreatePreset() {
   const { mutate } = useSWR("/api/trips");
 
-  async function handleSubmit(tripData) {
-    const response = await fetch(`/api/trips`, {
+  async function handleSubmit(presetData) {
+    const response = await fetch(`/api/presets`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(tripData),
+      body: JSON.stringify(presetData),
     });
 
     if (response.ok) {
@@ -29,8 +29,8 @@ export default function CreatePreset() {
   return (
     <>
       <Toaster />
-      {/* <PresetForm onSubmit={handleSubmit} isEditMode={false} /> */}
-      <PresetForm />
+      <PresetForm onSubmit={handleSubmit} isEditMode={false} />
+      {/* <PresetForm /> */}
       <BackButton href="/presets" />
     </>
   );
