@@ -17,7 +17,7 @@ import {
   PreviewImage,
   PackingListContainer,
   PresetContainer,
-} from "@/components/Form/TripForm/TripForm.styled";
+} from "@/components/Form/Form.styled";
 import { useFormData } from "@/components/Form/TripForm/TripForm.handlers";
 import ImageUpload from "@/components/ImageUpload";
 import SelectPreset from "@/components/SelectPreset";

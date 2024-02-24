@@ -41,7 +41,7 @@ export default function EditPreset() {
       <Toaster />
       {/* <PresetForm onSubmit={handleSubmit} defaultData={trip} isEditMode={true} /> */}
       <PresetForm />
-      <BackButton href={`/presets/${id}`} />
+      <BackButton href={"/presets/"} />
     </>
   );
 }

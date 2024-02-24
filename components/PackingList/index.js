@@ -15,7 +15,7 @@ import {
   ItemQuantityLabel,
   InputItemName,
   InputItemQuantity,
-} from "@/components/Form/TripForm/TripForm.styled";
+} from "@/components/Form/Form.styled";
 
 export function generateObjectId() {
   const { ObjectId } = mongoose.Types;

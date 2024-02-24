@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { StyledLabel } from "@/components//Form/TripForm/TripForm.styled";
+import { StyledLabel } from "@/components//Form/Form.styled";
 
 const SortSelectContainer = styled.div`
   display: flex;
