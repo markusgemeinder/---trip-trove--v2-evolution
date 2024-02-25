@@ -42,6 +42,7 @@ export const UploadArea = styled.div`
   
   @media (min-width: 600px) {
     padding: 0.2rem;
+    border: 1px dashed var(--color-image-upload-dash-line);
 
 `;
 
