@@ -1,8 +1,6 @@
-// import { useEffect } from "react";
 import {
   ButtonContainer,
   StyledTextButton,
-  StyledTextButtonMediumSize,
 } from "@/components/Button/TextButton";
 import {
   StyledForm,
@@ -17,14 +15,6 @@ const INITIAL_DATA = {
   presetName: "",
   items: [],
 };
-// const INITIAL_DATA = {
-//   presetName: "",
-//   items: {
-//     itemName: "",
-//     itemQuantity: null,
-//     isPacked: false,
-//   },
-// };
 
 export default function PresetForm({
   defaultData = INITIAL_DATA,
@@ -51,10 +41,6 @@ export default function PresetForm({
     }));
     setHasChanges(true);
   }
-
-  // useEffect(() => {
-  //   console.log(handoverData);
-  // }, [handoverData]);
 
   return (
     <StyledForm
