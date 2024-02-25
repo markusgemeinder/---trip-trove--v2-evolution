@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
-import { toastDuration, validateTripDates } from "@/lib/utils";
+import { toastDuration } from "@/lib/utils";
 import { ToastMessage } from "@/components/ToastMessage";
 
 export function useFormData(defaultData, onSubmit, isEditMode) {

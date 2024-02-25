@@ -36,6 +36,10 @@ export default function EditPreset() {
     }
   };
 
+  if (isLoading) return <div>Loading...</div>;
+
+  if (error) return <div>Error fetching data</div>;
+
   return (
     <>
       <Toaster />
