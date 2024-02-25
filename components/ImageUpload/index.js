@@ -7,6 +7,7 @@ import {
   UploadText,
   UploadInput,
 } from "@/components/ImageUpload/ImageUpload.styled";
+import LoadingAnimation from "@/components/Animation/LoadingAnimation";
 
 const CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME;
 const UPLOAD_PRESET = "trip-trove";
@@ -106,7 +107,8 @@ export default function ImageUpload({ onImageUpdate }) {
         )}
         {uploadInProgress && (
           <>
-            <UploadHeadline>Upload in progress...</UploadHeadline>
+            <UploadHeadline>Upload in progress</UploadHeadline>
+            <LoadingAnimation />
           </>
         )}
       </UploadArea>
