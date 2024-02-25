@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { toastDuration } from "@/lib/utils";
 import { ToastMessage } from "@/components/ToastMessage";
 
-export function useFormData(defaultData, onSubmit, isEditMode) {
+export function usePresetFormData(defaultData, onSubmit, isEditMode) {
   const [formDisabled, setFormDisabled] = useState(false);
   const [handoverData, setHandoverData] = useState(defaultData);
   const [hasChanges, setHasChanges] = useState(false);
@@ -191,8 +191,6 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
     setHandoverData,
     hasChanges,
     setHasChanges,
-    handleImageUpdate,
-    handleDeleteImage,
     handleInput,
     handleReset,
     handleSubmit,

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { toastDuration, formatDateForInput } from "@/lib/utils";
 import toast from "react-hot-toast";
 import { ToastMessage } from "@/components/ToastMessage";
@@ -18,7 +18,7 @@ import {
   PackingListContainer,
   PresetContainer,
 } from "@/components/Form/Form.styled";
-import { useFormData } from "@/components/Form/TripForm/TripForm.handlers";
+import { useTripFormData } from "@/components/Form/TripForm/TripForm.handlers";
 import ImageUpload from "@/components/ImageUpload";
 import SelectPreset from "@/components/SelectPreset";
 import PackingList, { generateObjectId } from "@/components/PackingList";
@@ -54,7 +54,7 @@ export default function TripForm({
     handleInput,
     handleReset,
     handleSubmit,
-  } = useFormData(defaultData, onSubmit, isEditMode);
+  } = useTripFormData(defaultData, onSubmit, isEditMode);
 
   const [selectedPresetData, setSelectedPresetData] = useState([]);
   const [lastAppliedPreset, setLastAppliedPreset] = useState(null);
@@ -66,6 +66,10 @@ export default function TripForm({
     }));
     setHasChanges(true);
   }
+
+  // useEffect(() => {
+  //   console.log(handoverData);
+  // }, [handoverData]);
 
   function generateListFromPreset(selectedPresetData) {
     setLastAppliedPreset(selectedPresetData);
@@ -266,7 +270,8 @@ export default function TripForm({
         </PresetContainer>
 
         <PackingList
-          packingList={handoverData.packingList}
+          listData={handoverData.packingList}
+          isForm={"trip"}
           setPackingList={handlePackingListChange}
           formDisabled={formDisabled}
         />

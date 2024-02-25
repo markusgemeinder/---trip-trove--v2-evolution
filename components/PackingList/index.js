@@ -24,7 +24,8 @@ export function generateObjectId() {
 }
 
 export default function PackingList({
-  packingList,
+  listData,
+  isForm,
   setPackingList,
   formDisabled,
 }) {
@@ -37,16 +38,17 @@ export default function PackingList({
   function handleAddItem() {
     if (formDisabled) return;
 
-    const lastItem = packingList[packingList.length - 1];
+    const lastItem = listData[listData.length - 1];
     if (lastItem && lastItem.itemName === "") return;
 
     const nextItem = {
       ...newItem,
       _id: generateObjectId(),
     };
-    const updatedPackingList = [...packingList, nextItem];
+    const updatedPackingList = [...listData, nextItem];
 
     setPackingList(updatedPackingList);
+    // console.log("updatedPackingList", updatedPackingList);
 
     setNewItem({
       itemName: "",
@@ -58,14 +60,14 @@ export default function PackingList({
   function handleRemoveItem(itemIdToRemove) {
     if (formDisabled) return;
 
-    const updatedPackingList = packingList.filter(
+    const updatedPackingList = listData.filter(
       (item) => item._id !== itemIdToRemove
     );
     setPackingList(updatedPackingList);
   }
 
   function handleUpdateItem(itemId, updatedProperties) {
-    const updatedPackingList = packingList.map((item) =>
+    const updatedPackingList = listData.map((item) =>
       item._id === itemId ? { ...item, ...updatedProperties } : item
     );
     setPackingList(updatedPackingList);
@@ -78,14 +80,14 @@ export default function PackingList({
   return (
     <>
       <PackList>
-        {packingList.length > 0 && (
+        {listData.length > 0 && (
           <ItemHeaderLabel>
             <ItemNumberLabel>No.</ItemNumberLabel>
             <ItemNameLabel>Item</ItemNameLabel>
             <ItemQuantityLabel>Qty.</ItemQuantityLabel>
           </ItemHeaderLabel>
         )}
-        {packingList.map((item, index) => (
+        {listData.map((item, index) => (
           <InputContainer key={item._id}>
             <ItemNumberContainer>
               <ItemNumberLabel>{index + 1}</ItemNumberLabel>
@@ -98,7 +100,7 @@ export default function PackingList({
             />
           </InputContainer>
         ))}
-        {packingList.showNewItem && (
+        {listData.showNewItem && (
           <NewItem
             newItem={newItem}
             handleUpdateNewItem={handleUpdateNewItem}

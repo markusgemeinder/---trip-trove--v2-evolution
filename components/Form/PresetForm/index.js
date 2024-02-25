@@ -1,3 +1,4 @@
+// import { useEffect } from "react";
 import {
   ButtonContainer,
   StyledTextButton,
@@ -9,8 +10,8 @@ import {
   StyledInput,
   PackingListContainer,
 } from "@/components/Form/Form.styled";
-import { useFormData } from "@/components/Form/TripForm/TripForm.handlers";
-import PackingList, { generateObjectId } from "@/components/PackingList";
+import { usePresetFormData } from "@/components/Form/PresetForm/PresetForm.handlers";
+import PackingList from "@/components/PackingList";
 
 const INITIAL_DATA = {
   presetName: "",
@@ -40,15 +41,19 @@ export default function PresetForm({
     handleInput,
     handleReset,
     handleSubmit,
-  } = useFormData(defaultData, onSubmit, isEditMode);
+  } = usePresetFormData(defaultData, onSubmit, isEditMode);
 
   function handlePackingListChange(newPackingList) {
     setHandoverData((prevData) => ({
       ...prevData,
-      packingList: newPackingList,
+      items: newPackingList,
     }));
     setHasChanges(true);
   }
+
+  // useEffect(() => {
+  //   console.log(handoverData);
+  // }, [handoverData]);
 
   return (
     <StyledForm
@@ -70,7 +75,8 @@ export default function PresetForm({
 
       <PackingListContainer disabled={formDisabled}>
         <PackingList
-          packingList={handoverData.items}
+          listData={handoverData.items}
+          isForm={"preset"}
           setPackingList={handlePackingListChange}
           formDisabled={formDisabled}
         />

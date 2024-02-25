@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import { toastDuration, validateTripDates } from "@/lib/utils";
 import { ToastMessage } from "@/components/ToastMessage";
 
-export function useFormData(defaultData, onSubmit, isEditMode) {
+export function useTripFormData(defaultData, onSubmit, isEditMode) {
   const [formDisabled, setFormDisabled] = useState(false);
   const [handoverData, setHandoverData] = useState(defaultData);
   const [hasChanges, setHasChanges] = useState(false);
