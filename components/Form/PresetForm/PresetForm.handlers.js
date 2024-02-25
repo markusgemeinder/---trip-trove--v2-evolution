@@ -34,39 +34,39 @@ export function usePresetFormData(defaultData, onSubmit, isEditMode) {
         router.events.off("routeChangeStart", handleRouteChange);
       };
     }
+
+    function determinePageExitDestinationUrl() {
+      return "/presets/";
+    }
+
+    function showCustomToastPageExit() {
+      toast.dismiss();
+      setFormDisabled(true);
+
+      toast(
+        <ToastMessage
+          message="You have unsaved changes. Leave this page without saving?"
+          textConfirmButton="Yes, leave."
+          textCancelButton="No, stay!"
+          messageAfterCancel="Don&rsquo;t forget to save your data."
+          onConfirm={() => {
+            setFormDisabled(false);
+            setHasChanges(false);
+            const destinationUrl = determinePageExitDestinationUrl();
+            setTimeout(toastDuration);
+            toast.dismiss();
+            router.push(destinationUrl);
+          }}
+          onCancel={() => {
+            setFormDisabled(false);
+            setTimeout(toastDuration);
+            toast.dismiss;
+          }}
+        />,
+        { duration: Infinity }
+      );
+    }
   }, [hasChanges]);
-
-  function determinePageExitDestinationUrl() {
-    return "/presets/";
-  }
-
-  function showCustomToastPageExit() {
-    toast.dismiss();
-    setFormDisabled(true);
-
-    toast(
-      <ToastMessage
-        message="You have unsaved changes. Leave this page without saving?"
-        textConfirmButton="Yes, leave."
-        textCancelButton="No, stay!"
-        messageAfterCancel="Don&rsquo;t forget to save your data."
-        onConfirm={() => {
-          setFormDisabled(false);
-          setHasChanges(false);
-          const destinationUrl = determinePageExitDestinationUrl();
-          setTimeout(toastDuration);
-          toast.dismiss();
-          router.push(destinationUrl);
-        }}
-        onCancel={() => {
-          setFormDisabled(false);
-          setTimeout(toastDuration);
-          toast.dismiss;
-        }}
-      />,
-      { duration: Infinity }
-    );
-  }
 
   function handleInput(event) {
     setHandoverData((prev) => ({

@@ -34,43 +34,43 @@ export function useTripFormData(defaultData, onSubmit, isEditMode) {
         router.events.off("routeChangeStart", handleRouteChange);
       };
     }
-  }, [hasChanges]);
 
-  function determinePageExitDestinationUrl() {
-    if (isEditMode) {
-      return `/trips/${id}`;
-    } else {
-      return "/";
+    function determinePageExitDestinationUrl() {
+      if (isEditMode) {
+        return `/trips/${id}`;
+      } else {
+        return "/";
+      }
     }
-  }
 
-  function showCustomToastPageExit() {
-    toast.dismiss();
-    setFormDisabled(true);
+    function showCustomToastPageExit() {
+      toast.dismiss();
+      setFormDisabled(true);
 
-    toast(
-      <ToastMessage
-        message="You have unsaved changes. Leave this page without saving?"
-        textConfirmButton="Yes, leave."
-        textCancelButton="No, stay!"
-        messageAfterCancel="Don&rsquo;t forget to save your data."
-        onConfirm={() => {
-          setFormDisabled(false);
-          setHasChanges(false);
-          const destinationUrl = determinePageExitDestinationUrl();
-          setTimeout(toastDuration);
-          toast.dismiss();
-          router.push(destinationUrl);
-        }}
-        onCancel={() => {
-          setFormDisabled(false);
-          setTimeout(toastDuration);
-          toast.dismiss;
-        }}
-      />,
-      { duration: Infinity }
-    );
-  }
+      toast(
+        <ToastMessage
+          message="You have unsaved changes. Leave this page without saving?"
+          textConfirmButton="Yes, leave."
+          textCancelButton="No, stay!"
+          messageAfterCancel="Don&rsquo;t forget to save your data."
+          onConfirm={() => {
+            setFormDisabled(false);
+            setHasChanges(false);
+            const destinationUrl = determinePageExitDestinationUrl();
+            setTimeout(toastDuration);
+            toast.dismiss();
+            router.push(destinationUrl);
+          }}
+          onCancel={() => {
+            setFormDisabled(false);
+            setTimeout(toastDuration);
+            toast.dismiss;
+          }}
+        />,
+        { duration: Infinity }
+      );
+    }
+  }, [hasChanges]);
 
   async function handleImageUpdate(url, width, height, public_id) {
     setHandoverData((prevData) => ({
