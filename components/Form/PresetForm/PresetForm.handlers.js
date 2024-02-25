@@ -152,12 +152,12 @@ export function usePresetFormData(defaultData, onSubmit, isEditMode) {
       handoverData?.items.length === 1 && hasEmptyItems
         ? {
             ...handoverData,
-            packingList: [],
+            items: [],
           }
         : handoverData?.items.length > 1 && hasEmptyItems
         ? {
             ...handoverData,
-            packingList: handoverData.items.filter(
+            items: handoverData.items.filter(
               (item) =>
                 item.itemName.trim() !== "" || item.itemQuantity !== null
             ),
