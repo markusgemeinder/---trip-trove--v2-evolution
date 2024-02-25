@@ -144,6 +144,7 @@ export default function TripDetailed() {
         <CreateDateBadge
           createdAt={trip.createdAt}
           updatedAt={trip.updatedAt}
+          isTripData={true}
         />
         <ButtonContainer>
           <StyledTextButton onClick={handleDelete} disabled={buttonsDisabled}>

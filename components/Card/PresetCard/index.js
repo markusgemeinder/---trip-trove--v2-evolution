@@ -17,6 +17,8 @@ import {
   StyledTextButton,
 } from "@/components/Button/TextButton";
 
+import CreateDateBadge from "@/components/Badge/CreateDateBadge";
+
 export default function PresetCard({ preset, onDelete, onEdit }) {
   return (
     <StyledCard>
@@ -55,6 +57,11 @@ export default function PresetCard({ preset, onDelete, onEdit }) {
           Edit
         </StyledTextButton>
       </ButtonContainer>
+      <CreateDateBadge
+        createdAt={preset.createdAt}
+        updatedAt={preset.updatedAt}
+        isTripData={false}
+      />
     </StyledCard>
   );
 }

@@ -8,13 +8,15 @@ const StyledTimestamp = styled(CardLabel)`
   text-align: center;
 `;
 
-export default function CreateDateBadge({ createdAt, updatedAt }) {
+export default function CreateDateBadge({ createdAt, updatedAt, isTripData }) {
   const isUpdated = updatedAt && updatedAt !== createdAt;
 
   return (
     <StyledBadge>
       <StyledTimestamp>
-        Trip created: {formatTimestamp(createdAt)}
+        {isTripData
+          ? `Trip created: ${formatTimestamp(createdAt)}`
+          : `Preset created: ${formatTimestamp(createdAt)}`}
       </StyledTimestamp>
       {isUpdated && (
         <StyledTimestamp>

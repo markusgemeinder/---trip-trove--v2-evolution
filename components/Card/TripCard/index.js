@@ -27,6 +27,7 @@ export default function TripCard({ trip }) {
         <CreateDateBadge
           createdAt={trip.createdAt}
           updatedAt={trip.updatedAt}
+          isTripData={true}
         />
         <CardTextCallToAction>More Details</CardTextCallToAction>
       </StyledCardWithTransition>
