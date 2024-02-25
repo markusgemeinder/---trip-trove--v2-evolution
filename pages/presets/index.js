@@ -1,6 +1,10 @@
+import { useEffect, useState } from "react";
 import useSWR from "swr";
 import BackButton from "@/components/Button/BackButton";
 import { StyledLink } from "@/components/Card/Card.styled";
+import LoadingMessage from "@/components/Message/LoadingMessage";
+import ErrorMessage from "@/components/Message/ErrorMessage";
+import { isLoadingMessageDuration } from "@/lib/utils";
 
 import {
   ButtonContainer,
@@ -10,6 +14,7 @@ import {
 import PresetList from "@/components/Card/PresetList";
 
 export default function PresetsPage() {
+  const [isLoadingTimeout, setIsLoadingTimeout] = useState(true);
   const {
     data: presets,
     error,
@@ -18,9 +23,17 @@ export default function PresetsPage() {
     fallbackData: [],
   });
 
-  if (error) return <div>Failed to load</div>;
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsLoadingTimeout(false);
+    }, isLoadingMessageDuration);
 
-  if (isLoading) return <div>Loading...</div>;
+    return () => clearTimeout(timeout);
+  }, []);
+
+  if (isLoading || isLoadingTimeout) return <LoadingMessage />;
+
+  if (error) return <ErrorMessage />;
 
   return (
     <>
