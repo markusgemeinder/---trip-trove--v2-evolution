@@ -45,7 +45,7 @@ const NaviItemText = styled.a`
   padding: 0;
   margin: 0;
   text-decoration: none;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   color: var(--color-navigation-item-text);
 
   &:hover,
