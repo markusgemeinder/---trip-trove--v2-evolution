@@ -3,13 +3,13 @@ import dynamic from "next/dynamic";
 
 const DynamicLottie = dynamic(() => import("react-lottie"), { ssr: false });
 
-export default function LoadingAnimation() {
+export default function ErrorAnimation() {
   const [animationData, setAnimationData] = useState(null);
 
   useEffect(() => {
     const fetchAnimationData = async () => {
       try {
-        const data = await import("/public/animations/trip-trove-loading.json");
+        const data = await import("/public/animations/trip-trove-error.json");
         setAnimationData(data.default);
       } catch (error) {
         console.error("Error loading animation:", error);

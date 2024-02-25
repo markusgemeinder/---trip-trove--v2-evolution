@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import useSWR from "swr";
 import TripList from "@/components/Card/TripList";
 import LoadingMessage from "@/components/Message/LoadingMessage";
+import ErrorMessage from "@/components/Message/ErrorMessage";
 import { isLoadingMessageDuration } from "@/lib/utils";
 
 export default function HomePage() {
@@ -18,9 +19,9 @@ export default function HomePage() {
     return () => clearTimeout(timeout);
   }, []);
 
-  if (error) return <div>Failed to load</div>;
-
   if (isLoading || isLoadingTimeout) return <LoadingMessage />;
+
+  if (error) return <ErrorMessage />;
 
   return (
     <>
