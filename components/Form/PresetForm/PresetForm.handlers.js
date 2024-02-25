@@ -120,7 +120,7 @@ export function usePresetFormData(defaultData, onSubmit, isEditMode) {
       return;
     }
 
-    const emptyItemIndex = handoverData.packingList.findIndex(
+    const emptyItemIndex = handoverData.items.findIndex(
       (item) => item.itemName.trim() === "" && item.itemQuantity !== null
     );
 
@@ -133,13 +133,13 @@ export function usePresetFormData(defaultData, onSubmit, isEditMode) {
       return;
     }
 
-    const hasEmptyItems = handoverData.packingList.some(
+    const hasEmptyItems = handoverData.items.some(
       (item) => item.itemName.trim() === "" && item.itemQuantity === null
     );
 
     if (
-      handoverData.packingList.length === 0 ||
-      (handoverData.packingList.length === 1 && hasEmptyItems)
+      handoverData.items.length === 0 ||
+      (handoverData.items.length === 1 && hasEmptyItems)
     ) {
       toast.error(
         "Empty packing list! Don\u2019t forget to add items if required.",
@@ -149,15 +149,15 @@ export function usePresetFormData(defaultData, onSubmit, isEditMode) {
       );
     }
     const modifiedHandoverData =
-      handoverData?.packingList.length === 1 && hasEmptyItems
+      handoverData?.items.length === 1 && hasEmptyItems
         ? {
             ...handoverData,
             packingList: [],
           }
-        : handoverData?.packingList.length > 1 && hasEmptyItems
+        : handoverData?.items.length > 1 && hasEmptyItems
         ? {
             ...handoverData,
-            packingList: handoverData.packingList.filter(
+            packingList: handoverData.items.filter(
               (item) =>
                 item.itemName.trim() !== "" || item.itemQuantity !== null
             ),
