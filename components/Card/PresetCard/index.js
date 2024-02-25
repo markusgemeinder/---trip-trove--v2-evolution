@@ -17,7 +17,7 @@ import {
   StyledTextButton,
 } from "@/components/Button/TextButton";
 
-export default function PresetCard({ preset }) {
+export default function PresetCard({ preset, onDelete, onEdit }) {
   return (
     <StyledCard>
       <CardTitle>{preset.presetName}</CardTitle>
@@ -48,10 +48,14 @@ export default function PresetCard({ preset }) {
         </PackListContainer>
       </StyledBadge>
       <ButtonContainer>
-        <StyledTextButton type={"button"}>Delete</StyledTextButton>
-        <StyledLink href={`presets/${preset._id}/edit`}>
-          <StyledTextButton type={"button"}>Edit</StyledTextButton>
-        </StyledLink>
+        <StyledTextButton type={"button"} onClick={onDelete}>
+          Delete
+        </StyledTextButton>
+        {/* <StyledLink href={`presets/${preset._id}/edit`}> */}
+        <StyledTextButton type={"button"} onClick={onEdit}>
+          Edit
+        </StyledTextButton>
+        {/* </StyledLink> */}
       </ButtonContainer>
     </StyledCard>
   );
