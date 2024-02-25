@@ -1,10 +1,10 @@
-import DetailsCard from "@/components/Card/DetailsCard";
+import TripDetailed from "@/components/Card/TripDetailed";
 import BackButton from "@/components/Button/BackButton";
 
 export default function DetailsPage() {
   return (
     <>
-      <DetailsCard />
+      <TripDetailed />
       <BackButton href="/" />
     </>
   );

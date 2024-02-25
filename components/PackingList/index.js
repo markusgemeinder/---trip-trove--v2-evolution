@@ -24,12 +24,11 @@ export function generateObjectId() {
 }
 
 export default function PackingList({
-  handoverData,
-  setHandoverData,
-  setHasChanges,
+  listData,
+  setPackingList,
   formDisabled,
 }) {
-  const [newPackingListItem, setNewPackingListItem] = useState({
+  const [newItem, setNewItem] = useState({
     itemName: "",
     itemQuantity: null,
     isPacked: false,
@@ -38,69 +37,56 @@ export default function PackingList({
   function handleAddItem() {
     if (formDisabled) return;
 
-    const lastItem =
-      handoverData.packingList[handoverData.packingList.length - 1];
+    const lastItem = listData[listData.length - 1];
     if (lastItem && lastItem.itemName === "") return;
 
-    const nextPackingListItem = {
-      ...newPackingListItem,
+    const nextItem = {
+      ...newItem,
       _id: generateObjectId(),
     };
-    const updatedPackingList = [
-      ...handoverData.packingList,
-      nextPackingListItem,
-    ];
+    const updatedPackingList = [...listData, nextItem];
 
-    setHandoverData((prevData) => ({
-      ...prevData,
-      packingList: updatedPackingList,
-    }));
+    setPackingList(updatedPackingList);
+    // console.log("updatedPackingList", updatedPackingList);
 
-    setNewPackingListItem({
+    setNewItem({
       itemName: "",
       itemQuantity: null,
       isPacked: false,
     });
-    setHasChanges(true);
   }
 
   function handleRemoveItem(itemIdToRemove) {
     if (formDisabled) return;
 
-    setHandoverData((prevData) => {
-      const updatedPackingList = handoverData.packingList.filter(
-        (item) => item._id !== itemIdToRemove
-      );
-      return { ...prevData, packingList: updatedPackingList };
-    });
-    setHasChanges(true);
+    const updatedPackingList = listData.filter(
+      (item) => item._id !== itemIdToRemove
+    );
+    setPackingList(updatedPackingList);
   }
 
   function handleUpdateItem(itemId, updatedProperties) {
-    setHandoverData((prev) => {
-      const updatedPackingList = prev.packingList.map((item) =>
-        item._id === itemId ? { ...item, ...updatedProperties } : item
-      );
-      return { ...prev, packingList: updatedPackingList };
-    });
-    setHasChanges(true);
+    const updatedPackingList = listData.map((item) =>
+      item._id === itemId ? { ...item, ...updatedProperties } : item
+    );
+    setPackingList(updatedPackingList);
   }
 
-  function handleUpdateNewPackingListItem(updates) {
-    setNewPackingListItem((prev) => ({ ...prev, ...updates }));
+  function handleUpdateNewItem(updates) {
+    setNewItem((prev) => ({ ...prev, ...updates }));
   }
 
   return (
     <>
       <PackList>
-        {handoverData.packingList.length > 0 && (
+        {listData.length > 0 && (
           <ItemHeaderLabel>
             <ItemNumberLabel>No.</ItemNumberLabel>
             <ItemNameLabel>Item</ItemNameLabel>
             <ItemQuantityLabel>Qty.</ItemQuantityLabel>
           </ItemHeaderLabel>
         )}
-        {handoverData.packingList.map((item, index) => (
+        {listData.map((item, index) => (
           <InputContainer key={item._id}>
             <ItemNumberContainer>
               <ItemNumberLabel>{index + 1}</ItemNumberLabel>
@@ -113,10 +99,10 @@ export default function PackingList({
             />
           </InputContainer>
         ))}
-        {handoverData.showNewPackingListItem && (
-          <NewPackingListItem
-            newPackingListItem={newPackingListItem}
-            handleUpdateNewPackingListItem={handleUpdateNewPackingListItem}
+        {listData.showNewItem && (
+          <NewItem
+            newItem={newItem}
+            handleUpdateNewItem={handleUpdateNewItem}
             formDisabled={formDisabled}
           />
         )}
@@ -183,13 +169,9 @@ function InputItemAndQuantity({
   );
 }
 
-function NewPackingListItem({
-  newPackingListItem,
-  handleUpdateNewPackingListItem,
-  formDisabled,
-}) {
+function NewItem({ newItem, handleUpdateNewItem, formDisabled }) {
   const handleInputChange = (key, value) => {
-    handleUpdateNewPackingListItem({ [key]: value });
+    handleUpdateNewItem({ [key]: value });
   };
 
   return (
@@ -197,13 +179,13 @@ function NewPackingListItem({
       <InputItemName
         type="text"
         disabled={formDisabled}
-        value={newPackingListItem.itemName}
+        value={newItem.itemName}
         onChange={(event) => handleInputChange("itemName", event.target.value)}
       />
       <InputItemQuantity
         type="number"
         disabled={formDisabled}
-        value={newPackingListItem.itemQuantity}
+        value={newItem.itemQuantity}
         onChange={(event) =>
           handleInputChange("itemQuantity", event.target.value)
         }

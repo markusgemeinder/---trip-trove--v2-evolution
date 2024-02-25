@@ -4,11 +4,12 @@ const { Schema } = mongoose;
 
 const presetSchema = new Schema(
   {
-    preset: { type: String, required: true },
+    presetName: { type: String, required: true },
     items: [
       {
         itemName: { type: String, required: true },
         itemQuantity: { type: Number },
+        isPacked: { type: Boolean },
       },
     ],
   },

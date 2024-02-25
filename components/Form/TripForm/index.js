@@ -1,13 +1,14 @@
-import { useState } from "react";
-import { formatDateForInput } from "@/lib/utils";
+import { useEffect, useState } from "react";
+import { toastDuration, formatDateForInput } from "@/lib/utils";
 import toast from "react-hot-toast";
+import { ToastMessage } from "@/components/ToastMessage";
 import {
   ButtonContainer,
   StyledTextButton,
   StyledTextButtonMediumSize,
 } from "@/components/Button/TextButton";
 import {
-  TripForm,
+  StyledForm,
   StyledLabel,
   StyledInput,
   DateContainer,
@@ -17,9 +18,9 @@ import {
   PackingListContainer,
   PresetContainer,
 } from "@/components/Form/Form.styled";
-import { useFormData } from "@/components/Form/Form.handlers";
+import { useTripFormData } from "@/components/Form/TripForm/TripForm.handlers";
 import ImageUpload from "@/components/ImageUpload";
-import PresetSelect from "@/components/PresetSelect";
+import SelectPreset from "@/components/SelectPreset";
 import PackingList, { generateObjectId } from "@/components/PackingList";
 
 const INITIAL_DATA = {
@@ -36,13 +37,14 @@ const INITIAL_DATA = {
   packingList: [],
 };
 
-export default function Form({
+export default function TripForm({
   defaultData = INITIAL_DATA,
   isEditMode,
   onSubmit,
 }) {
   const {
     formDisabled,
+    setFormDisabled,
     handoverData,
     setHandoverData,
     hasChanges,
@@ -52,14 +54,26 @@ export default function Form({
     handleInput,
     handleReset,
     handleSubmit,
-  } = useFormData(defaultData, onSubmit, isEditMode);
+  } = useTripFormData(defaultData, onSubmit, isEditMode);
 
   const [selectedPresetData, setSelectedPresetData] = useState([]);
   const [lastAppliedPreset, setLastAppliedPreset] = useState(null);
 
-  function generateListFromPreset(selectedPresetData) {
-    const selectedPreset = selectedPresetData.preset;
+  function handlePackingListChange(newPackingList) {
+    setHandoverData((prevData) => ({
+      ...prevData,
+      packingList: newPackingList,
+    }));
+    setHasChanges(true);
+  }
 
+  // useEffect(() => {
+  //   console.log(handoverData);
+  // }, [handoverData]);
+
+  function generateListFromPreset(selectedPresetData) {
+    setLastAppliedPreset(selectedPresetData);
+    const selectedPreset = selectedPresetData.presetName;
     if (!selectedPreset) {
       toast.error("No preset selected yet.", {
         duration: toastDuration,
@@ -67,39 +81,86 @@ export default function Form({
       return;
     }
     if (lastAppliedPreset === selectedPreset) {
-      return;
-    }
-    setLastAppliedPreset(selectedPreset);
+      toast.dismiss();
+      setFormDisabled(true);
 
-    const updatedPackingList = [...handoverData.packingList];
+      toast(
+        <ToastMessage
+          message="Are you sure to apply the same preset once again?"
+          textConfirmButton="Yes, apply."
+          textCancelButton="No, don&rsquo;t apply!"
+          onConfirm={() => {
+            setLastAppliedPreset(selectedPreset);
 
-    const lastItem = updatedPackingList[updatedPackingList.length - 1];
-    if (lastItem && lastItem.itemName === "") {
-      updatedPackingList.pop();
-      updatedPackingList.push(
-        ...selectedPresetData.items.map((item) => ({
-          ...item,
-          _id: generateObjectId(),
-        }))
+            const updatedPackingList = [...handoverData.packingList];
+
+            const lastItem = updatedPackingList[updatedPackingList.length - 1];
+            if (lastItem && lastItem.itemName === "") {
+              updatedPackingList.pop();
+              updatedPackingList.push(
+                ...selectedPresetData.items.map((item) => ({
+                  ...item,
+                  _id: generateObjectId(),
+                }))
+              );
+            } else {
+              updatedPackingList.push(
+                ...selectedPresetData.items.map((item) => ({
+                  ...item,
+                  _id: generateObjectId(),
+                }))
+              );
+            }
+
+            setHandoverData((prevData) => ({
+              ...prevData,
+              packingList: updatedPackingList,
+            }));
+            setHasChanges(true);
+            setFormDisabled(false);
+          }}
+          onCancel={() => {
+            setFormDisabled(false);
+            return;
+          }}
+        />,
+        { duration: Infinity }
       );
-    } else {
-      updatedPackingList.push(
-        ...selectedPresetData.items.map((item) => ({
-          ...item,
-          _id: generateObjectId(),
-        }))
-      );
     }
 
-    setHandoverData((prevData) => ({
-      ...prevData,
-      packingList: updatedPackingList,
-    }));
-    setHasChanges(true);
+    if (lastAppliedPreset !== selectedPreset) {
+      setLastAppliedPreset(selectedPreset);
+
+      const updatedPackingList = [...handoverData.packingList];
+
+      const lastItem = updatedPackingList[updatedPackingList.length - 1];
+      if (lastItem && lastItem.itemName === "") {
+        updatedPackingList.pop();
+        updatedPackingList.push(
+          ...selectedPresetData.items.map((item) => ({
+            ...item,
+            _id: generateObjectId(),
+          }))
+        );
+      } else {
+        updatedPackingList.push(
+          ...selectedPresetData.items.map((item) => ({
+            ...item,
+            _id: generateObjectId(),
+          }))
+        );
+      }
+
+      setHandoverData((prevData) => ({
+        ...prevData,
+        packingList: updatedPackingList,
+      }));
+      setHasChanges(true);
+    }
   }
 
   return (
-    <TripForm
+    <StyledForm
       aria-label={isEditMode ? "edit trip form" : "create trip form"}
       onSubmit={handleSubmit}
       formDisabled={formDisabled}
@@ -193,9 +254,9 @@ export default function Form({
       <PackingListContainer disabled={formDisabled}>
         <StyledLabel htmlFor="packingList">Packing List</StyledLabel>
         <PresetContainer>
-          <PresetSelect
-            id="template"
-            name="template"
+          <SelectPreset
+            id="selectPresetTripForm"
+            name="selectPresetTripForm"
             onSelectPreset={setSelectedPresetData}
             formDisabled={formDisabled}
           />
@@ -209,12 +270,9 @@ export default function Form({
         </PresetContainer>
 
         <PackingList
-          handoverData={handoverData}
-          setHandoverData={setHandoverData}
-          setHasChanges={setHasChanges}
+          listData={handoverData.packingList}
+          setPackingList={handlePackingListChange}
           formDisabled={formDisabled}
-          selectedPresetData={selectedPresetData}
-          setSelectedPresetData={setSelectedPresetData}
         />
       </PackingListContainer>
 
@@ -222,7 +280,7 @@ export default function Form({
         <StyledTextButton
           type="button"
           onClick={handleReset}
-          disabled={formDisabled}
+          disabled={formDisabled || !hasChanges}
         >
           {isEditMode ? "Discard" : "Reset"}
         </StyledTextButton>
@@ -230,6 +288,6 @@ export default function Form({
           Save
         </StyledTextButton>
       </ButtonContainer>
-    </TripForm>
+    </StyledForm>
   );
 }

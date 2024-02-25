@@ -1,23 +1,8 @@
 import React, { useState } from "react";
-import styled from "styled-components";
-import { defaultFont } from "@/styles.js";
 import useSWR from "swr";
+import { StyledSelect } from "@/components/Form/Form.styled";
 
-const StyledSelect = styled.select`
-  font-family: ${defaultFont.style.fontFamily};
-  font-size: inherit;
-  background-color: var(--color-form-input);
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin: 0;
-  padding: 0.3rem;
-
-  @media (min-width: 600px) {
-    padding: 0.5rem;
-  }
-`;
-
-export default function PresetSelect({ onSelectPreset }) {
+export default function SelectPreset({ onSelectPreset }) {
   const {
     data: packingLists,
     error,
@@ -39,7 +24,7 @@ export default function PresetSelect({ onSelectPreset }) {
   function handlePresetChange(event) {
     const selectedPresetName = event.target.value;
     const selectedPresetData = packingLists.find(
-      (preset) => preset.preset === selectedPresetName
+      (preset) => preset.presetName === selectedPresetName
     );
     setSelectedPreset(selectedPresetName); // Update selected preset name
     onSelectPreset(selectedPresetData); // Pass the selected preset object back to the parent component
@@ -52,10 +37,15 @@ export default function PresetSelect({ onSelectPreset }) {
         <hr />
         {packingLists.map((packingList) => (
           <React.Fragment key={packingList._id}>
-            <option value={packingList.preset}>{packingList.preset}</option>
+            <option value={packingList.presetName}>
+              {packingList.presetName}
+            </option>
             {packingList.items.map((item) => (
               <option key={item._id} value={item.itemName} disabled>
-                {item.itemName}
+                &#xA0;&#xA0;&#xA0;&#x25B6;&nbsp;
+                {item.itemName.length > 16
+                  ? `${item.itemName.slice(0, 16)}...`
+                  : item.itemName}
                 {item.itemQuantity && ` (${item.itemQuantity}x)`}
               </option>
             ))}

@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import toast from "react-hot-toast";
-import { toastDuration, validateTripDates } from "@/lib/utils";
+import { toastDuration } from "@/lib/utils";
 import { ToastMessage } from "@/components/ToastMessage";
 
-export function useFormData(defaultData, onSubmit, isEditMode) {
+export function usePresetFormData(defaultData, onSubmit, isEditMode) {
   const [formDisabled, setFormDisabled] = useState(false);
   const [handoverData, setHandoverData] = useState(defaultData);
   const [hasChanges, setHasChanges] = useState(false);
@@ -34,90 +34,39 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
         router.events.off("routeChangeStart", handleRouteChange);
       };
     }
-  }, [hasChanges]);
 
-  function determinePageExitDestinationUrl() {
-    if (isEditMode) {
-      return `/trips/${id}`;
-    } else {
-      return "/";
+    function determinePageExitDestinationUrl() {
+      return "/presets/";
     }
-  }
 
-  function showCustomToastPageExit() {
-    toast.dismiss();
-    setFormDisabled(true);
+    function showCustomToastPageExit() {
+      toast.dismiss();
+      setFormDisabled(true);
 
-    toast(
-      <ToastMessage
-        message="You have unsaved changes. Leave this page without saving?"
-        textConfirmButton="Yes, leave."
-        textCancelButton="No, stay!"
-        messageAfterCancel="Don&rsquo;t forget to save your data."
-        onConfirm={() => {
-          setFormDisabled(false);
-          setHasChanges(false);
-          const destinationUrl = determinePageExitDestinationUrl();
-          setTimeout(toastDuration);
-          toast.dismiss();
-          router.push(destinationUrl);
-        }}
-        onCancel={() => {
-          setFormDisabled(false);
-          setTimeout(toastDuration);
-          toast.dismiss;
-        }}
-      />,
-      { duration: Infinity }
-    );
-  }
-
-  async function handleImageUpdate(url, width, height, public_id) {
-    setHandoverData((prevData) => ({
-      ...prevData,
-      image: {
-        url: url,
-        width: width,
-        height: height,
-        publicId: public_id,
-      },
-    }));
-    setHasChanges(true);
-  }
-
-  async function handleDeleteImage() {
-    toast.dismiss();
-    setFormDisabled(true);
-
-    toast(
-      <ToastMessage
-        message="Are you sure to delete image?"
-        textConfirmButton="Yes, delete please."
-        messageAfterConfirm="Ok, image deleted."
-        textCancelButton="No, don&rsquo;t delete!"
-        messageAfterCancel="Ok, image not deleted."
-        onConfirm={() => {
-          setHandoverData((prevData) => ({
-            ...prevData,
-            imageURL: "",
-            image: {
-              url: "",
-              width: null,
-              height: null,
-              publicId: null,
-            },
-          }));
-          setFormDisabled(false);
-          setHasChanges(true);
-        }}
-        onCancel={() => {
-          setFormDisabled(false);
-          setHasChanges(false);
-        }}
-      />,
-      { duration: Infinity }
-    );
-  }
+      toast(
+        <ToastMessage
+          message="You have unsaved changes. Leave this page without saving?"
+          textConfirmButton="Yes, leave."
+          textCancelButton="No, stay!"
+          messageAfterCancel="Don&rsquo;t forget to save your data."
+          onConfirm={() => {
+            setFormDisabled(false);
+            setHasChanges(false);
+            const destinationUrl = determinePageExitDestinationUrl();
+            setTimeout(toastDuration);
+            toast.dismiss();
+            router.push(destinationUrl);
+          }}
+          onCancel={() => {
+            setFormDisabled(false);
+            setTimeout(toastDuration);
+            toast.dismiss;
+          }}
+        />,
+        { duration: Infinity }
+      );
+    }
+  }, [hasChanges]);
 
   function handleInput(event) {
     setHandoverData((prev) => ({
@@ -171,15 +120,7 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
       return;
     }
 
-    if (!validateTripDates(handoverData)) {
-      toast.error("End date earlier than start date.", {
-        duration: toastDuration,
-      });
-      setFormDisabled(false);
-      return;
-    }
-
-    const emptyItemIndex = handoverData.packingList.findIndex(
+    const emptyItemIndex = handoverData.items.findIndex(
       (item) => item.itemName.trim() === "" && item.itemQuantity !== null
     );
 
@@ -192,31 +133,29 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
       return;
     }
 
-    const hasEmptyItems = handoverData.packingList.some(
+    const hasEmptyItems = handoverData.items.some(
       (item) => item.itemName.trim() === "" && item.itemQuantity === null
     );
 
     if (
-      handoverData.packingList.length === 0 ||
-      (handoverData.packingList.length === 1 && hasEmptyItems)
+      handoverData.items.length === 0 ||
+      (handoverData.items.length === 1 && hasEmptyItems)
     ) {
-      toast.error(
-        "Empty packing list! Don\u2019t forget to add items if required.",
-        {
-          duration: toastDuration,
-        }
-      );
+      toast.error("Empty packing list! Please add items.", {
+        duration: toastDuration,
+      });
+      return;
     }
     const modifiedHandoverData =
-      handoverData?.packingList.length === 1 && hasEmptyItems
+      handoverData?.items.length === 1 && hasEmptyItems
         ? {
             ...handoverData,
-            packingList: [],
+            items: [],
           }
-        : handoverData?.packingList.length > 1 && hasEmptyItems
+        : handoverData?.items.length > 1 && hasEmptyItems
         ? {
             ...handoverData,
-            packingList: handoverData.packingList.filter(
+            items: handoverData.items.filter(
               (item) =>
                 item.itemName.trim() !== "" || item.itemQuantity !== null
             ),
@@ -245,12 +184,11 @@ export function useFormData(defaultData, onSubmit, isEditMode) {
 
   return {
     formDisabled,
+    setFormDisabled,
     handoverData,
     setHandoverData,
     hasChanges,
     setHasChanges,
-    handleImageUpdate,
-    handleDeleteImage,
     handleInput,
     handleReset,
     handleSubmit,

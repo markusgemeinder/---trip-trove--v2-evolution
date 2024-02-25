@@ -1,6 +1,5 @@
 import useSWR from "swr";
-import CardList from "@/components/Card/CardList";
-// import Link from "next/link";
+import TripList from "@/components/Card/TripList";
 
 export default function HomePage() {
   const { data, error, isLoading } = useSWR("/api/trips", {
@@ -14,7 +13,7 @@ export default function HomePage() {
   return (
     <>
       {/* <Link href="/test">Test Page</Link> */}
-      <CardList data={data} />
+      <TripList data={data} />
     </>
   );
 }

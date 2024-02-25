@@ -4,15 +4,20 @@ import {
   calculateDurationDays,
   formatDate,
 } from "@/lib/utils";
+import {
+  CardText,
+  CardTextHighlight,
+  CardLabel,
+} from "@/components/Card/Card.styled";
 
 const BadgeContainer = styled.div`
   margin: 0;
   padding: 0;
   display: grid;
   width: 100%;
-  grid-template-columns: 1fr 2fr 1fr;
-  border-radius: 8px;
-  gap: 8px;
+  grid-template-columns: 1fr 1.8fr 1fr;
+  border-radius: 6px;
+  gap: 6px;
   margin-bottom: 0.3rem;
 
   @media (min-width: 600px) {
@@ -20,7 +25,7 @@ const BadgeContainer = styled.div`
   }
 `;
 
-const StartDurationContainer = styled.div`
+const StyledBadge = styled.div`
   margin: 0;
   padding: 0.3rem;
   display: flex;
@@ -31,91 +36,39 @@ const StartDurationContainer = styled.div`
   border-radius: inherit;
 `;
 
-const StartDurationText = styled.p`
-  margin: 0;
-  padding: 0.1rem;
-  color: var(--color-badge-label);
-  font-weight: bold;
-  font-size: 0.6rem;
-
-  @media (min-width: 600px) {
-    font-size: 0.8rem;
-  }
-`;
-
-const StartDurationDays = styled.p`
-  margin: 0;
-  padding: 0;
-  font-weight: bold;
-  color: var(--color-badge-highlight);
-  font-size: 1.2rem;
-
-  @media (min-width: 600px) {
-    font-size: 1.6rem;
-  }
-`;
-
-const ScheduledContainer = styled.div`
-  margin: 0;
-  padding: 0.3rem 0.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-flow: column wrap;
-  background-color: var(--color-badge);
-  border-radius: inherit;
-  
-  @media (min-width: 600px) {
-    grid-template-columns: 1fr 3fr;
-`;
-
-const ScheduledText = styled(StartDurationText)`
-  margin: 0;
-  padding: 0;
-  text-align: left;
-`;
-
-const ScheduledDate = styled.p`
-  margin: 0;
-  padding: 0.1rem;
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: var(--color-badge-text);
-
-  @media (min-width: 600px) {
-    font-size: 1.1rem;
-  }
+const StyledBadgeLabel = styled(CardLabel)`
+  margin: 0.1rem 0;
 `;
 
 export default function TripDetailsBadge({ startDate, endDate }) {
   return (
     <BadgeContainer>
-      <StartDurationContainer>
+      <StyledBadge>
         {calculateStartDays(startDate) <= 0 ? (
-          <StartDurationText>Overdue</StartDurationText>
+          <StyledBadgeLabel>Overdue</StyledBadgeLabel>
         ) : (
-          <StartDurationText>Start in</StartDurationText>
+          <StyledBadgeLabel>Start in</StyledBadgeLabel>
         )}
-        <StartDurationDays>{calculateStartDays(startDate)}</StartDurationDays>
-        <StartDurationText>
+        <CardTextHighlight>{calculateStartDays(startDate)}</CardTextHighlight>
+        <StyledBadgeLabel>
           {calculateStartDays(startDate) === 1 ? "day" : "days"}
-        </StartDurationText>
-      </StartDurationContainer>
-      <ScheduledContainer>
-        <ScheduledText>Scheduled from</ScheduledText>
-        <ScheduledDate>{formatDate(startDate)}</ScheduledDate>
-        <ScheduledText>until</ScheduledText>
-        <ScheduledDate>{formatDate(endDate)}</ScheduledDate>
-      </ScheduledContainer>
-      <StartDurationContainer>
-        <StartDurationText>Duration</StartDurationText>
-        <StartDurationDays>
+        </StyledBadgeLabel>
+      </StyledBadge>
+      <StyledBadge>
+        <StyledBadgeLabel>Scheduled from</StyledBadgeLabel>
+        <CardText>{formatDate(startDate)}</CardText>
+        <StyledBadgeLabel>until</StyledBadgeLabel>
+        <CardText>{formatDate(endDate)}</CardText>
+      </StyledBadge>
+      <StyledBadge>
+        <StyledBadgeLabel>Duration</StyledBadgeLabel>
+        <CardTextHighlight>
           {calculateDurationDays(startDate, endDate)}
-        </StartDurationDays>
-        <StartDurationText>
+        </CardTextHighlight>
+        <StyledBadgeLabel>
           {calculateDurationDays(startDate, endDate) === 1 ? "day" : "days"}
-        </StartDurationText>
-      </StartDurationContainer>
+        </StyledBadgeLabel>
+      </StyledBadge>
     </BadgeContainer>
   );
 }

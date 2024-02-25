@@ -14,8 +14,12 @@ const LayoutContainer = styled.div`
 const Main = styled.main`
   flex: 1;
   overflow-y: auto;
-  margin: 90px auto;
+  margin: 100px auto;
   padding: 0px 15px;
+
+  @media (min-width: 600px) {
+    margin: 120px auto;
+  }
 `;
 
 export default function Layout({ children }) {

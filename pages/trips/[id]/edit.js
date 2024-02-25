@@ -1,6 +1,6 @@
 import useSWR from "swr";
 import { useRouter } from "next/router";
-import Form from "@/components/Form";
+import TripForm from "@/components/Form/TripForm";
 import BackButton from "@/components/Button/BackButton";
 import { toast, Toaster } from "react-hot-toast";
 
@@ -11,7 +11,7 @@ export default function EditPage() {
 
   const { data: trip, isLoading, error, mutate } = useSWR(`/api/trips/${id}`);
 
-  const handleSubmit = async (tripData) => {
+  async function handleSubmit(tripData) {
     const response = await fetch(`/api/trips/${id}`, {
       method: "PATCH",
       headers: {
@@ -29,12 +29,12 @@ export default function EditPage() {
         "Oops! Something went wrong while processing your request. Please check your input and try again."
       );
     }
-  };
+  }
 
   return (
     <>
       <Toaster />
-      <Form onSubmit={handleSubmit} defaultData={trip} isEditMode={true} />
+      <TripForm onSubmit={handleSubmit} defaultData={trip} isEditMode={true} />
       <BackButton href={`/trips/${id}`} />
     </>
   );
