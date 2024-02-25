@@ -271,7 +271,6 @@ export default function TripForm({
 
         <PackingList
           listData={handoverData.packingList}
-          isForm={"trip"}
           setPackingList={handlePackingListChange}
           formDisabled={formDisabled}
         />

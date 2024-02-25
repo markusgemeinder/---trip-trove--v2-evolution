@@ -63,7 +63,6 @@ export default function PresetForm({
       <PackingListContainer disabled={formDisabled}>
         <PackingList
           listData={handoverData.items}
-          isForm={"preset"}
           setPackingList={handlePackingListChange}
           formDisabled={formDisabled}
         />

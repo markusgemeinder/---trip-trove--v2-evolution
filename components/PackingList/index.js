@@ -25,7 +25,6 @@ export function generateObjectId() {
 
 export default function PackingList({
   listData,
-  isForm,
   setPackingList,
   formDisabled,
 }) {
