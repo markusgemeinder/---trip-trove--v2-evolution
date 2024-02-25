@@ -51,11 +51,9 @@ export default function PresetCard({ preset, onDelete, onEdit }) {
         <StyledTextButton type={"button"} onClick={onDelete}>
           Delete
         </StyledTextButton>
-        {/* <StyledLink href={`presets/${preset._id}/edit`}> */}
         <StyledTextButton type={"button"} onClick={onEdit}>
           Edit
         </StyledTextButton>
-        {/* </StyledLink> */}
       </ButtonContainer>
     </StyledCard>
   );
