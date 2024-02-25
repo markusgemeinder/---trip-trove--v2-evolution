@@ -6,7 +6,7 @@ import LoadingMessage from "@/components/Message/LoadingMessage";
 import ErrorMessage from "@/components/Message/ErrorMessage";
 
 export default function CreatePreset() {
-  const { mutate } = useSWR("/api/trips");
+  const { isLoading, error, mutate } = useSWR("/api/trips");
 
   async function handleSubmit(presetData) {
     const response = await fetch(`/api/presets`, {
