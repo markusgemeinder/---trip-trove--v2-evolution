@@ -35,14 +35,14 @@ export const UploadArea = styled.div`
   height: 100%;
   text-align: center;
   border-radius: inherit;
-  border: 3px dashed var(--color-image-upload-dash-line);
+  border: 2px dashed var(--color-image-upload-dash-line);
   padding: 0.1rem;
   position: relative;
   transition: none;
   
   @media (min-width: 600px) {
     padding: 0.2rem;
-    border: 1px dashed var(--color-image-upload-dash-line);
+    border: 3px dashed var(--color-image-upload-dash-line);
 
 `;
 
