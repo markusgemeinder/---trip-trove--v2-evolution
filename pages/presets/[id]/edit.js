@@ -7,10 +7,8 @@ import toast, { Toaster } from "react-hot-toast";
 import { ToastMessage } from "@/components/ToastMessage";
 import PresetForm from "@/components/Form/PresetForm";
 import BackButton from "@/components/Button/BackButton";
-
-const StyledMessage = styled.h2`
-  margin: 2rem auto;
-`;
+import LoadingMessage from "@/components/Message/LoadingMessage";
+import ErrorMessage from "@/components/Message/ErrorMessage";
 
 export default function EditPreset() {
   const router = useRouter();
@@ -84,9 +82,9 @@ export default function EditPreset() {
     }
   }
 
-  if (isLoading) return <StyledMessage>Loading...</StyledMessage>;
+  if (isLoading) return <LoadingMessage />;
 
-  if (error) return <StyledMessage>Error fetching data</StyledMessage>;
+  if (error) return <ErrorMessage />;
 
   return (
     <>

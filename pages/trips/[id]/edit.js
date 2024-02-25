@@ -3,6 +3,8 @@ import { useRouter } from "next/router";
 import TripForm from "@/components/Form/TripForm";
 import BackButton from "@/components/Button/BackButton";
 import { toast, Toaster } from "react-hot-toast";
+import LoadingMessage from "@/components/Message/LoadingMessage";
+import ErrorMessage from "@/components/Message/ErrorMessage";
 
 export default function EditPage() {
   const router = useRouter();
@@ -30,6 +32,10 @@ export default function EditPage() {
       );
     }
   }
+
+  if (isLoading) return <LoadingMessage />;
+
+  if (error) return <ErrorMessage />;
 
   return (
     <>

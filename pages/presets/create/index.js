@@ -2,6 +2,8 @@ import useSWR from "swr";
 import PresetForm from "@/components/Form/PresetForm";
 import BackButton from "@/components/Button/BackButton";
 import toast, { Toaster } from "react-hot-toast";
+import LoadingMessage from "@/components/Message/LoadingMessage";
+import ErrorMessage from "@/components/Message/ErrorMessage";
 
 export default function CreatePreset() {
   const { mutate } = useSWR("/api/trips");
@@ -25,6 +27,10 @@ export default function CreatePreset() {
       );
     }
   }
+
+  if (isLoading) return <LoadingMessage />;
+
+  if (error) return <ErrorMessage />;
 
   return (
     <>

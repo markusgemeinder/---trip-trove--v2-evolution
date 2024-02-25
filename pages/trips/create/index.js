@@ -2,9 +2,11 @@ import useSWR from "swr";
 import TripForm from "@/components/Form/TripForm";
 import BackButton from "@/components/Button/BackButton";
 import toast, { Toaster } from "react-hot-toast";
+import LoadingMessage from "@/components/Message/LoadingMessage";
+import ErrorMessage from "@/components/Message/ErrorMessage";
 
 export default function CreateTripPage() {
-  const { mutate } = useSWR("/api/trips");
+  const { isLoading, error, mutate } = useSWR("/api/trips");
 
   async function handleSubmit(tripData) {
     const response = await fetch(`/api/trips`, {
@@ -25,6 +27,10 @@ export default function CreateTripPage() {
       );
     }
   }
+
+  if (isLoading) return <LoadingMessage />;
+
+  if (error) return <ErrorMessage />;
 
   return (
     <>
