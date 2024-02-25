@@ -141,12 +141,10 @@ export function usePresetFormData(defaultData, onSubmit, isEditMode) {
       handoverData.items.length === 0 ||
       (handoverData.items.length === 1 && hasEmptyItems)
     ) {
-      toast.error(
-        "Empty packing list! Don\u2019t forget to add items if required.",
-        {
-          duration: toastDuration,
-        }
-      );
+      toast.error("Empty packing list! Please add items.", {
+        duration: toastDuration,
+      });
+      return;
     }
     const modifiedHandoverData =
       handoverData?.items.length === 1 && hasEmptyItems
