@@ -11,7 +11,7 @@ export default function EditPage() {
 
   const { data: trip, isLoading, error, mutate } = useSWR(`/api/trips/${id}`);
 
-  const handleSubmit = async (tripData) => {
+  async function handleSubmit(tripData) {
     const response = await fetch(`/api/trips/${id}`, {
       method: "PATCH",
       headers: {
@@ -29,7 +29,7 @@ export default function EditPage() {
         "Oops! Something went wrong while processing your request. Please check your input and try again."
       );
     }
-  };
+  }
 
   return (
     <>

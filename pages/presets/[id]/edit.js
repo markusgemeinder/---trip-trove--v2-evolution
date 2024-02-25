@@ -1,12 +1,20 @@
-import useSWR from "swr";
+import styled from "styled-components";
+import { useState } from "react";
 import { useRouter } from "next/router";
+import useSWR, { mutate } from "swr";
+import { toastDuration } from "@/lib/utils";
+import toast, { Toaster } from "react-hot-toast";
+import { ToastMessage } from "@/components/ToastMessage";
 import PresetForm from "@/components/Form/PresetForm";
 import BackButton from "@/components/Button/BackButton";
-import { toast, Toaster } from "react-hot-toast";
+
+const StyledMessage = styled.h2`
+  margin: 2rem auto;
+`;
 
 export default function EditPreset() {
   const router = useRouter();
-  const { isReady } = router;
+  // const { isReady } = router;
   const { id } = router.query;
 
   const {
@@ -16,7 +24,47 @@ export default function EditPreset() {
     mutate,
   } = useSWR(`/api/presets/${id}`);
 
-  const handleSubmit = async (presetData) => {
+  const [buttonsDisabled, setButtonsDisabled] = useState(false);
+
+  async function handleEdit() {
+    router.push(`${id}/edit`);
+  }
+
+  async function handleDelete() {
+    setButtonsDisabled(true);
+    toast(
+      <ToastMessage
+        message="Are you sure to delete preset?"
+        textConfirmButton="Yes, delete."
+        messageAfterConfirm="Preset successfully deleted."
+        textCancelButton="No, don&rsquo;t delete!"
+        messageAfterCancel="Preset not deleted."
+        onConfirm={() => {
+          deletePreset();
+        }}
+        onCancel={() => {
+          setButtonsDisabled(false);
+        }}
+      />,
+      { duration: Infinity }
+    );
+  }
+
+  async function deletePreset() {
+    try {
+      await fetch(`/api/presets/${id}`, {
+        method: "DELETE",
+      });
+      await new Promise((resolve) => setTimeout(resolve, toastDuration));
+      router.push("/presets");
+    } catch (error) {
+      setButtonsDisabled(false);
+      toast.dismiss();
+      toast.error("Error deleting preset!"), { duration: toastDuration };
+    }
+  }
+
+  async function handleSubmit(presetData) {
     const response = await fetch(`/api/presets/${id}`, {
       method: "PATCH",
       headers: {
@@ -34,11 +82,11 @@ export default function EditPreset() {
         "Oops! Something went wrong while processing your request. Please check your input and try again."
       );
     }
-  };
+  }
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <StyledMessage>Loading...</StyledMessage>;
 
-  if (error) return <div>Error fetching data</div>;
+  if (error) return <StyledMessage>Error fetching data</StyledMessage>;
 
   return (
     <>
@@ -48,7 +96,6 @@ export default function EditPreset() {
         defaultData={preset}
         isEditMode={true}
       />
-      {/* <PresetForm /> */}
       <BackButton href={"/presets/"} />
     </>
   );
