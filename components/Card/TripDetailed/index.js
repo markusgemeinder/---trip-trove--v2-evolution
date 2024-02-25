@@ -3,12 +3,12 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import useSWR, { mutate } from "swr";
 import { toastDuration } from "@/lib/utils";
+import toast, { Toaster } from "react-hot-toast";
+import { ToastMessage } from "@/components/ToastMessage";
 import {
   ButtonContainer,
   StyledTextButton,
 } from "@/components/Button/TextButton";
-import toast, { Toaster } from "react-hot-toast";
-import { ToastMessage } from "@/components/ToastMessage";
 import {
   StyledCard,
   CardTitle,
