@@ -36,7 +36,6 @@ export default function PresetForm({
   function handlePackingListChange(newPackingList) {
     setHandoverData((prevData) => ({
       ...prevData,
-      presetName: presetName,
       items: newPackingList,
     }));
     setHasChanges(true);
