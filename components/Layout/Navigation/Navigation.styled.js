@@ -107,23 +107,6 @@ export const BurgerMenuItemText = styled.p`
   }
 `;
 
-export const BurgerMenuItemSvg = styled.svg`
-  display: block;
-  margin: 0;
-  width: 24px;
-  height: 24px;
-
-  @media (min-width: 600px) {
-    width: 32px;
-    height: 32px;
-    /* margin-bottom: 0.2rem; */
-  }
-`;
-
-export const BurgerMenuItemPath = styled.path`
-  fill: var(--color-burger-menu-item);
-`;
-
 export const NavigationContainer = styled.nav`
   display: block;
   background-color: var(--color-navigation);
@@ -185,21 +168,4 @@ export const NavigationItemText = styled.a`
   @media (min-width: 600px) {
     font-size: 0.9rem;
   }
-`;
-
-export const NavigationItemSvg = styled.svg`
-  display: block;
-  margin: auto;
-  width: 24px;
-  height: 24px;
-
-  @media (min-width: 600px) {
-    width: 36px;
-    height: 36px;
-    margin-bottom: 0.2rem;
-  }
-`;
-
-export const NavigationItemPath = styled.path`
-  fill: var(--color-navigation-item);
 `;
