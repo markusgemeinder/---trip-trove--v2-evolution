@@ -34,7 +34,7 @@ export function BurgerMenu() {
   }
 
   return (
-    <BurgerMenuContainer>
+    <>
       <BurgerMenuButton onClick={toggleMenu}>
         <BurgerMenuSvg viewBox="0 0 24 24" isOpen={isOpen}>
           {isOpen ? (
@@ -51,18 +51,22 @@ export function BurgerMenu() {
           )}
         </BurgerMenuSvg>
       </BurgerMenuButton>
-      <BurgerMenuLinks isOpen={isOpen}>
-        <BurgerMenuItem $active={router.pathname === "/"}>
-          <BurgerMenuItemText href="/">All Trips</BurgerMenuItemText>
-        </BurgerMenuItem>
-        <BurgerMenuItem $active={router.pathname === "/trips/create"}>
-          <BurgerMenuItemText href="/trips/create">New Trip</BurgerMenuItemText>
-        </BurgerMenuItem>
-        <BurgerMenuItem $active={router.pathname === "/presets"}>
-          <BurgerMenuItemText href="/presets">Presets</BurgerMenuItemText>
-        </BurgerMenuItem>
-      </BurgerMenuLinks>
-    </BurgerMenuContainer>
+      <BurgerMenuContainer isOpen={isOpen}>
+        <BurgerMenuLinks isOpen={isOpen}>
+          <BurgerMenuItem $active={router.pathname === "/"}>
+            <BurgerMenuItemText href="/">All Trips</BurgerMenuItemText>
+          </BurgerMenuItem>
+          <BurgerMenuItem $active={router.pathname === "/trips/create"}>
+            <BurgerMenuItemText href="/trips/create">
+              New Trip
+            </BurgerMenuItemText>
+          </BurgerMenuItem>
+          <BurgerMenuItem $active={router.pathname === "/presets"}>
+            <BurgerMenuItemText href="/presets">Presets</BurgerMenuItemText>
+          </BurgerMenuItem>
+        </BurgerMenuLinks>
+      </BurgerMenuContainer>
+    </>
   );
 }
 

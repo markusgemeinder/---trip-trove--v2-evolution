@@ -1,18 +1,37 @@
 import styled from "styled-components";
 
 export const BurgerMenuContainer = styled.nav`
-  background-color: var(--color-burger-menu);
+  background-color: ${(props) =>
+    props.isOpen ? "var(--color-burger-menu)" : "transparent"};
   opacity: 0.92;
   position: fixed;
   top: 70px;
   left: 0px;
   width: 44%;
   height: 100vh;
+  padding-top: 54px;
   z-index: 1;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(
+    ${(props) => (props.isOpen ? "0" : "-100%")}
+  ); /* Slide in/out effect */
 
   @media (min-width: 600px) {
     display: none;
   }
+`;
+
+export const BurgerMenuButton = styled.div`
+  position: fixed;
+  top: 70px; /* Fixed position at the top */
+  left: 0px; /* Fixed position at the left */
+  display: block;
+  margin: 10px 0 10px 15px;
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  z-index: 2;
 `;
 
 export const BurgerMenuSvg = styled.svg`
@@ -28,15 +47,6 @@ export const BurgerMenuSvg = styled.svg`
         ? "var(--color-burger-menu-x-icon)"
         : "var(--color-burger-menu-icon)"};
   }
-`;
-
-export const BurgerMenuButton = styled.div`
-  display: block;
-  margin: 10px 0 10px 15px;
-  padding: 0;
-  width: 36px;
-  height: 36px;
-  cursor: pointer;
 `;
 
 export const BurgerMenuLinks = styled.div`
