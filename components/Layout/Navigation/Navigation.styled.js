@@ -1,8 +1,7 @@
 import styled from "styled-components";
 
 export const BurgerMenuNavigation = styled.nav`
-  background-color: ${(props) =>
-    props.isOpen ? "var(--color-burger-menu)" : "transparent"};
+  background-color: var(--color-burger-menu);
   opacity: 0.92;
   position: fixed;
   top: 70px;
