@@ -1,5 +1,45 @@
 import styled from "styled-components";
 
+export const BurgerMenuButton = styled.div`
+  /* background-color: var(--color-burger-menu); */
+  position: fixed;
+  top: 70px;
+  left: 0px;
+  display: block;
+  margin: 10px 0 10px 10px;
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  z-index: 4;
+  transition: color 0.6s ease, transform 0.6s ease;
+
+  &:hover {
+    background-color: var(--color-burger-menu);
+    transform: scale(1.1);
+  }
+
+  @media (min-width: 600px) {
+    display: none;
+    /* top: 90px; */
+  }
+`;
+
+export const BurgerMenuButtonSvg = styled.svg`
+  display: block;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+
+  line {
+    stroke-width: 2;
+    stroke: ${(props) =>
+      props.isOpen
+        ? "var(--color-burger-menu-x-icon)"
+        : "var(--color-burger-menu-icon)"};
+  }
+`;
+
 export const BurgerMenuNavigation = styled.nav`
   background-color: var(--color-burger-menu);
   opacity: 0.95;
@@ -18,71 +58,15 @@ export const BurgerMenuNavigation = styled.nav`
   }
 `;
 
-export const BurgerMenuButton = styled.div`
-  background-color: var(--color-burger-menu);
-  position: fixed;
-  top: 70px;
-  left: 0px;
+export const BurgerMenuList = styled.ul`
   display: block;
-  margin: 10px 0 10px 10px;
+  margin: 0;
   padding: 0;
-  width: 36px;
-  height: 36px;
-  cursor: pointer;
-  z-index: 4;
-
-  @media (min-width: 600px) {
-    display: none;
-    /* top: 90px; */
-  }
-`;
-
-export const BurgerMenuSvg = styled.svg`
-  display: block;
-  margin: auto;
-  width: 100%;
-  height: 100%;
-
-  line {
-    stroke-width: 2;
-    stroke: ${(props) =>
-      props.isOpen
-        ? "var(--color-burger-menu-x-icon)"
-        : "var(--color-burger-menu-icon)"};
-  }
-`;
-
-export const BurgerMenuLinks = styled.div`
-  display: block;
   transition: display 0.3s ease-in-out;
 `;
 
-export const BurgerMenuItem = styled.div`
-  padding: 15px 20px;
-  width: 100%;
-  align-items: center;
-  text-align: left;
-  border-bottom: 2px solid var(--color-burger-menu-border);
-  &:first-child {
-    border-top: 2px solid var(--color-burger-menu-border);
-  }
-  /* &:last-child {
-    border-bottom: 0px;
-  } */
-  &:hover {
-    background-color: var(--color-burger-menu-hover);
-  }
-
-  ${({ $active }) =>
-    $active && "background-color: var(--color-burger-menu-active);"}
-`;
-
-export const BurgerMenuItemText = styled.a`
-  padding: 0;
-  margin: 0;
-  padding-left: 15px;
+export const StyledLink = styled.a`
   text-decoration: none;
-  font-size: 0.8rem;
   color: var(--color-burger-menu-text);
 
   &:hover,
@@ -91,10 +75,53 @@ export const BurgerMenuItemText = styled.a`
     text-decoration: none;
     color: var(--color-burger-menu-text);
   }
+`;
+
+export const BurgerMenuItem = styled.li`
+  display: flex;
+  flex-flow: row nowrap;
+  padding: 15px 25px;
+  width: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: left;
+  border-top: 2px solid var(--color-burger-menu-border);
+
+  &:hover {
+    background-color: var(--color-burger-menu-hover);
+  }
+
+  ${({ $active }) =>
+    $active && "background-color: var(--color-burger-menu-active);"}
+`;
+
+export const BurgerMenuItemText = styled.p`
+  padding: 0;
+  margin: 0;
+  padding-left: 10px;
+  font-size: 0.8rem;
+  color: var(--color-burger-menu-text);
 
   @media (min-width: 600px) {
     font-size: 1rem;
   }
+`;
+
+export const BurgerMenuItemSvg = styled.svg`
+  display: block;
+  margin: 0;
+  width: 24px;
+  height: 24px;
+
+  @media (min-width: 600px) {
+    width: 32px;
+    height: 32px;
+    /* margin-bottom: 0.2rem; */
+  }
+`;
+
+export const BurgerMenuItemPath = styled.path`
+  fill: var(--color-burger-menu-item);
 `;
 
 export const NavigationContainer = styled.nav`

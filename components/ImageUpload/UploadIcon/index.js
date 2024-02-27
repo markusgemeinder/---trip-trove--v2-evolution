@@ -13,7 +13,6 @@ const UploadIconSvg = styled.svg`
 
 const UploadIconPath = styled.path`
   fill: var(--color-image-upload-icon);
-  }    
 `;
 
 export default function UploadIcon() {

@@ -21,6 +21,7 @@ const BackButtonLink = styled(Link)`
   justify-content: center;
   border-radius: 50%;
   transition: color 0.6s ease, transform 0.6s ease;
+
   &:hover {
     background-color: var(--color-back-button-hover);
     transform: scale(1.1);

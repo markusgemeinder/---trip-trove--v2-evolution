@@ -125,6 +125,7 @@ export default createGlobalStyle`
   --color-burger-menu-border: var(--color-blue-0);
   --color-burger-menu-hover: var(--color-blue-400);
   --color-burger-menu-active: var(--color-blue-300);
+  --color-burger-menu-item: var(--color-blue-500);
   --color-burger-menu-text: var(--color-blue-800);
   
   --color-back-button: var(--color-blue-300);
