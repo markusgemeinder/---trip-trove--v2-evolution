@@ -81,10 +81,10 @@ const StyledNavigationPath = styled.path`
 `;
 
 const BurgerMenuContainer = styled.nav`
-  background-color: var(--color-navigation);
+  background-color: var(--color-burger-menu);
   position: fixed;
-  top: 70px;
-  left: 0px;
+  top: 80px;
+  left: 10px;
   width: auto;
   z-index: 1;
 `;
@@ -114,7 +114,7 @@ const BurgerMenuItem = styled.div`
   padding: 10px;
   width: 100%;
   align-items: center;
-  text-align: center;
+  text-align: left;
   border-left: 2px solid var(--color-navigation-border);
   &:first-child {
     border-left: 0px;
@@ -127,6 +127,25 @@ const BurgerMenuItem = styled.div`
     $active && "background-color: var(--color-navigation-active);"}
 `;
 
+const BurgerMenuItemText = styled.a`
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  font-size: 0.7rem;
+  color: var(--color-burger-menu-text);
+
+  &:hover,
+  &:active,
+  &:visited {
+    text-decoration: none;
+    color: var(--color-burger-menu-text);
+  }
+
+  @media (min-width: 600px) {
+    font-size: 0.9rem;
+  }
+`;
+
 const StyledBurgerMenuSvg = styled.svg`
   display: block;
   margin: auto;
@@ -136,7 +155,9 @@ const StyledBurgerMenuSvg = styled.svg`
   line {
     stroke-width: 2;
     stroke: ${(props) =>
-      props.isOpen ? "var(--color-burger-menu-x)" : "var(--color-burger-menu)"};
+      props.isOpen
+        ? "var(--color-burger-menu-x-icon)"
+        : "var(--color-burger-menu-icon)"};
   }
 `;
 
@@ -242,15 +263,15 @@ export function BurgerMenu() {
       </BurgerMenuButton>
       <BurgerMenuLinks isOpen={isOpen}>
         <BurgerMenuItem $active={router.pathname === "/"}>
-          <NavigationItemText href="/">Trip Overview</NavigationItemText>
+          <BurgerMenuItemText href="/">Trip Overview</BurgerMenuItemText>
         </BurgerMenuItem>
         <BurgerMenuItem $active={router.pathname === "/trips/create"}>
-          <NavigationItemText href="/trips/create">
+          <BurgerMenuItemText href="/trips/create">
             Create Trip
-          </NavigationItemText>
+          </BurgerMenuItemText>
         </BurgerMenuItem>
         <BurgerMenuItem $active={router.pathname === "/presets"}>
-          <NavigationItemText href="/presets">Presets</NavigationItemText>
+          <BurgerMenuItemText href="/presets">Presets</BurgerMenuItemText>
         </BurgerMenuItem>
       </BurgerMenuLinks>
     </BurgerMenuContainer>
