@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const BurgerMenuContainer = styled.nav`
+export const BurgerMenuNavigation = styled.nav`
   background-color: ${(props) =>
     props.isOpen ? "var(--color-burger-menu)" : "transparent"};
   opacity: 0.92;
@@ -12,9 +12,7 @@ export const BurgerMenuContainer = styled.nav`
   padding-top: 54px;
   z-index: 1;
   transition: transform 0.3s ease-in-out;
-  transform: translateX(
-    ${(props) => (props.isOpen ? "0" : "-100%")}
-  ); /* Slide in/out effect */
+  transform: translateX(${(props) => (props.isOpen ? "0" : "-100%")});
 
   @media (min-width: 600px) {
     display: none;
@@ -23,8 +21,8 @@ export const BurgerMenuContainer = styled.nav`
 
 export const BurgerMenuButton = styled.div`
   position: fixed;
-  top: 70px; /* Fixed position at the top */
-  left: 0px; /* Fixed position at the left */
+  top: 70px;
+  left: 0px;
   display: block;
   margin: 10px 0 10px 15px;
   padding: 0;
@@ -32,6 +30,11 @@ export const BurgerMenuButton = styled.div`
   height: 36px;
   cursor: pointer;
   z-index: 2;
+
+  @media (min-width: 600px) {
+    display: none;
+    /* top: 90px; */
+  }
 `;
 
 export const BurgerMenuSvg = styled.svg`
@@ -50,12 +53,8 @@ export const BurgerMenuSvg = styled.svg`
 `;
 
 export const BurgerMenuLinks = styled.div`
-  display: ${(props) => (props.isOpen ? "block" : "none")};
+  display: block;
   transition: display 0.3s ease-in-out;
-
-  @media (min-width: 600px) {
-    display: block;
-  }
 `;
 
 export const BurgerMenuItem = styled.div`

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import {
-  BurgerMenuContainer,
+  BurgerMenuNavigation,
   BurgerMenuSvg,
   BurgerMenuButton,
   BurgerMenuLinks,
@@ -51,7 +51,7 @@ export function BurgerMenu() {
           )}
         </BurgerMenuSvg>
       </BurgerMenuButton>
-      <BurgerMenuContainer isOpen={isOpen}>
+      <BurgerMenuNavigation isOpen={isOpen}>
         <BurgerMenuLinks isOpen={isOpen}>
           <BurgerMenuItem $active={router.pathname === "/"}>
             <BurgerMenuItemText href="/">All Trips</BurgerMenuItemText>
@@ -65,7 +65,7 @@ export function BurgerMenu() {
             <BurgerMenuItemText href="/presets">Presets</BurgerMenuItemText>
           </BurgerMenuItem>
         </BurgerMenuLinks>
-      </BurgerMenuContainer>
+      </BurgerMenuNavigation>
     </>
   );
 }
