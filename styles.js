@@ -118,6 +118,9 @@ export default createGlobalStyle`
   --color-navigation-item: var(--color-blue-0);
   --color-navigation-item-text: var(--color-blue-0);
   --color-navigation-border: var(--color-blue-0);
+
+  --color-burger-menu: var(--color-blue-700);
+  --color-burger-menu-x: var(--color-orange-500);
   
   --color-back-button: var(--color-blue-300);
   --color-back-button-hover: var(--color-blue-50);
