@@ -27,7 +27,7 @@ export default function Layout({ children }) {
 
   useEffect(() => {
     const handleScroll = () => {
-      const isScrolled = window.scrollY > 80;
+      const isScrolled = window.scrollY > 60;
       setShowPageUpButton(isScrolled);
     };
     window.addEventListener("scroll", handleScroll);

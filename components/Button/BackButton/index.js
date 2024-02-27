@@ -4,10 +4,10 @@ import Link from "next/link";
 const BackButtonContainer = styled.div`
   display: flex;
   position: fixed;
-  bottom: 70px;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  margin: 10px auto;
+  margin: 15px auto;
   z-index: 2;
 
 

@@ -2,14 +2,14 @@ import styled from "styled-components";
 
 export const BurgerMenuNavigation = styled.nav`
   background-color: var(--color-burger-menu);
-  opacity: 0.92;
+  opacity: 0.95;
   position: fixed;
   top: 70px;
   left: 0px;
-  width: 44%;
+  width: 60%;
   height: 100vh;
   padding-top: 54px;
-  z-index: 1;
+  z-index: 3;
   transition: transform 0.3s ease-in-out;
   transform: translateX(${(props) => (props.isOpen ? "0" : "-100%")});
 
@@ -19,16 +19,17 @@ export const BurgerMenuNavigation = styled.nav`
 `;
 
 export const BurgerMenuButton = styled.div`
+  background-color: var(--color-burger-menu);
   position: fixed;
   top: 70px;
   left: 0px;
   display: block;
-  margin: 10px 0 10px 15px;
+  margin: 10px 0 10px 10px;
   padding: 0;
   width: 36px;
   height: 36px;
   cursor: pointer;
-  z-index: 2;
+  z-index: 4;
 
   @media (min-width: 600px) {
     display: none;
@@ -79,6 +80,7 @@ export const BurgerMenuItem = styled.div`
 export const BurgerMenuItemText = styled.a`
   padding: 0;
   margin: 0;
+  padding-left: 15px;
   text-decoration: none;
   font-size: 0.8rem;
   color: var(--color-burger-menu-text);
