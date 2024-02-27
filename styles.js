@@ -119,12 +119,13 @@ export default createGlobalStyle`
   --color-navigation-item-text: var(--color-blue-0);
   --color-navigation-border: var(--color-blue-0);
 
-  --color-burger-menu: var(--color-grey-100);
   --color-burger-menu-icon: var(--color-blue-600);
   --color-burger-menu-x-icon: var(--color-orange-500);
+  --color-burger-menu: var(--color-blue-100);
   --color-burger-menu-border: var(--color-blue-0);
-  --color-burger-menu-hover: var(--color-blue-200);
-  --color-burger-menu-text: var(--color-blue-1000);
+  --color-burger-menu-hover: var(--color-blue-400);
+  --color-burger-menu-active: var(--color-blue-300);
+  --color-burger-menu-text: var(--color-blue-800);
   
   --color-back-button: var(--color-blue-300);
   --color-back-button-hover: var(--color-blue-50);

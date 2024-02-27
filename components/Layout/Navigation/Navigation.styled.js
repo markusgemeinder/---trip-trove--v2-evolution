@@ -1,16 +1,103 @@
 import styled from "styled-components";
 
-export const NavigationContainer = styled.nav`
-  display: none;
+export const BurgerMenuContainer = styled.nav`
+  background-color: var(--color-burger-menu);
+  opacity: 0.92;
+  position: fixed;
+  top: 70px;
+  left: 0px;
+  width: 44%;
+  height: 100vh;
+  z-index: 1;
+
+  @media (min-width: 600px) {
+    display: none;
+  }
+`;
+
+export const BurgerMenuSvg = styled.svg`
+  display: block;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+
+  line {
+    stroke-width: 2;
+    stroke: ${(props) =>
+      props.isOpen
+        ? "var(--color-burger-menu-x-icon)"
+        : "var(--color-burger-menu-icon)"};
+  }
+`;
+
+export const BurgerMenuButton = styled.div`
+  display: block;
+  margin: 10px 0 10px 15px;
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+`;
+
+export const BurgerMenuLinks = styled.div`
+  display: ${(props) => (props.isOpen ? "block" : "none")};
+  transition: display 0.3s ease-in-out;
 
   @media (min-width: 600px) {
     display: block;
-    background-color: var(--color-navigation);
-    position: fixed;
-    bottom: 0px;
-    left: 0px;
-    width: 100%;
-    z-index: 1;
+  }
+`;
+
+export const BurgerMenuItem = styled.div`
+  padding: 15px 20px;
+  width: 100%;
+  align-items: center;
+  text-align: left;
+  border-bottom: 2px solid var(--color-burger-menu-border);
+  &:first-child {
+    border-top: 2px solid var(--color-burger-menu-border);
+  }
+  /* &:last-child {
+    border-bottom: 0px;
+  } */
+  &:hover {
+    background-color: var(--color-burger-menu-hover);
+  }
+
+  ${({ $active }) =>
+    $active && "background-color: var(--color-burger-menu-active);"}
+`;
+
+export const BurgerMenuItemText = styled.a`
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  font-size: 0.8rem;
+  color: var(--color-burger-menu-text);
+
+  &:hover,
+  &:active,
+  &:visited {
+    text-decoration: none;
+    color: var(--color-burger-menu-text);
+  }
+
+  @media (min-width: 600px) {
+    font-size: 1rem;
+  }
+`;
+
+export const NavigationContainer = styled.nav`
+  display: block;
+  background-color: var(--color-navigation);
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 1;
+
+  @media (max-width: 600px) {
+    display: none;
   }
 `;
 
@@ -63,7 +150,7 @@ export const NavigationItemText = styled.a`
   }
 `;
 
-export const StyledNavigationSvg = styled.svg`
+export const NavigationItemSvg = styled.svg`
   display: block;
   margin: auto;
   width: 24px;
@@ -76,87 +163,6 @@ export const StyledNavigationSvg = styled.svg`
   }
 `;
 
-export const StyledNavigationPath = styled.path`
+export const NavigationItemPath = styled.path`
   fill: var(--color-navigation-item);
-`;
-
-export const BurgerMenuContainer = styled.nav`
-  background-color: var(--color-burger-menu);
-  position: fixed;
-  top: 80px;
-  left: 10px;
-  width: auto;
-  z-index: 1;
-
-  @media (min-width: 600px) {
-    display: none;
-  }
-`;
-
-export const BurgerMenuButton = styled.div`
-  display: block;
-  margin: auto;
-  width: 36px;
-  height: 36px;
-  cursor: pointer;
-`;
-
-export const BurgerMenuLinks = styled.div`
-  display: ${(props) => (props.isOpen ? "block" : "none")};
-  transition: display 0.3s ease-in-out;
-
-  @media (min-width: 600px) {
-    display: block;
-  }
-`;
-
-export const BurgerMenuItem = styled.div`
-  padding: 10px;
-  width: 100%;
-  align-items: center;
-  text-align: left;
-  border-left: 2px solid var(--color-navigation-border);
-  &:first-child {
-    border-left: 0px;
-  }
-  &:hover {
-    background-color: var(--color-navigation-hover);
-  }
-
-  ${({ $active }) =>
-    $active && "background-color: var(--color-navigation-active);"}
-`;
-
-export const BurgerMenuItemText = styled.a`
-  padding: 0;
-  margin: 0;
-  text-decoration: none;
-  font-size: 0.7rem;
-  color: var(--color-burger-menu-text);
-
-  &:hover,
-  &:active,
-  &:visited {
-    text-decoration: none;
-    color: var(--color-burger-menu-text);
-  }
-
-  @media (min-width: 600px) {
-    font-size: 0.9rem;
-  }
-`;
-
-export const StyledBurgerMenuSvg = styled.svg`
-  display: block;
-  margin: auto;
-  width: 100%;
-  height: 100%;
-
-  line {
-    stroke-width: 2;
-    stroke: ${(props) =>
-      props.isOpen
-        ? "var(--color-burger-menu-x-icon)"
-        : "var(--color-burger-menu-icon)"};
-  }
 `;
