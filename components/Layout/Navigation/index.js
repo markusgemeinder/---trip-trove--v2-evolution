@@ -80,6 +80,15 @@ const StyledNavigationPath = styled.path`
   fill: var(--color-navigation-item);
 `;
 
+const BurgerMenuContainer = styled.nav`
+  background-color: var(--color-navigation);
+  position: fixed;
+  top: 70px;
+  left: 0px;
+  width: auto;
+  z-index: 1;
+`;
+
 const BurgerMenuButton = styled.div`
   display: block;
   margin: auto;
@@ -214,7 +223,7 @@ export function BurgerMenu() {
   }
 
   return (
-    <NavigationContainer>
+    <BurgerMenuContainer>
       <BurgerMenuButton onClick={toggleMenu}>
         <StyledBurgerMenuSvg viewBox="0 0 24 24" isOpen={isOpen}>
           {isOpen ? (
@@ -244,6 +253,6 @@ export function BurgerMenu() {
           <NavigationItemText href="/presets">Presets</NavigationItemText>
         </BurgerMenuItem>
       </BurgerMenuLinks>
-    </NavigationContainer>
+    </BurgerMenuContainer>
   );
 }
