@@ -9,10 +9,11 @@ const BackButtonContainer = styled.div`
   transform: translateX(-50%);
   margin: 15px auto;
   z-index: 2;
-
-
-  @media (min-width: 600px) {
+  
+  
+  @media (min-width: 600px) and (min-height: 600px) {
     bottom: 85px;
+    margin: 5px auto;
 `;
 
 const BackButtonLink = styled(Link)`
@@ -23,8 +24,8 @@ const BackButtonLink = styled(Link)`
   transition: color 0.6s ease, transform 0.6s ease;
 
   &:hover {
-    background-color: var(--color-back-button-hover);
-    transform: scale(1.1);
+    /* background-color: var(--color-back-button-hover); */
+    transform: scale(1.2);
   }
 `;
 
@@ -33,7 +34,7 @@ const BackButtonSvg = styled.svg`
   width: 44px;
   height: 44px;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     width: 56px;
     height: 56px;
   }

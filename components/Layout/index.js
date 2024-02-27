@@ -17,7 +17,7 @@ const Main = styled.main`
   margin: 100px auto;
   padding: 0px 15px;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     margin: 120px auto;
   }
 `;

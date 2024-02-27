@@ -3,17 +3,17 @@ import Link from "next/link";
 
 const LogoSvg = styled.svg`
   display: block;
-  width: 140px;
+  width: 150px;
   margin: auto;
   height: 100%;
 
-  @media (min-width: 600px) {
-    width: 180px;
+  @media (min-width: 600px) and (min-height: 600px) {
+    width: 200px;
   }
 
-  @media (min-width: 900px) {
+  /* @media (min-width: 900px) {
     width: 220px;
-  }
+  } */
 `;
 
 const LogoPathPlane = styled.path`

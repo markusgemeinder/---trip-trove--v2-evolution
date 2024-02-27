@@ -13,7 +13,7 @@ export const CardList = styled.li`
   margin: 0.6rem 0;
   list-style: none;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     margin: 0.8rem 0;
   }
 `;
@@ -55,7 +55,7 @@ export const StyledCard = styled.div`
   box-shadow: 0 4px 8px var(--color-box-shadow);
   list-style: none;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     width: 480px;
     padding: 0.4rem 1.2rem;
   }
@@ -82,7 +82,7 @@ export const StyledBadge = styled.div`
     margin-bottom: 0.8rem;
   }
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     padding: 0.8rem;
   }
 `;
@@ -94,7 +94,7 @@ export const StyledBadgeOnBadge = styled.div`
   align-self: flex-start;
   height: 100%;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     border-radius: 6px;
     padding: 0.6rem;
   }
@@ -124,9 +124,9 @@ export const CardTitle = styled.h2`
   text-align: center;
   align-self: center;
   color: var(--color-card-title);
-  font-size: 1.6rem;
+  font-size: 1.4rem;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     font-size: 1.8rem;
   }
 `;
@@ -137,7 +137,7 @@ export const CardText = styled.p`
   font-size: 0.9rem;
   color: var(--color-card-text);
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     font-size: 1.1rem;
   }
 `;
@@ -149,7 +149,7 @@ export const CardLabel = styled.p`
   color: var(--color-card-label);
   font-size: 0.7rem;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     font-size: 0.9rem;
   }
 `;
@@ -160,7 +160,7 @@ export const CardLabelSub = styled.p`
   color: var(--color-card-label-sub);
   font-size: 0.6rem;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     font-size: 0.8rem;
     margin: 0.3rem 0;
   }
@@ -171,7 +171,7 @@ export const CardTextHighlight = styled(CardText)`
   font-weight: bold;
   font-size: 1.2rem;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     font-size: 1.6rem;
   }
 `;
@@ -199,7 +199,7 @@ export const PackList2Columns = styled.li`
   margin-top: 6px;
   width: 100%;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     grid-template-columns: 6fr 1fr;
   }
 `;
@@ -212,7 +212,7 @@ export const PackList2ColumnsLabelContainer = styled.div`
   gap: 6px;
   margin-top: 0.2rem;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     grid-template-columns: 6fr 1fr;
   }
 `;
@@ -227,7 +227,7 @@ export const PackList3Columns = styled.li`
   margin-top: 6px;
   width: 100%;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     grid-template-columns: 0.8fr 6fr 1.2fr;
   }
 `;
@@ -240,7 +240,7 @@ export const PackList3ColumnsLabelContainer = styled.div`
   gap: 6px;
   margin-top: 0.2rem;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     grid-template-columns: 0.8fr 6fr 1.2fr;
   }
 `;
@@ -264,7 +264,7 @@ export const StyledCheckBox = styled.input`
   width: 16px;
   height: 16px;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     width: 20px;
     height: 20px;
   }

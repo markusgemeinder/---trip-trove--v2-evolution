@@ -5,7 +5,7 @@ const UploadIconSvg = styled.svg`
   width: 32px;
   height: 32px;
   
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     width: 40px;
     height: 40px;
 
