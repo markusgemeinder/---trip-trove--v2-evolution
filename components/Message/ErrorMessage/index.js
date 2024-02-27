@@ -8,9 +8,7 @@ export default function ErrorMessage() {
   return (
     <>
       <MessageContainer>
-        <StyledMessage>
-          Oops! Something went wrong. Please try again later.
-        </StyledMessage>
+        <StyledMessage>Oops! Something went wrong...</StyledMessage>
         <ErrorAnimation />
       </MessageContainer>
     </>

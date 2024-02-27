@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import useSWR from "swr";
 import { StyledSelect } from "@/components/Form/Form.styled";
+import LoadingMessage from "@/components/Message/LoadingMessage";
+import ErrorMessage from "@/components/Message/ErrorMessage";
 
 export default function SelectPreset({ onSelectPreset }) {
   const {
@@ -13,13 +15,9 @@ export default function SelectPreset({ onSelectPreset }) {
 
   const [selectedPreset, setSelectedPreset] = useState("");
 
-  if (error) {
-    return <div>Failed to load</div>;
-  }
+  if (isLoading) return <LoadingMessage />;
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
+  if (error) return <ErrorMessage />;
 
   function handlePresetChange(event) {
     const selectedPresetName = event.target.value;

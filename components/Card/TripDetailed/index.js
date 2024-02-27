@@ -27,13 +27,10 @@ import {
   PackListItemName,
   PackListItemQuantity,
 } from "@/components/Card/Card.styled";
-
 import TripDetailsBadge from "@/components/Badge/TripDetailsBadge";
 import CreateDateBadge from "@/components/Badge/CreateDateBadge";
-
-const StyledMessage = styled.h2`
-  margin: 2rem auto;
-`;
+import LoadingMessage from "@/components/Message/LoadingMessage";
+import ErrorMessage from "@/components/Message/ErrorMessage";
 
 export default function TripDetailed() {
   const router = useRouter();
@@ -115,9 +112,9 @@ export default function TripDetailed() {
     }
   }
 
-  if (error)
-    return <StyledMessage>Error, please try again later...</StyledMessage>;
-  if (!isReady || isLoading) return <StyledMessage>Loading...</StyledMessage>;
+  if (isLoading) return <LoadingMessage />;
+
+  if (error) return <ErrorMessage />;
 
   const filteredPackingList = trip?.packingList?.filter(
     (item) => item.itemName && item.itemName.trim() !== ""
