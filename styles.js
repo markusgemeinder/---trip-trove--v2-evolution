@@ -115,7 +115,7 @@ export default createGlobalStyle`
   --color-navigation: var(--color-blue-400);
   --color-navigation-active: var(--color-blue-600);
   --color-navigation-hover: var(--color-blue-700);
-  --color-navigation-item: var(--color-blue-0);
+  --color-navigation-item: var(--color-blue-100);
   --color-navigation-item-text: var(--color-blue-0);
   --color-navigation-border: var(--color-blue-0);
 
