@@ -19,7 +19,7 @@ export const MiniButtonLabel = styled.label`
   font-weight: bold;
   color: var(--color-form-item-label);
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     font-size: 0.8rem;
   }
 `;
@@ -61,7 +61,7 @@ export const StyledMiniButton = styled.div`
   text-decoration: none;
   transition: color 0.3s ease, transform 0.3s ease;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     width: 1.8rem;
     height: 1.8rem;
     padding: 0.5rem;

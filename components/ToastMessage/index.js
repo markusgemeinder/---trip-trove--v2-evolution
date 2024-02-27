@@ -10,7 +10,7 @@ const StyledToasterMessage = styled.p`
   text-align: center;
   font-size: 1rem;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     font-size: 1.1rem;
   }
 `;

@@ -195,7 +195,7 @@ export default createGlobalStyle`
   }
 
  
-@media (min-width: 600px) {
+@media (min-width: 600px) and (min-height: 600px) {
   :root {
     --font-size: 1rem;
   }
@@ -219,7 +219,7 @@ body {
     
   }
   
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     body {
       font-weight: normal; /* or another suitable value */
       letter-spacing: normal; /* or another suitable value */

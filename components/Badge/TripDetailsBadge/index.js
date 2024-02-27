@@ -20,7 +20,7 @@ const BadgeContainer = styled.div`
   gap: 6px;
   margin-bottom: 0.3rem;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     grid-template-columns: 1fr 2fr 1fr;
   }
 `;

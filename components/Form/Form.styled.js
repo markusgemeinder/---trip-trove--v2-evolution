@@ -13,7 +13,7 @@ export const StyledForm = styled.form`
   margin-bottom: 16px;
   box-shadow: 0 4px 8px var(--color-box-shadow);
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     margin: 2rem auto;
     width: 500px;
     gap: 0.3rem;
@@ -28,7 +28,7 @@ export const StyledLabel = styled.label`
   font-size: 0.8rem;
   color: var(--color-form-label);
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     font-size: 0.9rem;
   }
 `;
@@ -42,7 +42,7 @@ export const StyledInput = styled.input`
   border-radius: 8px;
   margin-bottom: 0.1rem;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     padding: 0.5rem;
   }
 `;
@@ -56,7 +56,7 @@ export const StyledSelect = styled.select`
   margin-bottom: 8px;
   padding: 0.3rem;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     padding: 0.5rem;
   }
 `;
@@ -88,7 +88,7 @@ export const PreviewContainer = styled.fieldset`
   border: 1px solid var(--color-image-upload-border);
   border-radius: 8px;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     margin-top: 0.5rem;
     margin-bottom: 0.6rem;
     padding: 0.8rem;
@@ -148,7 +148,7 @@ export const InputContainer = styled.li`
   margin-top: 6px;
   width: 100%;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     grid-template-columns: 0.7fr 6.8fr 1.6fr 0.9fr;
     gap: 6px;
   }
@@ -162,7 +162,7 @@ export const ItemHeaderLabel = styled.div`
   align-items: center;
   margin-top: 0.2rem;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     grid-template-columns: 0.8fr 6.7fr 1.6fr 0.9fr;
     gap: 6px;
   }
@@ -176,7 +176,7 @@ export const ItemNumberContainer = styled.div`
   margin-bottom: 0.1rem;
   text-align: center;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     padding: 0.5rem;
   }
 `;

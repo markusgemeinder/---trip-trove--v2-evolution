@@ -11,9 +11,9 @@ const PageUpButtonContainer = styled.div`
   z-index: 2;
   transition: opacity 0.6s ease;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     bottom: 85px;
-    margin: 10px 10px;
+    margin: 5px 15px;
   }
 `;
 
@@ -24,8 +24,8 @@ const PageUpButtonLink = styled(Link)`
   border-radius: 50%;
   transition: color 0.6s ease, background-color 0.6s ease, transform 0.6s ease;
   &:hover {
-    background-color: var(--color-page-up-button-hover);
-    transform: scale(1.1);
+    /* background-color: var(--color-page-up-button-hover); */
+    transform: scale(1.2);
   }
 `;
 
@@ -35,7 +35,7 @@ const PageUpButtonSvg = styled.svg`
   height: 44px;
   transition: fill 0.6s ease;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     width: 56px;
     height: 56px;
   }

@@ -10,7 +10,7 @@ const SortSelectContainer = styled.div`
   margin: 0;
   gap: 0.8rem;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     margin: 0.2rem 0;
   }
 `;
@@ -30,7 +30,7 @@ const StyledSortSelect = styled.select`
   font-weight: bold;
   cursor: pointer;
 
-  @media (min-width: 600px) {
+  @media (min-width: 600px) and (min-height: 600px) {
     padding: 0.5rem;
     font-size: 1rem;
   }
