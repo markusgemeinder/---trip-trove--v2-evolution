@@ -4,10 +4,10 @@ import Link from "next/link";
 const BackButtonContainer = styled.div`
   display: flex;
   position: fixed;
-  bottom: 70px;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  margin: 10px auto;
+  margin: 15px auto;
   z-index: 2;
 
 
@@ -21,6 +21,7 @@ const BackButtonLink = styled(Link)`
   justify-content: center;
   border-radius: 50%;
   transition: color 0.6s ease, transform 0.6s ease;
+
   &:hover {
     background-color: var(--color-back-button-hover);
     transform: scale(1.1);

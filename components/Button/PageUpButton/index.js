@@ -4,10 +4,10 @@ import Link from "next/link";
 const PageUpButtonContainer = styled.div`
   display: flex;
   position: fixed;
-  bottom: 70px;
+  bottom: 0;
   right: 0;
   justify-content: flex-end;
-  margin: 15px 10px;
+  margin: 15px 15px;
   z-index: 2;
   transition: opacity 0.6s ease;
 
@@ -31,13 +31,13 @@ const PageUpButtonLink = styled(Link)`
 
 const PageUpButtonSvg = styled.svg`
   margin: auto;
-  width: 36px;
-  height: 36px;
+  width: 44px;
+  height: 44px;
   transition: fill 0.6s ease;
 
   @media (min-width: 600px) {
-    width: 48px;
-    height: 48px;
+    width: 56px;
+    height: 56px;
   }
 `;
 
