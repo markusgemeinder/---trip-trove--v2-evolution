@@ -11,7 +11,7 @@ const BackButtonContainer = styled.div`
   z-index: 2;
   
   
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     bottom: 85px;
     margin: 5px auto;
 `;
@@ -34,7 +34,7 @@ const BackButtonSvg = styled.svg`
   width: 44px;
   height: 44px;
 
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     width: 56px;
     height: 56px;
   }

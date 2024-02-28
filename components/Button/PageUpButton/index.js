@@ -11,7 +11,7 @@ const PageUpButtonContainer = styled.div`
   z-index: 2;
   transition: opacity 0.6s ease;
 
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     bottom: 85px;
     margin: 5px 15px;
   }
@@ -35,7 +35,7 @@ const PageUpButtonSvg = styled.svg`
   height: 44px;
   transition: fill 0.6s ease;
 
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     width: 56px;
     height: 56px;
   }

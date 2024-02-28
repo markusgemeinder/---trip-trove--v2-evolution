@@ -20,7 +20,7 @@ const HeaderContainer = styled.header`
   height: 70px;
   z-index: 10;
 
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     height: 90px;
   }
 `;
@@ -29,7 +29,7 @@ const HeaderTitle = styled.h1`
   color: var(--color-header-title);
   font-size: 1.4rem;
 
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     font-size: 1.8rem;
 `;
 

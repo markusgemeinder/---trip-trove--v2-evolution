@@ -19,7 +19,7 @@ export const BurgerMenuButton = styled.div`
     transform: scale(1.2);
   }
 
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     display: none;
     /* top: 90px; */
   }
@@ -53,7 +53,7 @@ export const BurgerMenuNavigation = styled.nav`
   transition: transform 0.3s ease-in-out;
   transform: translateX(${(props) => (props.isOpen ? "0" : "-100%")});
 
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     display: none;
   }
 `;
@@ -102,7 +102,7 @@ export const BurgerMenuItemText = styled.p`
   font-size: 0.8rem;
   color: var(--color-burger-menu-text);
 
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     font-size: 1rem;
   }
 `;
@@ -116,7 +116,7 @@ export const NavigationContainer = styled.nav`
   width: 100%;
   z-index: 1;
 
-  @media (max-width: 600px) or (max-height: 600px) {
+  @media (max-width: 768px) or (max-height: 768px) {
     display: none;
   }
 `;
@@ -129,7 +129,7 @@ export const NavigationList = styled.ul`
   padding: 0;
   margin: 0;
 
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     height: 80px;
   }
 `;
@@ -165,7 +165,7 @@ export const NavigationItemText = styled.a`
     color: var(--color-navigation-item-text);
   }
 
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     font-size: 0.9rem;
   }
 `;

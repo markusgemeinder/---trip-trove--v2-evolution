@@ -19,7 +19,7 @@ const NaviList = styled.ul`
   padding: 0;
   margin: 0;
 
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     height: 80px;
   }
 `;
@@ -55,7 +55,7 @@ const NaviItemText = styled.a`
     color: var(--color-navigation-item-text);
   }
 
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     font-size: 0.9rem;
   }
 `;
@@ -66,7 +66,7 @@ const StyledSvg = styled.svg`
   width: 24px;
   height: 24px;
 
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     width: 36px;
     height: 36px;
     margin-bottom: 0.2rem;

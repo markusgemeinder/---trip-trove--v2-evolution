@@ -9,7 +9,7 @@ export const ButtonContainer = styled.div`
   margin-top: 0.8rem;
   margin-bottom: 0.8rem;
 
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     margin-top: 1rem;
     margin-bottom: 1rem;
   }
@@ -29,7 +29,7 @@ export const StyledTextButton = styled.button`
   opacity: ${(props) => (props.disabled ? "0.5" : "1")};
   pointer-events: ${(props) => (props.disabled ? "none" : "auto")};
 
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     min-width: 140px;
     padding: 0.5rem;
     border-radius: 20px;
@@ -54,7 +54,7 @@ export const StyledTextButtonMediumSize = styled(StyledTextButton)`
 
   font-size: 0.8rem;
 
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     min-width: 80px;
     padding: 0.5rem;
     font-size: 0.9rem;

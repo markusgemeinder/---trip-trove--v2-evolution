@@ -15,7 +15,7 @@ export const StyledMessage = styled.h2`
   text-align: center;
   font-size: 1.2rem;
 
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     font-size: 1.4rem;
   }
 `;

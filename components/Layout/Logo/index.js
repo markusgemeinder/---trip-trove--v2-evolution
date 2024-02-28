@@ -7,7 +7,7 @@ const LogoSvg = styled.svg`
   margin: auto;
   height: 100%;
 
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     width: 200px;
   }
 

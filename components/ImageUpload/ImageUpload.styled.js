@@ -13,7 +13,7 @@ export const UploadBox = styled.fieldset`
   border-radius: 8px;
   transition: color 0.3s ease, transform 0.3s ease;
 
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     padding: 0.8rem;
     margin-top: 0.1rem;
     margin-bottom: 0.4rem;
@@ -40,7 +40,7 @@ export const UploadArea = styled.div`
   position: relative;
   transition: none;
   
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     padding: 0.2rem;
     border: 3px dashed var(--color-image-upload-dash-line);
 
@@ -52,7 +52,7 @@ export const UploadHeadline = styled.h3`
   font-size: 0.9rem;
   color: var(--color-image-upload-headline);
 
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     font-size: 1.1rem;
 `;
 
@@ -62,7 +62,7 @@ export const UploadText = styled.p`
   font-size: 0.8rem;
   color: var(--color-image-upload-text);
   
-  @media (min-width: 600px) and (min-height: 600px) {
+  @media (min-width: 768px) and (min-height: 768px) {
     font-size: 0.9rem;
 
 `;
