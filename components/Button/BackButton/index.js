@@ -31,12 +31,12 @@ const BackButtonLink = styled(Link)`
 
 const BackButtonSvg = styled.svg`
   margin: auto;
-  width: 44px;
-  height: 44px;
+  width: 50px;
+  height: 50px;
 
   @media (min-width: 768px) and (min-height: 768px) {
-    width: 56px;
-    height: 56px;
+    width: 60px;
+    height: 60px;
   }
 `;
 

@@ -99,11 +99,11 @@ export const BurgerMenuItemText = styled.p`
   padding: 0;
   margin: 0;
   padding-left: 10px;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   color: var(--color-burger-menu-text);
 
   @media (min-width: 768px) and (min-height: 768px) {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 `;
 

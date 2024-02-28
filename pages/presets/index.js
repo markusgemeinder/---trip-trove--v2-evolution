@@ -7,7 +7,7 @@ import ErrorMessage from "@/components/Message/ErrorMessage";
 import { isLoadingMessageDuration } from "@/lib/utils";
 
 import {
-  ButtonContainer,
+  ButtonContainerWithoutMargin,
   StyledTextButton,
 } from "@/components/Button/TextButton";
 
@@ -37,11 +37,11 @@ export default function PresetsPage() {
 
   return (
     <>
-      <ButtonContainer>
+      <ButtonContainerWithoutMargin>
         <StyledLink href={"/presets/create"}>
           <StyledTextButton type={"button"}>New Preset</StyledTextButton>
         </StyledLink>
-      </ButtonContainer>
+      </ButtonContainerWithoutMargin>
       <PresetList presets={presets} />
       <BackButton href="/" />
     </>

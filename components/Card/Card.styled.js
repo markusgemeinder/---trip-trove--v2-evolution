@@ -168,7 +168,7 @@ export const CardLabelSub = styled.p`
 
 export const CardTextHighlight = styled(CardText)`
   color: var(--color-card-text-highlight);
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 1.2rem;
 
   @media (min-width: 768px) and (min-height: 768px) {

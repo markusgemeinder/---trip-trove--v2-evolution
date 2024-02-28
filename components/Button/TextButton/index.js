@@ -15,6 +15,11 @@ export const ButtonContainer = styled.div`
   }
 `;
 
+export const ButtonContainerWithoutMargin = styled(ButtonContainer)`
+  margin-top: 0;
+  margin-bottom: 0;
+`;
+
 export const StyledTextButton = styled.button`
   font-family: ${defaultFont.style.fontFamily};
   background-color: var(--color-button);
@@ -23,7 +28,7 @@ export const StyledTextButton = styled.button`
   padding: 0.3rem;
   border-radius: 18px;
   font-size: 0.9rem;
-  font-weight: bold;
+  /* font-weight: bold; */
   color: var(--color-button-text);
   transition: color 0.3s ease, transform 0.3s ease;
   opacity: ${(props) => (props.disabled ? "0.5" : "1")};
@@ -52,7 +57,7 @@ export const StyledTextButton = styled.button`
 export const StyledTextButtonMediumSize = styled(StyledTextButton)`
   min-width: 60px;
 
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 
   @media (min-width: 768px) and (min-height: 768px) {
     min-width: 80px;

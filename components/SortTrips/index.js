@@ -27,7 +27,7 @@ const StyledSortSelect = styled.select`
   border-radius: 8px;
   font-family: var(--font-family);
   font-size: 0.8rem;
-  font-weight: bold;
+  /* font-weight: bold; */
   cursor: pointer;
 
   @media (min-width: 768px) and (min-height: 768px) {

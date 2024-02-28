@@ -5,16 +5,16 @@ import { defaultFont } from "@/styles.js";
 export const StyledForm = styled.form`
   display: grid;
   width: 300px;
-  margin: 0.6rem auto;
+  margin: 0 auto;
   gap: 0.1rem;
-  padding: 0.8rem 1rem;
+  padding: 0.5rem 1rem;
   border: 1px solid var(--color-border);
   border-radius: 8px;
   margin-bottom: 16px;
   box-shadow: 0 4px 8px var(--color-box-shadow);
 
   @media (min-width: 768px) and (min-height: 768px) {
-    margin: 2rem auto;
+    margin: 0.4rem auto;
     width: 500px;
     gap: 0.3rem;
     padding: 1rem 1.6rem;
@@ -24,7 +24,7 @@ export const StyledForm = styled.form`
 export const StyledLabel = styled.label`
   margin-top: 0.4rem;
   margin-bottom: 0.1rem;
-  font-weight: bold;
+  /* font-weight: bold; */
   font-size: 0.8rem;
   color: var(--color-form-label);
 
@@ -128,7 +128,7 @@ export const PackList = styled.ul`
 export const PresetContainer = styled.div`
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: baseline;
   flex-flow: row wrap;
   margin: 0;
   padding: 0;
