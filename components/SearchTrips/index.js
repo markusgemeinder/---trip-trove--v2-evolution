@@ -14,16 +14,21 @@ const SearchBarContainer = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  margin-bottom: 1rem;
+  margin-bottom: 1.2rem;
+
   &:focus {
     outline: none;
     border-color: var(--color-sort-search-bar);
+  }
+
+  @media (min-width: 768px) and (min-height: 768px) {
+    border-radius: 30px;
   }
 `;
 
 const SearchInput = styled.input`
   margin: auto 0.2rem;
-  padding: 0.5rem 0.8rem;
+  padding: 0.4rem 0.8rem;
   width: 100%;
   background-color: transparent;
   color: var(--color-search-bar-text);
@@ -36,18 +41,21 @@ const SearchInput = styled.input`
     border-color: var(--color-sort-search-bar);
   }
   @media (min-width: 768px) and (min-height: 768px) {
-    padding: 0.7rem;
+    margin: auto 0.2rem;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
   }
 `;
 
 const SearchIconSvg = styled.svg`
   margin: auto 0.6rem;
-  padding: 0;
+  padding: 0.1rem;
   width: 24px;
   height: 24px;
   transition: fill 0.6s ease;
 
   @media (min-width: 768px) and (min-height: 768px) {
+    margin: auto 0.8rem;
     width: 30px;
     height: 30px;
   }
