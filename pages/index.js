@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import useSWR from "swr";
 import TripList from "@/components/Card/TripList";
@@ -25,7 +26,7 @@ export default function HomePage() {
 
   return (
     <>
-      {/* <Link href="/test">Test Page</Link> */}
+      <Link href="/test">Test Page</Link>
       <TripList data={data} />
     </>
   );
