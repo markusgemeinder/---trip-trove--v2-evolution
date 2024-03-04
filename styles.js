@@ -163,6 +163,11 @@ export default createGlobalStyle`
   --color-sort-selector-border: var(--color-orange-300);
   --color-sort-selector-focus: var(--color-orange-500);
 
+  --color-search-bar: var(--color-orange-50);
+  --color-search-bar-text: var(--color-grey-700);
+  --color-search-bar-border: var(--color-orange-300);
+  --color-search-bar-icon: var(--color-orange-300);
+
   --color-card: var(--color-orange-0);
   --color-card-title: var(--color-grey-900);
   --color-card-text: var(--color-orange-1000);
