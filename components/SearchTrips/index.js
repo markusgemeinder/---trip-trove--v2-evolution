@@ -3,7 +3,8 @@ import styled from "styled-components";
 import { defaultFont } from "@/styles.js";
 
 const SearchBarContainer = styled.div`
-  margin: 0;
+  width: 300px;
+  margin: 0 auto;
   padding: 0;
   background-color: var(--color-search-bar);
   border: 2px solid var(--color-search-bar-border);

@@ -3,6 +3,7 @@ import TripCard from "@/components/Card/TripCard";
 import { CardListContainer, CardList } from "@/components/Card/Card.styled";
 import SortTrips from "@/components/SortTrips";
 import SearchTrips from "@/components/SearchTrips";
+import NoTripsFoundMessage from "@/components/Message/NoTripsFoundMessage";
 
 export default function TripList({ data }) {
   const [sortedData, setSortedData] = useState(
@@ -22,11 +23,15 @@ export default function TripList({ data }) {
       <SearchTrips data={data} onChange={handleSearchChange} />
       <SortTrips data={data} onChange={handleSortChange} />
       <CardListContainer>
-        {sortedData.map((trip) => (
-          <CardList trip={trip} key={trip._id}>
-            <TripCard trip={trip} />
-          </CardList>
-        ))}
+        {sortedData.length === 0 ? (
+          <NoTripsFoundMessage />
+        ) : (
+          sortedData.map((trip) => (
+            <CardList trip={trip} key={trip._id}>
+              <TripCard trip={trip} />
+            </CardList>
+          ))
+        )}
       </CardListContainer>
     </>
   );
