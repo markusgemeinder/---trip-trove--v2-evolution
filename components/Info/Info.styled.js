@@ -4,6 +4,7 @@ import Image from "next/image";
 
 export const InfoCardContainer = styled.div`
   padding: 0;
+  margin: 0.2rem auto;
   display: grid;
   grid-template-columns: auto auto;
   justify-content: center;
