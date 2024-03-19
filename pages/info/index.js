@@ -1,7 +1,68 @@
+import {
+  InfoCardContainer,
+  InfoLink,
+  StyledLink,
+  StyledInfoCard,
+  StyledInfoCardWithTransition,
+  InfoImage,
+  InfoImageWithLink,
+  InfoTitle,
+  InfoText,
+  InfoTextCallToAction,
+} from "@/components/Info/Info.styled";
+
 export default function InfoPage() {
   return (
     <>
-      <h2>Hello</h2>
+      <InfoCardContainer>
+        <InfoLink href={"/info/project"}>
+          <StyledInfoCardWithTransition>
+            <InfoImage
+              src={"/images/logo_triptrove_heart.png"}
+              width={120}
+              height={120}
+              alt={"Project"}
+            />
+            <InfoTitle>Project</InfoTitle>
+          </StyledInfoCardWithTransition>
+        </InfoLink>
+
+        <InfoLink href={"/info/neuefische"}>
+          <StyledInfoCardWithTransition>
+            <InfoImage
+              src={"/images/logo_neue-fische.png"}
+              width={120}
+              height={120}
+              alt={"Project"}
+            />
+            <InfoTitle>neue fische</InfoTitle>
+          </StyledInfoCardWithTransition>
+        </InfoLink>
+
+        <InfoLink href={"/info/techstack"}>
+          <StyledInfoCardWithTransition>
+            <InfoImage
+              src={"/images/logo_next-js.png"}
+              width={120}
+              height={120}
+              alt={"Project"}
+            />
+            <InfoTitle>Techstack</InfoTitle>
+          </StyledInfoCardWithTransition>
+        </InfoLink>
+
+        <StyledLink href={"/info/contact"}>
+          <StyledInfoCardWithTransition>
+            <InfoImage
+              src={"/images/gmndr-pic.jpg"}
+              width={120}
+              height={120}
+              alt={"Project"}
+            />
+            <InfoTitle>Contact</InfoTitle>
+          </StyledInfoCardWithTransition>
+        </StyledLink>
+      </InfoCardContainer>
     </>
   );
 }

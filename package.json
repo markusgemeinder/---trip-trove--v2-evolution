@@ -1,6 +1,6 @@
 {
-  "name": "dont-forget-to-change-the-project-name",
-  "version": "0.0.0-unreleased",
+  "name": "TripTrove",
+  "version": "2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
