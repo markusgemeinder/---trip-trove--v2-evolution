@@ -62,15 +62,13 @@ export const TileText = styled.h2`
   }
 `;
 
-export default function Tile({ href, src, text }) {
+export default function Tile({ src, text, onClick }) {
   return (
     <>
-      <TileLink href={href}>
-        <StyledTile>
-          <TileImage src={src} width={120} height={120} alt={text} />
-          <TileText>{text}</TileText>
-        </StyledTile>
-      </TileLink>
+      <StyledTile onClick={onClick}>
+        <TileImage src={src} width={120} height={120} alt={text} />
+        <TileText>{text}</TileText>
+      </StyledTile>
     </>
   );
 }

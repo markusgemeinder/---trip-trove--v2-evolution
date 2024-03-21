@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 import Tile from "@/components/Tile";
 
@@ -11,7 +12,7 @@ const TileContainer = styled.div`
 `;
 
 const StyledPopUp = styled.div`
-  display: flex;
+  display: ${(props) => (props.show ? "flex" : "none")};
   flex-flow: column wrap;
   background-color: var(--color-card);
   border: 1px solid var(--color-border);
@@ -33,69 +34,67 @@ const StyledPopUp = styled.div`
   }
 `;
 
-export default function InfoPage() {
-  return (
-    <TileContainer>
-      <Tile
-        href={"/info/project"}
-        src={"/images/logo_triptrove_heart.png"}
-        text={"Project"}
-      />
-      <Tile
-        href={"/info/neuefische"}
-        src={"/images/logo_neue-fische.png"}
-        text={"neue fische"}
-      />
-      <Tile
-        href={"/info/techstack"}
-        src={"/images/logo_next-js.png"}
-        text={"Techstack"}
-      />
-      <Tile
-        href={"/info/contact"}
-        src={"/images/gmndr-pic.jpg"}
-        text={"Contact"}
-      />
-    </TileContainer>
-  );
-}
+const CloseButton = styled.span`
+  align-self: flex-end;
+  cursor: pointer;
+  margin-right: 0.5rem;
+`;
 
-export function ProjectPopUp() {
+export default function InfoPage() {
+  const [activePopup, setActivePopup] = useState(null);
+
+  const openPopup = (popup) => {
+    setActivePopup(popup);
+  };
+
+  const closePopup = () => {
+    setActivePopup(null);
+  };
+
   return (
-    <>
-      <StyledPopUp>
+    <div>
+      <TileContainer>
+        <Tile
+          onClick={() => openPopup("project")}
+          src={"/images/logo_triptrove_heart.png"}
+          text={"Project"}
+        />
+        <Tile
+          onClick={() => openPopup("neuefische")}
+          src={"/images/logo_neue-fische.png"}
+          text={"neue fische"}
+        />
+        <Tile
+          onClick={() => openPopup("techstack")}
+          src={"/images/logo_next-js.png"}
+          text={"Techstack"}
+        />
+        <Tile
+          onClick={() => openPopup("contact")}
+          src={"/images/gmndr-pic.jpg"}
+          text={"Contact"}
+        />
+      </TileContainer>
+
+      <StyledPopUp show={activePopup === "project"}>
+        <CloseButton onClick={closePopup}>X</CloseButton>
         <h2>Hello (Project)</h2>
       </StyledPopUp>
-    </>
-  );
-}
 
-export function NeuefischePopUp() {
-  return (
-    <>
-      <StyledPopUp>
+      <StyledPopUp show={activePopup === "neuefische"}>
+        <CloseButton onClick={closePopup}>X</CloseButton>
         <h2>Hello (neue fische GmbH)</h2>
       </StyledPopUp>
-    </>
-  );
-}
 
-export function TechstackPopUp() {
-  return (
-    <>
-      <StyledPopUp>
+      <StyledPopUp show={activePopup === "techstack"}>
+        <CloseButton onClick={closePopup}>X</CloseButton>
         <h2>Hello (Techstack)</h2>
       </StyledPopUp>
-    </>
-  );
-}
 
-export function ContactPopUp() {
-  return (
-    <>
-      <StyledPopUp>
+      <StyledPopUp show={activePopup === "contact"}>
+        <CloseButton onClick={closePopup}>X</CloseButton>
         <h2>Hello (Contact)</h2>
       </StyledPopUp>
-    </>
+    </div>
   );
 }
