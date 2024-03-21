@@ -1,63 +1,38 @@
-import {
-  InfoCardContainer,
-  InfoLink,
-  InfoBreadcrumb,
-  StyledLink,
-  StyledInfoCardWithTransition,
-  InfoImage,
-  InfoTitle,
-} from "@/components/Info/Info.styled";
+import styled from "styled-components";
+import Tile from "@/components/Tile";
+
+export const TileContainer = styled.div`
+  padding: 0;
+  margin: 0.2rem auto;
+  display: grid;
+  grid-template-columns: auto auto;
+  justify-content: center;
+  gap: 10px;
+`;
 
 export default function InfoPage() {
   return (
-    <InfoCardContainer>
-      <InfoLink href="/info/project">
-        <StyledInfoCardWithTransition>
-          <InfoImage
-            src="/images/logo_triptrove_heart.png"
-            width={120}
-            height={120}
-            alt="Project"
-          />
-          <InfoTitle>Project</InfoTitle>
-        </StyledInfoCardWithTransition>
-      </InfoLink>
-
-      <InfoLink href={"/info/neuefische"}>
-        <StyledInfoCardWithTransition>
-          <InfoImage
-            src="/images/logo_neue-fische.png"
-            width={120}
-            height={120}
-            alt="neue fische"
-          />
-          <InfoTitle>neue fische</InfoTitle>
-        </StyledInfoCardWithTransition>
-      </InfoLink>
-
-      <InfoLink href={"/info/techstack"}>
-        <StyledInfoCardWithTransition>
-          <InfoImage
-            src="/images/logo_next-js.png"
-            width={120}
-            height={120}
-            alt="Techstack"
-          />
-          <InfoTitle>Techstack</InfoTitle>
-        </StyledInfoCardWithTransition>
-      </InfoLink>
-
-      <StyledLink href={"/info/contact"}>
-        <StyledInfoCardWithTransition>
-          <InfoImage
-            src="/images/gmndr-pic.jpg"
-            width={120}
-            height={120}
-            alt="Contact"
-          />
-          <InfoTitle>Contact</InfoTitle>
-        </StyledInfoCardWithTransition>
-      </StyledLink>
-    </InfoCardContainer>
+    <TileContainer>
+      <Tile
+        href={"/info/project"}
+        src={"/images/logo_triptrove_heart.png"}
+        text={"Project"}
+      />
+      <Tile
+        href={"/info/neuefische"}
+        src={"/images/logo_neue-fische.png"}
+        text={"neue fische"}
+      />
+      <Tile
+        href={"/info/techstack"}
+        src={"/images/logo_next-js.png"}
+        text={"Techstack"}
+      />
+      <Tile
+        href={"/info/contact"}
+        src={"/images/gmndr-pic.jpg"}
+        text={"Contact"}
+      />
+    </TileContainer>
   );
 }
