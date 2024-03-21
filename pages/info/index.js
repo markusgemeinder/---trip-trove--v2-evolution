@@ -61,25 +61,21 @@ export default function InfoPage() {
       </TileContainer>
 
       <PopupContainer>
-        <StyledPopUp show={activePopup === "project"}>
-          <CloseButton onClick={closePopup}>X</CloseButton>
+        <Popup show={activePopup === "project"} onClose={closePopup}>
           <h2>Hello (Project)</h2>
-        </StyledPopUp>
+        </Popup>
 
-        <StyledPopUp show={activePopup === "neuefische"}>
-          <CloseButton onClick={closePopup}>X</CloseButton>
+        <Popup show={activePopup === "neuefische"} onClose={closePopup}>
           <h2>Hello (neue fische GmbH)</h2>
-        </StyledPopUp>
+        </Popup>
 
-        <StyledPopUp show={activePopup === "techstack"}>
-          <CloseButton onClick={closePopup}>X</CloseButton>
+        <Popup show={activePopup === "techstack"} onClose={closePopup}>
           <h2>Hello (Techstack)</h2>
-        </StyledPopUp>
+        </Popup>
 
-        <StyledPopUp show={activePopup === "contact"}>
-          <CloseButton onClick={closePopup}>X</CloseButton>
+        <Popup show={activePopup === "contact"} onClose={closePopup}>
           <h2>Hello (Contact)</h2>
-        </StyledPopUp>
+        </Popup>
       </PopupContainer>
     </>
   );

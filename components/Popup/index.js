@@ -39,3 +39,12 @@ export const CloseButton = styled.span`
     transform: scale(1.02);
   }
 `;
+
+export default function Popup({ show, children, onClose }) {
+  return (
+    <StyledPopUp show={show}>
+      <CloseButton onClick={onClose}>X</CloseButton>
+      {children}
+    </StyledPopUp>
+  );
+}
