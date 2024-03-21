@@ -40,11 +40,22 @@ export const CloseButton = styled.span`
   }
 `;
 
-export default function Popup({ show, children, onClose }) {
+export const PopupText = styled.p`
+  margin: 0.5rem;
+  color: var(--color-text);
+`;
+
+export const Link = styled.a`
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
+export default function Popup({ show, onClose, content }) {
   return (
     <StyledPopUp show={show}>
       <CloseButton onClick={onClose}>X</CloseButton>
-      {children}
+      {content}
     </StyledPopUp>
   );
 }

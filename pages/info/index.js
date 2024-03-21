@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import Tile from "@/components/Tile";
-import { StyledPopUp, CloseButton } from "@/components/Popup";
+import Popup, { PopupText, Link } from "@/components/Popup";
 
 const TileContainer = styled.div`
   padding: 0;
@@ -29,6 +29,67 @@ export default function InfoPage() {
 
   const closePopup = () => {
     setActivePopup(null);
+  };
+
+  const popupContent = {
+    project: (
+      <>
+        <h3>Das Projekt</h3>
+        <PopupText>
+          Hi! Was Sie hier sehen ist "TripTrove" (Version 2) – eine
+          Reise-Planungs-App, die in ihrer ersten Version als Abschlussprojekt
+          des neue fische Web Developer Bootcamps am 9.2.2024 präsentiert wurde.
+        </PopupText>
+        <PopupText>
+          Version 1 entstand im Teamwork (Aika Akymbaeva | Uwe Bury | Felix
+          Jentsch | Markus Gemeinder) und zeichnet sich durch eine sehr komplexe
+          Formularfunktionalität aus:
+        </PopupText>
+        <Link
+          href="https://trip-trove-v1-neue-fische-capstone-finale-20240209.vercel.app/"
+          target="_blank"
+        >
+          "TripTrove" (Version 1)
+        </Link>
+        <Link
+          href="https://github.com/markusgemeinder/---trip-trove--v1-neue-fische-capstone-finale-20240209"
+          target="_blank"
+        >
+          Code GitHub (Version 1)
+        </Link>
+        <PopupText>
+          Version 2 ist eine individuelle Weiterentwicklung von Markus Gemeinder
+          und beinhaltet über Version 1 hinaus u.a. folgende Features:
+        </PopupText>
+        <ul>
+          <li>Responsive Design inklusive Burger Menu</li>
+          <li>Optimiertes UX/UI Design</li>
+          <li>
+            Packing List Presets (durch User modifizierbar, Datenbankanbindung)
+          </li>
+          <li>
+            Packing List Checkboxen (User kann bereits gepackte Gegenstände
+            abhaken, mit direkter Datenbankanbindung)
+          </li>
+          <li>Drag & Drop Image Upload (Cloudinary)</li>
+          <li>
+            Page Exit Szenario (User erhält beim Verlassen der Seite
+            Warnhinweis, falls Daten nicht gespeichert wurden)
+          </li>
+          <li>Suchfunktion (Echtzeitsuche)</li>
+          <li>Lade- und Error-Animation</li>
+        </ul>
+        <Link
+          href="https://github.com/markusgemeinder/---trip-trove--v2-evolution"
+          target="_blank"
+        >
+          Code GitHub (Version 2)
+        </Link>
+      </>
+    ),
+    neuefische: <>{/* Content for the "neuefische" popup */}</>,
+    techstack: <>{/* Content for the "techstack" popup */}</>,
+    contact: <>{/* Content for the "contact" popup */}</>,
   };
 
   return (
@@ -61,21 +122,11 @@ export default function InfoPage() {
       </TileContainer>
 
       <PopupContainer>
-        <Popup show={activePopup === "project"} onClose={closePopup}>
-          <h2>Hello (Project)</h2>
-        </Popup>
-
-        <Popup show={activePopup === "neuefische"} onClose={closePopup}>
-          <h2>Hello (neue fische GmbH)</h2>
-        </Popup>
-
-        <Popup show={activePopup === "techstack"} onClose={closePopup}>
-          <h2>Hello (Techstack)</h2>
-        </Popup>
-
-        <Popup show={activePopup === "contact"} onClose={closePopup}>
-          <h2>Hello (Contact)</h2>
-        </Popup>
+        <Popup
+          show={activePopup !== null}
+          onClose={closePopup}
+          content={popupContent[activePopup]}
+        />
       </PopupContainer>
     </>
   );
