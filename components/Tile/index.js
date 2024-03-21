@@ -2,7 +2,7 @@ import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
 
-export const TileLink = styled(Link)`
+const TileLink = styled(Link)`
   text-decoration: none;
   transition: color 0.3s ease, transform 0.3s ease;
 
@@ -16,15 +16,15 @@ export const TileLink = styled(Link)`
   }
 `;
 
-export const StyledTile = styled.div`
+const StyledTile = styled.div`
   display: flex;
   flex-flow: column wrap;
   background-color: var(--color-card);
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  width: 160px;
+  width: 100px;
   padding-bottom: 0.4rem;
-  margin: 0.2rem;
+  margin: 0.1rem;
   box-shadow: 0 4px 8px var(--color-box-shadow);
   list-style: none;
   transition: color 0.3s ease, transform 0.3s ease;
@@ -34,41 +34,51 @@ export const StyledTile = styled.div`
   }
 
   @media (min-width: 768px) and (min-height: 768px) {
-    width: 240px;
+    width: 160px;
     padding: 0.4rem 1.2rem;
   }
 `;
 
-export const TileImage = styled(Image)`
-  margin: 0;
-  padding: 0;
-  margin-top: 1.2rem;
-  border-radius: 50%;
-  width: 120px;
-  height: 120px;
-  align-self: center;
+const ActiveTile = styled(StyledTile)`
+  background-color: var(--color-card-active);
 `;
 
-export const TileText = styled.h2`
+const TileImage = styled(Image)`
+  margin: 0;
+  padding: 0;
+  margin-top: 0.8rem;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  align-self: center;
+
+  @media (min-width: 768px) and (min-height: 768px) {
+    width: 100px;
+    height: 100px;
+  }
+`;
+
+const TileText = styled.h2`
   margin: 0.4rem;
   padding-top: 0.2rem;
   text-align: center;
   align-self: center;
   color: var(--color-card-title);
-  font-size: 1.2rem;
+  font-size: 1rem;
 
   @media (min-width: 768px) and (min-height: 768px) {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
   }
 `;
 
-export default function Tile({ src, text, onClick }) {
+export default function Tile({ src, text, onClick, isActive }) {
+  const TileComponent = isActive ? ActiveTile : StyledTile;
   return (
     <>
-      <StyledTile onClick={onClick}>
-        <TileImage src={src} width={120} height={120} alt={text} />
+      <TileComponent onClick={onClick}>
+        <TileImage src={src} width={100} height={100} alt={text} />
         <TileText>{text}</TileText>
-      </StyledTile>
+      </TileComponent>
     </>
   );
 }

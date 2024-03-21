@@ -40,6 +40,7 @@ export default createGlobalStyle`
 
   --color-orange-0: #fff;
   --color-orange-50: #fffbec;
+  --color-orange-75: #fff9e2;
   --color-orange-100: #fff6d3;
   --color-orange-150: #ffefdb;
   --color-orange-200: #ffeaa5;
@@ -169,6 +170,7 @@ export default createGlobalStyle`
   --color-search-bar-icon: var(--color-orange-300);
 
   --color-card: var(--color-orange-0);
+  --color-card-active: var(--color-orange-75);
   --color-card-title: var(--color-grey-900);
   --color-card-text: var(--color-orange-1000);
   --color-card-text-highlight: var(--color-orange-600);
