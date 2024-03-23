@@ -28,7 +28,8 @@ export default function InfoProjectDE({ currentCard, totalCards }) {
       <InfoTitle>Herzlich willkommen!</InfoTitle>
 
       <InfoText>
-        Was Sie hier sehen ist “TripTrove“ in der weiterentwickelten Version 2.
+        Was Sie hier sehen ist &quot;TripTrove&quot; in der weiterentwickelten
+        Version 2.
       </InfoText>
       <InfoHeadline>Version 1</InfoHeadline>
       <InfoText>
@@ -40,7 +41,7 @@ export default function InfoProjectDE({ currentCard, totalCards }) {
       <InfoText>
         Teil der Aufgabenstellung war eine Backend-Datenbank-Anbindung, das
         Frontend zeichnet sich durch eine komplexe Formularfunktionalität mit
-        ansprechend gestalteten "Toast Messages" (Warnhinweisen) aus.
+        ansprechend gestalteten &quot;Toast Messages&quot; (Warnhinweisen) aus.
       </InfoText>
       <InfoLink
         href="https://trip-trove-v1-neue-fische-capstone-finale-20240209.vercel.app/"

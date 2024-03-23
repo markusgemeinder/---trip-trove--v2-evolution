@@ -28,7 +28,7 @@ export default function InfoProjectDE({ currentCard, totalCards }) {
       <InfoTitle>Welcome!</InfoTitle>
 
       <InfoText>
-        What you see here is "TripTrove" in its evolved Version 2.
+        What you see here is &quot;TripTrove&quot; in its evolved Version 2.
       </InfoText>
       <InfoHeadline>Version 1</InfoHeadline>
       <InfoText>
@@ -39,8 +39,8 @@ export default function InfoProjectDE({ currentCard, totalCards }) {
       </InfoText>
       <InfoText>
         Part of the task was a backend database connection; the frontend
-        features a complex form functionality with visually appealing "toast
-        messages" (warning messages).
+        features a complex form functionality with visually appealing
+        &quot;toast messages&quot; (warning messages).
       </InfoText>
       <InfoLink
         href="https://trip-trove-v1-neue-fische-capstone-finale-20240209.vercel.app/"
