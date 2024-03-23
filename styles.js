@@ -172,6 +172,7 @@ export default createGlobalStyle`
   --color-card: var(--color-orange-0);
   --color-card-active: var(--color-orange-75);
   --color-card-title: var(--color-grey-900);
+ 
   --color-card-text: var(--color-orange-1000);
   --color-card-text-highlight: var(--color-orange-600);
   --color-card-text-call-to-action: var(--color-orange-600);

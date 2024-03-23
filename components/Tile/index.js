@@ -58,7 +58,7 @@ const TileImage = styled(Image)`
   }
 `;
 
-const TileText = styled.h2`
+const TileText = styled.p`
   margin: 0.4rem;
   padding-top: 0.2rem;
   text-align: center;
