@@ -8,8 +8,8 @@ export const BurgerMenuButton = styled.div`
   display: block;
   margin: 10px 0 10px 10px;
   padding: 0;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   z-index: 4;
   transition: color 0.6s ease, transform 0.6s ease;

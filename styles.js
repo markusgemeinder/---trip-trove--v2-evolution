@@ -106,16 +106,16 @@ export default createGlobalStyle`
   --color-grey-1000: #000;
   
 
-  --color-header: var(--color-blue-600);
+  --color-header: var(--color-blue-700);
   --color-header-lightened: var(--color-blue-300);
   --color-header-title: var(--color-orange-0);
   
   --color-logo-main: var(--color-blue-700);
   --color-logo-jewel: var(--color-orange-350);
   
-  --color-navigation: var(--color-blue-400);
-  --color-navigation-active: var(--color-blue-600);
-  --color-navigation-hover: var(--color-blue-700);
+  --color-navigation: var(--color-blue-500);
+  --color-navigation-active: var(--color-blue-700);
+  --color-navigation-hover: var(--color-blue-800);
   --color-navigation-item: var(--color-blue-100);
   --color-navigation-item-text: var(--color-blue-0);
   --color-navigation-border: var(--color-blue-0);
@@ -134,6 +134,10 @@ export default createGlobalStyle`
   
   --color-page-up-button: var(--color-blue-300);
   --color-page-up-button-hover: var(--color-blue-50);
+
+  --color-previous-next-page-button: var(--color-blue-300);
+  --color-previous-next-page-button-hover: var(--color-blue-50);
+
   
   --color-mini-button: var(--color-orange-200);
   --color-mini-button-hover: var(--color-orange-300);

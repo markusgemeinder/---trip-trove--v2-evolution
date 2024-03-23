@@ -4,8 +4,8 @@ const StyledIconSvg = styled.svg`
   display: block;
   margin: ${(props) => (props.isBurgerNavigation ? "0" : "auto")};
   margin-bottom: ${(props) => (props.isBurgerNavigation ? "0" : "0.2rem")};
-  width: ${(props) => (props.isBurgerNavigation ? "24px" : "36px")};
-  height: ${(props) => (props.isBurgerNavigation ? "24px" : "36px")};
+  width: ${(props) => (props.isBurgerNavigation ? "28px" : "40px")};
+  height: ${(props) => (props.isBurgerNavigation ? "28px" : "40px")};
 `;
 
 const StyledIconPath = styled.path`
