@@ -3,32 +3,21 @@ import Link from "next/link";
 import Image from "next/image";
 
 export const InfoCard = styled.div`
-  opacity: ${(props) => (props.show ? 1 : 0)};
-  pointer-events: ${(props) => (props.show ? "auto" : "none")};
-  transition: opacity 0.3s ease;
   display: flex;
-
   flex-flow: column wrap;
+  gap: 0.1rem;
   background-color: var(--color-card);
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  width: 90%;
-  padding-bottom: 0.4rem;
-  margin: 0 auto;
-  margin-top: 0.8rem;
-
+  width: 360px;
+  padding: 0.2rem 1rem;
+  margin-bottom: 0.1rem;
   box-shadow: 0 4px 8px var(--color-box-shadow);
   list-style: none;
 
-  position: absolute;
-  top: calc(100% + 4px);
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1;
-
   @media (min-width: 768px) and (min-height: 768px) {
+    width: 480px;
     padding: 0.4rem 1.2rem;
-    top: calc(100% + 10px);
   }
 `;
 
@@ -72,21 +61,12 @@ export const InfoHeadline = styled.h3`
   }
 `;
 
-export const InfoText = styled.p`
-  margin: 0.4rem 1.6rem;
-  text-align: center;
-  color: var(--color-text);
-  font-size: 1rem;
-
-  @media (min-width: 768px) and (min-height: 768px) {
-    font-size: 1.2rem;
-  }
-`;
-
 export const InfoImage = styled(Image)`
   margin: 0;
   padding: 0;
   border-radius: 6px;
+  border: 1px solid var(--color-border);
+
   width: 100%;
   height: 100%;
   align-self: center;
@@ -98,6 +78,34 @@ export const InfoImageWithLink = styled(InfoImage)`
   &:hover {
     cursor: pointer;
     transform: scale(1.02);
+  }
+`;
+
+export const InfoText = styled.p`
+  margin: 0.4rem 1.6rem;
+  text-align: center;
+  color: var(--color-text);
+  font-size: 1rem;
+
+  @media (min-width: 768px) and (min-height: 768px) {
+    font-size: 1.2rem;
+  }
+`;
+
+export const InfoListContainer = styled.ul`
+  margin: 0.6rem 0;
+
+  @media (min-width: 768px) and (min-height: 768px) {
+    margin: 0.8rem 0;
+  }
+`;
+
+export const InfoList = styled.li`
+  margin: 0.6rem 0;
+  list-style: none;
+
+  @media (min-width: 768px) and (min-height: 768px) {
+    margin: 0.8rem 0;
   }
 `;
 
