@@ -9,7 +9,12 @@ import InfoContactEN from "@/components/Info/InfoContactEN";
 import InfoContactDE from "@/components/Info/InfoContactDE";
 import PreviousPageButton from "@/components/Button/PreviousPageButton";
 import NextPageButton from "@/components/Button/NextPageButton";
-import { ToggleButton } from "@/components/Info/Info.styled";
+import {
+  ToggleContainer,
+  ToggleSlider,
+  ToggleSliderButton,
+  ToggleSliderText,
+} from "@/components/Button/LanguageToggleButton";
 
 export default function InfoPage() {
   const [currentCard, setCurrentCard] = useState(1);
@@ -30,9 +35,13 @@ export default function InfoPage() {
 
   return (
     <>
-      <ToggleButton onClick={toggleLanguage}>
-        {isEnglish ? "DE" : "EN"}
-      </ToggleButton>
+      <ToggleContainer>
+        <ToggleSlider onClick={toggleLanguage}>
+          <ToggleSliderButton isEnglish={isEnglish} />
+          <ToggleSliderText isEnglish={isEnglish}>DE</ToggleSliderText>
+          <ToggleSliderText isEnglish={!isEnglish}>EN</ToggleSliderText>
+        </ToggleSlider>
+      </ToggleContainer>
 
       {currentCard === 1 &&
         (isEnglish ? (

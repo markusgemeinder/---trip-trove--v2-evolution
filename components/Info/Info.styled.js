@@ -2,22 +2,6 @@ import styled from "styled-components";
 import Link from "next/link";
 import Image from "next/image";
 
-export const ToggleButton = styled.button`
-  position: absolute;
-  right: 20px;
-  top: 20px;
-  background-color: transparent;
-  border: none;
-  color: white;
-  font-size: 16px;
-  cursor: pointer;
-  z-index: 10;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
 export const InfoCard = styled.div`
   display: flex;
   flex-flow: column wrap;
@@ -27,6 +11,7 @@ export const InfoCard = styled.div`
   border-radius: 8px;
   width: 360px;
   padding: 0.2rem 1rem;
+  margin-top: 1.6rem;
   margin-bottom: 0.1rem;
   box-shadow: 0 4px 8px var(--color-box-shadow);
   list-style: none;
