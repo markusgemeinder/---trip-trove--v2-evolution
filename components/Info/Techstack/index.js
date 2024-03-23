@@ -1,28 +1,29 @@
 import {
   InfoCard,
+  InfoCardHeader,
+  InfoPagination,
   InfoAvatar,
   InfoTitle,
   InfoHeadline,
-  InfoImage,
-  InfoImageWithLink,
   InfoText,
   InfoListContainer,
   InfoList,
-  InfoLink,
 } from "@/components/Info/Info.styled";
 
 export default function InfoTechstack({ currentCard, totalCards }) {
   return (
     <InfoCard>
-      <InfoText>
-        {currentCard} / {totalCards}
-      </InfoText>
-      <InfoAvatar
-        src="/images/logo_techstack.png"
-        width={100}
-        height={100}
-        alt="Project"
-      ></InfoAvatar>
+      <InfoCardHeader>
+        <InfoPagination>
+          {currentCard} / {totalCards}
+        </InfoPagination>
+        <InfoAvatar
+          src="/images/logo_techstack.png"
+          width={100}
+          height={100}
+          alt="Project"
+        ></InfoAvatar>
+      </InfoCardHeader>
       <InfoTitle>Techstack</InfoTitle>
       <InfoHeadline>Headline</InfoHeadline>
       <InfoText>

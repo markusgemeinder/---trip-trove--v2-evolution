@@ -137,7 +137,6 @@ export default createGlobalStyle`
 
   --color-previous-next-page-button: var(--color-blue-300);
   --color-previous-next-page-button-hover: var(--color-blue-50);
-
   
   --color-mini-button: var(--color-orange-200);
   --color-mini-button-hover: var(--color-orange-300);
@@ -194,6 +193,9 @@ export default createGlobalStyle`
   --color-image-upload-text: var(--color-grey-300);
   --color-image-upload-hover: var(--color-orange-100);
   --color-image-upload-in-progress: var(--color-orange-0);
+
+  --color-info-pagination-background: var(--color-orange-100);
+  --color-info-pagination-text: var(--color-orange-500);
 
 
   --font-size: 14px;

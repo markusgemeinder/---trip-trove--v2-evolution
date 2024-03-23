@@ -21,30 +21,40 @@ export const InfoCard = styled.div`
   }
 `;
 
-export const InfoPagination = styled.div`
-  position: relative;
-  width: 40px;
-  top: 0;
-  right: 0;
-  border-radius: 5px;
-  background-color: green;
-  text-align: center;
-  font-size: 0.8rem;
+export const InfoCardHeader = styled.div`
+  display: grid;
+  margin: 0.6rem auto;
+  padding: 0;
+  margin-top: 1.2rem;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "nothing avatar pagination";
+  /* justify-content: center; */
+  align-items: flex-start;
 `;
 
 export const InfoAvatar = styled(Image)`
-  margin: 0.2rem auto;
-  padding: 0;
-  margin-bottom: 0.4rem;
+  grid-area: avatar;
   border-radius: 50%;
   width: 80px;
   height: 80px;
-  align-self: center;
+  align-self: flex-start;
 
   @media (min-width: 768px) and (min-height: 768px) {
     width: 100px;
     height: 100px;
   }
+`;
+
+export const InfoPagination = styled.div`
+  grid-area: pagination;
+  justify-self: flex-end;
+  align-self: flex-start;
+  padding: 8px;
+  border-radius: 6px;
+  background-color: var(--color-info-pagination-background);
+  color: var(--color-info-pagination-text);
+  text-align: center;
+  font-size: 0.8rem;
 `;
 
 export const InfoTitle = styled.h2`

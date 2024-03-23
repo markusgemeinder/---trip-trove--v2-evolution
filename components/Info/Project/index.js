@@ -1,5 +1,6 @@
 import {
   InfoCard,
+  InfoCardHeader,
   InfoPagination,
   InfoAvatar,
   InfoTitle,
@@ -13,16 +14,17 @@ import {
 export default function InfoProject({ currentCard, totalCards }) {
   return (
     <InfoCard>
-      <InfoPagination>
-        {currentCard} / {totalCards}
-      </InfoPagination>
-
-      <InfoAvatar
-        src="/images/logo_triptrove_heart.png"
-        width={100}
-        height={100}
-        alt="Project"
-      ></InfoAvatar>
+      <InfoCardHeader>
+        <InfoPagination>
+          {currentCard} / {totalCards}
+        </InfoPagination>
+        <InfoAvatar
+          src="/images/logo_triptrove_heart.png"
+          width={100}
+          height={100}
+          alt="Project"
+        ></InfoAvatar>
+      </InfoCardHeader>
       <InfoTitle>Herzlich willkommen!</InfoTitle>
 
       <InfoText>
