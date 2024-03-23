@@ -24,17 +24,18 @@ export default function InfoContact({ currentCard, totalCards }) {
           alt="Project"
         ></InfoAvatar>
       </InfoCardHeader>
-      <InfoTitle>Contact</InfoTitle>
-      <InfoHeadline>Headline</InfoHeadline>
+      <InfoTitle>Kontakt</InfoTitle>
       <InfoText>
-        Nulla consequat massa quis enim. Nullam dictum felis eu pede mollis
-        pretium.
+        Offen für neue Aufgaben im Bereich Web Development. (Voll verfügbar in
+        meiner Coaching-Nebensaison von November bis Februar – eingeschränkt
+        verfügbar in der Hauptsaison von März bis Oktober.)
       </InfoText>
       <InfoListContainer>
-        <InfoList>Name</InfoList>
-        <InfoList>Phone</InfoList>
-        <InfoList>Mail</InfoList>
-        <InfoList>IG/FB</InfoList>
+        <InfoList>Name: Markus Gemeinder</InfoList>
+        <InfoList>Phone: +49 171 6444010</InfoList>
+        <InfoList>E-Mail: info(at)gemeinder-coaching.de</InfoList>
+        <InfoList>GitHub: markusgemeinder</InfoList>
+        <InfoList>IG/FB: @gemeindercoaching</InfoList>
       </InfoListContainer>
     </InfoCard>
   );

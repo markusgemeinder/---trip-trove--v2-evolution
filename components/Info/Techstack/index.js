@@ -25,15 +25,11 @@ export default function InfoTechstack({ currentCard, totalCards }) {
         ></InfoAvatar>
       </InfoCardHeader>
       <InfoTitle>Techstack</InfoTitle>
-      <InfoHeadline>Headline</InfoHeadline>
+      <InfoText>Verwendete Technologien und Hilfsmittel:</InfoText>
       <InfoText>
-        Nulla consequat massa quis enim. Nullam dictum felis eu pede mollis
-        pretium.
+        ● Next.js ● React ● Github ● Node.js ● Vercel ● useSWR ● react-hot-toast
+        ● MongoDB ● Cloudinary ● Figma ● Lottie Files ● Affinity Designer (SVG)
       </InfoText>
-      <InfoListContainer>
-        <InfoList>sdjfkaödsjfklaös</InfoList>
-        <InfoList>aödsjfklaös sadfasdf</InfoList>
-      </InfoListContainer>
     </InfoCard>
   );
 }

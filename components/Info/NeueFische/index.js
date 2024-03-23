@@ -39,39 +39,34 @@ export default function InfoNeueFische({ currentCard, totalCards }) {
           alt="Project"
         ></InfoAvatar>
       </InfoCardHeader>
-      <InfoTitle>Web Development Bootcamp</InfoTitle>
-      <InfoHeadline>Bootcamp</InfoHeadline>
+      <InfoTitle>Web Dev Bootcamp</InfoTitle>
       <InfoLink href="https://neuefische.de" target="_blank">
         neue fische | School and Pool for Digital Talent
       </InfoLink>
+      <InfoImageWithLink
+        src="/images/neue_fische_certificate_1.png"
+        width={1800}
+        height={1272}
+        alt="Certificate (front)"
+        onClick={() =>
+          handleImageClick("/images/neue_fische_certificate_1.png")
+        }
+      ></InfoImageWithLink>
+      <InfoImageWithLink
+        src="/images/neue_fische_certificate_2.png"
+        width={1800}
+        height={1272}
+        alt="Certificate (back)"
+        onClick={() =>
+          handleImageClick("/images/neue_fische_certificate_2.png")
+        }
+      ></InfoImageWithLink>
       <InfoText>
-        In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam
-        dictum felis eu pede mollis pretium.
+        Erfolgreich teilgenommen und abgeschlossen im Februar 2024.
       </InfoText>
 
-      <div>
-        <InfoImageWithLink
-          src="/images/neue_fische_certificate_1.png"
-          width={1800}
-          height={1272}
-          alt="Certificate (front)"
-          onClick={() =>
-            handleImageClick("/images/neue_fische_certificate_1.png")
-          }
-        ></InfoImageWithLink>
-        <InfoImageWithLink
-          src="/images/neue_fische_certificate_2.png"
-          width={1800}
-          height={1272}
-          alt="Certificate (back)"
-          onClick={() =>
-            handleImageClick("/images/neue_fische_certificate_2.png")
-          }
-        ></InfoImageWithLink>
-      </div>
-
       {isImageExpanded && (
-        <div>
+        <>
           <div
             onClick={handleCloseImage}
             style={{
@@ -96,7 +91,7 @@ export default function InfoNeueFische({ currentCard, totalCards }) {
               zIndex: 9999,
             }}
           />
-        </div>
+        </>
       )}
     </InfoCard>
   );

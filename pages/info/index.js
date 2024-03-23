@@ -19,7 +19,7 @@ export default function InfoPage() {
   };
 
   return (
-    <div>
+    <>
       {currentCard === 1 && (
         <InfoProject currentCard={currentCard} totalCards={totalCards} />
       )}
@@ -35,6 +35,6 @@ export default function InfoPage() {
 
       <PreviousPageButton onClick={goToPrevCard} />
       <NextPageButton onClick={goToNextCard} />
-    </div>
+    </>
   );
 }
