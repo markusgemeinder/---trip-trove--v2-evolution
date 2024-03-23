@@ -1,3 +1,7 @@
+//
+
+import React, { useState } from "react";
+
 import {
   InfoCard,
   InfoAvatar,
@@ -12,6 +16,19 @@ import {
 } from "@/components/Info/Info.styled";
 
 export default function InfoNeueFische({ currentCard, totalCards }) {
+  const [isImageExpanded, setIsImageExpanded] = useState(false);
+  const [expandedImageSrc, setExpandedImageSrc] = useState("");
+
+  function handleImageClick(src) {
+    setIsImageExpanded(true);
+    setExpandedImageSrc(src);
+  }
+
+  function handleCloseImage() {
+    setIsImageExpanded(false);
+    setExpandedImageSrc("");
+  }
+
   return (
     <InfoCard>
       <InfoText>
@@ -33,18 +50,55 @@ export default function InfoNeueFische({ currentCard, totalCards }) {
         dictum felis eu pede mollis pretium.
       </InfoText>
 
-      <InfoImage
-        src="/images/neue_fische_certificate_1.png"
-        width={1800}
-        height={1272}
-        alt="Certificate (front)"
-      ></InfoImage>
-      <InfoImage
-        src="/images/neue_fische_certificate_2.png"
-        width={1800}
-        height={1272}
-        alt="Certificate (back)"
-      ></InfoImage>
+      <div>
+        <InfoImage
+          src="/images/neue_fische_certificate_1.png"
+          width={1800}
+          height={1272}
+          alt="Certificate (front)"
+          onClick={() =>
+            handleImageClick("/images/neue_fische_certificate_1.png")
+          }
+        ></InfoImage>
+        <InfoImage
+          src="/images/neue_fische_certificate_2.png"
+          width={1800}
+          height={1272}
+          alt="Certificate (back)"
+          onClick={() =>
+            handleImageClick("/images/neue_fische_certificate_2.png")
+          }
+        ></InfoImage>
+      </div>
+
+      {isImageExpanded && (
+        <div>
+          <div
+            onClick={handleCloseImage}
+            style={{
+              position: "fixed",
+              top: 0,
+              bottom: 0,
+              left: 0,
+              right: 0,
+              background: "rgba(0, 0, 0, 0.5)",
+            }}
+          />
+          <img
+            src={expandedImageSrc}
+            alt="Expanded Image"
+            style={{
+              position: "fixed",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              maxHeight: "80vh",
+              maxWidth: "80vw",
+              zIndex: 9999,
+            }}
+          />
+        </div>
+      )}
     </InfoCard>
   );
 }
