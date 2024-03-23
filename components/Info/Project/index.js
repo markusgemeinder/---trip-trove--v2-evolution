@@ -11,9 +11,12 @@ import {
   InfoLink,
 } from "@/components/Info/Info.styled";
 
-export default function InfoProject() {
+export default function InfoProject({ currentCard, totalCards }) {
   return (
     <InfoCard>
+      <InfoText>
+        Page {currentCard} of {totalCards}
+      </InfoText>
       <InfoAvatar
         src="/images/logo_triptrove_heart.png"
         width={100}

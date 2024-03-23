@@ -7,27 +7,31 @@ import PreviousPageButton from "@/components/Button/PreviousPageButton";
 import NextPageButton from "@/components/Button/NextPageButton";
 
 export default function InfoPage() {
-  const [currentCard, setCurrentCard] = useState(0);
+  const [currentCard, setCurrentCard] = useState(1);
   const totalCards = 4; // Total number of cards
 
   const goToNextCard = () => {
-    setCurrentCard((prevCard) =>
-      prevCard === totalCards - 1 ? 0 : prevCard + 1
-    );
+    setCurrentCard((prevCard) => (prevCard === totalCards ? 1 : prevCard + 1));
   };
 
   const goToPrevCard = () => {
-    setCurrentCard((prevCard) =>
-      prevCard === 0 ? totalCards - 1 : prevCard - 1
-    );
+    setCurrentCard((prevCard) => (prevCard === 1 ? totalCards : prevCard - 1));
   };
 
   return (
     <div>
-      {currentCard === 0 && <InfoProject />}
-      {currentCard === 1 && <InfoNeueFische />}
-      {currentCard === 2 && <InfoTechstack />}
-      {currentCard === 3 && <InfoContact />}
+      {currentCard === 1 && (
+        <InfoProject currentCard={currentCard} totalCards={totalCards} />
+      )}
+      {currentCard === 2 && (
+        <InfoNeueFische currentCard={currentCard} totalCards={totalCards} />
+      )}
+      {currentCard === 3 && (
+        <InfoTechstack currentCard={currentCard} totalCards={totalCards} />
+      )}
+      {currentCard === 4 && (
+        <InfoContact currentCard={currentCard} totalCards={totalCards} />
+      )}
 
       <PreviousPageButton onClick={goToPrevCard} />
       <NextPageButton onClick={goToNextCard} />

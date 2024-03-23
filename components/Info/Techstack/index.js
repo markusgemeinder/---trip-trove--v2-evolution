@@ -11,9 +11,12 @@ import {
   InfoLink,
 } from "@/components/Info/Info.styled";
 
-export default function InfoTechstack() {
+export default function InfoTechstack({ currentCard, totalCards }) {
   return (
     <InfoCard>
+      <InfoText>
+        Page {currentCard} of {totalCards}
+      </InfoText>
       <InfoAvatar
         src="/images/logo_techstack.png"
         width={100}

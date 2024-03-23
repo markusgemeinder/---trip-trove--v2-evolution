@@ -11,9 +11,12 @@ import {
   InfoLink,
 } from "@/components/Info/Info.styled";
 
-export default function InfoContact() {
+export default function InfoContact({ currentCard, totalCards }) {
   return (
     <InfoCard>
+      <InfoText>
+        Page {currentCard} of {totalCards}
+      </InfoText>
       <InfoAvatar
         src="/images/gmndr-pic.jpg"
         width={100}

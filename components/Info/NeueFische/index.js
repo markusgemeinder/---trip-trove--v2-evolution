@@ -11,9 +11,12 @@ import {
   InfoLink,
 } from "@/components/Info/Info.styled";
 
-export default function InfoNeueFische() {
+export default function InfoNeueFische({ currentCard, totalCards }) {
   return (
     <InfoCard>
+      <InfoText>
+        Page {currentCard} of {totalCards}
+      </InfoText>
       <InfoAvatar
         src="/images/logo_neue-fische.png"
         width={100}
