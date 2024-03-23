@@ -15,7 +15,7 @@ export default function InfoTechstack({ currentCard, totalCards }) {
   return (
     <InfoCard>
       <InfoText>
-        Page {currentCard} of {totalCards}
+        {currentCard} / {totalCards}
       </InfoText>
       <InfoAvatar
         src="/images/logo_techstack.png"

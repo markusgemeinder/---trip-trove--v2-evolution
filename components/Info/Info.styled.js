@@ -21,10 +21,21 @@ export const InfoCard = styled.div`
   }
 `;
 
+export const InfoPagination = styled.div`
+  position: relative;
+  width: 40px;
+  top: 0;
+  right: 0;
+  border-radius: 5px;
+  background-color: green;
+  text-align: center;
+  font-size: 0.8rem;
+`;
+
 export const InfoAvatar = styled(Image)`
-  margin: 0;
+  margin: 0.2rem auto;
   padding: 0;
-  margin-top: 0.8rem;
+  margin-bottom: 0.4rem;
   border-radius: 50%;
   width: 80px;
   height: 80px;

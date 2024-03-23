@@ -32,7 +32,7 @@ export default function InfoNeueFische({ currentCard, totalCards }) {
   return (
     <InfoCard>
       <InfoText>
-        Page {currentCard} of {totalCards}
+        {currentCard} / {totalCards}
       </InfoText>
       <InfoAvatar
         src="/images/logo_neue-fische.png"

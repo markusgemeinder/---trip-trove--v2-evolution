@@ -15,7 +15,7 @@ export default function InfoContact({ currentCard, totalCards }) {
   return (
     <InfoCard>
       <InfoText>
-        Page {currentCard} of {totalCards}
+        {currentCard} / {totalCards}
       </InfoText>
       <InfoAvatar
         src="/images/gmndr-pic.jpg"
