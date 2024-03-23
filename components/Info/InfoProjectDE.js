@@ -11,7 +11,7 @@ import {
   InfoLink,
 } from "@/components/Info/Info.styled";
 
-export default function InfoProject({ currentCard, totalCards }) {
+export default function InfoProjectDE({ currentCard, totalCards }) {
   return (
     <InfoCard>
       <InfoCardHeader>
@@ -22,7 +22,7 @@ export default function InfoProject({ currentCard, totalCards }) {
           src="/images/logo_triptrove_heart.png"
           width={100}
           height={100}
-          alt="Project"
+          alt="Projekt"
         ></InfoAvatar>
       </InfoCardHeader>
       <InfoTitle>Herzlich willkommen!</InfoTitle>

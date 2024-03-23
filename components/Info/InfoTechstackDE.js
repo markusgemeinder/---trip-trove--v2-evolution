@@ -4,13 +4,10 @@ import {
   InfoPagination,
   InfoAvatar,
   InfoTitle,
-  InfoHeadline,
   InfoText,
-  InfoListContainer,
-  InfoList,
 } from "@/components/Info/Info.styled";
 
-export default function InfoTechstack({ currentCard, totalCards }) {
+export default function InfoTechstackDE({ currentCard, totalCards }) {
   return (
     <InfoCard>
       <InfoCardHeader>
@@ -21,7 +18,7 @@ export default function InfoTechstack({ currentCard, totalCards }) {
           src="/images/logo_techstack.png"
           width={100}
           height={100}
-          alt="Project"
+          alt="Techstack"
         ></InfoAvatar>
       </InfoCardHeader>
       <InfoTitle>Techstack</InfoTitle>

@@ -10,7 +10,7 @@ import {
   InfoList,
 } from "@/components/Info/Info.styled";
 
-export default function InfoContact({ currentCard, totalCards }) {
+export default function InfoContactDE({ currentCard, totalCards }) {
   return (
     <InfoCard>
       <InfoCardHeader>
@@ -21,7 +21,7 @@ export default function InfoContact({ currentCard, totalCards }) {
           src="/images/gmndr-pic.jpg"
           width={100}
           height={100}
-          alt="Project"
+          alt="Kontakt"
         ></InfoAvatar>
       </InfoCardHeader>
       <InfoTitle>Kontakt</InfoTitle>
@@ -32,7 +32,7 @@ export default function InfoContact({ currentCard, totalCards }) {
       </InfoText>
       <InfoListContainer>
         <InfoList>Name: Markus Gemeinder</InfoList>
-        <InfoList>Phone: +49 171 6444010</InfoList>
+        <InfoList>Tel.: +49 171 6444010</InfoList>
         <InfoList>E-Mail: info(at)gemeinder-coaching.de</InfoList>
         <InfoList>GitHub: markusgemeinder</InfoList>
         <InfoList>IG/FB: @gemeindercoaching</InfoList>

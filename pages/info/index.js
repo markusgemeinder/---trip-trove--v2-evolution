@@ -1,38 +1,63 @@
 import React, { useState } from "react";
-import InfoProject from "@/components/Info/Project";
-import InfoNeueFische from "@/components/Info/NeueFische";
-import InfoTechstack from "@/components/Info/Techstack";
-import InfoContact from "@/components/Info/Contact";
+import InfoProjectEN from "@/components/Info/InfoProjectEN";
+import InfoProjectDE from "@/components/Info/InfoProjectDE";
+import InfoNeueFischeEN from "@/components/Info/InfoNeueFischeEN";
+import InfoNeueFischeDE from "@/components/Info/InfoNeueFischeDE";
+import InfoTechstackEN from "@/components/Info/InfoTechstackEN";
+import InfoTechstackDE from "@/components/Info/InfoTechstackDE";
+import InfoContactEN from "@/components/Info/InfoContactEN";
+import InfoContactDE from "@/components/Info/InfoContactDE";
 import PreviousPageButton from "@/components/Button/PreviousPageButton";
 import NextPageButton from "@/components/Button/NextPageButton";
+import { ToggleButton } from "@/components/Info/Info.styled";
 
 export default function InfoPage() {
   const [currentCard, setCurrentCard] = useState(1);
-  const totalCards = 4; // Total number of cards
+  const totalCards = 4;
+  const [isEnglish, setIsEnglish] = useState(true);
 
-  const goToNextCard = () => {
+  function toggleLanguage() {
+    setIsEnglish(!isEnglish);
+  }
+
+  function goToNextCard() {
     setCurrentCard((prevCard) => (prevCard === totalCards ? 1 : prevCard + 1));
-  };
+  }
 
-  const goToPrevCard = () => {
+  function goToPrevCard() {
     setCurrentCard((prevCard) => (prevCard === 1 ? totalCards : prevCard - 1));
-  };
+  }
 
   return (
     <>
-      {currentCard === 1 && (
-        <InfoProject currentCard={currentCard} totalCards={totalCards} />
-      )}
-      {currentCard === 2 && (
-        <InfoNeueFische currentCard={currentCard} totalCards={totalCards} />
-      )}
-      {currentCard === 3 && (
-        <InfoTechstack currentCard={currentCard} totalCards={totalCards} />
-      )}
-      {currentCard === 4 && (
-        <InfoContact currentCard={currentCard} totalCards={totalCards} />
-      )}
+      <ToggleButton onClick={toggleLanguage}>
+        {isEnglish ? "DE" : "EN"}
+      </ToggleButton>
 
+      {currentCard === 1 &&
+        (isEnglish ? (
+          <InfoProjectEN currentCard={currentCard} totalCards={totalCards} />
+        ) : (
+          <InfoProjectDE currentCard={currentCard} totalCards={totalCards} />
+        ))}
+      {currentCard === 2 &&
+        (isEnglish ? (
+          <InfoNeueFischeEN currentCard={currentCard} totalCards={totalCards} />
+        ) : (
+          <InfoNeueFischeDE currentCard={currentCard} totalCards={totalCards} />
+        ))}
+      {currentCard === 3 &&
+        (isEnglish ? (
+          <InfoTechstackEN currentCard={currentCard} totalCards={totalCards} />
+        ) : (
+          <InfoTechstackDE currentCard={currentCard} totalCards={totalCards} />
+        ))}
+      {currentCard === 4 &&
+        (isEnglish ? (
+          <InfoContactEN currentCard={currentCard} totalCards={totalCards} />
+        ) : (
+          <InfoContactDE currentCard={currentCard} totalCards={totalCards} />
+        ))}
       <PreviousPageButton onClick={goToPrevCard} />
       <NextPageButton onClick={goToNextCard} />
     </>

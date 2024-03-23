@@ -12,7 +12,7 @@ import {
   InfoLink,
 } from "@/components/Info/Info.styled";
 
-export default function InfoNeueFische({ currentCard, totalCards }) {
+export default function InfoNeueFischeEN({ currentCard, totalCards }) {
   const [isImageExpanded, setIsImageExpanded] = useState(false);
   const [expandedImageSrc, setExpandedImageSrc] = useState("");
 
@@ -36,13 +36,16 @@ export default function InfoNeueFische({ currentCard, totalCards }) {
           src="/images/logo_neue-fische.png"
           width={100}
           height={100}
-          alt="Project"
+          alt="neue fische"
         ></InfoAvatar>
       </InfoCardHeader>
       <InfoTitle>Web Dev Bootcamp</InfoTitle>
       <InfoLink href="https://neuefische.de" target="_blank">
         neue fische | School and Pool for Digital Talent
       </InfoLink>
+      <InfoText>
+        Successfully participated in and completed in February 2024.
+      </InfoText>
       <InfoImageWithLink
         src="/images/neue_fische_certificate_1.png"
         width={1800}
@@ -61,9 +64,6 @@ export default function InfoNeueFische({ currentCard, totalCards }) {
           handleImageClick("/images/neue_fische_certificate_2.png")
         }
       ></InfoImageWithLink>
-      <InfoText>
-        Erfolgreich teilgenommen und abgeschlossen im Februar 2024.
-      </InfoText>
 
       {isImageExpanded && (
         <>
