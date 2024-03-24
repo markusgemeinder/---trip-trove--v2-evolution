@@ -10,15 +10,15 @@ export const InfoCard = styled.div`
   border: 1px solid var(--color-border);
   border-radius: 8px;
   width: 360px;
-  padding: 0.2rem 1rem;
-  margin-top: 1.6rem;
+  padding: 0.2rem 0.6rem;
+  margin-top: 0.6rem;
   margin-bottom: 0.1rem;
   box-shadow: 0 4px 8px var(--color-box-shadow);
   list-style: none;
 
   @media (min-width: 768px) and (min-height: 768px) {
     width: 480px;
-    padding: 0.4rem 1.2rem;
+    padding: 0.4rem 0.8rem;
   }
 `;
 
@@ -62,7 +62,7 @@ export const InfoTitle = styled.h2`
   margin: 0.6rem;
   text-align: center;
   align-self: center;
-  color: var(--color-card-title);
+  color: var(--color-info-title);
   font-size: 1.6rem;
 
   @media (min-width: 768px) and (min-height: 768px) {
@@ -71,16 +71,64 @@ export const InfoTitle = styled.h2`
 `;
 
 export const InfoHeadline = styled.h3`
-  margin: 0.6rem;
-  padding-top: 0.4rem;
+  margin-top: 0.8rem;
+  margin-bottom: 0.1rem;
+  padding: 0.4rem 0.8rem;
   text-align: center;
   align-self: center;
-  color: var(--color-card-title);
-  font-size: 1.4rem;
+  border-bottom: 1px solid var(--color-info-headline-border);
+  /* border-radius: 8px; */
+  /* background-color: var(--color-info-headline-background); */
+  color: var(--color-info-headline);
+  font-size: 1.2rem;
 
   @media (min-width: 768px) and (min-height: 768px) {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
+`;
+
+export const InfoLinkContainer = styled.div`
+  margin-top: 2rem;
+  margin-bottom: 0.6rem;
+  display: flex;
+  flex-flow: column wrap;
+  gap: 10px;
+`;
+
+export const InfoLink = styled(Link)`
+  margin: 0 auto;
+  background-color: var(--color-button);
+  border: 2px solid var(--color-button-border);
+  width: 80%;
+  padding: 0.6rem;
+  border-radius: 30px;
+  font-size: 1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.02);
+  }
+
+  &:hover,
+  &:link,
+  &:visited {
+    color: inherit;
+  }
+
+  @media (min-width: 768px) and (min-height: 768px) {
+    font-size: 1.2rem;
+  }
+`;
+
+export const InfoImageContainer = styled.div`
+  margin-top: 1rem;
+  display: flex;
+  flex-flow: column wrap;
+  gap: 10px;
 `;
 
 export const InfoImage = styled(Image)`
@@ -107,15 +155,17 @@ export const InfoText = styled.p`
   margin: 0.4rem 1.6rem;
   text-align: center;
   color: var(--color-text);
-  font-size: 1rem;
+  font-size: 1.05rem;
 
   @media (min-width: 768px) and (min-height: 768px) {
-    font-size: 1.2rem;
+    font-size: 1.25rem;
   }
 `;
 
 export const InfoListContainer = styled.ul`
-  margin: 0.6rem 0;
+  margin: 0;
+  padding: 0 2.4rem 0 4.8rem;
+  list-style-type: none;
 
   @media (min-width: 768px) and (min-height: 768px) {
     margin: 0.8rem 0;
@@ -124,27 +174,20 @@ export const InfoListContainer = styled.ul`
 
 export const InfoList = styled.li`
   margin: 0.6rem 0;
-  list-style: none;
+  font-size: 1rem;
+  line-height: 1.1;
+  position: relative;
+
+  &:before {
+    content: "\u25B7";
+    position: absolute;
+    left: -1.6rem;
+    color: var(--color-info-list-bullet);
+    font-weight: bold;
+  }
 
   @media (min-width: 768px) and (min-height: 768px) {
     margin: 0.8rem 0;
-  }
-`;
-
-export const InfoLink = styled(Link)`
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
-  transition: transform 0.3s ease;
-
-  &:hover {
-    cursor: pointer;
-    transform: scale(1.02);
-  }
-
-  &:hover,
-  &:link,
-  &:visited {
-    color: inherit;
+    font-size: 1.2rem;
   }
 `;

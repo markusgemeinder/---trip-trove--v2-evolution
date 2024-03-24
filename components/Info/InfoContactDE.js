@@ -6,8 +6,8 @@ import {
   InfoTitle,
   InfoHeadline,
   InfoText,
-  InfoListContainer,
-  InfoList,
+  InfoLinkContainer,
+  InfoLink,
 } from "@/components/Info/Info.styled";
 
 export default function InfoContactDE({ currentCard, totalCards }) {
@@ -25,18 +25,40 @@ export default function InfoContactDE({ currentCard, totalCards }) {
         ></InfoAvatar>
       </InfoCardHeader>
       <InfoTitle>Kontakt</InfoTitle>
+      <InfoHeadline>Markus Gemeinder</InfoHeadline>
       <InfoText>
-        Offen für neue Aufgaben im Bereich Web Development. (Voll verfügbar in
-        meiner Coaching-Nebensaison von November bis Februar – eingeschränkt
-        verfügbar in der Hauptsaison von März bis Oktober.)
+        Selbständig im Bereich Coaching und Marketing – offen für neue Aufgaben
+        im Bereich Web Development.
       </InfoText>
-      <InfoListContainer>
-        <InfoList>Name: Markus Gemeinder</InfoList>
-        <InfoList>Tel.: +49 171 6444010</InfoList>
-        <InfoList>E-Mail: info(at)gemeinder-coaching.de</InfoList>
-        <InfoList>GitHub: markusgemeinder</InfoList>
-        <InfoList>IG/FB: @gemeindercoaching</InfoList>
-      </InfoListContainer>
+
+      <InfoText>
+        Frei verfügbar von November bis Februar (während der
+        Coaching-Hauptsaison von März bis Oktober mit Einschränkung).
+      </InfoText>
+      <InfoLinkContainer>
+        <InfoLink href="tel:+491716444010">Tel.: +49 171 6444010</InfoLink>
+        <InfoLink href="mailto:info@gemeinder-coaching.de">
+          info(at)gemeinder-coaching.de
+        </InfoLink>
+        <InfoLink href="https://www.gemeinder-coaching.de" target="_blank">
+          www.gemeinder-coaching.de
+        </InfoLink>
+        <InfoLink href="https://github.com/markusgemeinder" target="_blank">
+          GitHub: markusgemeinder
+        </InfoLink>
+        <InfoLink
+          href="https://www.instagram.com/gemeindercoaching"
+          target="_blank"
+        >
+          Instagram: @gemeindercoaching
+        </InfoLink>
+        <InfoLink
+          href="https://www.facebook.com/gemeindercoaching"
+          target="_blank"
+        >
+          Facebook: @gemeindercoaching
+        </InfoLink>
+      </InfoLinkContainer>
     </InfoCard>
   );
 }

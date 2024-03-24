@@ -6,9 +6,10 @@ import {
   InfoPagination,
   InfoAvatar,
   InfoTitle,
-  InfoHeadline,
+  InfoImageContainer,
   InfoImageWithLink,
   InfoText,
+  InfoLinkContainer,
   InfoLink,
 } from "@/components/Info/Info.styled";
 
@@ -39,31 +40,31 @@ export default function InfoNeueFischeEN({ currentCard, totalCards }) {
           alt="neue fische"
         ></InfoAvatar>
       </InfoCardHeader>
-      <InfoTitle>Web Dev Bootcamp</InfoTitle>
-      <InfoLink href="https://neuefische.de" target="_blank">
-        neue fische | School and Pool for Digital Talent
-      </InfoLink>
+      <InfoTitle>Web Development Bootcamp</InfoTitle>
       <InfoText>
-        Successfully participated in and completed in February 2024.
+        Successfully participated (3 months full-time) and completed in February
+        2024.
       </InfoText>
-      <InfoImageWithLink
-        src="/images/neue_fische_certificate_1.png"
-        width={1800}
-        height={1272}
-        alt="Certificate (front)"
-        onClick={() =>
-          handleImageClick("/images/neue_fische_certificate_1.png")
-        }
-      ></InfoImageWithLink>
-      <InfoImageWithLink
-        src="/images/neue_fische_certificate_2.png"
-        width={1800}
-        height={1272}
-        alt="Certificate (back)"
-        onClick={() =>
-          handleImageClick("/images/neue_fische_certificate_2.png")
-        }
-      ></InfoImageWithLink>
+      <InfoImageContainer>
+        <InfoImageWithLink
+          src="/images/neue_fische_certificate_1.png"
+          width={1800}
+          height={1272}
+          alt="Certificate (front)"
+          onClick={() =>
+            handleImageClick("/images/neue_fische_certificate_1.png")
+          }
+        ></InfoImageWithLink>
+        <InfoImageWithLink
+          src="/images/neue_fische_certificate_2.png"
+          width={1800}
+          height={1272}
+          alt="Certificate (back)"
+          onClick={() =>
+            handleImageClick("/images/neue_fische_certificate_2.png")
+          }
+        ></InfoImageWithLink>
+      </InfoImageContainer>
 
       {isImageExpanded && (
         <>
@@ -93,6 +94,11 @@ export default function InfoNeueFischeEN({ currentCard, totalCards }) {
           />
         </>
       )}
+      <InfoLinkContainer>
+        <InfoLink href="https://neuefische.de" target="_blank">
+          neue fische Website
+        </InfoLink>
+      </InfoLinkContainer>
     </InfoCard>
   );
 }

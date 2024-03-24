@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import InfoProjectEN from "@/components/Info/InfoProjectEN";
 import InfoProjectDE from "@/components/Info/InfoProjectDE";
 import InfoNeueFischeEN from "@/components/Info/InfoNeueFischeEN";

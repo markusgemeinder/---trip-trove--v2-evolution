@@ -24,9 +24,12 @@ export default function InfoTechstackDE({ currentCard, totalCards }) {
       <InfoTitle>Techstack</InfoTitle>
       <InfoText>Verwendete Technologien und Hilfsmittel:</InfoText>
       <InfoText>
-        ● Next.js ● React ● Github ● Node.js ● Vercel ● useSWR ● react-hot-toast
-        ● MongoDB ● Cloudinary ● Figma ● Lottie Files ● Affinity Designer (SVG)
+        ●&nbsp;Next.js ●&nbsp;React ●&nbsp;HTML ●&nbsp;CSS ●&nbsp;JavaScript
+        ●&nbsp;Github ●&nbsp;Node.js ●&nbsp;Vercel ●&nbsp;useSWR
+        ●&nbsp;react-hot-toast ●&nbsp;MongoDB ●&nbsp;Cloudinary ●&nbsp;Figma
+        ●&nbsp;Lottie Files ●&nbsp;Affinity Designer
       </InfoText>
+      <InfoText></InfoText>
     </InfoCard>
   );
 }

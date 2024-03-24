@@ -199,8 +199,13 @@ export default createGlobalStyle`
   --color-image-upload-hover: var(--color-orange-100);
   --color-image-upload-in-progress: var(--color-orange-0);
 
+  --color-info-title: var(--color-orange-600);
+  --color-info-headline: var(--color-grey-400);
+  --color-info-headline-border: var(--color-orange-500);
+  --color-info-list-bullet: var(--color-orange-500);
+
   --color-info-pagination-background: var(--color-orange-100);
-  --color-info-pagination-text: var(--color-orange-500);
+  --color-info-pagination-text: var(--color-orange-600);
 
 
   --font-size: 14px;
