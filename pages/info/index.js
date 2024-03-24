@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useGesture } from "react-use-gesture";
 import InfoProjectEN from "@/components/Info/InfoProjectEN";
 import InfoProjectDE from "@/components/Info/InfoProjectDE";
 import InfoNeueFischeEN from "@/components/Info/InfoNeueFischeEN";
@@ -27,6 +28,11 @@ export default function InfoPage() {
   function goToPrevCard() {
     setCurrentCard((prevCard) => (prevCard === 1 ? totalCards : prevCard - 1));
   }
+
+  const bind = useGesture({
+    onSwipeLeft: goToNextCard,
+    onSwipeRight: goToPrevCard,
+  });
 
   return (
     <>
@@ -58,8 +64,8 @@ export default function InfoPage() {
         ) : (
           <InfoContactDE currentCard={currentCard} totalCards={totalCards} />
         ))}
-      <PreviousPageButton onClick={goToPrevCard} />
-      <NextPageButton onClick={goToNextCard} />
+      <PreviousPageButton onClick={goToPrevCard} {...bind()} />
+      <NextPageButton onClick={goToNextCard} {...bind()} />
     </>
   );
 }
