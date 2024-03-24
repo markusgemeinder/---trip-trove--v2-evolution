@@ -3,7 +3,7 @@ import styled from "styled-components";
 const PreviousPageButtonContainer = styled.div`
   display: flex;
   position: fixed;
-  top: 46%;
+  top: 48%;
   left: 0;
   transform: translateY(-50%);
   margin: 15px 10px;

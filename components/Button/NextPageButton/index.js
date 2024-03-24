@@ -3,15 +3,15 @@ import styled from "styled-components";
 const NextPageButtonContainer = styled.div`
   display: flex;
   position: fixed;
-  top: 46%;
+  top: 48%;
   right: 0;
   transform: translateY(-50%);
-  margin: 15px 10px;
+  margin: 10px;
   z-index: 2;
   
   
   @media (min-width: 768px) and (min-height: 768px) {
-    margin: 5px 10px;
+    margin: 10px;
 `;
 
 const NextPageButtonSvg = styled.svg`

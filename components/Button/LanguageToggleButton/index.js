@@ -1,97 +1,105 @@
+import React, { useState } from "react";
 import styled from "styled-components";
 
-export const ToggleContainer = styled.div`
+const ToggleButtonWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
   position: fixed;
   top: 70px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: block;
-  margin: 10px 0 10px 10px;
-  padding: 0;
+  right: 0;
+  height: 0;
+  margin: 15px 20px;
+  z-index: 2;
+  align-items: center;
+  gap: 4px;
 
   @media (min-width: 768px) and (min-height: 768px) {
     top: 90px;
   }
 `;
 
-export const ToggleSlider = styled.div`
+const ToggleContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Toggle = styled.div`
+  justify-content: center;
   position: relative;
-  width: 100px;
-  height: 24px;
-  border-radius: 12px;
-  background-color: #ccc;
+  display: flex;
+  align-items: center;
+  height: 68px;
+  width: 36px;
+  border-radius: 18px;
+
+  @media (min-width: 768px) and (min-height: 768px) {
+    height: 76px;
+    width: 40px;
+    border-radius: 20px;
+  }
 `;
 
-export const ToggleSliderButton = styled.div`
+const ToggleBackground = styled.div`
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: #000;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
-  left: ${({ isEnglish }) => (isEnglish ? "0" : "50%")};
-  transform: ${({ isEnglish }) =>
-    isEnglish ? "translateX(0)" : "translateX(100%)"};
+  background-color: var(--color-toggle-background);
+  border: 2px solid var(--color-toggle-border);
+  height: 68px;
+  width: 36px;
+  border-radius: 18px;
+
+  @media (min-width: 768px) and (min-height: 768px) {
+    height: 76px;
+    width: 40px;
+    border-radius: 20px;
+  }
 `;
 
-export const ToggleSliderText = styled.span`
+const ToggleButton = styled.div`
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  left: ${({ isEnglish }) => (isEnglish ? "0" : "50%")};
-  transform: ${({ isEnglish }) =>
-    isEnglish ? "translateX(0)" : "translateX(-50%)"};
-  color: #fff;
-  font-size: 14px;
-  font-weight: bold;
-  text-transform: uppercase;
+  background-color: var(--color-toggle-button);
+  height: 36px;
+  width: 28px;
+  border-radius: 14px;
+
+  @media (min-width: 768px) and (min-height: 768px) {
+    height: 40px;
+    width: 32px;
+    border-radius: 28px;
+  }
 `;
 
-// export const ToggleButton = styled.button`
-//   position: fixed;
-//   top: 20px;
-//   right: 20px;
-//   /* background-color: transparent; */
-//   background-color: green;
-//   border: none;
-//   color: white;
-//   font-size: 16px;
-//   cursor: pointer;
-//   z-index: 10;
-//   display: flex;
-//   align-items: center;
-// `;
+const ToggleText = styled.span`
+  font-size: 0.8rem;
+  text-align: center;
+  color: var(--color-toggle-text);
 
-// export const ToggleIcon = styled.span`
-//   width: 24px;
-//   height: 24px;
-//   background-image: url("path/to/slider-icon.png"); /* Replace 'path/to/slider-icon.png' with the actual path to your slider icon */
-//   background-size: cover;
-//   transition: transform 0.3s ease;
-//   transform: ${({ isEnglish }) =>
-//     isEnglish
-//       ? "translateX(0)"
-//       : "translateX(100%)"}; /* Assuming the slider starts at the left (English) position */
+  @media (min-width: 768px) and (min-height: 768px) {
+    height: 40px;
+    width: 32px;
+    border-radius: 28px;
+    font-size: 1rem;
+  }
+`;
 
-//   ${ToggleButton}:hover & {
-//     transform: ${({ isEnglish }) =>
-//       isEnglish ? "translateX(100%)" : "translateX(0)"};
-//   }
-// `;
-
-// export const ToggleText = styled.span`
-//   margin-right: 8px;
-// `;
-
-// export const ToggleButtonText = styled.span`
-//   transition: opacity 0.3s ease;
-//   opacity: ${({ isEnglish }) => (isEnglish ? "1" : "0")};
-// `;
-
-// export const ToggleButtonIcon = styled.span`
-//   transition: opacity 0.3s ease;
-//   opacity: ${({ isEnglish }) => (isEnglish ? "0" : "1")};
-// `;
+export default function LanguageToggleButton({ isEnglish, toggleLanguage }) {
+  return (
+    <>
+      <ToggleButtonWrapper aria-label="toggle button for language selection English / German">
+        <ToggleText>EN</ToggleText>
+        <ToggleContainer>
+          <Toggle onClick={toggleLanguage}>
+            <ToggleBackground />
+            <ToggleButton
+              style={{
+                top: isEnglish ? 4 : "auto",
+                bottom: isEnglish ? "auto" : 4,
+              }}
+            />
+          </Toggle>
+        </ToggleContainer>
+        <ToggleText>DE</ToggleText>
+      </ToggleButtonWrapper>
+    </>
+  );
+}

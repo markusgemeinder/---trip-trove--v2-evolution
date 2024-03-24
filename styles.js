@@ -150,6 +150,11 @@ export default createGlobalStyle`
   --color-mini-button-add-hover: var(--color-green-700);
   --color-mini-button-add-text: var(--color-green-0);
   
+  --color-toggle-background: var(--color-orange-100);
+  --color-toggle-border: var(--color-orange-300);
+  --color-toggle-button: var(--color-blue-600);
+  --color-toggle-text: var(--color-grey-300);
+
   --color-button: var(--color-orange-100);
   --color-button-text: var(--color-grey-1000);
   --color-button-border: var(--color-orange-300);

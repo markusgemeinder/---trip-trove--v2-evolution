@@ -4,16 +4,15 @@ import Link from "next/link";
 const PageUpButtonContainer = styled.div`
   display: flex;
   position: fixed;
-  bottom: 0;
+  bottom: 10px;
   right: 0;
+  margin: 4px;
   justify-content: flex-end;
-  margin: 10px 10px;
   z-index: 2;
   transition: opacity 0.6s ease;
 
   @media (min-width: 768px) and (min-height: 768px) {
-    bottom: 85px;
-    margin: 5px 10px;
+    bottom: 90px;
   }
 `;
 
