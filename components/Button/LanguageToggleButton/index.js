@@ -8,12 +8,13 @@ const ToggleContainer = styled.div`
   top: 70px;
   right: 0;
   height: 0;
-  margin: 15px 20px;
+  margin: 8px 8px 0 0;
   z-index: 2;
   align-items: center;
   gap: 4px;
 
   @media (min-width: 768px) and (min-height: 768px) {
+    margin: 14px 28px 0 0;
     top: 90px;
   }
 `;

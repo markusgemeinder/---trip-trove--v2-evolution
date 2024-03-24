@@ -9,7 +9,7 @@ export const InfoCard = styled.div`
   background-color: var(--color-card);
   border: 1px solid var(--color-border);
   border-radius: 8px;
-  width: 360px;
+  width: 320px;
   padding: 0.2rem 0.6rem;
   margin-top: 0.6rem;
   margin-bottom: 0.1rem;
@@ -50,6 +50,7 @@ export const InfoPagination = styled.div`
   grid-area: pagination;
   justify-self: flex-end;
   align-self: flex-start;
+  margin-right: 8px;
   padding: 8px;
   border-radius: 12px;
   background-color: var(--color-info-pagination-background);
