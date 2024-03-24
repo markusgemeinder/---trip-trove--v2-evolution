@@ -36,13 +36,13 @@ export const InfoCardHeader = styled.div`
 export const InfoAvatar = styled(Image)`
   grid-area: avatar;
   border-radius: 50%;
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   align-self: flex-start;
 
   @media (min-width: 768px) and (min-height: 768px) {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
   }
 `;
 
@@ -51,7 +51,7 @@ export const InfoPagination = styled.div`
   justify-self: flex-end;
   align-self: flex-start;
   padding: 8px;
-  border-radius: 6px;
+  border-radius: 12px;
   background-color: var(--color-info-pagination-background);
   color: var(--color-info-pagination-text);
   text-align: center;

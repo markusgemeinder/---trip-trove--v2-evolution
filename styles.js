@@ -204,8 +204,8 @@ export default createGlobalStyle`
   --color-info-headline-border: var(--color-orange-500);
   --color-info-list-bullet: var(--color-orange-500);
 
-  --color-info-pagination-background: var(--color-orange-100);
-  --color-info-pagination-text: var(--color-orange-600);
+  --color-info-pagination-background: var(--color-grey-50);
+  --color-info-pagination-text: var(--color-orange-500);
 
 
   --font-size: 14px;
