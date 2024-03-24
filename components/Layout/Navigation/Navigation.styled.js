@@ -4,12 +4,12 @@ export const BurgerMenuButton = styled.div`
   /* background-color: var(--color-burger-menu); */
   position: fixed;
   top: 70px;
-  left: 0px;
+  left: 0;
   display: block;
   margin: 10px 0 10px 10px;
   padding: 0;
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   z-index: 4;
   transition: color 0.6s ease, transform 0.6s ease;
@@ -21,7 +21,6 @@ export const BurgerMenuButton = styled.div`
 
   @media (min-width: 768px) and (min-height: 768px) {
     display: none;
-    /* top: 90px; */
   }
 `;
 

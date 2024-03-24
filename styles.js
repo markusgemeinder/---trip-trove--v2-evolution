@@ -40,6 +40,7 @@ export default createGlobalStyle`
 
   --color-orange-0: #fff;
   --color-orange-50: #fffbec;
+  --color-orange-75: #fff9e2;
   --color-orange-100: #fff6d3;
   --color-orange-150: #ffefdb;
   --color-orange-200: #ffeaa5;
@@ -105,16 +106,16 @@ export default createGlobalStyle`
   --color-grey-1000: #000;
   
 
-  --color-header: var(--color-blue-600);
+  --color-header: var(--color-blue-700);
   --color-header-lightened: var(--color-blue-300);
   --color-header-title: var(--color-orange-0);
   
   --color-logo-main: var(--color-blue-700);
   --color-logo-jewel: var(--color-orange-350);
   
-  --color-navigation: var(--color-blue-400);
-  --color-navigation-active: var(--color-blue-600);
-  --color-navigation-hover: var(--color-blue-700);
+  --color-navigation: var(--color-blue-500);
+  --color-navigation-active: var(--color-blue-700);
+  --color-navigation-hover: var(--color-blue-800);
   --color-navigation-item: var(--color-blue-100);
   --color-navigation-item-text: var(--color-blue-0);
   --color-navigation-border: var(--color-blue-0);
@@ -131,8 +132,11 @@ export default createGlobalStyle`
   --color-back-button: var(--color-blue-300);
   --color-back-button-hover: var(--color-blue-50);
   
-  --color-page-up-button: var(--color-blue-300);
+  --color-page-up-button: var(--color-blue-200);
   --color-page-up-button-hover: var(--color-blue-50);
+
+  --color-previous-next-page-button: var(--color-blue-200);
+  --color-previous-next-page-button-hover: var(--color-blue-50);
   
   --color-mini-button: var(--color-orange-200);
   --color-mini-button-hover: var(--color-orange-300);
@@ -146,6 +150,11 @@ export default createGlobalStyle`
   --color-mini-button-add-hover: var(--color-green-700);
   --color-mini-button-add-text: var(--color-green-0);
   
+  --color-toggle-background: var(--color-orange-100);
+  --color-toggle-border: var(--color-orange-300);
+  --color-toggle-button: var(--color-blue-600);
+  --color-toggle-text: var(--color-grey-300);
+
   --color-button: var(--color-orange-100);
   --color-button-text: var(--color-grey-1000);
   --color-button-border: var(--color-orange-300);
@@ -169,7 +178,9 @@ export default createGlobalStyle`
   --color-search-bar-icon: var(--color-orange-300);
 
   --color-card: var(--color-orange-0);
+  --color-card-active: var(--color-orange-75);
   --color-card-title: var(--color-grey-900);
+ 
   --color-card-text: var(--color-orange-1000);
   --color-card-text-highlight: var(--color-orange-600);
   --color-card-text-call-to-action: var(--color-orange-600);
@@ -187,6 +198,14 @@ export default createGlobalStyle`
   --color-image-upload-text: var(--color-grey-300);
   --color-image-upload-hover: var(--color-orange-100);
   --color-image-upload-in-progress: var(--color-orange-0);
+
+  --color-info-title: var(--color-orange-600);
+  --color-info-headline: var(--color-grey-400);
+  --color-info-headline-border: var(--color-orange-500);
+  --color-info-list-bullet: var(--color-orange-500);
+
+  --color-info-pagination-background: var(--color-grey-50);
+  --color-info-pagination-text: var(--color-orange-500);
 
 
   --font-size: 14px;

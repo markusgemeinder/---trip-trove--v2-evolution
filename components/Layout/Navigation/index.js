@@ -5,6 +5,7 @@ import {
   TripListIcon,
   TripCreateIcon,
   PresetsIcon,
+  InfoIcon,
 } from "@/components/Layout/Navigation/NavigationIcon";
 import {
   BurgerMenuButton,
@@ -75,6 +76,12 @@ export function BurgerNavigation() {
               <BurgerMenuItemText>Presets</BurgerMenuItemText>
             </BurgerMenuItem>
           </StyledLink>
+          <StyledLink href="/info">
+            <BurgerMenuItem $active={router.pathname === "/info"}>
+              <InfoIcon isBurgerNavigation={true} />
+              <BurgerMenuItemText>Info</BurgerMenuItemText>
+            </BurgerMenuItem>
+          </StyledLink>
         </BurgerMenuList>
       </BurgerMenuNavigation>
     </>
@@ -105,6 +112,12 @@ export function StandardNavigation() {
             <PresetsIcon isBurgerNavigation={false} />
           </Link>
           <NavigationItemText href="/presets">Presets</NavigationItemText>
+        </NavigationItem>
+        <NavigationItem $active={router.pathname === "/info"}>
+          <Link href="/info">
+            <InfoIcon isBurgerNavigation={false} />
+          </Link>
+          <NavigationItemText href="/info">Info</NavigationItemText>
         </NavigationItem>
       </NavigationList>
     </NavigationContainer>
