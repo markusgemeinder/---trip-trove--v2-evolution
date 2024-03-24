@@ -132,10 +132,10 @@ export default createGlobalStyle`
   --color-back-button: var(--color-blue-300);
   --color-back-button-hover: var(--color-blue-50);
   
-  --color-page-up-button: var(--color-blue-300);
+  --color-page-up-button: var(--color-blue-200);
   --color-page-up-button-hover: var(--color-blue-50);
 
-  --color-previous-next-page-button: var(--color-blue-300);
+  --color-previous-next-page-button: var(--color-blue-200);
   --color-previous-next-page-button-hover: var(--color-blue-50);
   
   --color-mini-button: var(--color-orange-200);
