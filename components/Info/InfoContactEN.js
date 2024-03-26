@@ -28,12 +28,12 @@ export default function InfoContactEN({ currentCard, totalCards }) {
       <InfoHeadline>Markus Gemeinder</InfoHeadline>
 
       <InfoText>
-        Self-employed in the area of coaching and marketing – open to new tasks
-        in the area of web development.
+        Self-employed in the field of coaching and marketing - open to new
+        opportunities and seeking a side job in web development.
       </InfoText>
       <InfoText>
-        Freely available from November to February (during main coaching season
-        from March to October with restrictions).
+        Available from November to February (with limitations during the
+        coaching main season from March to October).
       </InfoText>
       <InfoLinkContainer>
         <InfoLink href="tel:+491716444010">Phone: +49 171 6444010</InfoLink>

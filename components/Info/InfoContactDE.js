@@ -28,12 +28,12 @@ export default function InfoContactDE({ currentCard, totalCards }) {
       <InfoHeadline>Markus Gemeinder</InfoHeadline>
       <InfoText>
         Selbständig im Bereich Coaching und Marketing – offen für neue Aufgaben
-        im Bereich Web Development.
+        und auf der Suche nach einer Nebentätigkeit im Bereich Web Development.
       </InfoText>
 
       <InfoText>
         Frei verfügbar von November bis Februar (während der
-        Coaching-Hauptsaison von März bis Oktober mit Einschränkung).
+        Coaching-Hauptsaison von März bis Oktober mit Einschränkungen).
       </InfoText>
       <InfoLinkContainer>
         <InfoLink href="tel:+491716444010">Tel.: +49 171 6444010</InfoLink>
