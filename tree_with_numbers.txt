@@ -1,0 +1,138 @@
+     1	.
+     2	├── INFO.md
+     3	├── README.md
+     4	├── components
+     5	│   ├── Animation
+     6	│   │   ├── ErrorAnimation.js
+     7	│   │   └── LoadingAnimation.js
+     8	│   ├── Badge
+     9	│   │   ├── CreateDateBadge
+    10	│   │   │   └── index.js
+    11	│   │   └── TripDetailsBadge
+    12	│   │       └── index.js
+    13	│   ├── Button
+    14	│   │   ├── BackButton
+    15	│   │   │   └── index.js
+    16	│   │   ├── LanguageToggleButton
+    17	│   │   │   └── index.js
+    18	│   │   ├── MiniButton
+    19	│   │   │   └── index.js
+    20	│   │   ├── NextPageButton
+    21	│   │   │   └── index.js
+    22	│   │   ├── PageUpButton
+    23	│   │   │   └── index.js
+    24	│   │   ├── PreviousPageButton
+    25	│   │   │   └── index.js
+    26	│   │   └── TextButton
+    27	│   │       └── index.js
+    28	│   ├── Card
+    29	│   │   ├── Card.styled.js
+    30	│   │   ├── PresetCard
+    31	│   │   │   └── index.js
+    32	│   │   ├── PresetList
+    33	│   │   │   └── index.js
+    34	│   │   ├── TripCard
+    35	│   │   │   └── index.js
+    36	│   │   ├── TripDetailed
+    37	│   │   │   └── index.js
+    38	│   │   └── TripList
+    39	│   │       └── index.js
+    40	│   ├── Form
+    41	│   │   ├── Form.styled.js
+    42	│   │   ├── PresetForm
+    43	│   │   │   ├── PresetForm.handlers.js
+    44	│   │   │   └── index.js
+    45	│   │   └── TripForm
+    46	│   │       ├── TripForm.handlers.js
+    47	│   │       └── index.js
+    48	│   ├── ImageUpload
+    49	│   │   ├── ImageUpload.styled.js
+    50	│   │   ├── UploadIcon
+    51	│   │   │   └── index.js
+    52	│   │   └── index.js
+    53	│   ├── Info
+    54	│   │   ├── Info.styled.js
+    55	│   │   ├── InfoContactDE.js
+    56	│   │   ├── InfoContactEN.js
+    57	│   │   ├── InfoNeueFischeDE.js
+    58	│   │   ├── InfoNeueFischeEN.js
+    59	│   │   ├── InfoProjectDE.js
+    60	│   │   ├── InfoProjectEN.js
+    61	│   │   ├── InfoTechstackDE.js
+    62	│   │   └── InfoTechstackEN.js
+    63	│   ├── Layout
+    64	│   │   ├── Header
+    65	│   │   │   └── index.js
+    66	│   │   ├── Logo
+    67	│   │   │   └── index.js
+    68	│   │   ├── Navigation
+    69	│   │   │   ├── Navigation.styled.js
+    70	│   │   │   ├── NavigationIcon
+    71	│   │   │   │   └── index.js
+    72	│   │   │   └── index.js
+    73	│   │   └── index.js
+    74	│   ├── Message
+    75	│   │   ├── ErrorMessage
+    76	│   │   │   └── index.js
+    77	│   │   ├── LoadingMessage
+    78	│   │   │   └── index.js
+    79	│   │   ├── Message.styled.js
+    80	│   │   └── NoTripsFoundMessage
+    81	│   │       └── index.js
+    82	│   ├── PackingList
+    83	│   │   └── index.js
+    84	│   ├── SearchTrips
+    85	│   │   └── index.js
+    86	│   ├── SelectPreset
+    87	│   │   └── index.js
+    88	│   ├── SortTrips
+    89	│   │   └── index.js
+    90	│   └── ToastMessage
+    91	│       └── index.js
+    92	├── db
+    93	│   ├── connect.js
+    94	│   └── models
+    95	│       ├── Presets.js
+    96	│       └── Trips.js
+    97	├── jest.config.js
+    98	├── jest.setup.js
+    99	├── jsconfig.json
+   100	├── lib
+   101	│   └── utils
+   102	│       └── index.js
+   103	├── next.config.js
+   104	├── package.json
+   105	├── pages
+   106	│   ├── _app.js
+   107	│   ├── _document.js
+   108	│   ├── api
+   109	│   │   ├── presets
+   110	│   │   │   ├── [id]
+   111	│   │   │   │   └── index.js
+   112	│   │   │   └── index.js
+   113	│   │   └── trips
+   114	│   │       ├── [id]
+   115	│   │       │   └── index.js
+   116	│   │       └── index.js
+   117	│   ├── index.js
+   118	│   ├── info
+   119	│   │   └── index.js
+   120	│   ├── presets
+   121	│   │   ├── [id]
+   122	│   │   │   └── edit.js
+   123	│   │   ├── create
+   124	│   │   │   └── index.js
+   125	│   │   └── index.js
+   126	│   ├── test
+   127	│   │   └── index.js
+   128	│   └── trips
+   129	│       ├── [id]
+   130	│       │   ├── edit.js
+   131	│       │   └── index.js
+   132	│       └── create
+   133	│           └── index.js
+   134	├── sandbox.config.json
+   135	├── styles.js
+   136	└── tree_with_numbers.txt
+      	
+   137	58 directories, 78 files
