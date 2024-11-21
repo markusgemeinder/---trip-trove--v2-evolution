@@ -27,14 +27,14 @@ export default function InfoContactDE({ currentCard, totalCards }) {
       <InfoTitle>Kontakt</InfoTitle>
       <InfoHeadline>Markus Gemeinder</InfoHeadline>
       <InfoText>
-        Selbständig im Bereich Coaching und Marketing – offen für neue Aufgaben
-        und auf der Suche nach einer Nebentätigkeit im Bereich Web Development.
+        Selbstständig im Bereich Coaching und Marketing-Kommunikation – offen
+        für neue Möglichkeiten im Bereich Web- und Anwendungsentwicklung.
       </InfoText>
 
-      <InfoText>
+      {/* <InfoText>
         Frei verfügbar von November bis Februar (während der
         Coaching-Hauptsaison von März bis Oktober mit Einschränkungen).
-      </InfoText>
+      </InfoText> */}
       <InfoLinkContainer>
         <InfoLink href="tel:+491716444010">Tel.: +49 171 6444010</InfoLink>
         <InfoLink href="mailto:info@gemeinder-coaching.de">
